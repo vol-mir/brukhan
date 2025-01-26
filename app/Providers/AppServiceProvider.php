@@ -21,6 +21,7 @@ use App\Observers\ProductObserver;
 use App\Observers\SettingObserver;
 use App\Observers\SocialNetworkObserver;
 use Illuminate\Support\ServiceProvider;
+use Inertia\Inertia;
 use Opcodes\LogViewer\Facades\LogViewer;
 
 class AppServiceProvider extends ServiceProvider
@@ -47,5 +48,7 @@ class AppServiceProvider extends ServiceProvider
         OrderItem::observe(OrderItemObserver::class);
 
         LogViewer::auth(fn($request): bool => $request->user() !== null);
+
+        Inertia::version(fn() => config('inertia.ssr_enabled') ? config('inertia.ssr_url') : null);
     }
 }

@@ -35,7 +35,7 @@ class PageSeeder extends Seeder
                 'keywords' => null,
             ],
             [
-                'name' => 'about',
+                'name' => 'about-us',
                 'title' => 'О нашей компании и принципах работы',
                 'description' => null,
                 'keywords' => null,
