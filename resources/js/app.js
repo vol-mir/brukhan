@@ -2,6 +2,7 @@ import './bootstrap';
 import { createSSRApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { createPinia } from 'pinia';
+import AOS from 'aos';
 import Layout from './Layout.vue';
 
 createInertiaApp({
@@ -20,5 +21,11 @@ createInertiaApp({
         app.use(pinia);
 
         app.use(plugin).mount(el);
+
+        AOS.init({
+            duration: 1500,
+            easing: 'ease-in-out',
+            once: false,
+        });
     },
 }).then(() => {});

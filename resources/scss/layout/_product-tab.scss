@@ -237,7 +237,7 @@ button.btn-close.qty_close {
             opacity: 0;
             align-items: $textcenter;
             justify-content: center;
-            border-radius: 0 0 10px 10px;
+            border-radius: 0 0 0 0;
             color: $main-primary-trans-color;
             background-color: $white-color;
             z-index: 9;
@@ -787,7 +787,7 @@ i.ecicon.eci-star.fill {
                 bottom: 65px;
                 right: 15px;
                 left: auto;
-                border-radius: 0 0 10px 10px;
+                border-radius: 0 0 0 0;
             }
         }
     }

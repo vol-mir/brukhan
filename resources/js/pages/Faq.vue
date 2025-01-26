@@ -1,6 +1,6 @@
 <script>
     import { getFaqItems } from '@/data/faqData';
-    import Layout from '../Layout.vue';
+    import Layout from '@/Layout.vue';
 
     export default {
         name: 'Faq',
@@ -25,7 +25,7 @@
 </script>
 
 <template>
-    <!-- Ec breadcrumb start -->
+    <!-- Breadcrumb start -->
     <div class="sticky-header-next-sec ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
@@ -51,9 +51,9 @@
             </div>
         </div>
     </div>
-    <!-- Ec breadcrumb end -->
+    <!-- Breadcrumb end -->
 
-    <!-- Ec FAQ page -->
+    <!-- FAQ page start -->
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
@@ -104,6 +104,7 @@
             </div>
         </div>
     </section>
+    <!-- FAQ page end -->
 </template>
 
 <style scoped>

@@ -1,6 +1,6 @@
 <script>
     import { onBeforeUnmount, onMounted } from 'vue';
-    import Layout from '../Layout.vue';
+    import Layout from '@/Layout.vue';
 
     export default {
         name: 'PrivacyPolicy',
@@ -18,7 +18,7 @@
 </script>
 
 <template class="terms_condition_page">
-    <!-- Ec breadcrumb start -->
+    <!-- Breadcrumb start -->
     <div class="sticky-header-next-sec ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
@@ -46,9 +46,9 @@
             </div>
         </div>
     </div>
-    <!-- Ec breadcrumb end -->
+    <!-- Breadcrumb end -->
 
-    <!-- Start Privacy & Policy page -->
+    <!-- Privacy & Policy page start -->
     <section class="ec-page-content section-space-p">
         <div class="container">
             <div class="row">
@@ -144,5 +144,5 @@
             </div>
         </div>
     </section>
-    <!-- End Privacy & Policy page -->
+    <!-- Privacy & Policy page end -->
 </template>

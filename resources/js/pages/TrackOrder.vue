@@ -1,7 +1,7 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
     import { onBeforeUnmount, onMounted } from 'vue';
-    import Layout from '../Layout.vue';
+    import Layout from '@/Layout.vue';
 
     export default {
         name: 'PrivacyPolicyPage',
@@ -24,7 +24,7 @@
 </script>
 
 <template class="terms_condition_page">
-    <!-- Ec breadcrumb start -->
+    <!-- Breadcrumb start -->
     <div class="sticky-header-next-sec ec-breadcrumb section-space-mb">
         <div class="container">
             <div class="row">
@@ -50,9 +50,9 @@
             </div>
         </div>
     </div>
-    <!-- Ec breadcrumb end -->
+    <!-- Breadcrumb end -->
 
-    <!-- Ec Track Order section -->
+    <!-- Track Order section start -->
     <section class="ec-page-content section-space-p">
         <div class="container">
             <!-- Track Order Content Start -->
@@ -154,5 +154,5 @@
             <!-- Track Order Content end -->
         </div>
     </section>
-    <!-- End Track Order section -->
+    <!-- Track Order section end -->
 </template>

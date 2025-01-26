@@ -3,6 +3,7 @@ import createServer from '@inertiajs/vue3/server';
 import { renderToString } from '@vue/server-renderer';
 import { createSSRApp, h } from 'vue';
 import { createPinia } from 'pinia';
+import AOS from 'aos';
 import Layout from './Layout.vue';
 
 createServer((page) =>
@@ -26,6 +27,13 @@ createServer((page) =>
             app.use(pinia);
 
             app.use(plugin);
+
+            AOS.init({
+                duration: 1500,
+                easing: 'ease-in-out',
+                once: true,
+            });
+
             return app;
         },
     })

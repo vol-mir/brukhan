@@ -1,6 +1,6 @@
 <script>
-    import Layout from '../Layout.vue';
     import { onBeforeUnmount, onMounted } from 'vue';
+    import Layout from '@/Layout.vue';
 
     export default {
         name: 'Contacts',
