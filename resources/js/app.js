@@ -3,6 +3,7 @@ import { createSSRApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { createPinia } from 'pinia';
 import AOS from 'aos';
+import 'animate.css';
 import Layout from './Layout.vue';
 
 createInertiaApp({

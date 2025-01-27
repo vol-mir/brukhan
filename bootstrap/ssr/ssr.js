@@ -2823,7 +2823,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_TestimonialReviews = resolveComponent("TestimonialReviews");
   const _component_ListBrands = resolveComponent("ListBrands");
   const _component_InstagramFeed = resolveComponent("InstagramFeed");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-main-slider section section-space-pb" data-v-1e62ea30><div class="ec-slider swiper-container main-slider-nav main-slider-dot" data-v-1e62ea30>`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-main-slider section section-space-pb" data-v-8af04cc1><div class="ec-slider swiper-container main-slider-nav main-slider-dot" data-v-8af04cc1>`);
   _push(ssrRenderComponent(_component_swiper, {
     class: "swiper-wrapper",
     modules: [$options.Autoplay, $options.Navigation],
@@ -2833,14 +2833,17 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       delay: 4e3,
       disableOnInteraction: false
     },
-    navigation: ""
+    navigation: {
+      prevEl: ".swiper-button-prev",
+      nextEl: ".swiper-button-next"
+    }
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex" }, {
+        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-1" }, {
           default: withCtx((_2, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="container align-self-center" data-v-1e62ea30${_scopeId2}><div class="row" data-v-1e62ea30${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-1e62ea30${_scopeId2}><div class="ec-slide-content slider-animation" data-v-1e62ea30${_scopeId2}><h1 class="ec-slide-title" data-v-1e62ea30${_scopeId2}> New Fashion Collection </h1><h2 class="ec-slide-stitle" data-v-1e62ea30${_scopeId2}>Sale Offer</h2><p data-v-1e62ea30${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-1e62ea30${_scopeId2}> Order Now </a></div></div></div></div>`);
+              _push3(`<div class="container align-self-center" data-v-8af04cc1${_scopeId2}><div class="row" data-v-8af04cc1${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-8af04cc1${_scopeId2}><div class="ec-slide-content slider-animation" data-v-8af04cc1${_scopeId2}><h1 class="ec-slide-title" data-v-8af04cc1${_scopeId2}> New Fashion Collection </h1><h2 class="ec-slide-stitle" data-v-8af04cc1${_scopeId2}>Sale Offer</h2><p data-v-8af04cc1${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-8af04cc1${_scopeId2}> Order Now </a></div></div></div></div>`);
             } else {
               return [
                 createVNode("div", { class: "container align-self-center" }, [
@@ -2863,17 +2866,20 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }),
           _: 1
         }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex" }, {
+        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-2" }, {
           default: withCtx((_2, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="container align-self-center" data-v-1e62ea30${_scopeId2}><div class="row" data-v-1e62ea30${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-1e62ea30${_scopeId2}><div class="ec-slide-content slider-animation" data-v-1e62ea30${_scopeId2}><h1 class="ec-slide-title" data-v-1e62ea30${_scopeId2}> New Fashion Collection </h1><h2 class="ec-slide-stitle" data-v-1e62ea30${_scopeId2}>Sale Offer</h2><p data-v-1e62ea30${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-1e62ea30${_scopeId2}> Order Now </a></div></div></div></div>`);
+              _push3(`<div class="container align-self-center" data-v-8af04cc1${_scopeId2}><div class="row" data-v-8af04cc1${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-8af04cc1${_scopeId2}><div class="ec-slide-content slider-animation" data-v-8af04cc1${_scopeId2}><h1 class="ec-slide-title" data-aos="flip-right" data-v-8af04cc1${_scopeId2}> Boat Headphone Sets </h1><h2 class="ec-slide-stitle" data-v-8af04cc1${_scopeId2}>Sale Offer</h2><p data-v-8af04cc1${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-8af04cc1${_scopeId2}> Order Now </a></div></div></div></div>`);
             } else {
               return [
                 createVNode("div", { class: "container align-self-center" }, [
                   createVNode("div", { class: "row" }, [
                     createVNode("div", { class: "col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" }, [
                       createVNode("div", { class: "ec-slide-content slider-animation" }, [
-                        createVNode("h1", { class: "ec-slide-title" }, " New Fashion Collection "),
+                        createVNode("h1", {
+                          class: "ec-slide-title",
+                          "data-aos": "flip-right"
+                        }, " Boat Headphone Sets "),
                         createVNode("h2", { class: "ec-slide-stitle" }, "Sale Offer"),
                         createVNode("p", null, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "),
                         createVNode("a", {
@@ -2889,9 +2895,10 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }),
           _: 1
         }, _parent2, _scopeId));
+        _push2(`<div class="swiper-buttons" data-v-8af04cc1${_scopeId}><div class="swiper-button-next" data-v-8af04cc1${_scopeId}></div><div class="swiper-button-prev" data-v-8af04cc1${_scopeId}></div></div>`);
       } else {
         return [
-          createVNode(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex" }, {
+          createVNode(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-1" }, {
             default: withCtx(() => [
               createVNode("div", { class: "container align-self-center" }, [
                 createVNode("div", { class: "row" }, [
@@ -2911,13 +2918,16 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
             ]),
             _: 1
           }),
-          createVNode(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex" }, {
+          createVNode(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-2" }, {
             default: withCtx(() => [
               createVNode("div", { class: "container align-self-center" }, [
                 createVNode("div", { class: "row" }, [
                   createVNode("div", { class: "col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" }, [
                     createVNode("div", { class: "ec-slide-content slider-animation" }, [
-                      createVNode("h1", { class: "ec-slide-title" }, " New Fashion Collection "),
+                      createVNode("h1", {
+                        class: "ec-slide-title",
+                        "data-aos": "flip-right"
+                      }, " Boat Headphone Sets "),
                       createVNode("h2", { class: "ec-slide-stitle" }, "Sale Offer"),
                       createVNode("p", null, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "),
                       createVNode("a", {
@@ -2930,7 +2940,11 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
               ])
             ]),
             _: 1
-          })
+          }),
+          createVNode("div", { class: "swiper-buttons" }, [
+            createVNode("div", { class: "swiper-button-next" }),
+            createVNode("div", { class: "swiper-button-prev" })
+          ])
         ];
       }
     }),
@@ -2952,7 +2966,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Home.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-1e62ea30"]]);
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-8af04cc1"]]);
 const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Home
