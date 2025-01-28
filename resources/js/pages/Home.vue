@@ -10,6 +10,7 @@
     import SuperOffer from '@/components/SuperOffer.vue';
     import NewProducts from '@/components/NewProducts.vue';
     import TwoBanners from '@/components/TwoBanners.vue';
+    import TabProducts from '@/components/TabProducts.vue';
 
     export default {
         name: 'HomePage',
@@ -24,6 +25,7 @@
             SuperOffer,
             NewProducts,
             TwoBanners,
+            TabProducts,
         },
         setup() {
             return {
@@ -135,6 +137,7 @@
     </div>
     <!-- Main Slider End -->
 
+    <TabProducts />
     <TwoBanners />
     <ListServices />
     <SuperOffer />
