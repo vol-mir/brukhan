@@ -11,6 +11,7 @@
     import NewProducts from '@/components/NewProducts.vue';
     import TwoBanners from '@/components/TwoBanners.vue';
     import TabProducts from '@/components/TabProducts.vue';
+    import TopCategories from '@/components/TopCategories.vue';
 
     export default {
         name: 'HomePage',
@@ -26,6 +27,7 @@
             NewProducts,
             TwoBanners,
             TabProducts,
+            TopCategories,
         },
         setup() {
             return {
@@ -139,6 +141,7 @@
 
     <TabProducts />
     <TwoBanners />
+    <TopCategories />
     <ListServices />
     <SuperOffer />
     <NewProducts />
