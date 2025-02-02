@@ -221,6 +221,9 @@ div#ec_news_signup {
             }
         }
     }
+    @media (max-width: 992px) {
+        margin-bottom: 15px;
+    }
 }
 .ec-heading-res {
     display: none;

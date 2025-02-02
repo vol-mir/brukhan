@@ -2,9 +2,22 @@ import './bootstrap';
 import { createSSRApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { createPinia } from 'pinia';
+import { createI18n } from 'vue-i18n';
 import AOS from 'aos';
 import 'animate.css';
 import Layout from './Layout.vue';
+
+import ru from '@/locales/ru.js';
+import en from '@/locales/en.js';
+
+const defaultLocale = localStorage.getItem('locale') || 'ru';
+
+const i18n = createI18n({
+    legacy: false,
+    locale: defaultLocale,
+    fallbackLocale: 'en',
+    messages: { ru, en },
+});
 
 createInertiaApp({
     resolve: (name) => {
@@ -21,6 +34,7 @@ createInertiaApp({
         const pinia = createPinia();
         app.use(pinia);
 
+        app.use(i18n);
         app.use(plugin).mount(el);
 
         AOS.init({

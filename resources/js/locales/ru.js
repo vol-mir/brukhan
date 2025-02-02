@@ -1,0 +1,29 @@
+export default {
+    locale: {
+        russian: 'Русский',
+        english: 'Английский',
+    },
+    language: 'Язык',
+    all_rights_reserved: 'Все права защищены',
+    follow_us_on: 'Подпишитесь на нас',
+    information: 'Информация',
+    services: 'Услуги',
+    newsletter: 'Рассылка',
+    special_promos:
+        'Получайте мгновенные обновления о наших новых продуктах и специальных предложениях!',
+    enter_your_email: 'Введите ваш email здесь...',
+    page: {
+        about_us: 'О нас',
+        faq: 'Часто задаваемые вопросы',
+        delivery_information: 'Информация о доставке',
+        contact_us: 'Контакты',
+        privacy_policy: 'Политика персональных данных',
+        cookie_processing_policy:
+            'Политика в отношении обработки файлов cookie',
+        bank_details: 'Банковские реквизиты',
+    },
+    any_questions: 'Остались вопросы? Звоните',
+    contact_us: 'Свяжитесь с нами',
+    call_us: 'Позвоните нам',
+    email: 'Email',
+};

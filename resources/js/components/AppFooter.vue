@@ -1,7 +1,9 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
+    import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { useSidebarStore } from '@/stores/sidebarStore';
     import { Link as InertiaLink } from '@inertiajs/vue3';
+    import { onMounted } from 'vue';
 
     export default {
         name: 'AppFooter',
@@ -10,13 +12,19 @@
         },
         setup() {
             const sidebarStore = useSidebarStore();
+            const siteInfoStore = useSiteInfoStore();
             const getIconPath = (name) => getImagePath('icons', name);
             const getLogoPath = (name) => getImagePath('logo', name);
+
+            onMounted(async () => {
+                await siteInfoStore.fetchSiteInfo();
+            });
 
             return {
                 sidebarStore,
                 getIconPath,
                 getLogoPath,
+                siteInfoStore,
             };
         },
         data() {
@@ -45,8 +53,10 @@
                 <div class="container">
                     <div class="row">
                         <div class="text-center footer-off-msg">
-                            <span>Win a contest! Get this limited-editon</span>
-                            <a href="#" target="_blank">View Detail</a>
+                            <span>{{ $t('any_questions') }}</span>
+                            <a :href="'tel:' + siteInfoStore.main_phone">
+                                {{ siteInfoStore.main_phone }}
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -57,28 +67,28 @@
                         <div class="col-sm-12 col-lg-3 ec-footer-contact">
                             <div class="ec-footer-widget">
                                 <div class="ec-footer-logo">
-                                    <a href="#">
+                                    <InertiaLink href="/">
                                         <img
                                             :src="
                                                 getLogoPath('footer-logo.png')
                                             "
-                                            alt=""
+                                            :alt="siteInfoStore.full_name"
                                             loading="lazy"
                                         />
                                         <img
                                             class="dark-footer-logo"
                                             :src="getLogoPath('dark-logo.png')"
-                                            alt="Site Logo"
+                                            :alt="siteInfoStore.social_networks"
                                             style="display: none"
                                             loading="lazy"
                                         />
-                                    </a>
+                                    </InertiaLink>
                                 </div>
                                 <h4
                                     class="ec-footer-heading"
                                     @click="toggleDropdown('contacts')"
                                 >
-                                    Contact us
+                                    {{ $t('contact_us') }}
                                     <div class="ec-heading-res">
                                         <i class="ecicon eci-angle-down"></i>
                                     </div>
@@ -90,21 +100,34 @@
                                     >
                                         <ul class="align-items-center">
                                             <li class="ec-footer-link">
-                                                71 Pilgrim Avenue Chevy Chase,
-                                                east california.
+                                                {{ siteInfoStore.address }}
                                             </li>
                                             <li class="ec-footer-link">
-                                                <span>Call Us:</span>
-                                                <a href="tel:+440123456789">
-                                                    +44 0123 456 789
+                                                <span>
+                                                    {{ $t('call_us') }}:
+                                                </span>
+                                                <a
+                                                    :href="
+                                                        'tel:' +
+                                                        siteInfoStore.main_phone
+                                                    "
+                                                >
+                                                    {{
+                                                        siteInfoStore.main_phone
+                                                    }}
                                                 </a>
                                             </li>
                                             <li class="ec-footer-link">
-                                                <span>Email:</span>
+                                                <span>{{ $t('email') }}:</span>
                                                 <a
-                                                    href="mailto:example@ec-email.com"
+                                                    :href="
+                                                        'mailto:' +
+                                                        siteInfoStore.main_email
+                                                    "
                                                 >
-                                                    +example@ec-email.com
+                                                    {{
+                                                        siteInfoStore.main_email
+                                                    }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -118,7 +141,7 @@
                                     class="ec-footer-heading"
                                     @click="toggleDropdown('information')"
                                 >
-                                    Information
+                                    {{ $t('information') }}
                                     <div class="ec-heading-res">
                                         <i class="ecicon eci-angle-down"></i>
                                     </div>
@@ -131,22 +154,26 @@
                                         <ul class="align-items-center">
                                             <li class="ec-footer-link">
                                                 <InertiaLink href="/about-us">
-                                                    About us
+                                                    {{ $t('page.about_us') }}
                                                 </InertiaLink>
                                             </li>
                                             <li class="ec-footer-link">
                                                 <InertiaLink href="/faq">
-                                                    FAQ
+                                                    {{ $t('page.faq') }}
                                                 </InertiaLink>
                                             </li>
                                             <li class="ec-footer-link">
                                                 <a href="#">
-                                                    Delivery Information
+                                                    {{
+                                                        $t(
+                                                            'page.delivery_information'
+                                                        )
+                                                    }}
                                                 </a>
                                             </li>
                                             <li class="ec-footer-link">
                                                 <InertiaLink href="/contacts">
-                                                    Contact us
+                                                    {{ $t('page.contact_us') }}
                                                 </InertiaLink>
                                             </li>
                                         </ul>
@@ -160,7 +187,7 @@
                                     class="ec-footer-heading"
                                     @click="toggleDropdown('services')"
                                 >
-                                    Services
+                                    {{ $t('services') }}
                                     <div class="ec-heading-res">
                                         <i class="ecicon eci-angle-down"></i>
                                     </div>
@@ -172,23 +199,34 @@
                                     >
                                         <ul class="align-items-center">
                                             <li class="ec-footer-link">
-                                                <a href="#">Discount Returns</a>
-                                            </li>
-                                            <li class="ec-footer-link">
                                                 <InertiaLink
                                                     href="/privacy-policy"
                                                 >
-                                                    Privacy policy
+                                                    {{
+                                                        $t(
+                                                            'page.privacy_policy'
+                                                        )
+                                                    }}
                                                 </InertiaLink>
-                                            </li>
-                                            <li class="ec-footer-link">
-                                                <a href="#">Customer Service</a>
                                             </li>
                                             <li class="ec-footer-link">
                                                 <InertiaLink
                                                     href="/terms-condition"
                                                 >
-                                                    Term condition
+                                                    {{
+                                                        $t(
+                                                            'page.cookie_processing_policy'
+                                                        )
+                                                    }}
+                                                </InertiaLink>
+                                            </li>
+                                            <li class="ec-footer-link">
+                                                <InertiaLink
+                                                    href="/terms-condition"
+                                                >
+                                                    {{
+                                                        $t('page.bank_details')
+                                                    }}
                                                 </InertiaLink>
                                             </li>
                                         </ul>
@@ -202,7 +240,7 @@
                                     class="ec-footer-heading"
                                     @click="toggleDropdown('newsletter')"
                                 >
-                                    Newsletter
+                                    {{ $t('newsletter') }}
                                     <div class="ec-heading-res">
                                         <i class="ecicon eci-angle-down"></i>
                                     </div>
@@ -214,8 +252,7 @@
                                     >
                                         <ul class="align-items-center">
                                             <li class="ec-footer-link">
-                                                Get instant updates about our
-                                                new products and special promos!
+                                                {{ $t('special_promos') }}
                                             </li>
                                         </ul>
                                         <div class="ec-subscribe-form">
@@ -233,7 +270,11 @@
                                                         class="ec-email"
                                                         type="email"
                                                         required=""
-                                                        placeholder="Enter your email here..."
+                                                        :placeholder="
+                                                            $t(
+                                                                'enter_your_email'
+                                                            )
+                                                        "
                                                         name="ec-email"
                                                         value=""
                                                     />
@@ -266,27 +307,36 @@
                         <div class="col text-left footer-bottom-left">
                             <div class="footer-bottom-social">
                                 <span class="social-text text-upper">
-                                    Follow us on:
+                                    {{ $t('follow_us_on') }}:
                                 </span>
-                                <ul class="mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="hdr-facebook" href="#">
-                                            <i class="ecicon eci-facebook"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="hdr-twitter" href="#">
-                                            <i class="ecicon eci-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="hdr-instagram" href="#">
-                                            <i class="ecicon eci-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="hdr-linkedin" href="#">
-                                            <i class="ecicon eci-linkedin"></i>
+                                <ul
+                                    v-if="
+                                        siteInfoStore &&
+                                        siteInfoStore.social_networks
+                                    "
+                                    class="mb-0"
+                                >
+                                    <li
+                                        v-for="network in siteInfoStore.social_networks ||
+                                        []"
+                                        :key="network.slug"
+                                        class="list-inline-item"
+                                    >
+                                        <a
+                                            :class="
+                                                'hdr-' +
+                                                network.slug.toLowerCase()
+                                            "
+                                            :href="network.url"
+                                            :aria-label="network.name"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <i
+                                                :class="
+                                                    'ecicon eci-' + network.slug
+                                                "
+                                            ></i>
                                         </a>
                                     </li>
                                 </ul>
@@ -297,12 +347,14 @@
                         <div class="col text-center footer-copy">
                             <div class="footer-bottom-copy">
                                 <div class="ec-copy">
-                                    Copyright © 2021-{{ currentYear }}
-                                    <a class="site-name text-upper" href="#">
-                                        ekka
-                                        <span>.</span>
-                                    </a>
-                                    . All Rights Reserved
+                                    © 2024-{{ currentYear }}
+                                    <InertiaLink
+                                        href="/"
+                                        class="site-name text-upper"
+                                    >
+                                        {{ siteInfoStore.full_name }}.
+                                    </InertiaLink>
+                                    {{ $t('all_rights_reserved') }}.
                                 </div>
                             </div>
                         </div>

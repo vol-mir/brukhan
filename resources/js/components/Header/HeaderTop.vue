@@ -1,13 +1,18 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
     import { useSidebarStore } from '@/stores/sidebarStore';
-    import { ref } from 'vue';
+    import { useSiteInfoStore } from '@/stores/siteInfoStore';
+    import { onMounted, ref, onBeforeUnmount } from 'vue';
+    import { useI18n } from 'vue-i18n';
 
     export default {
         name: 'HeaderTop',
         setup() {
             const sidebarStore = useSidebarStore();
+            const siteInfoStore = useSiteInfoStore();
             const showLanguageDropdown = ref(false);
+            const dropdownRef = ref(null);
+            const buttonRef = ref(null);
 
             const getIconPath = (name) => getImagePath('icons', name);
 
@@ -15,11 +20,48 @@
                 showLanguageDropdown.value = !showLanguageDropdown.value;
             };
 
+            const { locale } = useI18n();
+            const activeLanguage = ref(locale.value);
+
+            const changeLanguage = (lang) => {
+                if (activeLanguage.value !== lang) {
+                    activeLanguage.value = lang;
+                    localStorage.setItem('locale', lang);
+                    locale.value = lang;
+                }
+            };
+
+            onMounted(async () => {
+                await siteInfoStore.fetchSiteInfo();
+                document.addEventListener('click', handleClickOutside);
+            });
+
+            const handleClickOutside = (event) => {
+                if (
+                    dropdownRef.value &&
+                    !dropdownRef.value.contains(event.target) &&
+                    buttonRef.value &&
+                    !buttonRef.value.contains(event.target)
+                ) {
+                    showLanguageDropdown.value = false;
+                }
+            };
+
+            onBeforeUnmount(() => {
+                // Убираем глобальный обработчик при размонтировании компонента
+                document.removeEventListener('click', handleClickOutside);
+            });
+
             return {
                 sidebarStore,
                 getIconPath,
                 showLanguageDropdown,
                 toggleDropdown,
+                changeLanguage,
+                locale,
+                siteInfoStore,
+                dropdownRef,
+                buttonRef,
             };
         },
     };
@@ -34,43 +76,24 @@
                 <div class="col text-left header-top-left d-none d-lg-block">
                     <div class="header-top-social">
                         <span class="social-text text-upper">
-                            Follow us on:
+                            {{ $t('follow_us_on') }}:
                         </span>
-                        <ul class="mb-0">
-                            <li class="list-inline-item">
+                        <ul v-if="siteInfoStore.social_networks" class="mb-0">
+                            <li
+                                v-for="network in siteInfoStore.social_networks"
+                                :key="network.slug"
+                                class="list-inline-item"
+                            >
                                 <a
-                                    class="hdr-facebook"
-                                    href="#"
-                                    aria-label="Facebook"
+                                    :href="network.url"
+                                    :aria-label="network.name"
+                                    :class="'hdr-' + network.slug.toLowerCase()"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                 >
-                                    <i class="ecicon eci-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a
-                                    class="hdr-twitter"
-                                    href="#"
-                                    aria-label="Twitter"
-                                >
-                                    <i class="ecicon eci-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a
-                                    class="hdr-instagram"
-                                    href="#"
-                                    aria-label="Instagram"
-                                >
-                                    <i class="ecicon eci-instagram"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a
-                                    class="hdr-linkedin"
-                                    href="#"
-                                    aria-label="LinkedIn"
-                                >
-                                    <i class="ecicon eci-linkedin"></i>
+                                    <i
+                                        :class="'ecicon eci-' + network.slug"
+                                    ></i>
                                 </a>
                             </li>
                         </ul>
@@ -78,27 +101,18 @@
                 </div>
                 <!-- Header Top Social End -->
 
-                <!-- Header Top Message Start -->
-                <div class="col text-center header-top-center">
-                    <div class="header-top-message text-upper">
-                        <span>Free Shipping</span>
-                        This Week Order Over - $75
-                    </div>
-                </div>
-                <!-- Header Top Message End -->
-
                 <!-- Header Top Language Currency -->
                 <div class="col header-top-right d-none d-lg-block">
                     <div class="header-top-lan-curr d-flex justify-content-end">
-                        <!-- Language Start -->
                         <div class="header-top-lan dropdown">
                             <button
+                                ref="buttonRef"
                                 class="dropdown-toggle text-upper"
                                 @click="toggleDropdown"
                                 aria-haspopup="true"
                                 :aria-expanded="showLanguageDropdown"
                             >
-                                Language
+                                {{ $t('language') }}
                                 <i
                                     class="ecicon eci-caret-down"
                                     aria-hidden="true"
@@ -106,31 +120,46 @@
                             </button>
                             <transition name="fade" mode="out-in" appear>
                                 <ul
+                                    ref="dropdownRef"
                                     v-if="showLanguageDropdown"
                                     class="dropdown-menu"
                                 >
-                                    <li class="active">
-                                        <a class="dropdown-item" href="#">
-                                            Russian
+                                    <li
+                                        :class="{
+                                            active: activeLanguage === 'ru',
+                                        }"
+                                    >
+                                        <a
+                                            class="dropdown-item"
+                                            href="#"
+                                            @click="changeLanguage('ru')"
+                                        >
+                                            {{ $t('locale.russian') }}
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            English
+                                    <li
+                                        :class="{
+                                            active: activeLanguage === 'en',
+                                        }"
+                                    >
+                                        <a
+                                            class="dropdown-item"
+                                            href="#"
+                                            @click="changeLanguage('en')"
+                                        >
+                                            {{ $t('locale.english') }}
                                         </a>
                                     </li>
                                 </ul>
                             </transition>
                         </div>
-                        <!-- Language End -->
                     </div>
                 </div>
-                <!-- Header Top Language Currency -->
+                <!-- Header Top Language Currency End -->
 
                 <!-- Header Top Responsive Action -->
                 <div class="col d-lg-none">
                     <div class="ec-header-bottons">
-                        <!-- Header Cart Start -->
                         <a
                             href="#ec-side-cart"
                             class="ec-header-btn ec-side-toggle"
@@ -147,9 +176,7 @@
                                 3
                             </span>
                         </a>
-                        <!-- Header Cart End -->
 
-                        <!-- Header Category Icon -->
                         <a
                             href="javascript:void(0)"
                             class="ec-header-btn ec-sidebar-toggle"
@@ -161,7 +188,7 @@
                                 loading="lazy"
                             />
                         </a>
-                        <!-- Header Menu Start -->
+
                         <a
                             href="javascript:void(0)"
                             @click="sidebarStore.toggleMobileMenu"
@@ -174,10 +201,9 @@
                                 loading="lazy"
                             />
                         </a>
-                        <!-- Header Menu End -->
                     </div>
                 </div>
-                <!-- Header Top Responsive Action -->
+                <!-- Header Top Responsive Action End -->
             </div>
         </div>
     </div>
