@@ -1,7 +1,7 @@
 <script>
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Autoplay } from 'swiper/modules';
-    import { getImagePath } from '@/utils/imageHelper';
+    import { useSiteInfoStore } from '@/stores/siteInfoStore';
 
     export default {
         name: 'ListBrands',
@@ -10,9 +10,11 @@
             SwiperSlide,
         },
         setup() {
+            const siteInfoStore = useSiteInfoStore();
+
             return {
-                getImagePath,
                 modules: [Autoplay],
+                siteInfoStore,
             };
         },
         methods: {
@@ -46,113 +48,21 @@
                         }"
                         :auto-height="false"
                     >
-                        <swiper-slide class="ec-brand-item">
+                        <swiper-slide
+                            v-for="brand in siteInfoStore.brands"
+                            :key="brand.slug"
+                            class="ec-brand-item"
+                        >
                             <div class="ec-brand-img">
-                                <a href="#">
+                                <a
+                                    :href="brand.url ?? '#'"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
                                     <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '1.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '2.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '3.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '4.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '5.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '6.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '7.png')
-                                        "
-                                        loading="lazy"
-                                    />
-                                </a>
-                            </div>
-                        </swiper-slide>
-                        <swiper-slide class="ec-brand-item">
-                            <div class="ec-brand-img">
-                                <a href="#">
-                                    <img
-                                        alt="brand"
-                                        title="brand"
-                                        :src="
-                                            getImagePath('brand-image', '8.png')
-                                        "
+                                        :alt="brand.name"
+                                        :title="brand.name"
+                                        :src="brand.image"
                                         loading="lazy"
                                     />
                                 </a>

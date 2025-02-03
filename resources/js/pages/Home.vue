@@ -3,9 +3,7 @@
     import { Autoplay, Navigation, Thumbs } from 'swiper/modules';
     import { getImagePath } from '@/utils/imageHelper';
     import Layout from '@/Layout.vue';
-    import InstagramFeed from '@/components/InstagramFeed.vue';
     import ListServices from '@/components/ListServices.vue';
-    import TestimonialReviews from '@/components/TestimonialReviews.vue';
     import ListBrands from '@/components/ListBrands.vue';
     import SuperOffer from '@/components/SuperOffer.vue';
     import NewProducts from '@/components/NewProducts.vue';
@@ -19,9 +17,7 @@
         components: {
             Swiper,
             SwiperSlide,
-            InstagramFeed,
             ListServices,
-            TestimonialReviews,
             ListBrands,
             SuperOffer,
             NewProducts,
@@ -145,9 +141,7 @@
     <ListServices />
     <SuperOffer />
     <NewProducts />
-    <TestimonialReviews />
     <ListBrands />
-    <InstagramFeed />
 </template>
 
 <style scoped>

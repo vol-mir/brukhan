@@ -12,6 +12,10 @@
         transition: all 0.3s ease 0s;
         cursor: pointer;
         outline: 0;
+        width: auto;
+        height: 92px;
+        object-fit: contain;
+        display: block;
     }
     &:hover {
         img {

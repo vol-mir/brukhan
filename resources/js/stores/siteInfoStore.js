@@ -9,6 +9,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
         address: null,
         full_name: null,
         social_networks: [],
+        brands: [],
         loaded: false,
         loadingPromise: null,
     }),
@@ -31,6 +32,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
                         this.address = response.address ?? null;
                         this.full_name = response.full_name ?? null;
                         this.social_networks = response.social_networks || [];
+                        this.brands = response.brands || [];
                         this.loaded = true;
                     })
                     .catch((error) => {

@@ -1,4 +1,4 @@
-import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createTextVNode, toDisplayString, createVNode, createSSRApp, h } from "vue";
+import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createTextVNode, toDisplayString, createVNode, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
@@ -83,6 +83,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
     address: null,
     full_name: null,
     social_networks: [],
+    brands: [],
     loaded: false,
     loadingPromise: null
   }),
@@ -101,6 +102,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
           this.address = response.address ?? null;
           this.full_name = response.full_name ?? null;
           this.social_networks = response.social_networks || [];
+          this.brands = response.brands || [];
           this.loaded = true;
         }).catch((error) => {
           console.error("Error fetching site info:", error);
@@ -2299,9 +2301,10 @@ const _sfc_main$a = {
     SwiperSlide
   },
   setup() {
+    const siteInfoStore = useSiteInfoStore();
     return {
-      getImagePath,
-      modules: [Autoplay]
+      modules: [Autoplay],
+      siteInfoStore
     };
   },
   methods: {
@@ -2332,320 +2335,64 @@ function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "1.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "1.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
+        _push2(`<!--[-->`);
+        ssrRenderList($setup.siteInfoStore.brands, (brand) => {
+          _push2(ssrRenderComponent(_component_swiper_slide, {
+            key: brand.slug,
+            class: "ec-brand-item"
+          }, {
+            default: withCtx((_2, _push3, _parent3, _scopeId2) => {
+              if (_push3) {
+                _push3(`<div class="ec-brand-img"${_scopeId2}><a${ssrRenderAttr("href", brand.url ?? "#")} target="_blank" rel="noopener noreferrer"${_scopeId2}><img${ssrRenderAttr("alt", brand.name)}${ssrRenderAttr("title", brand.name)}${ssrRenderAttr("src", brand.image)} loading="lazy"${_scopeId2}></a></div>`);
+              } else {
+                return [
+                  createVNode("div", { class: "ec-brand-img" }, [
+                    createVNode("a", {
+                      href: brand.url ?? "#",
+                      target: "_blank",
+                      rel: "noopener noreferrer"
+                    }, [
+                      createVNode("img", {
+                        alt: brand.name,
+                        title: brand.name,
+                        src: brand.image,
+                        loading: "lazy"
+                      }, null, 8, ["alt", "title", "src"])
+                    ], 8, ["href"])
                   ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "2.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "2.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "3.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "3.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "4.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "4.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "5.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "5.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "6.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "6.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "7.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "7.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
-        _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-brand-item" }, {
-          default: withCtx((_2, _push3, _parent3, _scopeId2) => {
-            if (_push3) {
-              _push3(`<div class="ec-brand-img"${_scopeId2}><a href="#"${_scopeId2}><img alt="brand" title="brand"${ssrRenderAttr(
-                "src",
-                $setup.getImagePath("brand-image", "8.png")
-              )} loading="lazy"${_scopeId2}></a></div>`);
-            } else {
-              return [
-                createVNode("div", { class: "ec-brand-img" }, [
-                  createVNode("a", { href: "#" }, [
-                    createVNode("img", {
-                      alt: "brand",
-                      title: "brand",
-                      src: $setup.getImagePath("brand-image", "8.png"),
-                      loading: "lazy"
-                    }, null, 8, ["src"])
-                  ])
-                ])
-              ];
-            }
-          }),
-          _: 1
-        }, _parent2, _scopeId));
+                ];
+              }
+            }),
+            _: 2
+          }, _parent2, _scopeId));
+        });
+        _push2(`<!--]-->`);
       } else {
         return [
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "1.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
+          (openBlock(true), createBlock(Fragment, null, renderList($setup.siteInfoStore.brands, (brand) => {
+            return openBlock(), createBlock(_component_swiper_slide, {
+              key: brand.slug,
+              class: "ec-brand-item"
+            }, {
+              default: withCtx(() => [
+                createVNode("div", { class: "ec-brand-img" }, [
+                  createVNode("a", {
+                    href: brand.url ?? "#",
+                    target: "_blank",
+                    rel: "noopener noreferrer"
+                  }, [
+                    createVNode("img", {
+                      alt: brand.name,
+                      title: brand.name,
+                      src: brand.image,
+                      loading: "lazy"
+                    }, null, 8, ["alt", "title", "src"])
+                  ], 8, ["href"])
                 ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "2.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "3.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "4.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "5.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "6.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "7.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          }),
-          createVNode(_component_swiper_slide, { class: "ec-brand-item" }, {
-            default: withCtx(() => [
-              createVNode("div", { class: "ec-brand-img" }, [
-                createVNode("a", { href: "#" }, [
-                  createVNode("img", {
-                    alt: "brand",
-                    title: "brand",
-                    src: $setup.getImagePath("brand-image", "8.png"),
-                    loading: "lazy"
-                  }, null, 8, ["src"])
-                ])
-              ])
-            ]),
-            _: 1
-          })
+              ]),
+              _: 2
+            }, 1024);
+          }), 128))
         ];
       }
     }),
@@ -3149,9 +2896,7 @@ const _sfc_main$3 = {
   components: {
     Swiper,
     SwiperSlide,
-    InstagramFeed,
     ListServices,
-    TestimonialReviews,
     ListBrands,
     SuperOffer,
     NewProducts,
@@ -3188,10 +2933,8 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_ListServices = resolveComponent("ListServices");
   const _component_SuperOffer = resolveComponent("SuperOffer");
   const _component_NewProducts = resolveComponent("NewProducts");
-  const _component_TestimonialReviews = resolveComponent("TestimonialReviews");
   const _component_ListBrands = resolveComponent("ListBrands");
-  const _component_InstagramFeed = resolveComponent("InstagramFeed");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-main-slider section section-space-pb" data-v-2ccea8e4><div class="ec-slider swiper-container main-slider-nav main-slider-dot" data-v-2ccea8e4>`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-main-slider section section-space-pb" data-v-54fa091f><div class="ec-slider swiper-container main-slider-nav main-slider-dot" data-v-54fa091f>`);
   _push(ssrRenderComponent(_component_swiper, {
     class: "swiper-wrapper",
     modules: [$options.Autoplay, $options.Navigation],
@@ -3211,7 +2954,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-1" }, {
           default: withCtx((_2, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="container align-self-center" data-v-2ccea8e4${_scopeId2}><div class="row" data-v-2ccea8e4${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-2ccea8e4${_scopeId2}><div class="ec-slide-content slider-animation" data-v-2ccea8e4${_scopeId2}><h1 class="ec-slide-title" data-v-2ccea8e4${_scopeId2}> New Fashion Collection </h1><h2 class="ec-slide-stitle" data-v-2ccea8e4${_scopeId2}>Sale Offer</h2><p data-v-2ccea8e4${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-2ccea8e4${_scopeId2}> Order Now </a></div></div></div></div>`);
+              _push3(`<div class="container align-self-center" data-v-54fa091f${_scopeId2}><div class="row" data-v-54fa091f${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-54fa091f${_scopeId2}><div class="ec-slide-content slider-animation" data-v-54fa091f${_scopeId2}><h1 class="ec-slide-title" data-v-54fa091f${_scopeId2}> New Fashion Collection </h1><h2 class="ec-slide-stitle" data-v-54fa091f${_scopeId2}>Sale Offer</h2><p data-v-54fa091f${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-54fa091f${_scopeId2}> Order Now </a></div></div></div></div>`);
             } else {
               return [
                 createVNode("div", { class: "container align-self-center" }, [
@@ -3237,7 +2980,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-2" }, {
           default: withCtx((_2, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="container align-self-center" data-v-2ccea8e4${_scopeId2}><div class="row" data-v-2ccea8e4${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-2ccea8e4${_scopeId2}><div class="ec-slide-content slider-animation" data-v-2ccea8e4${_scopeId2}><h1 class="ec-slide-title" data-aos="flip-right" data-v-2ccea8e4${_scopeId2}> Boat Headphone Sets </h1><h2 class="ec-slide-stitle" data-v-2ccea8e4${_scopeId2}>Sale Offer</h2><p data-v-2ccea8e4${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-2ccea8e4${_scopeId2}> Order Now </a></div></div></div></div>`);
+              _push3(`<div class="container align-self-center" data-v-54fa091f${_scopeId2}><div class="row" data-v-54fa091f${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-54fa091f${_scopeId2}><div class="ec-slide-content slider-animation" data-v-54fa091f${_scopeId2}><h1 class="ec-slide-title" data-aos="flip-right" data-v-54fa091f${_scopeId2}> Boat Headphone Sets </h1><h2 class="ec-slide-stitle" data-v-54fa091f${_scopeId2}>Sale Offer</h2><p data-v-54fa091f${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-54fa091f${_scopeId2}> Order Now </a></div></div></div></div>`);
             } else {
               return [
                 createVNode("div", { class: "container align-self-center" }, [
@@ -3263,7 +3006,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }),
           _: 1
         }, _parent2, _scopeId));
-        _push2(`<div class="swiper-buttons" data-v-2ccea8e4${_scopeId}><div class="swiper-button-next" data-v-2ccea8e4${_scopeId}></div><div class="swiper-button-prev" data-v-2ccea8e4${_scopeId}></div></div>`);
+        _push2(`<div class="swiper-buttons" data-v-54fa091f${_scopeId}><div class="swiper-button-next" data-v-54fa091f${_scopeId}></div><div class="swiper-button-prev" data-v-54fa091f${_scopeId}></div></div>`);
       } else {
         return [
           createVNode(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-1" }, {
@@ -3325,9 +3068,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_ListServices, null, null, _parent));
   _push(ssrRenderComponent(_component_SuperOffer, null, null, _parent));
   _push(ssrRenderComponent(_component_NewProducts, null, null, _parent));
-  _push(ssrRenderComponent(_component_TestimonialReviews, null, null, _parent));
   _push(ssrRenderComponent(_component_ListBrands, null, null, _parent));
-  _push(ssrRenderComponent(_component_InstagramFeed, null, null, _parent));
   _push(`<!--]-->`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
@@ -3336,7 +3077,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Home.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-2ccea8e4"]]);
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-54fa091f"]]);
 const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Home
