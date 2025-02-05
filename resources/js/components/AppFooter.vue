@@ -135,7 +135,7 @@
                                 </transition>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-lg-2 ec-footer-info">
+                        <div class="col-sm-12 col-lg-3 ec-footer-info">
                             <div class="ec-footer-widget">
                                 <h4
                                     class="ec-footer-heading"
@@ -181,7 +181,7 @@
                                 </transition>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-lg-2 ec-footer-service">
+                        <div class="col-sm-12 col-lg-3 ec-footer-service">
                             <div class="ec-footer-widget">
                                 <h4
                                     class="ec-footer-heading"
@@ -234,7 +234,7 @@
                                 </transition>
                             </div>
                         </div>
-                        <div class="col-sm-12 col-lg-5 ec-footer-news">
+                        <div class="col-sm-12 col-lg-3 ec-footer-news">
                             <div class="ec-footer-widget">
                                 <h4
                                     class="ec-footer-heading"

@@ -152,22 +152,22 @@ export const getMenuItems = (t) => [
             {
                 type: 'link',
                 label: t('menu.about_us'),
-                link: 'about-us'
+                link: 'about-us',
             },
             {
                 type: 'link',
                 label: t('menu.faq'),
-                link: 'faq'
+                link: 'faq',
             },
             {
                 type: 'link',
                 label: t('menu.delivery_information'),
-                link: 'track-order'
+                link: 'track-order',
             },
             {
                 type: 'link',
                 label: t('menu.contacts'),
-                link: 'contacts'
+                link: 'contacts',
             },
         ],
     },

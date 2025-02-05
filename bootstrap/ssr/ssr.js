@@ -901,14 +901,14 @@ const _sfc_main$j = {
 };
 function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-05271cd9><div class="footer-container" data-v-05271cd9><div class="footer-offer" data-v-05271cd9><div class="container" data-v-05271cd9><div class="row" data-v-05271cd9><div class="text-center footer-off-msg" data-v-05271cd9><span data-v-05271cd9>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-05271cd9><div class="container" data-v-05271cd9><div class="row" data-v-05271cd9><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><div class="ec-footer-logo" data-v-05271cd9>`);
+  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-397e7b97><div class="footer-container" data-v-397e7b97><div class="footer-offer" data-v-397e7b97><div class="container" data-v-397e7b97><div class="row" data-v-397e7b97><div class="text-center footer-off-msg" data-v-397e7b97><span data-v-397e7b97>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-397e7b97><div class="container" data-v-397e7b97><div class="row" data-v-397e7b97><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><div class="ec-footer-logo" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<img${ssrRenderAttr(
           "src",
           $setup.getLogoPath("footer-logo.png")
-        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-05271cd9${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-05271cd9${_scopeId}>`);
+        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-397e7b97${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-397e7b97${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -928,13 +928,13 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-05271cd9><span data-v-05271cd9>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
+  _push(`</div><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-397e7b97><span data-v-397e7b97>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
     "href",
     "tel:" + $setup.siteInfoStore.main_phone
-  )} data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-05271cd9><span data-v-05271cd9>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
+  )} data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-397e7b97><span data-v-397e7b97>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
     "href",
     "mailto:" + $setup.siteInfoStore.main_email
-  )} data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-2 ec-footer-info" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>`);
+  )} data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/about-us" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -947,7 +947,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-05271cd9>`);
+  _push(`</li><li class="ec-footer-link" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/faq" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -960,9 +960,9 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-05271cd9><a href="#" data-v-05271cd9>${ssrInterpolate(_ctx.$t(
+  _push(`</li><li class="ec-footer-link" data-v-397e7b97><a href="#" data-v-397e7b97>${ssrInterpolate(_ctx.$t(
     "page.delivery_information"
-  ))}</a></li><li class="ec-footer-link" data-v-05271cd9>`);
+  ))}</a></li><li class="ec-footer-link" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/contacts" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -975,7 +975,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-2 ec-footer-service" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>`);
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/privacy-policy" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -992,7 +992,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-05271cd9>`);
+  _push(`</li><li class="ec-footer-link" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/terms-condition" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1009,7 +1009,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-05271cd9>`);
+  _push(`</li><li class="ec-footer-link" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/terms-condition" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1022,26 +1022,26 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-5 ec-footer-news" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-05271cd9><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-05271cd9><div id="ec_news_signup" class="ec-form" data-v-05271cd9><input class="ec-email" type="email" required=""${ssrRenderAttr(
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-397e7b97><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-397e7b97><div id="ec_news_signup" class="ec-form" data-v-397e7b97><input class="ec-email" type="email" required=""${ssrRenderAttr(
     "placeholder",
     _ctx.$t(
       "enter_your_email"
     )
-  )} name="ec-email" value="" data-v-05271cd9><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-05271cd9><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-05271cd9></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-05271cd9><div class="container" data-v-05271cd9><div class="row align-items-center" data-v-05271cd9><div class="col text-left footer-bottom-left" data-v-05271cd9><div class="footer-bottom-social" data-v-05271cd9><span class="social-text text-upper" data-v-05271cd9>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  )} name="ec-email" value="" data-v-397e7b97><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-397e7b97><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-397e7b97></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-397e7b97><div class="container" data-v-397e7b97><div class="row align-items-center" data-v-397e7b97><div class="col text-left footer-bottom-left" data-v-397e7b97><div class="footer-bottom-social" data-v-397e7b97><span class="social-text text-upper" data-v-397e7b97>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-05271cd9><!--[-->`);
+    _push(`<ul class="mb-0" data-v-397e7b97><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
-      _push(`<li class="list-inline-item" data-v-05271cd9><a class="${ssrRenderClass(
+      _push(`<li class="list-inline-item" data-v-397e7b97><a class="${ssrRenderClass(
         "hdr-" + network.slug.toLowerCase()
-      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-05271cd9><i class="${ssrRenderClass(
+      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-397e7b97><i class="${ssrRenderClass(
         "ecicon eci-" + network.slug
-      )}" data-v-05271cd9></i></a></li>`);
+      )}" data-v-397e7b97></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col text-center footer-copy" data-v-05271cd9><div class="footer-bottom-copy" data-v-05271cd9><div class="ec-copy" data-v-05271cd9> © 2024-${ssrInterpolate($options.currentYear)} `);
+  _push(`</div></div><div class="col text-center footer-copy" data-v-397e7b97><div class="footer-bottom-copy" data-v-397e7b97><div class="ec-copy" data-v-397e7b97> © 2024-${ssrInterpolate($options.currentYear)} `);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: "/",
     class: "site-name text-upper"
@@ -1057,14 +1057,14 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-05271cd9><div class="container" data-v-05271cd9><div class="ec-nav-panel" data-v-05271cd9><div class="ec-nav-panel-icons" data-v-05271cd9><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-05271cd9><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-05271cd9></a></div><div class="ec-nav-panel-icons" data-v-05271cd9><a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle" data-v-05271cd9><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-05271cd9><span class="ec-cart-noti ec-header-count cart-count-lable" data-v-05271cd9> 3 </span></a></div><div class="ec-nav-panel-icons" data-v-05271cd9>`);
+  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-397e7b97><div class="container" data-v-397e7b97><div class="ec-nav-panel" data-v-397e7b97><div class="ec-nav-panel-icons" data-v-397e7b97><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-397e7b97><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-397e7b97></a></div><div class="ec-nav-panel-icons" data-v-397e7b97><a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle" data-v-397e7b97><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-397e7b97><span class="ec-cart-noti ec-header-count cart-count-lable" data-v-397e7b97> 3 </span></a></div><div class="ec-nav-panel-icons" data-v-397e7b97>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: "/",
     class: "ec-header-btn"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-05271cd9${_scopeId}>`);
+        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-397e7b97${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1086,7 +1086,7 @@ _sfc_main$j.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppFooter.vue");
   return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
-const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-05271cd9"]]);
+const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-397e7b97"]]);
 const _sfc_main$i = {
   data() {
     return {
@@ -3182,7 +3182,7 @@ const ru = {
     delivery_information: "Информация о доставке",
     contact_us: "Контакты",
     privacy_policy: "Политика персональных данных",
-    cookie_processing_policy: "Политика в отношении обработки файлов cookie",
+    cookie_processing_policy: "Политика обработки cookie",
     bank_details: "Банковские реквизиты"
   },
   any_questions: "Остались вопросы? Звоните",
@@ -3199,7 +3199,7 @@ const ru = {
     delivery_information: "Информация о доставке",
     contact_us: "Контакты",
     privacy_policy: "Политика персональных данных",
-    cookie_processing_policy: "Политика в отношении обработки файлов cookie",
+    cookie_processing_policy: "Политика обработки cookie",
     bank_details: "Банковские реквизиты",
     to_the_client: "Клиенту",
     top_products: "Лучшие товары",

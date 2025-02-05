@@ -4,7 +4,7 @@
     import MenuItem from './MenuItem.vue';
     import { computed, ref, onMounted, onUnmounted } from 'vue';
     import { useI18n } from 'vue-i18n';
-    import { usePage } from "@inertiajs/inertia-vue3";
+    import { usePage } from '@inertiajs/inertia-vue3';
 
     export default {
         name: 'HeaderMainMenu',
@@ -25,7 +25,8 @@
             let lastScrollTop = 0;
 
             const onScroll = () => {
-                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const scrollTop =
+                    window.scrollY || document.documentElement.scrollTop;
 
                 isScrollingDown.value = scrollTop > lastScrollTop;
 
@@ -38,12 +39,12 @@
             const { url } = usePage();
 
             onMounted(() => {
-                window.addEventListener("scroll", onScroll);
+                window.addEventListener('scroll', onScroll);
                 console.log(url);
-                isHomePage.value = url === "/";
+                isHomePage.value = url === '/';
             });
 
-            onUnmounted(() => window.removeEventListener("scroll", onScroll));
+            onUnmounted(() => window.removeEventListener('scroll', onScroll));
 
             return {
                 getIconPath,
@@ -59,7 +60,11 @@
 
 <template>
     <!-- Main Menu Start -->
-    <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav" :class="{ menu_fixed: isScrollingDown || !isScrolledToTop}">
+    <div
+        id="ec-main-menu-desk"
+        class="d-none d-lg-block sticky-nav"
+        :class="{ menu_fixed: isScrollingDown || !isScrolledToTop }"
+    >
         <div class="container position-relative">
             <div class="row">
                 <div class="col-md-12 align-self-center">
@@ -111,19 +116,13 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a
-                                            href="#services"
-                                            class="nav-scroll"
-                                        >
+                                        <a href="#services" class="nav-scroll">
                                             {{ $t('menu.services') }}
                                         </a>
                                     </li>
                                     <li>
-                                        <a
-                                            href="#arrivals"
-                                            class="nav-scroll"
-                                        >
-                                            {{  $t('menu.arrivals') }}
+                                        <a href="#arrivals" class="nav-scroll">
+                                            {{ $t('menu.arrivals') }}
                                         </a>
                                     </li>
                                 </ul>
