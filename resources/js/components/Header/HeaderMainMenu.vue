@@ -2,7 +2,9 @@
     import { getImagePath } from '@/utils/imageHelper';
     import { getMenuItems } from '@/data/menuData';
     import MenuItem from './MenuItem.vue';
-    import { ref } from 'vue';
+    import { computed, ref, onMounted, onUnmounted } from 'vue';
+    import { useI18n } from 'vue-i18n';
+    import { usePage } from "@inertiajs/inertia-vue3";
 
     export default {
         name: 'HeaderMainMenu',
@@ -10,16 +12,46 @@
             MenuItem,
         },
         setup() {
+            const { t } = useI18n();
+
             const getIconPath = (name) => getImagePath('icons', name);
             const getMenuBannerPath = (name) =>
                 getImagePath('menu-banner', name);
 
-            const menuItems = ref(getMenuItems());
+            const menuItems = computed(() => getMenuItems(t));
+
+            const isScrollingDown = ref(false);
+            const isScrolledToTop = ref(true);
+            let lastScrollTop = 0;
+
+            const onScroll = () => {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+                isScrollingDown.value = scrollTop > lastScrollTop;
+
+                isScrolledToTop.value = scrollTop === 0;
+
+                lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+            };
+
+            const isHomePage = ref(false);
+            const { url } = usePage();
+
+            onMounted(() => {
+                window.addEventListener("scroll", onScroll);
+                console.log(url);
+                isHomePage.value = url === "/";
+            });
+
+            onUnmounted(() => window.removeEventListener("scroll", onScroll));
 
             return {
                 getIconPath,
                 getMenuBannerPath,
                 menuItems,
+                isScrollingDown,
+                isScrolledToTop,
+                isHomePage,
             };
         },
     };
@@ -27,7 +59,7 @@
 
 <template>
     <!-- Main Menu Start -->
-    <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav">
+    <div id="ec-main-menu-desk" class="d-none d-lg-block sticky-nav" :class="{ menu_fixed: isScrollingDown || !isScrolledToTop}">
         <div class="container position-relative">
             <div class="row">
                 <div class="col-md-12 align-self-center">
@@ -49,89 +81,49 @@
                                 :key="index"
                                 :item="item"
                             />
-                            <li class="dropdown scroll-to">
+                            <li class="dropdown scroll-to" v-if="isHomePage">
                                 <a href="javascript:void(0)">
                                     <img
                                         :src="getIconPath('scroll.svg')"
                                         class="svg_img header_svg scroll"
-                                        alt=""
+                                        alt="scroll"
                                         loading="lazy"
                                     />
                                 </a>
                                 <ul class="sub-menu">
                                     <li class="menu_title">
-                                        Scroll To Section
+                                        {{ $t('scroll_to_section') }}
                                     </li>
                                     <li>
                                         <a
-                                            href="javascript:void(0)"
-                                            data-scroll="collection"
+                                            href="#top-products"
                                             class="nav-scroll"
                                         >
-                                            Top Collection
+                                            {{ $t('menu.top_products') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a
-                                            href="javascript:void(0)"
-                                            data-scroll="categories"
+                                            href="#categories"
                                             class="nav-scroll"
                                         >
-                                            Categories
+                                            {{ $t('menu.categories') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a
-                                            href="javascript:void(0)"
-                                            data-scroll="offers"
+                                            href="#services"
                                             class="nav-scroll"
                                         >
-                                            Offers
+                                            {{ $t('menu.services') }}
                                         </a>
                                     </li>
                                     <li>
                                         <a
-                                            href="javascript:void(0)"
-                                            data-scroll="vendors"
+                                            href="#arrivals"
                                             class="nav-scroll"
                                         >
-                                            Top Vendors
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="javascript:void(0)"
-                                            data-scroll="services"
-                                            class="nav-scroll"
-                                        >
-                                            Services
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="javascript:void(0)"
-                                            data-scroll="arrivals"
-                                            class="nav-scroll"
-                                        >
-                                            New Arrivals
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="javascript:void(0)"
-                                            data-scroll="reviews"
-                                            class="nav-scroll"
-                                        >
-                                            Client Review
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="javascript:void(0)"
-                                            data-scroll="insta"
-                                            class="nav-scroll"
-                                        >
-                                            Instagram Feed
+                                            {{  $t('menu.arrivals') }}
                                         </a>
                                     </li>
                                 </ul>

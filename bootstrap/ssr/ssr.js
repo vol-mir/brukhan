@@ -1,8 +1,9 @@
-import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createTextVNode, toDisplayString, createVNode, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
+import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createTextVNode, toDisplayString, computed, onUnmounted, createVNode, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
 import { Link, Head, createInertiaApp } from "@inertiajs/vue3";
+import { usePage } from "@inertiajs/inertia-vue3";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation, Thumbs } from "swiper/modules";
 import createServer from "@inertiajs/vue3/server";
@@ -213,15 +214,15 @@ _sfc_main$r.setup = (props, ctx) => {
   return _sfc_setup$r ? _sfc_setup$r(props, ctx) : void 0;
 };
 const HeaderBottom = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["ssrRender", _sfc_ssrRender$q]]);
-const getMenuItems = () => [
+const getMenuItems = (t) => [
   {
     type: "link",
-    label: "Home",
+    label: t("menu.home"),
     link: "/"
   },
   {
     type: "submenu",
-    label: "Categories",
+    label: t("menu.categories"),
     path: ["categories"],
     megaMenu: true,
     children: [
@@ -230,8 +231,16 @@ const getMenuItems = () => [
         label: "Classic Variation",
         path: ["categories", "classic-variation"],
         children: [
-          { type: "link", label: "Left sidebar 3 column", link: "#" },
-          { type: "link", label: "Left sidebar 4 column", link: "#" },
+          {
+            type: "link",
+            label: "Left sidebar 3 column",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "Left sidebar 4 column",
+            link: "#"
+          },
           {
             type: "link",
             label: "Right sidebar 3 column",
@@ -242,7 +251,11 @@ const getMenuItems = () => [
             label: "Right sidebar 4 column",
             link: "#"
           },
-          { type: "link", label: "Full width 4 column", link: "#" }
+          {
+            type: "link",
+            label: "Full width 4 column",
+            link: "#"
+          }
         ]
       },
       {
@@ -282,10 +295,26 @@ const getMenuItems = () => [
         label: "Columns Variation Two",
         path: ["categories", "columns-variation-two"],
         children: [
-          { type: "link", label: "3 Columns full width", link: "#" },
-          { type: "link", label: "4 Columns full width", link: "#" },
-          { type: "link", label: "5 Columns full width", link: "#" },
-          { type: "link", label: "6 Columns full width", link: "#" },
+          {
+            type: "link",
+            label: "3 Columns full width",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "4 Columns full width",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "5 Columns full width",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "6 Columns full width",
+            link: "#"
+          },
           { type: "link", label: "Banner 3 Columns", link: "#" }
         ]
       },
@@ -295,10 +324,26 @@ const getMenuItems = () => [
         path: ["categories", "list-variation"],
         children: [
           { type: "link", label: "Shop left sidebar", link: "#" },
-          { type: "link", label: "Shop right sidebar", link: "#" },
-          { type: "link", label: "Banner left sidebar", link: "#" },
-          { type: "link", label: "Banner right sidebar", link: "#" },
-          { type: "link", label: "Full width 2 columns", link: "#" },
+          {
+            type: "link",
+            label: "Shop right sidebar",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "Banner left sidebar",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "Banner right sidebar",
+            link: "#"
+          },
+          {
+            type: "link",
+            label: "Full width 2 columns",
+            link: "#"
+          },
           {
             type: "banner",
             src: getImagePath("menu-banner", "1.jpg"),
@@ -309,182 +354,64 @@ const getMenuItems = () => [
     ]
   },
   {
-    type: "submenu",
-    label: "Products",
-    path: ["products"],
-    children: [
-      {
-        type: "submenu",
-        label: "Product Page",
-        path: ["products", "product-page"],
-        children: [
-          { type: "link", label: "Product left sidebar", link: "#" },
-          { type: "link", label: "Product right sidebar", link: "#" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Product 360",
-        path: ["products", "product-360"],
-        children: [
-          { type: "link", label: "360 left sidebar", link: "#" },
-          { type: "link", label: "360 right sidebar", link: "#" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Product vodeo",
-        path: ["products", "product-vodeo"],
-        children: [
-          { type: "link", label: "vodeo left sidebar", link: "#" },
-          { type: "link", label: "vodeo right sidebar", link: "#" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Product gallery",
-        path: ["products", "product-gallery"],
-        children: [
-          { type: "link", label: "gallery left sidebar", link: "#" },
-          { type: "link", label: "gallery right sidebar", link: "#" }
-        ]
-      },
-      { type: "link", label: "Product full width", link: "#" },
-      { type: "link", label: "360 full width", link: "#" },
-      { type: "link", label: "Video full width", link: "#" },
-      { type: "link", label: "Gallery full width", link: "#" }
-    ]
+    type: "link",
+    label: t("menu.about_us"),
+    link: "about-us"
   },
   {
     type: "submenu",
-    label: "Others",
-    path: ["others"],
+    label: t("menu.company"),
+    path: ["pages"],
     children: [
       {
-        type: "submenu",
-        label: "Mail Confirmation",
-        path: ["others", "mail-confirmation"],
-        children: [
-          { type: "link", label: "Mail Confirmation 1", link: "#" },
-          { type: "link", label: "Mail Confirmation 2", link: "#" },
-          { type: "link", label: "Mail Confirmation 3", link: "#" },
-          { type: "link", label: "Mail Confirmation 4", link: "#" },
-          { type: "link", label: "Mail Confirmation 5", link: "#" }
-        ]
+        type: "link",
+        label: t("menu.about_us"),
+        link: "about-us"
       },
       {
-        type: "submenu",
-        label: "Mail Reset password",
-        path: ["others", "mail-reset-password"],
-        children: [
-          { type: "link", label: "Reset password 1", link: "#" },
-          { type: "link", label: "Reset password 2", link: "#" },
-          { type: "link", label: "Reset password 3", link: "#" },
-          { type: "link", label: "Reset password 4", link: "#" },
-          { type: "link", label: "Reset password 5", link: "#" }
-        ]
+        type: "link",
+        label: t("menu.faq"),
+        link: "faq"
       },
       {
-        type: "submenu",
-        label: "Mail Promotional",
-        path: ["others", "mail-promotional"],
-        children: [
-          { type: "link", label: "Offer Mail 1", link: "#" },
-          { type: "link", label: "Offer Mail 2", link: "#" },
-          { type: "link", label: "Offer Mail 3", link: "#" },
-          { type: "link", label: "Offer Mail 4", link: "#" },
-          { type: "link", label: "Offer Mail 5", link: "#" },
-          { type: "link", label: "Offer Mail 6", link: "#" },
-          { type: "link", label: "Offer Mail 7", link: "#" },
-          { type: "link", label: "Offer Mail 8", link: "#" }
-        ]
+        type: "link",
+        label: t("menu.delivery_information"),
+        link: "track-order"
       },
       {
-        type: "submenu",
-        label: "Vendor Account Pages",
-        path: ["others", "vendor-account-pages"],
-        children: [
-          { type: "link", label: "Vendor Dashboard", link: "#" },
-          { type: "link", label: "Vendor Profile", link: "#" },
-          { type: "link", label: "Vendor Uploads", link: "#" },
-          { type: "link", label: "Vendor Settings", link: "#" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "User Account Pages",
-        path: ["others", "user-account-pages"],
-        children: [
-          { type: "link", label: "User Profile", link: "#" },
-          { type: "link", label: "User History", link: "#" },
-          { type: "link", label: "Wishlist", link: "#" },
-          { type: "link", label: "Track Order", link: "#" },
-          { type: "link", label: "User Invoice", link: "#" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Construction Pages",
-        path: ["others", "construction-pages"],
-        children: [
-          { type: "link", label: "404 Error Page", link: "#" },
-          { type: "link", label: "Maintenance Page", link: "#" },
-          { type: "link", label: "Comming Soon Page", link: "#" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Vendor Catalog Pages",
-        path: ["others", "vendor-catalog-pages"],
-        children: [
-          { type: "link", label: "Catalog Single Vendor", link: "#" },
-          { type: "link", label: "Catalog Multi Vendor", link: "#" }
-        ]
+        type: "link",
+        label: t("menu.contacts"),
+        link: "contacts"
       }
     ]
   },
   {
     type: "submenu",
-    label: "Pages",
+    label: t("menu.to_the_client"),
     path: ["pages"],
     children: [
-      { type: "link", label: "About Us", link: "about-us" },
-      { type: "link", label: "Contact Us", link: "contacts" },
-      { type: "link", label: "FAQ", link: "faq" },
-      { type: "link", label: "Track Order", link: "track-order" },
-      { type: "link", label: "Terms Condition", link: "terms-condition" },
-      { type: "link", label: "Privacy Policy", link: "privacy-policy" }
+      {
+        type: "link",
+        label: t("menu.privacy_policy"),
+        link: "privacy-policy"
+      },
+      {
+        type: "link",
+        label: t("menu.cookie_processing_policy"),
+        link: "terms-condition"
+      },
+      {
+        type: "link",
+        label: t("menu.bank_details"),
+        link: "terms-condition"
+      }
     ]
   },
   {
-    type: "submenu",
-    label: "Blog",
-    path: ["blog"],
-    children: [
-      { type: "link", label: "Blog left sidebar", link: "#" },
-      { type: "link", label: "Blog right sidebar", link: "#" },
-      { type: "link", label: "Blog detail left sidebar", link: "#" },
-      { type: "link", label: "Blog detail right sidebar", link: "#" },
-      { type: "link", label: "Blog full width", link: "#" },
-      { type: "link", label: "Blog detail full width", link: "#" }
-    ]
-  },
-  {
-    type: "submenu",
-    label: "Elements",
-    path: ["elements"],
-    children: [
-      { type: "link", label: "Products", link: "#" },
-      { type: "link", label: "Typography", link: "#" },
-      { type: "link", label: "Titles", link: "#" },
-      { type: "link", label: "Categories", link: "#" },
-      { type: "link", label: "Buttons", link: "#" },
-      { type: "link", label: "Tabs", link: "#" },
-      { type: "link", label: "Accordions", link: "#" },
-      { type: "link", label: "Blogs", link: "#" }
-    ]
-  },
-  { type: "link", label: "Hot Offers", link: "#" }
+    type: "link",
+    label: t("menu.contacts"),
+    link: "contacts"
+  }
 ];
 const _sfc_main$q = {
   name: "MenuItem",
@@ -612,13 +539,34 @@ const _sfc_main$p = {
     MenuItem
   },
   setup() {
+    const { t } = useI18n();
     const getIconPath = (name) => getImagePath("icons", name);
     const getMenuBannerPath = (name) => getImagePath("menu-banner", name);
-    const menuItems = ref(getMenuItems());
+    const menuItems = computed(() => getMenuItems(t));
+    const isScrollingDown = ref(false);
+    const isScrolledToTop = ref(true);
+    let lastScrollTop = 0;
+    const onScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      isScrollingDown.value = scrollTop > lastScrollTop;
+      isScrolledToTop.value = scrollTop === 0;
+      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    };
+    const isHomePage = ref(false);
+    const { url } = usePage();
+    onMounted(() => {
+      window.addEventListener("scroll", onScroll);
+      console.log(url);
+      isHomePage.value = url === "/";
+    });
+    onUnmounted(() => window.removeEventListener("scroll", onScroll));
     return {
       getIconPath,
       getMenuBannerPath,
-      menuItems
+      menuItems,
+      isScrollingDown,
+      isScrolledToTop,
+      isHomePage
     };
   }
 };
@@ -626,7 +574,7 @@ function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_MenuItem = resolveComponent("MenuItem");
   _push(`<div${ssrRenderAttrs(mergeProps({
     id: "ec-main-menu-desk",
-    class: "d-none d-lg-block sticky-nav"
+    class: ["d-none d-lg-block sticky-nav", { menu_fixed: $setup.isScrollingDown || !$setup.isScrolledToTop }]
   }, _attrs))}><div class="container position-relative"><div class="row"><div class="col-md-12 align-self-center"><div class="ec-main-menu"><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle"><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy"></a><ul><!--[-->`);
   ssrRenderList($setup.menuItems, (item, index) => {
     _push(ssrRenderComponent(_component_MenuItem, {
@@ -634,7 +582,13 @@ function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       item
     }, null, _parent));
   });
-  _push(`<!--]--><li class="dropdown scroll-to"><a href="javascript:void(0)"><img${ssrRenderAttr("src", $setup.getIconPath("scroll.svg"))} class="svg_img header_svg scroll" alt="" loading="lazy"></a><ul class="sub-menu"><li class="menu_title"> Scroll To Section </li><li><a href="javascript:void(0)" data-scroll="collection" class="nav-scroll"> Top Collection </a></li><li><a href="javascript:void(0)" data-scroll="categories" class="nav-scroll"> Categories </a></li><li><a href="javascript:void(0)" data-scroll="offers" class="nav-scroll"> Offers </a></li><li><a href="javascript:void(0)" data-scroll="vendors" class="nav-scroll"> Top Vendors </a></li><li><a href="javascript:void(0)" data-scroll="services" class="nav-scroll"> Services </a></li><li><a href="javascript:void(0)" data-scroll="arrivals" class="nav-scroll"> New Arrivals </a></li><li><a href="javascript:void(0)" data-scroll="reviews" class="nav-scroll"> Client Review </a></li><li><a href="javascript:void(0)" data-scroll="insta" class="nav-scroll"> Instagram Feed </a></li></ul></li></ul></div></div></div></div></div>`);
+  _push(`<!--]-->`);
+  if ($setup.isHomePage) {
+    _push(`<li class="dropdown scroll-to"><a href="javascript:void(0)"><img${ssrRenderAttr("src", $setup.getIconPath("scroll.svg"))} class="svg_img header_svg scroll" alt="scroll" loading="lazy"></a><ul class="sub-menu"><li class="menu_title">${ssrInterpolate(_ctx.$t("scroll_to_section"))}</li><li><a href="#top-products" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.top_products"))}</a></li><li><a href="#categories" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.categories"))}</a></li><li><a href="#services" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.services"))}</a></li><li><a href="#arrivals" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.arrivals"))}</a></li></ul></li>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</ul></div></div></div></div></div>`);
 }
 const _sfc_setup$p = _sfc_main$p.setup;
 _sfc_main$p.setup = (props, ctx) => {
@@ -947,14 +901,14 @@ const _sfc_main$j = {
 };
 function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-5ee8fb89><div class="footer-container" data-v-5ee8fb89><div class="footer-offer" data-v-5ee8fb89><div class="container" data-v-5ee8fb89><div class="row" data-v-5ee8fb89><div class="text-center footer-off-msg" data-v-5ee8fb89><span data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-5ee8fb89>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-5ee8fb89><div class="container" data-v-5ee8fb89><div class="row" data-v-5ee8fb89><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-5ee8fb89><div class="ec-footer-widget" data-v-5ee8fb89><div class="ec-footer-logo" data-v-5ee8fb89>`);
+  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-05271cd9><div class="footer-container" data-v-05271cd9><div class="footer-offer" data-v-05271cd9><div class="container" data-v-05271cd9><div class="row" data-v-05271cd9><div class="text-center footer-off-msg" data-v-05271cd9><span data-v-05271cd9>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-05271cd9><div class="container" data-v-05271cd9><div class="row" data-v-05271cd9><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><div class="ec-footer-logo" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<img${ssrRenderAttr(
           "src",
           $setup.getLogoPath("footer-logo.png")
-        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-5ee8fb89${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-5ee8fb89${_scopeId}>`);
+        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-05271cd9${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-05271cd9${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -974,13 +928,13 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><h4 class="ec-footer-heading" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-5ee8fb89><i class="ecicon eci-angle-down" data-v-5ee8fb89></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-5ee8fb89><ul class="align-items-center" data-v-5ee8fb89><li class="ec-footer-link" data-v-5ee8fb89>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-5ee8fb89><span data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
+  _push(`</div><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-05271cd9><span data-v-05271cd9>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
     "href",
     "tel:" + $setup.siteInfoStore.main_phone
-  )} data-v-5ee8fb89>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-5ee8fb89><span data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
+  )} data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-05271cd9><span data-v-05271cd9>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
     "href",
     "mailto:" + $setup.siteInfoStore.main_email
-  )} data-v-5ee8fb89>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-2 ec-footer-info" data-v-5ee8fb89><div class="ec-footer-widget" data-v-5ee8fb89><h4 class="ec-footer-heading" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-5ee8fb89><i class="ecicon eci-angle-down" data-v-5ee8fb89></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-5ee8fb89><ul class="align-items-center" data-v-5ee8fb89><li class="ec-footer-link" data-v-5ee8fb89>`);
+  )} data-v-05271cd9>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-2 ec-footer-info" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/about-us" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -993,7 +947,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-5ee8fb89>`);
+  _push(`</li><li class="ec-footer-link" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/faq" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1006,9 +960,9 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-5ee8fb89><a href="#" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t(
+  _push(`</li><li class="ec-footer-link" data-v-05271cd9><a href="#" data-v-05271cd9>${ssrInterpolate(_ctx.$t(
     "page.delivery_information"
-  ))}</a></li><li class="ec-footer-link" data-v-5ee8fb89>`);
+  ))}</a></li><li class="ec-footer-link" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/contacts" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1021,7 +975,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-2 ec-footer-service" data-v-5ee8fb89><div class="ec-footer-widget" data-v-5ee8fb89><h4 class="ec-footer-heading" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("services"))} <div class="ec-heading-res" data-v-5ee8fb89><i class="ecicon eci-angle-down" data-v-5ee8fb89></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-5ee8fb89><ul class="align-items-center" data-v-5ee8fb89><li class="ec-footer-link" data-v-5ee8fb89>`);
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-2 ec-footer-service" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/privacy-policy" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1038,7 +992,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-5ee8fb89>`);
+  _push(`</li><li class="ec-footer-link" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/terms-condition" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1055,7 +1009,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-5ee8fb89>`);
+  _push(`</li><li class="ec-footer-link" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/terms-condition" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1068,26 +1022,26 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-5 ec-footer-news" data-v-5ee8fb89><div class="ec-footer-widget" data-v-5ee8fb89><h4 class="ec-footer-heading" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-5ee8fb89><i class="ecicon eci-angle-down" data-v-5ee8fb89></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-5ee8fb89><ul class="align-items-center" data-v-5ee8fb89><li class="ec-footer-link" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-5ee8fb89><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-5ee8fb89><div id="ec_news_signup" class="ec-form" data-v-5ee8fb89><input class="ec-email" type="email" required=""${ssrRenderAttr(
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-5 ec-footer-news" data-v-05271cd9><div class="ec-footer-widget" data-v-05271cd9><h4 class="ec-footer-heading" data-v-05271cd9>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-05271cd9><i class="ecicon eci-angle-down" data-v-05271cd9></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-05271cd9><ul class="align-items-center" data-v-05271cd9><li class="ec-footer-link" data-v-05271cd9>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-05271cd9><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-05271cd9><div id="ec_news_signup" class="ec-form" data-v-05271cd9><input class="ec-email" type="email" required=""${ssrRenderAttr(
     "placeholder",
     _ctx.$t(
       "enter_your_email"
     )
-  )} name="ec-email" value="" data-v-5ee8fb89><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-5ee8fb89><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-5ee8fb89></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-5ee8fb89><div class="container" data-v-5ee8fb89><div class="row align-items-center" data-v-5ee8fb89><div class="col text-left footer-bottom-left" data-v-5ee8fb89><div class="footer-bottom-social" data-v-5ee8fb89><span class="social-text text-upper" data-v-5ee8fb89>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  )} name="ec-email" value="" data-v-05271cd9><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-05271cd9><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-05271cd9></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-05271cd9><div class="container" data-v-05271cd9><div class="row align-items-center" data-v-05271cd9><div class="col text-left footer-bottom-left" data-v-05271cd9><div class="footer-bottom-social" data-v-05271cd9><span class="social-text text-upper" data-v-05271cd9>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-5ee8fb89><!--[-->`);
+    _push(`<ul class="mb-0" data-v-05271cd9><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
-      _push(`<li class="list-inline-item" data-v-5ee8fb89><a class="${ssrRenderClass(
+      _push(`<li class="list-inline-item" data-v-05271cd9><a class="${ssrRenderClass(
         "hdr-" + network.slug.toLowerCase()
-      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-5ee8fb89><i class="${ssrRenderClass(
+      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-05271cd9><i class="${ssrRenderClass(
         "ecicon eci-" + network.slug
-      )}" data-v-5ee8fb89></i></a></li>`);
+      )}" data-v-05271cd9></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col text-center footer-copy" data-v-5ee8fb89><div class="footer-bottom-copy" data-v-5ee8fb89><div class="ec-copy" data-v-5ee8fb89> © 2024-${ssrInterpolate($options.currentYear)} `);
+  _push(`</div></div><div class="col text-center footer-copy" data-v-05271cd9><div class="footer-bottom-copy" data-v-05271cd9><div class="ec-copy" data-v-05271cd9> © 2024-${ssrInterpolate($options.currentYear)} `);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: "/",
     class: "site-name text-upper"
@@ -1103,14 +1057,14 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-5ee8fb89><div class="container" data-v-5ee8fb89><div class="ec-nav-panel" data-v-5ee8fb89><div class="ec-nav-panel-icons" data-v-5ee8fb89><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-5ee8fb89><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-5ee8fb89></a></div><div class="ec-nav-panel-icons" data-v-5ee8fb89><a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle" data-v-5ee8fb89><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-5ee8fb89><span class="ec-cart-noti ec-header-count cart-count-lable" data-v-5ee8fb89> 3 </span></a></div><div class="ec-nav-panel-icons" data-v-5ee8fb89>`);
+  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-05271cd9><div class="container" data-v-05271cd9><div class="ec-nav-panel" data-v-05271cd9><div class="ec-nav-panel-icons" data-v-05271cd9><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-05271cd9><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-05271cd9></a></div><div class="ec-nav-panel-icons" data-v-05271cd9><a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle" data-v-05271cd9><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-05271cd9><span class="ec-cart-noti ec-header-count cart-count-lable" data-v-05271cd9> 3 </span></a></div><div class="ec-nav-panel-icons" data-v-05271cd9>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: "/",
     class: "ec-header-btn"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-5ee8fb89${_scopeId}>`);
+        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-05271cd9${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1132,7 +1086,7 @@ _sfc_main$j.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppFooter.vue");
   return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
-const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-5ee8fb89"]]);
+const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-05271cd9"]]);
 const _sfc_main$i = {
   data() {
     return {
@@ -1622,7 +1576,10 @@ const _sfc_main$f = {
   }
 };
 function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-services-section section-space-p" }, _attrs))} data-v-0fa1b1fc><h2 class="d-none" data-v-0fa1b1fc>Services</h2><div class="container" data-v-0fa1b1fc><div class="row" data-v-0fa1b1fc><div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-0fa1b1fc><div class="ec_ser_inner" data-v-0fa1b1fc><div class="ec-service-image" data-v-0fa1b1fc><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_1.svg"))} class="svg_img" alt="" loading="lazy" data-v-0fa1b1fc></div><div class="ec-service-desc" data-v-0fa1b1fc><h2 data-v-0fa1b1fc>Free Shipping</h2><p data-v-0fa1b1fc> Free shipping on all US order or order above $200 </p></div></div></div><div class="ec_ser_content ec_ser_content_2 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-0fa1b1fc><div class="ec_ser_inner" data-v-0fa1b1fc><div class="ec-service-image" data-v-0fa1b1fc><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_2.svg"))} class="svg_img" alt="" loading="lazy" data-v-0fa1b1fc></div><div class="ec-service-desc" data-v-0fa1b1fc><h2 data-v-0fa1b1fc>24X7 Support</h2><p data-v-0fa1b1fc>Contact us 24 hours a day, 7 days a week</p></div></div></div><div class="ec_ser_content ec_ser_content_3 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-0fa1b1fc><div class="ec_ser_inner" data-v-0fa1b1fc><div class="ec-service-image" data-v-0fa1b1fc><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_3.svg"))} class="svg_img" alt="" loading="lazy" data-v-0fa1b1fc></div><div class="ec-service-desc" data-v-0fa1b1fc><h2 data-v-0fa1b1fc>30 Days Return</h2><p data-v-0fa1b1fc> Simply return it within 30 days for an exchange </p></div></div></div><div class="ec_ser_content ec_ser_content_4 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-0fa1b1fc><div class="ec_ser_inner" data-v-0fa1b1fc><div class="ec-service-image" data-v-0fa1b1fc><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_4.svg"))} class="svg_img" alt="" loading="lazy" data-v-0fa1b1fc></div><div class="ec-service-desc" data-v-0fa1b1fc><h2 data-v-0fa1b1fc>Payment Secure</h2><p data-v-0fa1b1fc>Contact us 24 hours a day, 7 days a week</p></div></div></div></div></div></section>`);
+  _push(`<section${ssrRenderAttrs(mergeProps({
+    class: "section ec-services-section section-space-p",
+    id: "services"
+  }, _attrs))} data-v-e5f94aca><h2 class="d-none" data-v-e5f94aca>Services</h2><div class="container" data-v-e5f94aca><div class="row" data-v-e5f94aca><div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_1.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>Free Shipping</h2><p data-v-e5f94aca> Free shipping on all US order or order above $200 </p></div></div></div><div class="ec_ser_content ec_ser_content_2 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_2.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>24X7 Support</h2><p data-v-e5f94aca>Contact us 24 hours a day, 7 days a week</p></div></div></div><div class="ec_ser_content ec_ser_content_3 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_3.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>30 Days Return</h2><p data-v-e5f94aca> Simply return it within 30 days for an exchange </p></div></div></div><div class="ec_ser_content ec_ser_content_4 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_4.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>Payment Secure</h2><p data-v-e5f94aca>Contact us 24 hours a day, 7 days a week</p></div></div></div></div></div></section>`);
 }
 const _sfc_setup$f = _sfc_main$f.setup;
 _sfc_main$f.setup = (props, ctx) => {
@@ -1630,7 +1587,7 @@ _sfc_main$f.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ListServices.vue");
   return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
-const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f], ["__scopeId", "data-v-0fa1b1fc"]]);
+const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f], ["__scopeId", "data-v-e5f94aca"]]);
 const _sfc_main$e = {
   name: "TestimonialReviews",
   components: {
@@ -2566,7 +2523,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_ProductInner = resolveComponent("ProductInner");
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-product-tab section-space-p",
-    id: "collection"
+    id: "top-products"
   }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">Our Top Collection</h2><h2 class="ec-title">Our Top Collection</h2><p class="sub-title"> Browse The Collection of Top Products </p></div></div><div class="col-md-12 text-center"><ul class="ec-pro-tab-nav nav justify-content-center"><!--[-->`);
   ssrRenderList($data.tabs, (tab, index) => {
     _push(`<li class="nav-item"><a class="${ssrRenderClass([
@@ -3215,7 +3172,7 @@ const ru = {
   all_rights_reserved: "Все права защищены",
   follow_us_on: "Подпишитесь на нас",
   information: "Информация",
-  services: "Услуги",
+  to_the_client: "Клиенту",
   newsletter: "Рассылка",
   special_promos: "Получайте мгновенные обновления о наших новых продуктах и специальных предложениях!",
   enter_your_email: "Введите ваш email здесь...",
@@ -3231,7 +3188,25 @@ const ru = {
   any_questions: "Остались вопросы? Звоните",
   contact_us: "Свяжитесь с нами",
   call_us: "Позвоните нам",
-  email: "Email"
+  email: "Email",
+  menu: {
+    home: "Главная",
+    categories: "Категории",
+    about_us: "О нас",
+    contacts: "Контакты",
+    company: "Компания",
+    faq: "Часто задаваемые вопросы",
+    delivery_information: "Информация о доставке",
+    contact_us: "Контакты",
+    privacy_policy: "Политика персональных данных",
+    cookie_processing_policy: "Политика в отношении обработки файлов cookie",
+    bank_details: "Банковские реквизиты",
+    to_the_client: "Клиенту",
+    top_products: "Лучшие товары",
+    services: "Услуги",
+    arrivals: "Новые поступления"
+  },
+  scroll_to_section: "Прокрутить до раздела"
 };
 const en = {
   locale: {
@@ -3242,7 +3217,7 @@ const en = {
   all_rights_reserved: "All Rights Reserved",
   follow_us_on: "Follow us on",
   information: "Information",
-  services: "Services",
+  to_the_client: "To the client",
   newsletter: "Newsletter",
   special_promos: "Get instant updates about our new products and special promos!",
   enter_your_email: "Enter your email here...",
@@ -3258,7 +3233,25 @@ const en = {
   any_questions: "Got questions? Call us",
   contact_us: "Contact us",
   call_us: "Call us",
-  email: "Email"
+  email: "Email",
+  menu: {
+    home: "Home",
+    categories: "Categories",
+    about_us: "About us",
+    contacts: "Contacts",
+    company: "Company",
+    faq: "FAQ",
+    delivery_information: "Delivery information",
+    contact_us: "Contact us",
+    privacy_policy: "Privacy policy",
+    cookie_processing_policy: "Cookie processing policy",
+    bank_details: "Bank details",
+    to_the_client: "To the client",
+    top_products: "Top products",
+    services: "Services",
+    arrivals: "New arrivals"
+  },
+  scroll_to_section: "Scroll To Section"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({

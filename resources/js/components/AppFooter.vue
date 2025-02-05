@@ -187,7 +187,7 @@
                                     class="ec-footer-heading"
                                     @click="toggleDropdown('services')"
                                 >
-                                    {{ $t('services') }}
+                                    {{ $t('to_the_client') }}
                                     <div class="ec-heading-res">
                                         <i class="ecicon eci-angle-down"></i>
                                     </div>

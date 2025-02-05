@@ -49,7 +49,7 @@
 
 <template>
     <!-- Product tab Area Start -->
-    <section class="section ec-product-tab section-space-p" id="collection">
+    <section class="section ec-product-tab section-space-p" id="top-products">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">

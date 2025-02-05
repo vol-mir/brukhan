@@ -13,7 +13,7 @@
 
 <template>
     <!-- Services Section Start -->
-    <section class="section ec-services-section section-space-p">
+    <section class="section ec-services-section section-space-p" id="services">
         <h2 class="d-none">Services</h2>
         <div class="container">
             <div class="row">
