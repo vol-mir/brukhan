@@ -31,11 +31,8 @@
                             />
                         </div>
                         <div class="ec-service-desc">
-                            <h2>Free Shipping</h2>
-                            <p>
-                                Free shipping on all US order or order above
-                                $200
-                            </p>
+                            <h2>{{ $t('free_shipping') }}</h2>
+                            <p>{{ $t('free_shipping_description') }}</p>
                         </div>
                     </div>
                 </div>
@@ -53,8 +50,8 @@
                             />
                         </div>
                         <div class="ec-service-desc">
-                            <h2>24X7 Support</h2>
-                            <p>Contact us 24 hours a day, 7 days a week</p>
+                            <h2>{{ $t('support') }}</h2>
+                            <p>{{ $t('support_description') }}</p>
                         </div>
                     </div>
                 </div>
@@ -72,10 +69,8 @@
                             />
                         </div>
                         <div class="ec-service-desc">
-                            <h2>30 Days Return</h2>
-                            <p>
-                                Simply return it within 30 days for an exchange
-                            </p>
+                            <h2>{{ $t('about_return') }}</h2>
+                            <p>{{ $t('about_return_description') }}</p>
                         </div>
                     </div>
                 </div>
@@ -93,8 +88,8 @@
                             />
                         </div>
                         <div class="ec-service-desc">
-                            <h2>Payment Secure</h2>
-                            <p>Contact us 24 hours a day, 7 days a week</p>
+                            <h2>{{ $t('payment_secure') }}</h2>
+                            <p>{{ $t('payment_secure_description') }}</p>
                         </div>
                     </div>
                 </div>

@@ -43,4 +43,13 @@ export default {
         arrivals: 'New arrivals',
     },
     scroll_to_section: 'Scroll To Section',
+    free_shipping: 'Free Shipping',
+    free_shipping_description:
+        'Free shipping on all US order or order above $200',
+    support: '24X7 Support',
+    support_description: 'Contact us 24 hours a day, 7 days a week',
+    about_return: '30 Days Return',
+    about_return_description: 'Simply return it within 30 days for an exchange',
+    payment_secure: 'Payment Secure',
+    payment_secure_description: 'Contact us 24 hours a day, 7 days a week',
 };

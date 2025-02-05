@@ -43,4 +43,15 @@ export default {
         arrivals: 'Новые поступления',
     },
     scroll_to_section: 'Прокрутить до раздела',
+    free_shipping: 'Бесплатная доставка',
+    free_shipping_description:
+        'Бесплатная доставка по США или для заказов свыше $200',
+    support: 'Круглосуточная поддержка',
+    support_description: 'Свяжитесь с нами 24 часа в сутки, 7 дней в неделю',
+    about_return: 'Возврат в течение 30 дней',
+    about_return_description:
+        'Просто верните товар в течение 30 дней для обмена',
+    payment_secure: 'Безопасная оплата',
+    payment_secure_description:
+        'Свяжитесь с нами 24 часа в сутки, 7 дней в неделю',
 };

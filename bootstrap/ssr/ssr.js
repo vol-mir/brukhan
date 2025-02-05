@@ -1579,7 +1579,7 @@ function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-services-section section-space-p",
     id: "services"
-  }, _attrs))} data-v-e5f94aca><h2 class="d-none" data-v-e5f94aca>Services</h2><div class="container" data-v-e5f94aca><div class="row" data-v-e5f94aca><div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_1.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>Free Shipping</h2><p data-v-e5f94aca> Free shipping on all US order or order above $200 </p></div></div></div><div class="ec_ser_content ec_ser_content_2 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_2.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>24X7 Support</h2><p data-v-e5f94aca>Contact us 24 hours a day, 7 days a week</p></div></div></div><div class="ec_ser_content ec_ser_content_3 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_3.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>30 Days Return</h2><p data-v-e5f94aca> Simply return it within 30 days for an exchange </p></div></div></div><div class="ec_ser_content ec_ser_content_4 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-e5f94aca><div class="ec_ser_inner" data-v-e5f94aca><div class="ec-service-image" data-v-e5f94aca><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_4.svg"))} class="svg_img" alt="" loading="lazy" data-v-e5f94aca></div><div class="ec-service-desc" data-v-e5f94aca><h2 data-v-e5f94aca>Payment Secure</h2><p data-v-e5f94aca>Contact us 24 hours a day, 7 days a week</p></div></div></div></div></div></section>`);
+  }, _attrs))} data-v-7dae444e><h2 class="d-none" data-v-7dae444e>Services</h2><div class="container" data-v-7dae444e><div class="row" data-v-7dae444e><div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_1.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("free_shipping"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("free_shipping_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_2 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_2.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("support"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("support_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_3 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_3.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("about_return"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("about_return_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_4 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_4.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("payment_secure"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("payment_secure_description"))}</p></div></div></div></div></div></section>`);
 }
 const _sfc_setup$f = _sfc_main$f.setup;
 _sfc_main$f.setup = (props, ctx) => {
@@ -1587,7 +1587,7 @@ _sfc_main$f.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ListServices.vue");
   return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
-const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f], ["__scopeId", "data-v-e5f94aca"]]);
+const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f], ["__scopeId", "data-v-7dae444e"]]);
 const _sfc_main$e = {
   name: "TestimonialReviews",
   components: {
@@ -3206,7 +3206,15 @@ const ru = {
     services: "Услуги",
     arrivals: "Новые поступления"
   },
-  scroll_to_section: "Прокрутить до раздела"
+  scroll_to_section: "Прокрутить до раздела",
+  free_shipping: "Бесплатная доставка",
+  free_shipping_description: "Бесплатная доставка по США или для заказов свыше $200",
+  support: "Круглосуточная поддержка",
+  support_description: "Свяжитесь с нами 24 часа в сутки, 7 дней в неделю",
+  about_return: "Возврат в течение 30 дней",
+  about_return_description: "Просто верните товар в течение 30 дней для обмена",
+  payment_secure: "Безопасная оплата",
+  payment_secure_description: "Свяжитесь с нами 24 часа в сутки, 7 дней в неделю"
 };
 const en = {
   locale: {
@@ -3251,7 +3259,15 @@ const en = {
     services: "Services",
     arrivals: "New arrivals"
   },
-  scroll_to_section: "Scroll To Section"
+  scroll_to_section: "Scroll To Section",
+  free_shipping: "Free Shipping",
+  free_shipping_description: "Free shipping on all US order or order above $200",
+  support: "24X7 Support",
+  support_description: "Contact us 24 hours a day, 7 days a week",
+  about_return: "30 Days Return",
+  about_return_description: "Simply return it within 30 days for an exchange",
+  payment_secure: "Payment Secure",
+  payment_secure_description: "Contact us 24 hours a day, 7 days a week"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({
