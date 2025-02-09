@@ -74,20 +74,20 @@
                             <div
                                 class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center"
                             >
-                                <div class="ec-slide-content slider-animation">
-                                    <h1 class="ec-slide-title">
-                                        New Fashion Collection
+                                <div
+                                    class="ec-slide-content slider-animation slide-one"
+                                >
+                                    <h1 class="ec-slide-title background-blur">
+                                        {{ $t('good_price') }}
                                     </h1>
-                                    <h2 class="ec-slide-stitle">Sale Offer</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do
-                                    </p>
+                                    <h2 class="ec-slide-stitle background-blur">
+                                        {{ $t('action2') }}
+                                    </h2>
                                     <a
                                         href="#"
                                         class="btn btn-lg btn-secondary"
                                     >
-                                        Order Now
+                                        {{ $t('order_now') }}
                                     </a>
                                 </div>
                             </div>
@@ -104,21 +104,19 @@
                             >
                                 <div class="ec-slide-content slider-animation">
                                     <h1
-                                        class="ec-slide-title"
+                                        class="ec-slide-title background-blur"
                                         data-aos="flip-right"
                                     >
-                                        Boat Headphone Sets
+                                        {{ $t('nice_offer') }}
                                     </h1>
-                                    <h2 class="ec-slide-stitle">Sale Offer</h2>
-                                    <p>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do
-                                    </p>
+                                    <h2 class="ec-slide-stitle background-blur">
+                                        {{ $t('action1') }}
+                                    </h2>
                                     <a
                                         href="#"
                                         class="btn btn-lg btn-secondary"
                                     >
-                                        Order Now
+                                        {{ $t('order_now') }}
                                     </a>
                                 </div>
                             </div>
@@ -156,5 +154,13 @@
     .swiper-button-next:hover,
     .swiper-button-prev:hover {
         background-color: rgba(0, 0, 0, 0.8); /* Эффект при наведении */
+    }
+
+    .background-blur {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+        padding: 10px;
+        display: inline-block;
+        color: black;
     }
 </style>

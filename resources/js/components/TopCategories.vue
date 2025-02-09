@@ -1,16 +1,18 @@
 <script>
-    import { getImagePath } from '@/utils/imageHelper';
+    import { useSiteInfoStore } from '@/stores/siteInfoStore';
 
     export default {
         name: 'TopCategories',
         setup() {
+            const siteInfoStore = useSiteInfoStore();
+
             return {
-                getImagePath,
+                siteInfoStore,
             };
         },
         data() {
             return {
-                activeTab: 'tab-cat-1',
+                activeTab: '',
             };
         },
         methods: {
@@ -31,10 +33,12 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="section-title">
-                        <h2 class="ec-bg-title">Our Top Collection</h2>
-                        <h2 class="ec-title">Top Categories</h2>
+                        <h2 class="ec-bg-title">
+                            {{ $t('our_top_collection') }}
+                        </h2>
+                        <h2 class="ec-title">{{ $t('top_categories') }}</h2>
                         <p class="sub-title">
-                            Browse The Collection of Top Categories
+                            {{ $t('browse_top_categories') }}
                         </p>
                     </div>
                 </div>
@@ -44,131 +48,32 @@
                 <!--Category Nav Start -->
                 <div class="col-lg-3">
                     <ul class="ec-cat-tab-nav nav">
-                        <li class="cat-item">
+                        <li
+                            v-for="(
+                                category, index
+                            ) in siteInfoStore.top_categories"
+                            :key="category.slug"
+                            class="cat-item"
+                        >
                             <a
                                 :class="[
                                     'cat-link',
-                                    { active: activeTab === 'tab-cat-1' },
+                                    {
+                                        active:
+                                            activeTab ===
+                                                'tab-cat-' + category.slug ||
+                                            (activeTab === '' && index === 0),
+                                    },
                                 ]"
-                                @click.prevent="setActiveTab('tab-cat-1')"
+                                @click.prevent="
+                                    setActiveTab('tab-cat-' + category.slug)
+                                "
                                 data-bs-toggle="tab"
-                                href="#tab-cat-1"
+                                :href="'#tab-cat-' + category.slug"
                             >
-                                <div class="cat-icons">
-                                    <img
-                                        class="cat-icon"
-                                        :src="
-                                            getImagePath('icons', 'cat_1.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                    <img
-                                        class="cat-icon-hover"
-                                        :src="
-                                            getImagePath('icons', 'cat_1_1.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                </div>
                                 <div class="cat-desc">
-                                    <span>Clothes</span>
-                                    <span>440 Products</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a
-                                :class="[
-                                    'cat-link',
-                                    { active: activeTab === 'tab-cat-2' },
-                                ]"
-                                @click.prevent="setActiveTab('tab-cat-2')"
-                                data-bs-toggle="tab"
-                                href="#tab-cat-2"
-                            >
-                                <div class="cat-icons">
-                                    <img
-                                        class="cat-icon"
-                                        :src="
-                                            getImagePath('icons', 'cat_2.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                    <img
-                                        class="cat-icon-hover"
-                                        :src="
-                                            getImagePath('icons', 'cat_2_1.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                </div>
-                                <div class="cat-desc">
-                                    <span>Watches</span>
-                                    <span>510 Products</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a
-                                :class="[
-                                    'cat-link',
-                                    { active: activeTab === 'tab-cat-3' },
-                                ]"
-                                @click.prevent="setActiveTab('tab-cat-3')"
-                                data-bs-toggle="tab"
-                                href="#tab-cat-3"
-                            >
-                                <div class="cat-icons">
-                                    <img
-                                        class="cat-icon"
-                                        :src="
-                                            getImagePath('icons', 'cat_3.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                    <img
-                                        class="cat-icon-hover"
-                                        :src="
-                                            getImagePath('icons', 'cat_3_1.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                </div>
-                                <div class="cat-desc">
-                                    <span>Bags</span>
-                                    <span>620 Products</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="cat-item">
-                            <a
-                                :class="[
-                                    'cat-link',
-                                    { active: activeTab === 'tab-cat-4' },
-                                ]"
-                                @click.prevent="setActiveTab('tab-cat-4')"
-                                data-bs-toggle="tab"
-                                href="#tab-cat-4"
-                            >
-                                <div class="cat-icons">
-                                    <img
-                                        class="cat-icon"
-                                        :src="
-                                            getImagePath('icons', 'cat_4.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                    <img
-                                        class="cat-icon-hover"
-                                        :src="
-                                            getImagePath('icons', 'cat_4_1.png')
-                                        "
-                                        alt="cat-icon"
-                                    />
-                                </div>
-                                <div class="cat-desc">
-                                    <span>Shoes</span>
-                                    <span>320 Products</span>
+                                    <span>{{ category.name }}</span>
+                                    <span>510 {{ $t('products') }}</span>
                                 </div>
                             </a>
                         </li>
@@ -178,101 +83,36 @@
                 <!--Category Tab Start -->
                 <div class="col-lg-9">
                     <div class="tab-content">
-                        <!-- 1st Category tab end -->
                         <div
+                            v-for="(
+                                category, index
+                            ) in siteInfoStore.top_categories"
+                            :key="category.slug"
                             :class="[
                                 'tab-pane',
                                 'fade',
                                 {
-                                    'show active': activeTab === 'tab-cat-1',
+                                    'show active':
+                                        activeTab ===
+                                            'tab-cat-' + category.slug ||
+                                        (activeTab === '' && index === 0),
                                 },
                             ]"
-                            id="tab-cat-1"
+                            :id="'tab-cat-' + category.slug"
                         >
                             <div class="row">
                                 <img
-                                    :src="getImagePath('cat-banner', '1.jpg')"
+                                    class="img-top-category"
+                                    :src="category.image"
                                     alt=""
                                 />
                             </div>
                             <span class="panel-overlay">
                                 <a href="#" class="btn btn-primary">
-                                    View All 1
+                                    {{ $t('view_all') }}
                                 </a>
                             </span>
                         </div>
-                        <!-- 1st Category tab end -->
-                        <div
-                            :class="[
-                                'tab-pane',
-                                'fade',
-                                {
-                                    'show active': activeTab === 'tab-cat-2',
-                                },
-                            ]"
-                            id="tab-cat-2"
-                        >
-                            <div class="row">
-                                <img
-                                    :src="getImagePath('cat-banner', '2.jpg')"
-                                    alt=""
-                                />
-                            </div>
-                            <span class="panel-overlay">
-                                <a href="#" class="btn btn-primary">
-                                    View All 2
-                                </a>
-                            </span>
-                        </div>
-                        <!-- 2nd Category tab end -->
-                        <!-- 3rd Category tab start -->
-                        <div
-                            :class="[
-                                'tab-pane',
-                                'fade',
-                                {
-                                    'show active': activeTab === 'tab-cat-3',
-                                },
-                            ]"
-                            id="tab-cat-3"
-                        >
-                            <div class="row">
-                                <img
-                                    :src="getImagePath('cat-banner', '3.jpg')"
-                                    alt=""
-                                />
-                            </div>
-                            <span class="panel-overlay">
-                                <a href="#" class="btn btn-primary">
-                                    View All 3
-                                </a>
-                            </span>
-                        </div>
-                        <!-- 3rd Category tab end -->
-                        <!-- 4th Category tab start -->
-                        <div
-                            :class="[
-                                'tab-pane',
-                                'fade',
-                                {
-                                    'show active': activeTab === 'tab-cat-4',
-                                },
-                            ]"
-                            id="tab-cat-4"
-                        >
-                            <div class="row">
-                                <img
-                                    :src="getImagePath('cat-banner', '4.jpg')"
-                                    alt=""
-                                />
-                            </div>
-                            <span class="panel-overlay">
-                                <a href="#" class="btn btn-primary">
-                                    View All 4
-                                </a>
-                            </span>
-                        </div>
-                        <!-- 4th Category tab end -->
                     </div>
                     <!-- Category Tab End -->
                 </div>
@@ -281,3 +121,11 @@
     </section>
     <!-- Category Section End -->
 </template>
+
+<style scoped>
+    .img-top-category {
+        max-height: 350px;
+        object-fit: cover;
+        object-position: center;
+    }
+</style>

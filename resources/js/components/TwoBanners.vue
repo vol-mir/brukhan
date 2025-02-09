@@ -14,7 +14,7 @@
 <template>
     <!-- Banner Section Start -->
     <section class="ec-banner section section-space-p">
-        <h2 class="d-none">Banner</h2>
+        <h2 class="d-none">{{ $t('banner') }}</h2>
         <div class="container">
             <!-- ec Banners Start -->
             <div class="ec-banner-inner">
@@ -33,20 +33,18 @@
                                 />
                                 <div class="banner-text">
                                     <span class="ec-banner-stitle">
-                                        New Arrivals
+                                        {{ $t('new_arrivals') }}
                                     </span>
                                     <span class="ec-banner-title">
-                                        mens
-                                        <br />
-                                        Sport shoes
+                                        {{ $t('screwdriver') }}
                                     </span>
                                     <span class="ec-banner-discount">
-                                        30% Discount
+                                        30% {{ $t('discount') }}
                                     </span>
                                 </div>
                                 <div class="banner-content">
                                     <span class="ec-banner-btn">
-                                        <a href="#">Order Now</a>
+                                        <a href="#">{{ $t('order_now') }}</a>
                                     </span>
                                 </div>
                             </div>
@@ -63,22 +61,20 @@
                                 />
                                 <div class="banner-text">
                                     <span class="ec-banner-stitle">
-                                        New Trending
+                                        {{ $t('new_trending') }}
                                     </span>
                                     <span class="ec-banner-title">
-                                        Smart
-                                        <br />
-                                        watches
+                                        {{ $t('routers') }}
                                     </span>
                                     <span class="ec-banner-discount">
-                                        Buy any 3 Items & get
+                                        {{ $t('action1') }}
                                         <br />
-                                        20% Discount
+                                        20% {{ $t('discount') }}
                                     </span>
                                 </div>
                                 <div class="banner-content">
                                     <span class="ec-banner-btn">
-                                        <a href="#">Order Now</a>
+                                        <a href="#">{{ $t('order_now') }}</a>
                                     </span>
                                 </div>
                             </div>

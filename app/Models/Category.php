@@ -25,6 +25,8 @@ use Illuminate\Support\Carbon;
  * @property int|null $parent_id
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
+ * @property bool $is_popular
+ * @property string|null $image
  * @property-read Collection<int, Category> $children
  * @property-read int|null $children_count
  * @property-read Category|null $parent
@@ -37,6 +39,8 @@ use Illuminate\Support\Carbon;
  * @method static Builder<static>|Category whereCreatedAt($value)
  * @method static Builder<static>|Category whereDescription($value)
  * @method static Builder<static>|Category whereId($value)
+ * @method static Builder<static>|Category whereImage($value)
+ * @method static Builder<static>|Category whereIsPopular($value)
  * @method static Builder<static>|Category whereIsVisible($value)
  * @method static Builder<static>|Category whereName($value)
  * @method static Builder<static>|Category whereOrder($value)
@@ -59,6 +63,8 @@ class Category extends Model
         'is_visible',
         'parent_id',
         'order',
+        'is_popular',
+        'image',
     ];
 
     /**

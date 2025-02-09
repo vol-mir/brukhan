@@ -10,8 +10,9 @@
                 validator(value) {
                     return (
                         typeof value.name === 'string' &&
-                        typeof value.imageMain === 'string' &&
-                        typeof value.imageHover === 'string'
+                        typeof value.image_main === 'string' &&
+                        typeof value.image_hover === 'string' &&
+                        typeof value.price === 'number'
                     );
                 },
             },
@@ -31,13 +32,13 @@
                 <a href="#" class="image">
                     <img
                         class="main-image"
-                        :src="getImagePath('product-image', product.imageMain)"
+                        :src="product.image_main"
                         :alt="product.name"
                         loading="lazy"
                     />
                     <img
                         class="hover-image"
-                        :src="getImagePath('product-image', product.imageHover)"
+                        :src="product.image_hover"
                         :alt="product.name"
                         loading="lazy"
                     />
@@ -63,15 +64,16 @@
                 <a href="#">{{ product.name }}</a>
             </h5>
             <div class="ec-pro-rating">
-                <i class="ecicon eci-star fill"></i>
-                <i class="ecicon eci-star fill"></i>
-                <i class="ecicon eci-star fill"></i>
-                <i class="ecicon eci-star fill"></i>
-                <i class="ecicon eci-star"></i>
+                <i
+                    v-for="index in 5"
+                    :key="index"
+                    class="ecicon eci-star"
+                    :class="{ fill: index <= product.rating }"
+                ></i>
             </div>
             <span class="ec-price">
-                <span class="old-price">$100.00</span>
-                <span class="new-price">$80.00</span>
+                <!--<span class="old-price"></span>-->
+                <span class="new-price">${{ product.price }}</span>
             </span>
         </div>
     </div>

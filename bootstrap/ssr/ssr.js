@@ -85,6 +85,8 @@ const useSiteInfoStore = defineStore("siteInfo", {
     full_name: null,
     social_networks: [],
     brands: [],
+    top_categories: [],
+    top_products: [],
     loaded: false,
     loadingPromise: null
   }),
@@ -104,6 +106,8 @@ const useSiteInfoStore = defineStore("siteInfo", {
           this.full_name = response.full_name ?? null;
           this.social_networks = response.social_networks || [];
           this.brands = response.brands || [];
+          this.top_categories = response.top_categories || [];
+          this.top_products = response.top_products || [];
           this.loaded = true;
         }).catch((error) => {
           console.error("Error fetching site info:", error);
@@ -164,27 +168,27 @@ const _sfc_main$s = {
   }
 };
 function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-dabf27ae><div class="container" data-v-dabf27ae><div class="row align-items-center" data-v-dabf27ae><div class="col text-left header-top-left d-none d-lg-block" data-v-dabf27ae><div class="header-top-social" data-v-dabf27ae><span class="social-text text-upper" data-v-dabf27ae>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-55dcc6c4><div class="container" data-v-55dcc6c4><div class="row align-items-center" data-v-55dcc6c4><div class="col text-left header-top-left d-none d-lg-block" data-v-55dcc6c4><div class="header-top-social" data-v-55dcc6c4><span class="social-text text-upper" data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-dabf27ae><!--[-->`);
+    _push(`<ul class="mb-0" data-v-55dcc6c4><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks, (network) => {
-      _push(`<li class="list-inline-item" data-v-dabf27ae><a${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}" target="_blank" rel="noopener noreferrer" data-v-dabf27ae><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-dabf27ae></i></a></li>`);
+      _push(`<li class="list-inline-item" data-v-55dcc6c4><a${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}" target="_blank" rel="noopener noreferrer" data-v-55dcc6c4><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-55dcc6c4></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col header-top-right d-none d-lg-block" data-v-dabf27ae><div class="header-top-lan-curr d-flex justify-content-end" data-v-dabf27ae><div class="header-top-lan dropdown" data-v-dabf27ae><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-dabf27ae>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-dabf27ae></i></button><template>`);
+  _push(`</div></div><div class="col header-top-right d-none d-lg-block" data-v-55dcc6c4><div class="header-top-lan-curr d-flex justify-content-end" data-v-55dcc6c4><div class="header-top-lan dropdown" data-v-55dcc6c4><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-55dcc6c4></i></button><template>`);
   if ($setup.showLanguageDropdown) {
-    _push(`<ul class="dropdown-menu" data-v-dabf27ae><li class="${ssrRenderClass({
+    _push(`<ul class="dropdown-menu" data-v-55dcc6c4><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "ru"
-    })}" data-v-dabf27ae><a class="dropdown-item" href="#" data-v-dabf27ae>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
+    })}" data-v-55dcc6c4><a class="dropdown-item" href="#" data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "en"
-    })}" data-v-dabf27ae><a class="dropdown-item" href="#" data-v-dabf27ae>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
+    })}" data-v-55dcc6c4><a class="dropdown-item" href="#" data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</template></div></div></div><div class="col d-lg-none" data-v-dabf27ae><div class="ec-header-bottons" data-v-dabf27ae><a href="#ec-side-cart" class="ec-header-btn ec-side-toggle" data-v-dabf27ae><div class="header-icon" data-v-dabf27ae><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="Cart icon" loading="lazy" data-v-dabf27ae></div><span class="ec-header-count cart-count-lable" data-v-dabf27ae> 3 </span></a><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle" data-v-dabf27ae><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy" data-v-dabf27ae></a><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-dabf27ae><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-dabf27ae></a></div></div></div></div></div>`);
+  _push(`</template></div></div></div><div class="col d-lg-none" data-v-55dcc6c4><div class="ec-header-bottons" data-v-55dcc6c4><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle" data-v-55dcc6c4><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy" data-v-55dcc6c4></a><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-55dcc6c4><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-55dcc6c4></a></div></div></div></div></div>`);
 }
 const _sfc_setup$s = _sfc_main$s.setup;
 _sfc_main$s.setup = (props, ctx) => {
@@ -192,7 +196,7 @@ _sfc_main$s.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderTop.vue");
   return _sfc_setup$s ? _sfc_setup$s(props, ctx) : void 0;
 };
-const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r], ["__scopeId", "data-v-dabf27ae"]]);
+const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r], ["__scopeId", "data-v-55dcc6c4"]]);
 const _sfc_main$r = {
   name: "HeaderTop",
   setup() {
@@ -205,7 +209,7 @@ const _sfc_main$r = {
   }
 };
 function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-none d-lg-block" }, _attrs))}><div class="container position-relative"><div class="row"><div class="ec-flex"><div class="align-self-center"><div class="header-logo"><a href="#"><img${ssrRenderAttr("src", $setup.getLogoPath("logo.png"))} alt="Site Logo" loading="lazy"><img class="dark-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))} alt="Site Logo" style="${ssrRenderStyle({ "display": "none" })}" loading="lazy"></a></div></div><div class="align-self-center"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar" placeholder="Search products..." type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="Search" loading="lazy"></button></form></div></div><div class="align-self-center"><div class="ec-header-bottons"><a href="#ec-side-cart" class="ec-header-btn ec-side-toggle"><div class="header-icon"><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="Cart" loading="lazy"></div><span class="ec-header-count cart-count-lable"> 3 </span></a></div></div></div></div></div></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-none d-lg-block" }, _attrs))}><div class="container position-relative"><div class="row"><div class="ec-flex"><div class="align-self-center"><div class="header-logo"><a href="#"><img${ssrRenderAttr("src", $setup.getLogoPath("logo.png"))} alt="Site Logo" loading="lazy"><img class="dark-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))} alt="Site Logo" style="${ssrRenderStyle({ "display": "none" })}" loading="lazy"></a></div></div><div class="align-self-center"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar"${ssrRenderAttr("placeholder", _ctx.$t("search_products"))} type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="Search" loading="lazy"></button></form></div></div><div class="align-self-center"><div class="ec-header-bottons"></div></div></div></div></div></div>`);
 }
 const _sfc_setup$r = _sfc_main$r.setup;
 _sfc_main$r.setup = (props, ctx) => {
@@ -620,6 +624,9 @@ _sfc_main$o.setup = (props, ctx) => {
 const HeaderResponsiveBottom = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["ssrRender", _sfc_ssrRender$n]]);
 const _sfc_main$n = {
   name: "MobileMenuItem",
+  components: {
+    InertiaLink: Link
+  },
   props: {
     item: {
       type: Object,
@@ -647,14 +654,14 @@ const _sfc_main$n = {
   }
 };
 function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_router_link = resolveComponent("router-link");
+  const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem", true);
   _push(`<li${ssrRenderAttrs(mergeProps({
     class: { active: $options.isSubMenu && $props.isSubMenuVisible($props.item.path) }
   }, _attrs))}>`);
   if ($options.isLink) {
-    _push(ssrRenderComponent(_component_router_link, {
-      to: { name: $props.item.link }
+    _push(ssrRenderComponent(_component_InertiaLink, {
+      href: $props.item.link
     }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
@@ -734,7 +741,6 @@ const _sfc_main$m = {
           } else {
             activeMenu.value[fullPath] = !activeMenu.value[fullPath];
           }
-          console.log(activeMenu.value);
           event.preventDefault();
         }
       }
@@ -768,7 +774,8 @@ const _sfc_main$m = {
       document.removeEventListener("click", closeMenu);
       document.removeEventListener("click", handleClickOutside);
     });
-    const menuItems = ref(getMenuItems());
+    const { t } = useI18n();
+    const menuItems = computed(() => getMenuItems(t));
     return {
       sidebarStore,
       mobileMenu,
@@ -786,9 +793,9 @@ function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem");
   _push(`<div${ssrRenderAttrs(mergeProps({
     id: "ec-mobile-menu",
-    class: ["ec-side-cart ec-mobile-menu", { "ec-open": $setup.sidebarStore.isMobileMenuOpen }],
+    class: ["ec-side-cart ec-mobile-menu", { "ec-open": $setup.sidebarStore.isMobileMenuOpen ?? false }],
     ref: "mobileMenu"
-  }, _attrs))} data-v-e25cde43><div class="ec-menu-title" data-v-e25cde43><span class="menu_title" data-v-e25cde43>My Menu</span><button class="ec-close" data-v-e25cde43> × </button></div><div class="ec-menu-inner" data-v-e25cde43><div class="ec-menu-content" data-v-e25cde43><ul data-v-e25cde43><!--[-->`);
+  }, _attrs))} data-v-57fc9fd1><div class="ec-menu-title" data-v-57fc9fd1><span class="menu_title" data-v-57fc9fd1>My Menu</span><button class="ec-close" data-v-57fc9fd1> × </button></div><div class="ec-menu-inner" data-v-57fc9fd1><div class="ec-menu-content" data-v-57fc9fd1><ul data-v-57fc9fd1><!--[-->`);
   ssrRenderList($setup.menuItems, (item, index) => {
     _push(ssrRenderComponent(_component_MobileMenuItem, {
       key: index,
@@ -797,13 +804,13 @@ function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       "toggle-sub-menu": $setup.toggleSubMenu
     }, null, _parent));
   });
-  _push(`<!--]--></ul></div><div class="header-res-lan-curr" data-v-e25cde43><div class="header-top-lan-curr" data-v-e25cde43><div class="header-top-lan dropdown" data-v-e25cde43><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-e25cde43> Language <i class="ecicon eci-caret-down" aria-hidden="true" data-v-e25cde43></i></button>`);
+  _push(`<!--]--></ul></div><div class="header-res-lan-curr" data-v-57fc9fd1><div class="header-top-lan-curr" data-v-57fc9fd1><div class="header-top-lan dropdown" data-v-57fc9fd1><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-57fc9fd1> Language <i class="ecicon eci-caret-down" aria-hidden="true" data-v-57fc9fd1></i></button>`);
   if ($setup.showLanguageDropdown) {
-    _push(`<ul class="dropdown-menu" data-v-e25cde43><li class="active" data-v-e25cde43><a class="dropdown-item" href="#" data-v-e25cde43> Russian </a></li><li data-v-e25cde43><a class="dropdown-item" href="#" data-v-e25cde43> English </a></li></ul>`);
+    _push(`<ul class="dropdown-menu" data-v-57fc9fd1><li class="active" data-v-57fc9fd1><a class="dropdown-item" href="#" data-v-57fc9fd1> Russian </a></li><li data-v-57fc9fd1><a class="dropdown-item" href="#" data-v-57fc9fd1> English </a></li></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="header-res-social" data-v-e25cde43><div class="header-top-social" data-v-e25cde43><ul class="mb-0" data-v-e25cde43><li class="list-inline-item" data-v-e25cde43><a class="hdr-facebook" href="#" data-v-e25cde43><i class="ecicon eci-facebook" data-v-e25cde43></i></a></li><li class="list-inline-item" data-v-e25cde43><a class="hdr-twitter" href="#" data-v-e25cde43><i class="ecicon eci-twitter" data-v-e25cde43></i></a></li><li class="list-inline-item" data-v-e25cde43><a class="hdr-instagram" href="#" data-v-e25cde43><i class="ecicon eci-instagram" data-v-e25cde43></i></a></li><li class="list-inline-item" data-v-e25cde43><a class="hdr-linkedin" href="#" data-v-e25cde43><i class="ecicon eci-linkedin" data-v-e25cde43></i></a></li></ul></div></div></div></div></div>`);
+  _push(`</div></div><div class="header-res-social" data-v-57fc9fd1><div class="header-top-social" data-v-57fc9fd1><ul class="mb-0" data-v-57fc9fd1><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-facebook" href="#" data-v-57fc9fd1><i class="ecicon eci-facebook" data-v-57fc9fd1></i></a></li><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-twitter" href="#" data-v-57fc9fd1><i class="ecicon eci-twitter" data-v-57fc9fd1></i></a></li><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-instagram" href="#" data-v-57fc9fd1><i class="ecicon eci-instagram" data-v-57fc9fd1></i></a></li><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-linkedin" href="#" data-v-57fc9fd1><i class="ecicon eci-linkedin" data-v-57fc9fd1></i></a></li></ul></div></div></div></div></div>`);
 }
 const _sfc_setup$m = _sfc_main$m.setup;
 _sfc_main$m.setup = (props, ctx) => {
@@ -811,7 +818,7 @@ _sfc_main$m.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMobileMenu.vue");
   return _sfc_setup$m ? _sfc_setup$m(props, ctx) : void 0;
 };
-const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["ssrRender", _sfc_ssrRender$l], ["__scopeId", "data-v-e25cde43"]]);
+const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["ssrRender", _sfc_ssrRender$l], ["__scopeId", "data-v-57fc9fd1"]]);
 const _sfc_main$l = {
   __name: "AppHeader",
   __ssrInlineRender: true,
@@ -901,14 +908,14 @@ const _sfc_main$j = {
 };
 function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-397e7b97><div class="footer-container" data-v-397e7b97><div class="footer-offer" data-v-397e7b97><div class="container" data-v-397e7b97><div class="row" data-v-397e7b97><div class="text-center footer-off-msg" data-v-397e7b97><span data-v-397e7b97>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-397e7b97><div class="container" data-v-397e7b97><div class="row" data-v-397e7b97><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><div class="ec-footer-logo" data-v-397e7b97>`);
+  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-e6a3327c><div class="footer-container" data-v-e6a3327c><div class="footer-offer" data-v-e6a3327c><div class="container" data-v-e6a3327c><div class="row" data-v-e6a3327c><div class="text-center footer-off-msg" data-v-e6a3327c><span data-v-e6a3327c>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-e6a3327c>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-e6a3327c><div class="container" data-v-e6a3327c><div class="row" data-v-e6a3327c><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-e6a3327c><div class="ec-footer-widget" data-v-e6a3327c><div class="ec-footer-logo" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`<img${ssrRenderAttr(
           "src",
           $setup.getLogoPath("footer-logo.png")
-        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-397e7b97${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-397e7b97${_scopeId}>`);
+        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-e6a3327c${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-e6a3327c${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -928,13 +935,13 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-397e7b97><span data-v-397e7b97>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
+  _push(`</div><h4 class="ec-footer-heading" data-v-e6a3327c>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-e6a3327c><i class="ecicon eci-angle-down" data-v-e6a3327c></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-e6a3327c><ul class="align-items-center" data-v-e6a3327c><li class="ec-footer-link" data-v-e6a3327c>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-e6a3327c><span data-v-e6a3327c>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
     "href",
     "tel:" + $setup.siteInfoStore.main_phone
-  )} data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-397e7b97><span data-v-397e7b97>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
+  )} data-v-e6a3327c>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-e6a3327c><span data-v-e6a3327c>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
     "href",
     "mailto:" + $setup.siteInfoStore.main_email
-  )} data-v-397e7b97>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>`);
+  )} data-v-e6a3327c>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-e6a3327c><div class="ec-footer-widget" data-v-e6a3327c><h4 class="ec-footer-heading" data-v-e6a3327c>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-e6a3327c><i class="ecicon eci-angle-down" data-v-e6a3327c></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-e6a3327c><ul class="align-items-center" data-v-e6a3327c><li class="ec-footer-link" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/about-us" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -947,7 +954,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-397e7b97>`);
+  _push(`</li><li class="ec-footer-link" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/faq" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -960,9 +967,9 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-397e7b97><a href="#" data-v-397e7b97>${ssrInterpolate(_ctx.$t(
+  _push(`</li><li class="ec-footer-link" data-v-e6a3327c><a href="#" data-v-e6a3327c>${ssrInterpolate(_ctx.$t(
     "page.delivery_information"
-  ))}</a></li><li class="ec-footer-link" data-v-397e7b97>`);
+  ))}</a></li><li class="ec-footer-link" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/contacts" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -975,7 +982,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>`);
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-e6a3327c><div class="ec-footer-widget" data-v-e6a3327c><h4 class="ec-footer-heading" data-v-e6a3327c>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-e6a3327c><i class="ecicon eci-angle-down" data-v-e6a3327c></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-e6a3327c><ul class="align-items-center" data-v-e6a3327c><li class="ec-footer-link" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/privacy-policy" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -992,7 +999,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-397e7b97>`);
+  _push(`</li><li class="ec-footer-link" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/terms-condition" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1009,7 +1016,7 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-397e7b97>`);
+  _push(`</li><li class="ec-footer-link" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, { href: "/terms-condition" }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1022,26 +1029,26 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-397e7b97><div class="ec-footer-widget" data-v-397e7b97><h4 class="ec-footer-heading" data-v-397e7b97>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-397e7b97><i class="ecicon eci-angle-down" data-v-397e7b97></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-397e7b97><ul class="align-items-center" data-v-397e7b97><li class="ec-footer-link" data-v-397e7b97>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-397e7b97><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-397e7b97><div id="ec_news_signup" class="ec-form" data-v-397e7b97><input class="ec-email" type="email" required=""${ssrRenderAttr(
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-e6a3327c><div class="ec-footer-widget" data-v-e6a3327c><h4 class="ec-footer-heading" data-v-e6a3327c>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-e6a3327c><i class="ecicon eci-angle-down" data-v-e6a3327c></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-e6a3327c><ul class="align-items-center" data-v-e6a3327c><li class="ec-footer-link" data-v-e6a3327c>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-e6a3327c><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-e6a3327c><div id="ec_news_signup" class="ec-form" data-v-e6a3327c><input class="ec-email" type="email" required=""${ssrRenderAttr(
     "placeholder",
     _ctx.$t(
       "enter_your_email"
     )
-  )} name="ec-email" value="" data-v-397e7b97><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-397e7b97><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-397e7b97></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-397e7b97><div class="container" data-v-397e7b97><div class="row align-items-center" data-v-397e7b97><div class="col text-left footer-bottom-left" data-v-397e7b97><div class="footer-bottom-social" data-v-397e7b97><span class="social-text text-upper" data-v-397e7b97>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  )} name="ec-email" value="" data-v-e6a3327c><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-e6a3327c><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-e6a3327c></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-e6a3327c><div class="container" data-v-e6a3327c><div class="row align-items-center" data-v-e6a3327c><div class="col text-left footer-bottom-left" data-v-e6a3327c><div class="footer-bottom-social" data-v-e6a3327c><span class="social-text text-upper" data-v-e6a3327c>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-397e7b97><!--[-->`);
+    _push(`<ul class="mb-0" data-v-e6a3327c><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
-      _push(`<li class="list-inline-item" data-v-397e7b97><a class="${ssrRenderClass(
+      _push(`<li class="list-inline-item" data-v-e6a3327c><a class="${ssrRenderClass(
         "hdr-" + network.slug.toLowerCase()
-      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-397e7b97><i class="${ssrRenderClass(
+      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-e6a3327c><i class="${ssrRenderClass(
         "ecicon eci-" + network.slug
-      )}" data-v-397e7b97></i></a></li>`);
+      )}" data-v-e6a3327c></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col text-center footer-copy" data-v-397e7b97><div class="footer-bottom-copy" data-v-397e7b97><div class="ec-copy" data-v-397e7b97> © 2024-${ssrInterpolate($options.currentYear)} `);
+  _push(`</div></div><div class="col text-center footer-copy" data-v-e6a3327c><div class="footer-bottom-copy" data-v-e6a3327c><div class="ec-copy" data-v-e6a3327c> © 2024-${ssrInterpolate($options.currentYear)} `);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: "/",
     class: "site-name text-upper"
@@ -1057,14 +1064,14 @@ function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-397e7b97><div class="container" data-v-397e7b97><div class="ec-nav-panel" data-v-397e7b97><div class="ec-nav-panel-icons" data-v-397e7b97><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-397e7b97><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-397e7b97></a></div><div class="ec-nav-panel-icons" data-v-397e7b97><a href="#ec-side-cart" class="toggle-cart ec-header-btn ec-side-toggle" data-v-397e7b97><img${ssrRenderAttr("src", $setup.getIconPath("cart.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-397e7b97><span class="ec-cart-noti ec-header-count cart-count-lable" data-v-397e7b97> 3 </span></a></div><div class="ec-nav-panel-icons" data-v-397e7b97>`);
+  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-e6a3327c><div class="container" data-v-e6a3327c><div class="ec-nav-panel" data-v-e6a3327c><div class="ec-nav-panel-icons" data-v-e6a3327c><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-e6a3327c><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-e6a3327c></a></div><div class="ec-nav-panel-icons" data-v-e6a3327c></div><div class="ec-nav-panel-icons" data-v-e6a3327c>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: "/",
     class: "ec-header-btn"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-397e7b97${_scopeId}>`);
+        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-e6a3327c${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1086,7 +1093,7 @@ _sfc_main$j.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppFooter.vue");
   return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
-const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-397e7b97"]]);
+const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-e6a3327c"]]);
 const _sfc_main$i = {
   data() {
     return {
@@ -2373,7 +2380,7 @@ const _sfc_main$9 = {
   }
 };
 function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-offer-section section-space-p section-space-m" }, _attrs))}><h2 class="d-none">Offer</h2><div class="container"><div class="row justify-content-end"><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center ec-offer-content"><h2 class="ec-offer-title" data-aos="slide-down"> Sunglasses </h2><h3 class="ec-offer-stitle" data-aos="slide-up"> Super Offer </h3><span class="ec-offer-img" data-aos="zoom-in"><img${ssrRenderAttr("src", $setup.getImagePath("offer-image", "1.png"))} alt="offer image" loading="lazy"></span><span class="ec-offer-desc">Acetate Frame Sunglasses</span><span class="ec-offer-price">$40.00 Only</span><a class="btn btn-primary" data-aos="zoom-in" href="#"> Shop Now </a></div></div></div></section>`);
+  _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-offer-section section-space-p section-space-m" }, _attrs))} data-v-97f1f7a9><h2 class="d-none" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("offer"))}</h2><div class="container" data-v-97f1f7a9><div class="row justify-content-end" data-v-97f1f7a9><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center ec-offer-content" data-v-97f1f7a9><h2 class="ec-offer-title" data-aos="slide-down" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("routers"))}</h2><h3 class="ec-offer-stitle" data-aos="slide-up" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("super"))} ${ssrInterpolate(_ctx.$t("offer"))}</h3><span class="ec-offer-img" data-aos="zoom-in" data-v-97f1f7a9><img${ssrRenderAttr("src", $setup.getImagePath("offer-image", "1.png"))} alt="offer image" loading="lazy" data-v-97f1f7a9></span><span class="ec-offer-desc" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("routers"))}</span><span class="ec-offer-price" data-v-97f1f7a9>$40.00 ${ssrInterpolate(_ctx.$t("only"))}</span><a class="btn btn-primary btn-shop-now" data-aos="zoom-in" href="#" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("shop_now"))}</a></div></div></div></section>`);
 }
 const _sfc_setup$9 = _sfc_main$9.setup;
 _sfc_main$9.setup = (props, ctx) => {
@@ -2381,7 +2388,7 @@ _sfc_main$9.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SuperOffer.vue");
   return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const SuperOffer = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
+const SuperOffer = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9], ["__scopeId", "data-v-97f1f7a9"]]);
 const _sfc_main$8 = {
   name: "ProductInner",
   props: {
@@ -2389,7 +2396,7 @@ const _sfc_main$8 = {
       type: Object,
       required: true,
       validator(value) {
-        return typeof value.name === "string" && typeof value.imageMain === "string" && typeof value.imageHover === "string";
+        return typeof value.name === "string" && typeof value.image_main === "string" && typeof value.image_hover === "string" && typeof value.price === "number";
       }
     }
   },
@@ -2400,7 +2407,11 @@ const _sfc_main$8 = {
   }
 };
 function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr("src", $setup.getImagePath("product-image", $props.product.imageMain))}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr("src", $setup.getImagePath("product-image", $props.product.imageHover))}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a><a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "quickview.svg"))} class="svg_img pro_svg" alt=""></a></div></div><div class="ec-pro-content"><h5 class="ec-pro-title"><a href="#">${ssrInterpolate($props.product.name)}</a></h5><div class="ec-pro-rating"><i class="ecicon eci-star fill"></i><i class="ecicon eci-star fill"></i><i class="ecicon eci-star fill"></i><i class="ecicon eci-star fill"></i><i class="ecicon eci-star"></i></div><span class="ec-price"><span class="old-price">$100.00</span><span class="new-price">$80.00</span></span></div></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr("src", $props.product.image_main)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr("src", $props.product.image_hover)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a><a href="#" class="quickview" data-link-action="quickview" title="Quick view" data-bs-toggle="modal" data-bs-target="#ec_quickview_modal"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "quickview.svg"))} class="svg_img pro_svg" alt=""></a></div></div><div class="ec-pro-content"><h5 class="ec-pro-title"><a href="#">${ssrInterpolate($props.product.name)}</a></h5><div class="ec-pro-rating"><!--[-->`);
+  ssrRenderList(5, (index) => {
+    _push(`<i class="${ssrRenderClass([{ fill: index <= $props.product.rating }, "ecicon eci-star"])}"></i>`);
+  });
+  _push(`<!--]--></div><span class="ec-price"><span class="new-price">$${ssrInterpolate($props.product.price)}</span></span></div></div>`);
 }
 const _sfc_setup$8 = _sfc_main$8.setup;
 _sfc_main$8.setup = (props, ctx) => {
@@ -2415,8 +2426,9 @@ const _sfc_main$7 = {
     ProductInner
   },
   setup() {
+    const siteInfoStore = useSiteInfoStore();
     return {
-      getImagePath
+      siteInfoStore
     };
   }
 };
@@ -2425,31 +2437,13 @@ function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-new-product section-space-p",
     id: "arrivals"
-  }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">New Arrivals</h2><h2 class="ec-title">New Arrivals</h2><p class="sub-title"> Browse The Collection of Top Products </p></div></div></div><div class="row"><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="flip-left">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "11_1.jpg",
-    imageHover: "11_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="flip-left">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "11_1.jpg",
-    imageHover: "11_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="flip-left">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "12_1.jpg",
-    imageHover: "12_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="flip-left">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "13_1.jpg",
-    imageHover: "13_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">Shop All Collection</a></div></div></div></section>`);
+  }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">${ssrInterpolate(_ctx.$t("new_arrivals"))}</h2><h2 class="ec-title">${ssrInterpolate(_ctx.$t("new_arrivals"))}</h2><p class="sub-title">${ssrInterpolate(_ctx.$t("browse_top_products"))}</p></div></div></div><div class="row"><!--[-->`);
+  ssrRenderList($setup.siteInfoStore.top_products, (product) => {
+    _push(`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="flip-left">`);
+    _push(ssrRenderComponent(_component_ProductInner, { product }, null, _parent));
+    _push(`</div>`);
+  });
+  _push(`<!--]--><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div></section>`);
 }
 const _sfc_setup$7 = _sfc_main$7.setup;
 _sfc_main$7.setup = (props, ctx) => {
@@ -2467,7 +2461,7 @@ const _sfc_main$6 = {
   }
 };
 function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<section${ssrRenderAttrs(mergeProps({ class: "ec-banner section section-space-p" }, _attrs))}><h2 class="d-none">Banner</h2><div class="container"><div class="ec-banner-inner"><div class="ec-banner-block ec-banner-block-2"><div class="row"><div class="banner-block col-lg-6 col-md-12 margin-b-30" data-aos="flip-right"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "2.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle"> New Arrivals </span><span class="ec-banner-title"> mens <br> Sport shoes </span><span class="ec-banner-discount"> 30% Discount </span></div><div class="banner-content"><span class="ec-banner-btn"><a href="#">Order Now</a></span></div></div></div><div class="banner-block col-lg-6 col-md-12" data-aos="flip-left"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "3.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle"> New Trending </span><span class="ec-banner-title"> Smart <br> watches </span><span class="ec-banner-discount"> Buy any 3 Items &amp; get <br> 20% Discount </span></div><div class="banner-content"><span class="ec-banner-btn"><a href="#">Order Now</a></span></div></div></div></div></div></div></div></section>`);
+  _push(`<section${ssrRenderAttrs(mergeProps({ class: "ec-banner section section-space-p" }, _attrs))}><h2 class="d-none">${ssrInterpolate(_ctx.$t("banner"))}</h2><div class="container"><div class="ec-banner-inner"><div class="ec-banner-block ec-banner-block-2"><div class="row"><div class="banner-block col-lg-6 col-md-12 margin-b-30" data-aos="flip-right"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "2.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle">${ssrInterpolate(_ctx.$t("new_arrivals"))}</span><span class="ec-banner-title">${ssrInterpolate(_ctx.$t("screwdriver"))}</span><span class="ec-banner-discount"> 30% ${ssrInterpolate(_ctx.$t("discount"))}</span></div><div class="banner-content"><span class="ec-banner-btn"><a href="#">${ssrInterpolate(_ctx.$t("order_now"))}</a></span></div></div></div><div class="banner-block col-lg-6 col-md-12" data-aos="flip-left"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "3.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle">${ssrInterpolate(_ctx.$t("new_trending"))}</span><span class="ec-banner-title">${ssrInterpolate(_ctx.$t("routers"))}</span><span class="ec-banner-discount">${ssrInterpolate(_ctx.$t("action1"))} <br> 20% ${ssrInterpolate(_ctx.$t("discount"))}</span></div><div class="banner-content"><span class="ec-banner-btn"><a href="#">${ssrInterpolate(_ctx.$t("order_now"))}</a></span></div></div></div></div></div></div></div></section>`);
 }
 const _sfc_setup$6 = _sfc_main$6.setup;
 _sfc_main$6.setup = (props, ctx) => {
@@ -2524,7 +2518,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-product-tab section-space-p",
     id: "top-products"
-  }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">Our Top Collection</h2><h2 class="ec-title">Our Top Collection</h2><p class="sub-title"> Browse The Collection of Top Products </p></div></div><div class="col-md-12 text-center"><ul class="ec-pro-tab-nav nav justify-content-center"><!--[-->`);
+  }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><p class="sub-title">${ssrInterpolate(_ctx.$t("browse_top_products"))}</p></div></div><div class="col-md-12 text-center"><ul class="ec-pro-tab-nav nav justify-content-center"><!--[-->`);
   ssrRenderList($data.tabs, (tab, index) => {
     _push(`<li class="nav-item"><a class="${ssrRenderClass([
       "nav-link",
@@ -2585,7 +2579,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     imageMain: "8_1.jpg",
     imageHover: "8_2.jpg"
   } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">Shop All Collection</a></div></div></div><div class="${ssrRenderClass([
+  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div><div class="${ssrRenderClass([
     "tab-pane",
     "fade",
     {
@@ -2639,7 +2633,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     imageMain: "8_1.jpg",
     imageHover: "8_2.jpg"
   } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">Shop All Collection</a></div></div></div><div class="${ssrRenderClass([
+  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div><div class="${ssrRenderClass([
     "tab-pane",
     "fade",
     {
@@ -2693,7 +2687,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     imageMain: "8_1.jpg",
     imageHover: "8_2.jpg"
   } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">Shop All Collection</a></div></div></div><div class="${ssrRenderClass([
+  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div><div class="${ssrRenderClass([
     "tab-pane",
     "fade",
     {
@@ -2747,7 +2741,7 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     imageMain: "8_1.jpg",
     imageHover: "8_2.jpg"
   } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">Shop All Collection</a></div></div></div></div></div></div></div></section>`);
+  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div></div></div></div></div></section>`);
 }
 const _sfc_setup$5 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {
@@ -2759,13 +2753,14 @@ const TabProducts = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc
 const _sfc_main$4 = {
   name: "TopCategories",
   setup() {
+    const siteInfoStore = useSiteInfoStore();
     return {
-      getImagePath
+      siteInfoStore
     };
   },
   data() {
     return {
-      activeTab: "tab-cat-1"
+      activeTab: ""
     };
   },
   methods: {
@@ -2778,67 +2773,26 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-category-section section-space-p",
     id: "categories"
-  }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">Our Top Collection</h2><h2 class="ec-title">Top Categories</h2><p class="sub-title"> Browse The Collection of Top Categories </p></div></div></div><div class="row"><div class="col-lg-3"><ul class="ec-cat-tab-nav nav"><li class="cat-item"><a class="${ssrRenderClass([
-    "cat-link",
-    { active: $data.activeTab === "tab-cat-1" }
-  ])}" data-bs-toggle="tab" href="#tab-cat-1"><div class="cat-icons"><img class="cat-icon"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_1.png")
-  )} alt="cat-icon"><img class="cat-icon-hover"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_1_1.png")
-  )} alt="cat-icon"></div><div class="cat-desc"><span>Clothes</span><span>440 Products</span></div></a></li><li class="cat-item"><a class="${ssrRenderClass([
-    "cat-link",
-    { active: $data.activeTab === "tab-cat-2" }
-  ])}" data-bs-toggle="tab" href="#tab-cat-2"><div class="cat-icons"><img class="cat-icon"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_2.png")
-  )} alt="cat-icon"><img class="cat-icon-hover"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_2_1.png")
-  )} alt="cat-icon"></div><div class="cat-desc"><span>Watches</span><span>510 Products</span></div></a></li><li class="cat-item"><a class="${ssrRenderClass([
-    "cat-link",
-    { active: $data.activeTab === "tab-cat-3" }
-  ])}" data-bs-toggle="tab" href="#tab-cat-3"><div class="cat-icons"><img class="cat-icon"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_3.png")
-  )} alt="cat-icon"><img class="cat-icon-hover"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_3_1.png")
-  )} alt="cat-icon"></div><div class="cat-desc"><span>Bags</span><span>620 Products</span></div></a></li><li class="cat-item"><a class="${ssrRenderClass([
-    "cat-link",
-    { active: $data.activeTab === "tab-cat-4" }
-  ])}" data-bs-toggle="tab" href="#tab-cat-4"><div class="cat-icons"><img class="cat-icon"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_4.png")
-  )} alt="cat-icon"><img class="cat-icon-hover"${ssrRenderAttr(
-    "src",
-    $setup.getImagePath("icons", "cat_4_1.png")
-  )} alt="cat-icon"></div><div class="cat-desc"><span>Shoes</span><span>320 Products</span></div></a></li></ul></div><div class="col-lg-9"><div class="tab-content"><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-cat-1"
-    }
-  ])}" id="tab-cat-1"><div class="row"><img${ssrRenderAttr("src", $setup.getImagePath("cat-banner", "1.jpg"))} alt=""></div><span class="panel-overlay"><a href="#" class="btn btn-primary"> View All 1 </a></span></div><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-cat-2"
-    }
-  ])}" id="tab-cat-2"><div class="row"><img${ssrRenderAttr("src", $setup.getImagePath("cat-banner", "2.jpg"))} alt=""></div><span class="panel-overlay"><a href="#" class="btn btn-primary"> View All 2 </a></span></div><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-cat-3"
-    }
-  ])}" id="tab-cat-3"><div class="row"><img${ssrRenderAttr("src", $setup.getImagePath("cat-banner", "3.jpg"))} alt=""></div><span class="panel-overlay"><a href="#" class="btn btn-primary"> View All 3 </a></span></div><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-cat-4"
-    }
-  ])}" id="tab-cat-4"><div class="row"><img${ssrRenderAttr("src", $setup.getImagePath("cat-banner", "4.jpg"))} alt=""></div><span class="panel-overlay"><a href="#" class="btn btn-primary"> View All 4 </a></span></div></div></div></div></div></section>`);
+  }, _attrs))} data-v-9aafdc76><div class="container" data-v-9aafdc76><div class="row" data-v-9aafdc76><div class="col-md-12 text-center" data-v-9aafdc76><div class="section-title" data-v-9aafdc76><h2 class="ec-bg-title" data-v-9aafdc76>${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title" data-v-9aafdc76>${ssrInterpolate(_ctx.$t("top_categories"))}</h2><p class="sub-title" data-v-9aafdc76>${ssrInterpolate(_ctx.$t("browse_top_categories"))}</p></div></div></div><div class="row" data-v-9aafdc76><div class="col-lg-3" data-v-9aafdc76><ul class="ec-cat-tab-nav nav" data-v-9aafdc76><!--[-->`);
+  ssrRenderList($setup.siteInfoStore.top_categories, (category, index) => {
+    _push(`<li class="cat-item" data-v-9aafdc76><a class="${ssrRenderClass([
+      "cat-link",
+      {
+        active: $data.activeTab === "tab-cat-" + category.slug || $data.activeTab === "" && index === 0
+      }
+    ])}" data-bs-toggle="tab"${ssrRenderAttr("href", "#tab-cat-" + category.slug)} data-v-9aafdc76><div class="cat-desc" data-v-9aafdc76><span data-v-9aafdc76>${ssrInterpolate(category.name)}</span><span data-v-9aafdc76>510 ${ssrInterpolate(_ctx.$t("products"))}</span></div></a></li>`);
+  });
+  _push(`<!--]--></ul></div><div class="col-lg-9" data-v-9aafdc76><div class="tab-content" data-v-9aafdc76><!--[-->`);
+  ssrRenderList($setup.siteInfoStore.top_categories, (category, index) => {
+    _push(`<div class="${ssrRenderClass([
+      "tab-pane",
+      "fade",
+      {
+        "show active": $data.activeTab === "tab-cat-" + category.slug || $data.activeTab === "" && index === 0
+      }
+    ])}"${ssrRenderAttr("id", "tab-cat-" + category.slug)} data-v-9aafdc76><div class="row" data-v-9aafdc76><img class="img-top-category"${ssrRenderAttr("src", category.image)} alt="" data-v-9aafdc76></div><span class="panel-overlay" data-v-9aafdc76><a href="#" class="btn btn-primary" data-v-9aafdc76>${ssrInterpolate(_ctx.$t("view_all"))}</a></span></div>`);
+  });
+  _push(`<!--]--></div></div></div></div></section>`);
 }
 const _sfc_setup$4 = _sfc_main$4.setup;
 _sfc_main$4.setup = (props, ctx) => {
@@ -2846,7 +2800,7 @@ _sfc_main$4.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TopCategories.vue");
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4]]);
+const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-9aafdc76"]]);
 const _sfc_main$3 = {
   name: "HomePage",
   layout: Layout,
@@ -2891,7 +2845,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_SuperOffer = resolveComponent("SuperOffer");
   const _component_NewProducts = resolveComponent("NewProducts");
   const _component_ListBrands = resolveComponent("ListBrands");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-main-slider section section-space-pb" data-v-54fa091f><div class="ec-slider swiper-container main-slider-nav main-slider-dot" data-v-54fa091f>`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-main-slider section section-space-pb" data-v-0afc70bc><div class="ec-slider swiper-container main-slider-nav main-slider-dot" data-v-0afc70bc>`);
   _push(ssrRenderComponent(_component_swiper, {
     class: "swiper-wrapper",
     modules: [$options.Autoplay, $options.Navigation],
@@ -2911,20 +2865,19 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-1" }, {
           default: withCtx((_2, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="container align-self-center" data-v-54fa091f${_scopeId2}><div class="row" data-v-54fa091f${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-54fa091f${_scopeId2}><div class="ec-slide-content slider-animation" data-v-54fa091f${_scopeId2}><h1 class="ec-slide-title" data-v-54fa091f${_scopeId2}> New Fashion Collection </h1><h2 class="ec-slide-stitle" data-v-54fa091f${_scopeId2}>Sale Offer</h2><p data-v-54fa091f${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-54fa091f${_scopeId2}> Order Now </a></div></div></div></div>`);
+              _push3(`<div class="container align-self-center" data-v-0afc70bc${_scopeId2}><div class="row" data-v-0afc70bc${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-0afc70bc${_scopeId2}><div class="ec-slide-content slider-animation slide-one" data-v-0afc70bc${_scopeId2}><h1 class="ec-slide-title background-blur" data-v-0afc70bc${_scopeId2}>${ssrInterpolate(_ctx.$t("good_price"))}</h1><h2 class="ec-slide-stitle background-blur" data-v-0afc70bc${_scopeId2}>${ssrInterpolate(_ctx.$t("action2"))}</h2><a href="#" class="btn btn-lg btn-secondary" data-v-0afc70bc${_scopeId2}>${ssrInterpolate(_ctx.$t("order_now"))}</a></div></div></div></div>`);
             } else {
               return [
                 createVNode("div", { class: "container align-self-center" }, [
                   createVNode("div", { class: "row" }, [
                     createVNode("div", { class: "col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" }, [
-                      createVNode("div", { class: "ec-slide-content slider-animation" }, [
-                        createVNode("h1", { class: "ec-slide-title" }, " New Fashion Collection "),
-                        createVNode("h2", { class: "ec-slide-stitle" }, "Sale Offer"),
-                        createVNode("p", null, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "),
+                      createVNode("div", { class: "ec-slide-content slider-animation slide-one" }, [
+                        createVNode("h1", { class: "ec-slide-title background-blur" }, toDisplayString(_ctx.$t("good_price")), 1),
+                        createVNode("h2", { class: "ec-slide-stitle background-blur" }, toDisplayString(_ctx.$t("action2")), 1),
                         createVNode("a", {
                           href: "#",
                           class: "btn btn-lg btn-secondary"
-                        }, " Order Now ")
+                        }, toDisplayString(_ctx.$t("order_now")), 1)
                       ])
                     ])
                   ])
@@ -2937,7 +2890,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(ssrRenderComponent(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-2" }, {
           default: withCtx((_2, _push3, _parent3, _scopeId2) => {
             if (_push3) {
-              _push3(`<div class="container align-self-center" data-v-54fa091f${_scopeId2}><div class="row" data-v-54fa091f${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-54fa091f${_scopeId2}><div class="ec-slide-content slider-animation" data-v-54fa091f${_scopeId2}><h1 class="ec-slide-title" data-aos="flip-right" data-v-54fa091f${_scopeId2}> Boat Headphone Sets </h1><h2 class="ec-slide-stitle" data-v-54fa091f${_scopeId2}>Sale Offer</h2><p data-v-54fa091f${_scopeId2}> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do </p><a href="#" class="btn btn-lg btn-secondary" data-v-54fa091f${_scopeId2}> Order Now </a></div></div></div></div>`);
+              _push3(`<div class="container align-self-center" data-v-0afc70bc${_scopeId2}><div class="row" data-v-0afc70bc${_scopeId2}><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" data-v-0afc70bc${_scopeId2}><div class="ec-slide-content slider-animation" data-v-0afc70bc${_scopeId2}><h1 class="ec-slide-title background-blur" data-aos="flip-right" data-v-0afc70bc${_scopeId2}>${ssrInterpolate(_ctx.$t("nice_offer"))}</h1><h2 class="ec-slide-stitle background-blur" data-v-0afc70bc${_scopeId2}>${ssrInterpolate(_ctx.$t("action1"))}</h2><a href="#" class="btn btn-lg btn-secondary" data-v-0afc70bc${_scopeId2}>${ssrInterpolate(_ctx.$t("order_now"))}</a></div></div></div></div>`);
             } else {
               return [
                 createVNode("div", { class: "container align-self-center" }, [
@@ -2945,15 +2898,14 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                     createVNode("div", { class: "col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" }, [
                       createVNode("div", { class: "ec-slide-content slider-animation" }, [
                         createVNode("h1", {
-                          class: "ec-slide-title",
+                          class: "ec-slide-title background-blur",
                           "data-aos": "flip-right"
-                        }, " Boat Headphone Sets "),
-                        createVNode("h2", { class: "ec-slide-stitle" }, "Sale Offer"),
-                        createVNode("p", null, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "),
+                        }, toDisplayString(_ctx.$t("nice_offer")), 1),
+                        createVNode("h2", { class: "ec-slide-stitle background-blur" }, toDisplayString(_ctx.$t("action1")), 1),
                         createVNode("a", {
                           href: "#",
                           class: "btn btn-lg btn-secondary"
-                        }, " Order Now ")
+                        }, toDisplayString(_ctx.$t("order_now")), 1)
                       ])
                     ])
                   ])
@@ -2963,7 +2915,7 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           }),
           _: 1
         }, _parent2, _scopeId));
-        _push2(`<div class="swiper-buttons" data-v-54fa091f${_scopeId}><div class="swiper-button-next" data-v-54fa091f${_scopeId}></div><div class="swiper-button-prev" data-v-54fa091f${_scopeId}></div></div>`);
+        _push2(`<div class="swiper-buttons" data-v-0afc70bc${_scopeId}><div class="swiper-button-next" data-v-0afc70bc${_scopeId}></div><div class="swiper-button-prev" data-v-0afc70bc${_scopeId}></div></div>`);
       } else {
         return [
           createVNode(_component_swiper_slide, { class: "ec-slide-item swiper-slide d-flex ec-slide-1" }, {
@@ -2971,14 +2923,13 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
               createVNode("div", { class: "container align-self-center" }, [
                 createVNode("div", { class: "row" }, [
                   createVNode("div", { class: "col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" }, [
-                    createVNode("div", { class: "ec-slide-content slider-animation" }, [
-                      createVNode("h1", { class: "ec-slide-title" }, " New Fashion Collection "),
-                      createVNode("h2", { class: "ec-slide-stitle" }, "Sale Offer"),
-                      createVNode("p", null, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "),
+                    createVNode("div", { class: "ec-slide-content slider-animation slide-one" }, [
+                      createVNode("h1", { class: "ec-slide-title background-blur" }, toDisplayString(_ctx.$t("good_price")), 1),
+                      createVNode("h2", { class: "ec-slide-stitle background-blur" }, toDisplayString(_ctx.$t("action2")), 1),
                       createVNode("a", {
                         href: "#",
                         class: "btn btn-lg btn-secondary"
-                      }, " Order Now ")
+                      }, toDisplayString(_ctx.$t("order_now")), 1)
                     ])
                   ])
                 ])
@@ -2993,15 +2944,14 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
                   createVNode("div", { class: "col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center" }, [
                     createVNode("div", { class: "ec-slide-content slider-animation" }, [
                       createVNode("h1", {
-                        class: "ec-slide-title",
+                        class: "ec-slide-title background-blur",
                         "data-aos": "flip-right"
-                      }, " Boat Headphone Sets "),
-                      createVNode("h2", { class: "ec-slide-stitle" }, "Sale Offer"),
-                      createVNode("p", null, " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do "),
+                      }, toDisplayString(_ctx.$t("nice_offer")), 1),
+                      createVNode("h2", { class: "ec-slide-stitle background-blur" }, toDisplayString(_ctx.$t("action1")), 1),
                       createVNode("a", {
                         href: "#",
                         class: "btn btn-lg btn-secondary"
-                      }, " Order Now ")
+                      }, toDisplayString(_ctx.$t("order_now")), 1)
                     ])
                   ])
                 ])
@@ -3034,7 +2984,7 @@ _sfc_main$3.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Home.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-54fa091f"]]);
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3], ["__scopeId", "data-v-0afc70bc"]]);
 const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Home
@@ -3214,7 +3164,29 @@ const ru = {
   about_return: "Возврат в течение 30 дней",
   about_return_description: "Просто верните товар в течение 30 дней для обмена",
   payment_secure: "Безопасная оплата",
-  payment_secure_description: "Свяжитесь с нами 24 часа в сутки, 7 дней в неделю"
+  payment_secure_description: "Свяжитесь с нами 24 часа в сутки, 7 дней в неделю",
+  our_top_collection: "Наша лучшая коллекция",
+  top_categories: "Лучшие категории",
+  browse_top_categories: "Просмотрите коллекцию лучших категорий",
+  browse_top_products: "Просмотрите коллекцию лучших продуктов",
+  view_all: "Просмотреть все",
+  products: "продукты",
+  banner: "Баннер",
+  new_arrivals: "Новые поступления",
+  discount: "Скидка",
+  order_now: "Заказать сейчас",
+  new_trending: "Новый тренд",
+  action1: "Купите любые 3 товара и получите подарок",
+  screwdriver: "Шуруповерт",
+  routers: "Фрезеры",
+  shop_now: "Купить сейчас",
+  only: "Только",
+  super: "Супер",
+  offer: "Предложение",
+  good_price: "Хорошая цена",
+  action2: "Выгодные предложения на все комплектующие Festool!",
+  nice_offer: "Приятное предложение",
+  search_products: "Найти продукты..."
 };
 const en = {
   locale: {
@@ -3267,7 +3239,29 @@ const en = {
   about_return: "30 Days Return",
   about_return_description: "Simply return it within 30 days for an exchange",
   payment_secure: "Payment Secure",
-  payment_secure_description: "Contact us 24 hours a day, 7 days a week"
+  payment_secure_description: "Contact us 24 hours a day, 7 days a week",
+  our_top_collection: "Our Top Collection",
+  top_categories: "Top Categories",
+  browse_top_categories: "Browse The Collection of Top Categories",
+  browse_top_products: "Browse The Collection of Top Products",
+  view_all: "View All",
+  products: "products",
+  banner: "Banner",
+  new_arrivals: "New Arrivals",
+  discount: "Discount",
+  order_now: "Order Now",
+  new_trending: "New Trending",
+  action1: "Buy any 3 Items & get",
+  screwdriver: "Screwdriver",
+  routers: "Routers",
+  shop_now: "Shop Now",
+  only: "Only",
+  super: "Super",
+  offer: "Offer",
+  good_price: "Good price",
+  action2: "Great deals on all Festool accessories!",
+  nice_offer: "Nice offer",
+  search_products: "Search products..."
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({

@@ -10,6 +10,8 @@ export const useSiteInfoStore = defineStore('siteInfo', {
         full_name: null,
         social_networks: [],
         brands: [],
+        top_categories: [],
+        top_products: [],
         loaded: false,
         loadingPromise: null,
     }),
@@ -33,6 +35,8 @@ export const useSiteInfoStore = defineStore('siteInfo', {
                         this.full_name = response.full_name ?? null;
                         this.social_networks = response.social_networks || [];
                         this.brands = response.brands || [];
+                        this.top_categories = response.top_categories || [];
+                        this.top_products = response.top_products || [];
                         this.loaded = true;
                     })
                     .catch((error) => {

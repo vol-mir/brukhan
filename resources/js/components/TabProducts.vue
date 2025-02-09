@@ -54,11 +54,11 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="section-title">
-                        <h2 class="ec-bg-title">Our Top Collection</h2>
-                        <h2 class="ec-title">Our Top Collection</h2>
-                        <p class="sub-title">
-                            Browse The Collection of Top Products
-                        </p>
+                        <h2 class="ec-bg-title">
+                            {{ $t('our_top_collection') }}
+                        </h2>
+                        <h2 class="ec-title">{{ $t('our_top_collection') }}</h2>
+                        <p class="sub-title">{{ $t('browse_top_products') }}</p>
                     </div>
                 </div>
 
@@ -202,7 +202,7 @@
                                 </div>
 
                                 <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">Shop All Collection</a>
+                                    <a href="#">{{ $t('view_all') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -319,7 +319,7 @@
                                 </div>
 
                                 <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">Shop All Collection</a>
+                                    <a href="#">{{ $t('view_all') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -436,7 +436,7 @@
                                 </div>
 
                                 <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">Shop All Collection</a>
+                                    <a href="#">{{ $t('view_all') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -553,7 +553,7 @@
                                 </div>
 
                                 <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">Shop All Collection</a>
+                                    <a href="#">{{ $t('view_all') }}</a>
                                 </div>
                             </div>
                         </div>

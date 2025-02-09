@@ -161,23 +161,6 @@
                 <div class="col d-lg-none">
                     <div class="ec-header-bottons">
                         <a
-                            href="#ec-side-cart"
-                            class="ec-header-btn ec-side-toggle"
-                        >
-                            <div class="header-icon">
-                                <img
-                                    :src="getIconPath('cart.svg')"
-                                    class="svg_img header_svg"
-                                    alt="Cart icon"
-                                    loading="lazy"
-                                />
-                            </div>
-                            <span class="ec-header-count cart-count-lable">
-                                3
-                            </span>
-                        </a>
-
-                        <a
                             href="javascript:void(0)"
                             class="ec-header-btn ec-sidebar-toggle"
                         >

@@ -11,7 +11,11 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Illuminate\Support\Stringable;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class CategoryResource extends Resource
 {
@@ -76,6 +80,9 @@ class CategoryResource extends Resource
                             ->label(__('fields.is_visible'))
                             ->default(true),
 
+                        Forms\Components\Toggle::make('is_popular')
+                            ->label(__('fields.is_popular')),
+
                         Forms\Components\RichEditor::make('description')
                             ->columnSpan('full')
                             ->fileAttachmentsDisk('public')
@@ -83,6 +90,19 @@ class CategoryResource extends Resource
                             ->label(__('fields.description')),
                     ])
                     ->columnSpan(['lg' => 3]),
+
+                Forms\Components\Section::make(__('fields.image'))
+                    ->schema([
+                        Forms\Components\FileUpload::make('image')
+                            ->image()
+                            ->imageEditor()
+                            ->disk('public')
+                            ->directory('images/brands')
+                            ->columnSpan('full')
+                            ->getUploadedFileNameForStorageUsing(fn(TemporaryUploadedFile $file): Stringable => str(Str::uuid() . '.' . $file->extension()))
+                            ->label(__('fields.image')),
+                    ])
+                    ->collapsible(),
             ])
             ->columns(3);
     }
@@ -101,6 +121,9 @@ class CategoryResource extends Resource
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_visible')
                     ->boolean()
+                    ->label(__('fields.is_popular')),
+                Tables\Columns\IconColumn::make('is_popular')
+                    ->boolean()
                     ->label(__('fields.is_visible')),
                 Tables\Columns\TextColumn::make('order')
                     ->label(__('fields.order'))
@@ -112,11 +135,24 @@ class CategoryResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->after(function (Category $category): void {
+                        if ($category->image) {
+                            Storage::disk('public')->delete($category->image);
+                        }
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->after(function (Collection $records): void {
+                            /** @var Category $category */
+                            foreach ($records as $category) {
+                                if ($category->image) {
+                                    Storage::disk('public')->delete($category->image);
+                                }
+                            }
+                        })
                 ]),
             ])
             ->emptyStateHeading(__('models.empty_items'));

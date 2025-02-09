@@ -1,6 +1,11 @@
 <script>
+    import { Link as InertiaLink } from '@inertiajs/vue3';
+
     export default {
         name: 'MobileMenuItem',
+        components: {
+            InertiaLink,
+        },
         props: {
             item: {
                 type: Object,
@@ -34,9 +39,9 @@
         :class="{ active: isSubMenu && isSubMenuVisible(item.path) }"
         @click="isSubMenu && toggleSubMenu(item.path, $event)"
     >
-        <router-link v-if="isLink" :to="{ name: item.link }">
+        <InertiaLink v-if="isLink" :href="item.link">
             {{ item.label }}
-        </router-link>
+        </InertiaLink>
 
         <a v-if="isBanner" :href="item.href" class="p-0">
             <img class="img-responsive" :src="item.src" alt="" loading="lazy" />

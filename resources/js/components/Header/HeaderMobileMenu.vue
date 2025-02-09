@@ -1,8 +1,9 @@
 <script>
-    import { onBeforeUnmount, onMounted, ref } from 'vue';
+    import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
     import { useSidebarStore } from '@/stores/sidebarStore';
     import { getMenuItems } from '@/data/menuData';
     import MobileMenuItem from './MobileMenuItem.vue';
+    import { useI18n } from 'vue-i18n';
 
     export default {
         name: 'HeaderMobileMenu',
@@ -35,8 +36,6 @@
                             activeMenu.value[fullPath] =
                                 !activeMenu.value[fullPath];
                         }
-
-                        console.log(activeMenu.value);
 
                         event.preventDefault();
                     }
@@ -83,7 +82,8 @@
                 document.removeEventListener('click', handleClickOutside);
             });
 
-            const menuItems = ref(getMenuItems());
+            const { t } = useI18n();
+            const menuItems = computed(() => getMenuItems(t));
 
             return {
                 sidebarStore,
@@ -105,7 +105,7 @@
     <div
         id="ec-mobile-menu"
         class="ec-side-cart ec-mobile-menu"
-        :class="{ 'ec-open': sidebarStore.isMobileMenuOpen }"
+        :class="{ 'ec-open': sidebarStore.isMobileMenuOpen ?? false }"
         ref="mobileMenu"
     >
         <div class="ec-menu-title">

@@ -384,24 +384,7 @@
                         />
                     </a>
                 </div>
-                <div class="ec-nav-panel-icons">
-                    <a
-                        href="#ec-side-cart"
-                        class="toggle-cart ec-header-btn ec-side-toggle"
-                    >
-                        <img
-                            :src="getIconPath('cart.svg')"
-                            class="svg_img header_svg"
-                            alt="icon"
-                            loading="lazy"
-                        />
-                        <span
-                            class="ec-cart-noti ec-header-count cart-count-lable"
-                        >
-                            3
-                        </span>
-                    </a>
-                </div>
+                <div class="ec-nav-panel-icons"></div>
                 <div class="ec-nav-panel-icons">
                     <InertiaLink href="/" class="ec-header-btn">
                         <img

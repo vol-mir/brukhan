@@ -48,7 +48,7 @@
                             <form class="ec-btn-group-form" action="#">
                                 <input
                                     class="form-control ec-search-bar"
-                                    placeholder="Search products..."
+                                    :placeholder="$t('search_products')"
                                     type="text"
                                 />
                                 <button class="submit" type="submit">
@@ -66,30 +66,12 @@
 
                     <!-- Header Button Start -->
                     <div class="align-self-center">
-                        <div class="ec-header-bottons">
-                            <!-- Header Cart Start -->
-                            <a
-                                href="#ec-side-cart"
-                                class="ec-header-btn ec-side-toggle"
-                            >
-                                <div class="header-icon">
-                                    <img
-                                        :src="getIconPath('cart.svg')"
-                                        class="svg_img header_svg"
-                                        alt="Cart"
-                                        loading="lazy"
-                                    />
-                                </div>
-                                <span class="ec-header-count cart-count-lable">
-                                    3
-                                </span>
-                            </a>
-                            <!-- Header Cart End -->
-                        </div>
+                        <div class="ec-header-bottons"></div>
                     </div>
+                    <!-- Header Button End -->
                 </div>
             </div>
         </div>
     </div>
-    <!-- Header Button End -->
+    <!-- Header Bottom End -->
 </template>
