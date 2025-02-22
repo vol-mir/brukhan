@@ -1,4 +1,6 @@
 <script>
+    import { ref, onMounted } from 'vue';
+    import ApiClient from '@/apiClient';
     import { getImagePath } from '@/utils/imageHelper';
     import ProductInner from '@/components/ProductInner.vue';
 
@@ -8,41 +10,49 @@
             ProductInner,
         },
         setup() {
+            const activeTab = ref(null);
+            const productsByTags = ref([]);
+            const loaded = ref(false);
+            const tabs = ref([]);
+
+            const fetchProductsByTags = async () => {
+                try {
+                    const response = await ApiClient.get(
+                        '/api/v1/products/tags'
+                    );
+                    productsByTags.value = response.tag_groups || [];
+
+                    tabs.value = productsByTags.value.map((tagGroup) => ({
+                        id: `tab-${tagGroup.tag.slug}`,
+                        label: tagGroup.tag.name,
+                        href: `#tab-${tagGroup.tag.slug}`,
+                        products: tagGroup.products,
+                    }));
+
+                    if (tabs.value.length > 0) {
+                        activeTab.value = tabs.value[0].id;
+                    }
+
+                    loaded.value = true;
+                } catch (error) {
+                    console.error('Error fetching products tags:', error);
+                }
+            };
+
+            onMounted(fetchProductsByTags);
+
+            const setActiveTab = (tabId) => {
+                activeTab.value = tabId;
+            };
+
             return {
                 getImagePath,
+                activeTab,
+                productsByTags,
+                loaded,
+                tabs,
+                setActiveTab,
             };
-        },
-        data() {
-            return {
-                activeTab: 'tab-pro-for-all',
-                tabs: [
-                    {
-                        id: 'tab-pro-for-all',
-                        label: 'For All',
-                        href: '#tab-pro-for-all',
-                    },
-                    {
-                        id: 'tab-pro-for-men',
-                        label: 'For Men',
-                        href: '#tab-pro-for-men',
-                    },
-                    {
-                        id: 'tab-pro-for-women',
-                        label: 'For Women',
-                        href: '#tab-pro-for-women',
-                    },
-                    {
-                        id: 'tab-pro-for-child',
-                        label: 'For Children',
-                        href: '#tab-pro-for-child',
-                    },
-                ],
-            };
-        },
-        methods: {
-            setActiveTab(tabId) {
-                this.activeTab = tabId;
-            },
         },
     };
 </script>
@@ -90,115 +100,27 @@
             <div class="row">
                 <div class="col">
                     <div class="tab-content">
-                        <!-- 1st Product tab start -->
                         <div
+                            v-for="(tab, index) in tabs"
+                            :key="index"
                             :class="[
                                 'tab-pane',
                                 'fade',
                                 {
-                                    'show active':
-                                        activeTab === 'tab-pro-for-all',
+                                    'show active': activeTab === tab.id,
                                 },
                             ]"
-                            id="tab-pro-for-all"
+                            :id="tab.href"
                         >
                             <div class="row">
                                 <!-- Product Content -->
                                 <div
                                     class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
                                     data-aos="fade"
+                                    v-for="product in tab.products"
+                                    :key="product.slug"
                                 >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '6_1.jpg',
-                                            imageHover: '6_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '7_1.jpg',
-                                            imageHover: '7_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '1_1.jpg',
-                                            imageHover: '1_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '2_1.jpg',
-                                            imageHover: '2_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '3_1.jpg',
-                                            imageHover: '3_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '4_1.jpg',
-                                            imageHover: '4_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '5_1.jpg',
-                                            imageHover: '5_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '8_1.jpg',
-                                            imageHover: '8_2.jpg',
-                                        }"
-                                    />
+                                    <ProductInner :product="product" />
                                 </div>
 
                                 <div class="col-sm-12 shop-all-btn">
@@ -206,358 +128,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- 1st Product tab end -->
-                        <!-- 2st Product tab start -->
-                        <div
-                            :class="[
-                                'tab-pane',
-                                'fade',
-                                {
-                                    'show active':
-                                        activeTab === 'tab-pro-for-men',
-                                },
-                            ]"
-                            id="tab-pro-for-men"
-                        >
-                            <div class="row">
-                                <!-- Product Content -->
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '6_1.jpg',
-                                            imageHover: '6_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '7_1.jpg',
-                                            imageHover: '7_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '1_1.jpg',
-                                            imageHover: '1_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '2_1.jpg',
-                                            imageHover: '2_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '3_1.jpg',
-                                            imageHover: '3_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '4_1.jpg',
-                                            imageHover: '4_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '5_1.jpg',
-                                            imageHover: '5_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '8_1.jpg',
-                                            imageHover: '8_2.jpg',
-                                        }"
-                                    />
-                                </div>
-
-                                <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">{{ $t('view_all') }}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 2st Product tab end -->
-                        <!-- 3st Product tab start -->
-                        <div
-                            :class="[
-                                'tab-pane',
-                                'fade',
-                                {
-                                    'show active':
-                                        activeTab === 'tab-pro-for-women',
-                                },
-                            ]"
-                            id="tab-pro-for-women"
-                        >
-                            <div class="row">
-                                <!-- Product Content -->
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '6_1.jpg',
-                                            imageHover: '6_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '7_1.jpg',
-                                            imageHover: '7_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '1_1.jpg',
-                                            imageHover: '1_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '2_1.jpg',
-                                            imageHover: '2_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '3_1.jpg',
-                                            imageHover: '3_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '4_1.jpg',
-                                            imageHover: '4_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '5_1.jpg',
-                                            imageHover: '5_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '8_1.jpg',
-                                            imageHover: '8_2.jpg',
-                                        }"
-                                    />
-                                </div>
-
-                                <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">{{ $t('view_all') }}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 3st Product tab end -->
-                        <!-- 4st Product tab start -->
-                        <div
-                            :class="[
-                                'tab-pane',
-                                'fade',
-                                {
-                                    'show active':
-                                        activeTab === 'tab-pro-for-child',
-                                },
-                            ]"
-                            id="tab-pro-for-child"
-                        >
-                            <div class="row">
-                                <!-- Product Content -->
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '6_1.jpg',
-                                            imageHover: '6_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '7_1.jpg',
-                                            imageHover: '7_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '1_1.jpg',
-                                            imageHover: '1_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '2_1.jpg',
-                                            imageHover: '2_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '3_1.jpg',
-                                            imageHover: '3_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '4_1.jpg',
-                                            imageHover: '4_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '5_1.jpg',
-                                            imageHover: '5_2.jpg',
-                                        }"
-                                    />
-                                </div>
-                                <div
-                                    class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content"
-                                    data-aos="fade"
-                                >
-                                    <ProductInner
-                                        :product="{
-                                            name: 'Classic Leather Purse',
-                                            imageMain: '8_1.jpg',
-                                            imageHover: '8_2.jpg',
-                                        }"
-                                    />
-                                </div>
-
-                                <div class="col-sm-12 shop-all-btn">
-                                    <a href="#">{{ $t('view_all') }}</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 4st Product tab end -->
                     </div>
                 </div>
             </div>

@@ -116,6 +116,11 @@ class ProductResource extends Resource
                                     ->label(__('fields.is_popular')),
                                 Forms\Components\DatePicker::make('published_at')
                                     ->label(__('fields.published_at')),
+                                Forms\Components\Select::make('tags')
+                                    ->relationship('tags', 'name')
+                                    ->multiple()
+                                    ->preload()
+                                    ->label(__('fields.tags')),
                             ])
                             ->columns(1),
                     ])

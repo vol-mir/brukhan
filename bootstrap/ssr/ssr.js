@@ -2476,41 +2476,42 @@ const _sfc_main$5 = {
     ProductInner
   },
   setup() {
-    return {
-      getImagePath
-    };
-  },
-  data() {
-    return {
-      activeTab: "tab-pro-for-all",
-      tabs: [
-        {
-          id: "tab-pro-for-all",
-          label: "For All",
-          href: "#tab-pro-for-all"
-        },
-        {
-          id: "tab-pro-for-men",
-          label: "For Men",
-          href: "#tab-pro-for-men"
-        },
-        {
-          id: "tab-pro-for-women",
-          label: "For Women",
-          href: "#tab-pro-for-women"
-        },
-        {
-          id: "tab-pro-for-child",
-          label: "For Children",
-          href: "#tab-pro-for-child"
+    const activeTab = ref(null);
+    const productsByTags = ref([]);
+    const loaded = ref(false);
+    const tabs = ref([]);
+    const fetchProductsByTags = async () => {
+      try {
+        const response = await ApiClient.get(
+          "/api/v1/products/tags"
+        );
+        productsByTags.value = response.tag_groups || [];
+        tabs.value = productsByTags.value.map((tagGroup) => ({
+          id: `tab-${tagGroup.tag.slug}`,
+          label: tagGroup.tag.name,
+          href: `#tab-${tagGroup.tag.slug}`,
+          products: tagGroup.products
+        }));
+        if (tabs.value.length > 0) {
+          activeTab.value = tabs.value[0].id;
         }
-      ]
+        loaded.value = true;
+      } catch (error) {
+        console.error("Error fetching products tags:", error);
+      }
     };
-  },
-  methods: {
-    setActiveTab(tabId) {
-      this.activeTab = tabId;
-    }
+    onMounted(fetchProductsByTags);
+    const setActiveTab = (tabId) => {
+      activeTab.value = tabId;
+    };
+    return {
+      getImagePath,
+      activeTab,
+      productsByTags,
+      loaded,
+      tabs,
+      setActiveTab
+    };
   }
 };
 function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
@@ -2519,229 +2520,29 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     class: "section ec-product-tab section-space-p",
     id: "top-products"
   }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><p class="sub-title">${ssrInterpolate(_ctx.$t("browse_top_products"))}</p></div></div><div class="col-md-12 text-center"><ul class="ec-pro-tab-nav nav justify-content-center"><!--[-->`);
-  ssrRenderList($data.tabs, (tab, index) => {
+  ssrRenderList($setup.tabs, (tab, index) => {
     _push(`<li class="nav-item"><a class="${ssrRenderClass([
       "nav-link",
-      { active: $data.activeTab === tab.id }
+      { active: $setup.activeTab === tab.id }
     ])}"${ssrRenderAttr("href", tab.href)} data-bs-toggle="tab">${ssrInterpolate(tab.label)}</a></li>`);
   });
-  _push(`<!--]--></ul></div></div><div class="row"><div class="col"><div class="tab-content"><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-pro-for-all"
-    }
-  ])}" id="tab-pro-for-all"><div class="row"><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "6_1.jpg",
-    imageHover: "6_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "7_1.jpg",
-    imageHover: "7_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "1_1.jpg",
-    imageHover: "1_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "2_1.jpg",
-    imageHover: "2_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "3_1.jpg",
-    imageHover: "3_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "4_1.jpg",
-    imageHover: "4_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "5_1.jpg",
-    imageHover: "5_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "8_1.jpg",
-    imageHover: "8_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-pro-for-men"
-    }
-  ])}" id="tab-pro-for-men"><div class="row"><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "6_1.jpg",
-    imageHover: "6_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "7_1.jpg",
-    imageHover: "7_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "1_1.jpg",
-    imageHover: "1_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "2_1.jpg",
-    imageHover: "2_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "3_1.jpg",
-    imageHover: "3_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "4_1.jpg",
-    imageHover: "4_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "5_1.jpg",
-    imageHover: "5_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "8_1.jpg",
-    imageHover: "8_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-pro-for-women"
-    }
-  ])}" id="tab-pro-for-women"><div class="row"><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "6_1.jpg",
-    imageHover: "6_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "7_1.jpg",
-    imageHover: "7_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "1_1.jpg",
-    imageHover: "1_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "2_1.jpg",
-    imageHover: "2_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "3_1.jpg",
-    imageHover: "3_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "4_1.jpg",
-    imageHover: "4_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "5_1.jpg",
-    imageHover: "5_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "8_1.jpg",
-    imageHover: "8_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div><div class="${ssrRenderClass([
-    "tab-pane",
-    "fade",
-    {
-      "show active": $data.activeTab === "tab-pro-for-child"
-    }
-  ])}" id="tab-pro-for-child"><div class="row"><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "6_1.jpg",
-    imageHover: "6_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "7_1.jpg",
-    imageHover: "7_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "1_1.jpg",
-    imageHover: "1_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "2_1.jpg",
-    imageHover: "2_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "3_1.jpg",
-    imageHover: "3_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "4_1.jpg",
-    imageHover: "4_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "5_1.jpg",
-    imageHover: "5_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
-  _push(ssrRenderComponent(_component_ProductInner, { product: {
-    name: "Classic Leather Purse",
-    imageMain: "8_1.jpg",
-    imageHover: "8_2.jpg"
-  } }, null, _parent));
-  _push(`</div><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div></div></div></div></div></section>`);
+  _push(`<!--]--></ul></div></div><div class="row"><div class="col"><div class="tab-content"><!--[-->`);
+  ssrRenderList($setup.tabs, (tab, index) => {
+    _push(`<div class="${ssrRenderClass([
+      "tab-pane",
+      "fade",
+      {
+        "show active": $setup.activeTab === tab.id
+      }
+    ])}"${ssrRenderAttr("id", tab.href)}><div class="row"><!--[-->`);
+    ssrRenderList(tab.products, (product) => {
+      _push(`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 ec-product-content" data-aos="fade">`);
+      _push(ssrRenderComponent(_component_ProductInner, { product }, null, _parent));
+      _push(`</div>`);
+    });
+    _push(`<!--]--><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div>`);
+  });
+  _push(`<!--]--></div></div></div></div></section>`);
 }
 const _sfc_setup$5 = _sfc_main$5.setup;
 _sfc_main$5.setup = (props, ctx) => {

@@ -22,22 +22,19 @@ class SiteInfoAction
      */
     public function run(): array
     {
-        $mainPhone = null;
-        $mainEmail = null;
+        $mainPhone = Contact::query()
+            ->whereHas('contactType', fn($q) => $q->where('slug', 'phone'))
+            ->where('is_main', true)
+            ->value('value');
 
-        $contacts = Contact::query()->get();
+        $mainEmail = Contact::query()
+            ->whereHas('contactType', fn($q) => $q->where('slug', 'email'))
+            ->where('is_main', true)
+            ->value('value');
 
-        foreach ($contacts as $contact) {
-            if ($contact->contactType?->slug === 'phone' && $contact->is_main) {
-                $mainPhone = $contact->value;
-            }
-
-            if ($contact->contactType?->slug === 'email' && $contact->is_main) {
-                $mainEmail = $contact->value;
-            }
-        }
-
-        $setting = Setting::query()->where('slug', 'main')->first();
+        $setting = Setting::query()
+            ->where('slug', 'main')
+            ->first();
 
         $categories = Category::query()
             ->where('is_visible', true)
