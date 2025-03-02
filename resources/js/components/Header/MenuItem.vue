@@ -68,7 +68,7 @@
                         v-for="(child, index) in item.children"
                         :key="index"
                     >
-                        <li class="menu_title">
+                        <li class="menu_title" v-if="child.label">
                             <a href="javascript:void(0)">{{ child.label }}</a>
                         </li>
 

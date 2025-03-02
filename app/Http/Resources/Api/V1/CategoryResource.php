@@ -26,6 +26,7 @@ class CategoryResource extends JsonResource
             'is_popular' => $this->is_popular,
             'name' => $this->name,
             'slug' => $this->slug,
+            'link' => 'home',
         ];
     }
 }

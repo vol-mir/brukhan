@@ -44,6 +44,7 @@
 
 <template>
     <li
+        v-if="item.label"
         :class="{ active: isSubMenu && isSubMenuVisible(item.path) }"
         @click="isSubMenu && toggleSubMenu(item.path, $event)"
     >
@@ -75,4 +76,12 @@
             />
         </ul>
     </li>
+    <MobileMenuItem
+        v-else-if="isSubMenu"
+        v-for="(child, childIndex) in item.children"
+        :key="childIndex"
+        :item="child"
+        :is-sub-menu-visible="isSubMenuVisible"
+        :toggle-sub-menu="toggleSubMenu"
+    />
 </template>

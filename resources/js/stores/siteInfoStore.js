@@ -11,6 +11,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
         social_networks: [],
         brands: [],
         top_categories: [],
+        categories: [],
         top_products: [],
         loaded: false,
         loadingPromise: null,
@@ -36,6 +37,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
                         this.social_networks = response.social_networks || [];
                         this.brands = response.brands || [];
                         this.top_categories = response.top_categories || [];
+                        this.categories = response.categories || [];
                         this.top_products = response.top_products || [];
                         this.loaded = true;
                     })

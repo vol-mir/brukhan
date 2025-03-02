@@ -88,6 +88,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
     social_networks: [],
     brands: [],
     top_categories: [],
+    categories: [],
     top_products: [],
     loaded: false,
     loadingPromise: null
@@ -109,6 +110,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
           this.social_networks = response.social_networks || [];
           this.brands = response.brands || [];
           this.top_categories = response.top_categories || [];
+          this.categories = response.categories || [];
           this.top_products = response.top_products || [];
           this.loaded = true;
         }).catch((error) => {
@@ -170,27 +172,27 @@ const _sfc_main$t = {
   }
 };
 function _sfc_ssrRender$s(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-55dcc6c4><div class="container" data-v-55dcc6c4><div class="row align-items-center" data-v-55dcc6c4><div class="col text-left header-top-left d-none d-lg-block" data-v-55dcc6c4><div class="header-top-social" data-v-55dcc6c4><span class="social-text text-upper" data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-f92f61e1><div class="container" data-v-f92f61e1><div class="row align-items-center" data-v-f92f61e1><div class="col text-left header-top-left d-none d-lg-block" data-v-f92f61e1><div class="header-top-social" data-v-f92f61e1><span class="social-text text-upper" data-v-f92f61e1>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-55dcc6c4><!--[-->`);
+    _push(`<ul class="mb-0" data-v-f92f61e1><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks, (network) => {
-      _push(`<li class="list-inline-item" data-v-55dcc6c4><a${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}" target="_blank" rel="noopener noreferrer" data-v-55dcc6c4><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-55dcc6c4></i></a></li>`);
+      _push(`<li class="list-inline-item" data-v-f92f61e1><a${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}" target="_blank" rel="noopener noreferrer" data-v-f92f61e1><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-f92f61e1></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col header-top-right d-none d-lg-block" data-v-55dcc6c4><div class="header-top-lan-curr d-flex justify-content-end" data-v-55dcc6c4><div class="header-top-lan dropdown" data-v-55dcc6c4><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-55dcc6c4></i></button><template>`);
+  _push(`</div></div><div class="col header-top-right d-none d-lg-block" data-v-f92f61e1><div class="header-top-lan-curr d-flex justify-content-end" data-v-f92f61e1><div class="header-top-lan dropdown" data-v-f92f61e1><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-f92f61e1>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-f92f61e1></i></button><template>`);
   if ($setup.showLanguageDropdown) {
-    _push(`<ul class="dropdown-menu" data-v-55dcc6c4><li class="${ssrRenderClass({
+    _push(`<ul class="dropdown-menu" data-v-f92f61e1><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "ru"
-    })}" data-v-55dcc6c4><a class="dropdown-item" href="#" data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
+    })}" data-v-f92f61e1><a class="dropdown-item" href="#" data-v-f92f61e1>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "en"
-    })}" data-v-55dcc6c4><a class="dropdown-item" href="#" data-v-55dcc6c4>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
+    })}" data-v-f92f61e1><a class="dropdown-item" href="#" data-v-f92f61e1>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</template></div></div></div><div class="col d-lg-none" data-v-55dcc6c4><div class="ec-header-bottons" data-v-55dcc6c4><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle" data-v-55dcc6c4><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy" data-v-55dcc6c4></a><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-55dcc6c4><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-55dcc6c4></a></div></div></div></div></div>`);
+  _push(`</template></div></div></div><div class="col d-lg-none" data-v-f92f61e1><div class="ec-header-bottons" data-v-f92f61e1><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle" data-v-f92f61e1><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy" data-v-f92f61e1></a><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-f92f61e1><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-f92f61e1></a></div></div></div></div></div>`);
 }
 const _sfc_setup$t = _sfc_main$t.setup;
 _sfc_main$t.setup = (props, ctx) => {
@@ -198,7 +200,7 @@ _sfc_main$t.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderTop.vue");
   return _sfc_setup$t ? _sfc_setup$t(props, ctx) : void 0;
 };
-const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["ssrRender", _sfc_ssrRender$s], ["__scopeId", "data-v-55dcc6c4"]]);
+const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["ssrRender", _sfc_ssrRender$s], ["__scopeId", "data-v-f92f61e1"]]);
 const _sfc_main$s = {
   name: "HeaderTop",
   setup() {
@@ -220,205 +222,101 @@ _sfc_main$s.setup = (props, ctx) => {
   return _sfc_setup$s ? _sfc_setup$s(props, ctx) : void 0;
 };
 const HeaderBottom = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r]]);
-const getMenuItems = (t) => [
-  {
-    type: "link",
-    label: t("menu.home"),
-    link: "home"
-  },
-  {
-    type: "submenu",
-    label: t("menu.categories"),
-    path: ["categories"],
-    megaMenu: true,
-    children: [
-      {
+const splitCategoriesIntoColumns = (categories, columns = 4, maxPerColumn = 8) => {
+  const result = Array.from({ length: columns }, () => []);
+  let columnIndex = 0;
+  categories.forEach((category) => {
+    if (result[columnIndex].length >= maxPerColumn) {
+      columnIndex++;
+    }
+    result[columnIndex].push(category);
+  });
+  return result.filter((column) => column.length > 0);
+};
+const getMenuItems = (t, categories) => {
+  const categoryColumns = splitCategoriesIntoColumns(categories);
+  return [
+    {
+      type: "link",
+      label: t("menu.home"),
+      link: "home"
+    },
+    {
+      type: "submenu",
+      label: t("menu.categories"),
+      path: ["categories"],
+      megaMenu: true,
+      children: categoryColumns.map((column, index) => ({
         type: "submenu",
-        label: "Classic Variation",
-        path: ["categories", "classic-variation"],
-        children: [
-          {
-            type: "link",
-            label: "Left sidebar 3 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Left sidebar 4 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Right sidebar 3 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Right sidebar 4 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Full width 4 column",
-            link: "home"
-          }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Columns Variation",
-        path: ["categories", "columns-variation"],
-        children: [
-          {
-            type: "link",
-            label: "Banner left sidebar 3 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Banner left sidebar 4 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Banner right sidebar 3 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Banner right sidebar 4 column",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Banner Full width 4 column",
-            link: "home"
-          }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "Columns Variation Two",
-        path: ["categories", "columns-variation-two"],
-        children: [
-          {
-            type: "link",
-            label: "3 Columns full width",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "4 Columns full width",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "5 Columns full width",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "6 Columns full width",
-            link: "home"
-          },
-          { type: "link", label: "Banner 3 Columns", link: "home" }
-        ]
-      },
-      {
-        type: "submenu",
-        label: "List Variation",
-        path: ["categories", "list-variation"],
-        children: [
-          { type: "link", label: "Shop left sidebar", link: "home" },
-          {
-            type: "link",
-            label: "Shop right sidebar",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Banner left sidebar",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Banner right sidebar",
-            link: "home"
-          },
-          {
-            type: "link",
-            label: "Full width 2 columns",
-            link: "home"
-          },
-          {
-            type: "banner",
-            src: getImagePath("menu-banner", "1.jpg"),
-            href: "home"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    type: "link",
-    label: t("menu.about_us"),
-    link: "about-us"
-  },
-  {
-    type: "submenu",
-    label: t("menu.company"),
-    path: ["pages"],
-    children: [
-      {
-        type: "link",
-        label: t("menu.about_us"),
-        link: "about-us"
-      },
-      {
-        type: "link",
-        label: t("menu.faq"),
-        link: "faq"
-      },
-      {
-        type: "link",
-        label: t("menu.delivery_information"),
-        link: "track-order"
-      },
-      {
-        type: "link",
-        label: t("menu.contacts"),
-        link: "contacts"
-      }
-    ]
-  },
-  {
-    type: "submenu",
-    label: t("menu.to_the_client"),
-    path: ["pages"],
-    children: [
-      {
-        type: "link",
-        label: t("menu.privacy_policy"),
-        link: "privacy-policy"
-      },
-      {
-        type: "link",
-        label: t("menu.cookie_processing_policy"),
-        link: "terms-condition"
-      },
-      {
-        type: "link",
-        label: t("menu.bank_details"),
-        link: "terms-condition"
-      }
-    ]
-  },
-  {
-    type: "link",
-    label: t("menu.contacts"),
-    link: "contacts"
-  }
-];
+        path: [`categories`, `column-${index + 1}`],
+        children: column.map((category) => ({
+          type: "link",
+          label: category.name,
+          link: category.link
+        }))
+      }))
+    },
+    {
+      type: "link",
+      label: t("menu.about_us"),
+      link: "about-us"
+    },
+    {
+      type: "submenu",
+      label: t("menu.company"),
+      path: ["companies"],
+      children: [
+        {
+          type: "link",
+          label: t("menu.about_us"),
+          link: "about-us"
+        },
+        {
+          type: "link",
+          label: t("menu.faq"),
+          link: "faq"
+        },
+        {
+          type: "link",
+          label: t("menu.delivery_information"),
+          link: "track-order"
+        },
+        {
+          type: "link",
+          label: t("menu.contacts"),
+          link: "contacts"
+        }
+      ]
+    },
+    {
+      type: "submenu",
+      label: t("menu.to_the_client"),
+      path: ["pages"],
+      children: [
+        {
+          type: "link",
+          label: t("menu.privacy_policy"),
+          link: "privacy-policy"
+        },
+        {
+          type: "link",
+          label: t("menu.cookie_processing_policy"),
+          link: "terms-condition"
+        },
+        {
+          type: "link",
+          label: t("menu.bank_details"),
+          link: "terms-condition"
+        }
+      ]
+    },
+    {
+      type: "link",
+      label: t("menu.contacts"),
+      link: "contacts"
+    }
+  ];
+};
 const _sfc_main$r = {
   name: "MenuItem",
   components: {
@@ -497,7 +395,13 @@ function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     if ($props.item.megaMenu) {
       _push(`<li class="d-flex"><!--[-->`);
       ssrRenderList($props.item.children, (child, index) => {
-        _push(`<ul class="d-block"><li class="menu_title"><a href="javascript:void(0)">${ssrInterpolate(child.label)}</a></li><!--[-->`);
+        _push(`<ul class="d-block">`);
+        if (child.label) {
+          _push(`<li class="menu_title"><a href="javascript:void(0)">${ssrInterpolate(child.label)}</a></li>`);
+        } else {
+          _push(`<!---->`);
+        }
+        _push(`<!--[-->`);
         ssrRenderList(child.children, (subChild, subChildIndex) => {
           _push(ssrRenderComponent(_component_MenuItem, {
             key: subChildIndex,
@@ -552,9 +456,11 @@ const _sfc_main$q = {
   },
   setup() {
     const { t } = useI18n();
+    const siteInfoStore = useSiteInfoStore();
     const getIconPath = (name) => getImagePath("icons", name);
     const getMenuBannerPath = (name) => getImagePath("menu-banner", name);
-    const menuItems = computed(() => getMenuItems(t));
+    const categories = ref([]);
+    const menuItems = computed(() => getMenuItems(t, categories.value));
     const isScrollingDown = ref(false);
     const isScrolledToTop = ref(true);
     let lastScrollTop = 0;
@@ -566,9 +472,11 @@ const _sfc_main$q = {
     };
     const isHomePage = ref(false);
     const { url } = usePage();
-    onMounted(() => {
+    onMounted(async () => {
       window.addEventListener("scroll", onScroll);
       isHomePage.value = url === "/";
+      await siteInfoStore.fetchSiteInfo();
+      categories.value = siteInfoStore.categories ?? [];
     });
     onUnmounted(() => window.removeEventListener("scroll", onScroll));
     return {
@@ -620,7 +528,7 @@ const _sfc_main$p = {
   }
 };
 function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-lg-none" }, _attrs))}><div class="container position-relative"><div class="row"><div class="col"><div class="header-logo"><a href="#"><img${ssrRenderAttr("src", $setup.getLogoPath("logo.png"))} alt="Site Logo"><img class="dark-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))} alt="Site Logo" style="${ssrRenderStyle({ "display": "none" })}" loading="lazy"></a></div></div><div class="col"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar" placeholder="Search products..." type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="icon" loading="lazy"></button></form></div></div></div></div></div>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-lg-none" }, _attrs))}><div class="container position-relative"><div class="row"><div class="col"><div class="header-logo"><a href="#"><img${ssrRenderAttr("src", $setup.getLogoPath("logo.png"))} alt="Site Logo"><img class="dark-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))} alt="Site Logo" style="${ssrRenderStyle({ "display": "none" })}" loading="lazy"></a></div></div><div class="col"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar"${ssrRenderAttr("placeholder", _ctx.$t("search_products"))} type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="icon" loading="lazy"></button></form></div></div></div></div></div>`);
 }
 const _sfc_setup$p = _sfc_main$p.setup;
 _sfc_main$p.setup = (props, ctx) => {
@@ -669,47 +577,63 @@ const _sfc_main$o = {
 function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem", true);
-  _push(`<li${ssrRenderAttrs(mergeProps({
-    class: { active: $options.isSubMenu && $props.isSubMenuVisible($props.item.path) }
-  }, _attrs))}>`);
-  if ($options.isLink) {
-    _push(ssrRenderComponent(_component_InertiaLink, {
-      href: $setup.route($props.item.link)
-    }, {
-      default: withCtx((_, _push2, _parent2, _scopeId) => {
-        if (_push2) {
-          _push2(`${ssrInterpolate($props.item.label)}`);
-        } else {
-          return [
-            createTextVNode(toDisplayString($props.item.label), 1)
-          ];
-        }
-      }),
-      _: 1
-    }, _parent));
-  } else {
-    _push(`<!---->`);
-  }
-  if ($options.isBanner) {
-    _push(`<a${ssrRenderAttr("href", $props.item.href)} class="p-0"><img class="img-responsive"${ssrRenderAttr("src", $props.item.src)} alt="" loading="lazy"></a>`);
-  } else {
-    _push(`<!---->`);
-  }
-  if ($options.isSubMenu) {
-    _push(`<span class="menu-toggle"></span>`);
-  } else {
-    _push(`<!---->`);
-  }
-  if ($options.isSubMenu) {
-    _push(`<a href="javascript:void(0)" class="toggle-menu-link">${ssrInterpolate($props.item.label)}</a>`);
-  } else {
-    _push(`<!---->`);
-  }
-  if ($options.isSubMenu) {
-    _push(`<ul style="${ssrRenderStyle([
-      $props.isSubMenuVisible($props.item.path) ? null : { display: "none" },
-      { display: $props.isSubMenuVisible($props.item.path) ? "block" : "none" }
-    ])}" class="sub-menu"><!--[-->`);
+  if ($props.item.label) {
+    _push(`<li${ssrRenderAttrs(mergeProps({
+      class: { active: $options.isSubMenu && $props.isSubMenuVisible($props.item.path) }
+    }, _attrs))}>`);
+    if ($options.isLink) {
+      _push(ssrRenderComponent(_component_InertiaLink, {
+        href: $setup.route($props.item.link)
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(`${ssrInterpolate($props.item.label)}`);
+          } else {
+            return [
+              createTextVNode(toDisplayString($props.item.label), 1)
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+    } else {
+      _push(`<!---->`);
+    }
+    if ($options.isBanner) {
+      _push(`<a${ssrRenderAttr("href", $props.item.href)} class="p-0"><img class="img-responsive"${ssrRenderAttr("src", $props.item.src)} alt="" loading="lazy"></a>`);
+    } else {
+      _push(`<!---->`);
+    }
+    if ($options.isSubMenu) {
+      _push(`<span class="menu-toggle"></span>`);
+    } else {
+      _push(`<!---->`);
+    }
+    if ($options.isSubMenu) {
+      _push(`<a href="javascript:void(0)" class="toggle-menu-link">${ssrInterpolate($props.item.label)}</a>`);
+    } else {
+      _push(`<!---->`);
+    }
+    if ($options.isSubMenu) {
+      _push(`<ul style="${ssrRenderStyle([
+        $props.isSubMenuVisible($props.item.path) ? null : { display: "none" },
+        { display: $props.isSubMenuVisible($props.item.path) ? "block" : "none" }
+      ])}" class="sub-menu"><!--[-->`);
+      ssrRenderList($props.item.children, (child, childIndex) => {
+        _push(ssrRenderComponent(_component_MobileMenuItem, {
+          key: childIndex,
+          item: child,
+          "is-sub-menu-visible": $props.isSubMenuVisible,
+          "toggle-sub-menu": $props.toggleSubMenu
+        }, null, _parent));
+      });
+      _push(`<!--]--></ul>`);
+    } else {
+      _push(`<!---->`);
+    }
+    _push(`</li>`);
+  } else if ($options.isSubMenu) {
+    _push(`<!--[-->`);
     ssrRenderList($props.item.children, (child, childIndex) => {
       _push(ssrRenderComponent(_component_MobileMenuItem, {
         key: childIndex,
@@ -718,11 +642,10 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         "toggle-sub-menu": $props.toggleSubMenu
       }, null, _parent));
     });
-    _push(`<!--]--></ul>`);
+    _push(`<!--]-->`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</li>`);
 }
 const _sfc_setup$o = _sfc_main$o.setup;
 _sfc_main$o.setup = (props, ctx) => {
@@ -741,8 +664,18 @@ const _sfc_main$n = {
     const mobileMenu = ref(null);
     const showLanguageDropdown = ref(false);
     const activeMenu = ref({});
+    const siteInfoStore = useSiteInfoStore();
     const toggleDropdown = () => {
       showLanguageDropdown.value = !showLanguageDropdown.value;
+    };
+    const { locale } = useI18n();
+    const activeLanguage = ref(locale.value);
+    const changeLanguage = (lang) => {
+      if (activeLanguage.value !== lang) {
+        activeLanguage.value = lang;
+        localStorage.setItem("locale", lang);
+        locale.value = lang;
+      }
     };
     const toggleSubMenu = (path, event) => {
       event.stopPropagation();
@@ -779,26 +712,32 @@ const _sfc_main$n = {
         sidebarStore.closeMobileMenu();
       }
     };
-    onMounted(() => {
+    onMounted(async () => {
       document.addEventListener("click", closeMenu);
       document.addEventListener("click", handleClickOutside);
+      await siteInfoStore.fetchSiteInfo();
+      categories.value = siteInfoStore.categories ?? [];
     });
     onBeforeUnmount(() => {
       document.removeEventListener("click", closeMenu);
       document.removeEventListener("click", handleClickOutside);
     });
     const { t } = useI18n();
-    const menuItems = computed(() => getMenuItems(t));
+    const categories = ref([]);
+    const menuItems = computed(() => getMenuItems(t, categories.value));
     return {
       sidebarStore,
       mobileMenu,
       closeMenu,
       showLanguageDropdown,
       toggleDropdown,
+      changeLanguage,
+      locale,
       toggleSubMenu,
       isSubMenuVisible,
       activeMenu,
-      menuItems
+      menuItems,
+      siteInfoStore
     };
   }
 };
@@ -808,7 +747,7 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     id: "ec-mobile-menu",
     class: ["ec-side-cart ec-mobile-menu", { "ec-open": $setup.sidebarStore.isMobileMenuOpen ?? false }],
     ref: "mobileMenu"
-  }, _attrs))} data-v-57fc9fd1><div class="ec-menu-title" data-v-57fc9fd1><span class="menu_title" data-v-57fc9fd1>My Menu</span><button class="ec-close" data-v-57fc9fd1> × </button></div><div class="ec-menu-inner" data-v-57fc9fd1><div class="ec-menu-content" data-v-57fc9fd1><ul data-v-57fc9fd1><!--[-->`);
+  }, _attrs))} data-v-8df93deb><div class="ec-menu-title" data-v-8df93deb><span class="menu_title" data-v-8df93deb>Bruknan</span><button class="ec-close" data-v-8df93deb> × </button></div><div class="ec-menu-inner" data-v-8df93deb><div class="ec-menu-content" data-v-8df93deb><ul data-v-8df93deb><!--[-->`);
   ssrRenderList($setup.menuItems, (item, index) => {
     _push(ssrRenderComponent(_component_MobileMenuItem, {
       key: index,
@@ -817,13 +756,27 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       "toggle-sub-menu": $setup.toggleSubMenu
     }, null, _parent));
   });
-  _push(`<!--]--></ul></div><div class="header-res-lan-curr" data-v-57fc9fd1><div class="header-top-lan-curr" data-v-57fc9fd1><div class="header-top-lan dropdown" data-v-57fc9fd1><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-57fc9fd1> Language <i class="ecicon eci-caret-down" aria-hidden="true" data-v-57fc9fd1></i></button>`);
+  _push(`<!--]--></ul></div><div class="header-res-lan-curr" data-v-8df93deb><div class="header-top-lan-curr" data-v-8df93deb><div class="header-top-lan dropdown" data-v-8df93deb><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-8df93deb>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-8df93deb></i></button>`);
   if ($setup.showLanguageDropdown) {
-    _push(`<ul class="dropdown-menu" data-v-57fc9fd1><li class="active" data-v-57fc9fd1><a class="dropdown-item" href="#" data-v-57fc9fd1> Russian </a></li><li data-v-57fc9fd1><a class="dropdown-item" href="#" data-v-57fc9fd1> English </a></li></ul>`);
+    _push(`<ul class="dropdown-menu" data-v-8df93deb><li class="${ssrRenderClass({
+      active: _ctx.activeLanguage === "ru"
+    })}" data-v-8df93deb><a class="dropdown-item" href="#" data-v-8df93deb>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
+      active: _ctx.activeLanguage === "en"
+    })}" data-v-8df93deb><a class="dropdown-item" href="#" data-v-8df93deb>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="header-res-social" data-v-57fc9fd1><div class="header-top-social" data-v-57fc9fd1><ul class="mb-0" data-v-57fc9fd1><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-facebook" href="#" data-v-57fc9fd1><i class="ecicon eci-facebook" data-v-57fc9fd1></i></a></li><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-twitter" href="#" data-v-57fc9fd1><i class="ecicon eci-twitter" data-v-57fc9fd1></i></a></li><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-instagram" href="#" data-v-57fc9fd1><i class="ecicon eci-instagram" data-v-57fc9fd1></i></a></li><li class="list-inline-item" data-v-57fc9fd1><a class="hdr-linkedin" href="#" data-v-57fc9fd1><i class="ecicon eci-linkedin" data-v-57fc9fd1></i></a></li></ul></div></div></div></div></div>`);
+  _push(`</div></div><div class="header-res-social" data-v-8df93deb><div class="header-top-social" data-v-8df93deb>`);
+  if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
+    _push(`<ul class="mb-0" data-v-8df93deb><!--[-->`);
+    ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
+      _push(`<li class="list-inline-item" data-v-8df93deb><a class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-8df93deb><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-8df93deb></i></a></li>`);
+    });
+    _push(`<!--]--></ul>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div></div></div></div></div>`);
 }
 const _sfc_setup$n = _sfc_main$n.setup;
 _sfc_main$n.setup = (props, ctx) => {
@@ -831,7 +784,7 @@ _sfc_main$n.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMobileMenu.vue");
   return _sfc_setup$n ? _sfc_setup$n(props, ctx) : void 0;
 };
-const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$m], ["__scopeId", "data-v-57fc9fd1"]]);
+const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$m], ["__scopeId", "data-v-8df93deb"]]);
 const _sfc_main$m = {
   __name: "AppHeader",
   __ssrInlineRender: true,

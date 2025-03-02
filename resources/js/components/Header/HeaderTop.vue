@@ -48,7 +48,6 @@
             };
 
             onBeforeUnmount(() => {
-                // Убираем глобальный обработчик при размонтировании компонента
                 document.removeEventListener('click', handleClickOutside);
             });
 

@@ -36,16 +36,24 @@ class SiteInfoAction
             ->where('slug', 'main')
             ->first();
 
-        $categories = Category::query()
+        $topCategories = Category::query()
             ->where('is_visible', true)
             ->where('is_popular', true)
             ->orderBy('position')
             ->take(4)
             ->get();
 
+        $categories = Category::query()
+            ->where('is_visible', true)
+            ->where('is_popular', true)
+            ->whereNull('parent_id')
+            ->oldest('position')
+            ->get();
+
         $products = Product::query()
             ->with(['category', 'category.parent', 'images'])
             ->where('is_visible', true)
+            ->where('is_popular', true)
             ->where('is_popular', true)
             ->where('published_at', '<=', now())
             ->take(4)
@@ -59,7 +67,8 @@ class SiteInfoAction
             'full_name' => $setting?->full_name,
             'social_networks' => SocialNetworkResource::collection(SocialNetwork::query()->get()),
             'brands' => BrandResource::collection(Brand::query()->get()),
-            'top_categories' => CategoryResource::collection($categories),
+            'top_categories' => CategoryResource::collection($topCategories),
+            'categories' => CategoryResource::collection($categories),
             'top_products' => ProductResource::collection($products),
         ];
     }

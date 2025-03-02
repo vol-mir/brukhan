@@ -1,5 +1,6 @@
 <script>
     import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+    import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { useSidebarStore } from '@/stores/sidebarStore';
     import { getMenuItems } from '@/data/menuData';
     import MobileMenuItem from './MobileMenuItem.vue';
@@ -15,9 +16,21 @@
             const mobileMenu = ref(null);
             const showLanguageDropdown = ref(false);
             const activeMenu = ref({});
+            const siteInfoStore = useSiteInfoStore();
 
             const toggleDropdown = () => {
                 showLanguageDropdown.value = !showLanguageDropdown.value;
+            };
+
+            const { locale } = useI18n();
+            const activeLanguage = ref(locale.value);
+
+            const changeLanguage = (lang) => {
+                if (activeLanguage.value !== lang) {
+                    activeLanguage.value = lang;
+                    localStorage.setItem('locale', lang);
+                    locale.value = lang;
+                }
             };
 
             const toggleSubMenu = (path, event) => {
@@ -72,9 +85,12 @@
                 }
             };
 
-            onMounted(() => {
+            onMounted(async () => {
                 document.addEventListener('click', closeMenu);
                 document.addEventListener('click', handleClickOutside);
+
+                await siteInfoStore.fetchSiteInfo();
+                categories.value = siteInfoStore.categories ?? [];
             });
 
             onBeforeUnmount(() => {
@@ -83,7 +99,9 @@
             });
 
             const { t } = useI18n();
-            const menuItems = computed(() => getMenuItems(t));
+
+            const categories = ref([]);
+            const menuItems = computed(() => getMenuItems(t, categories.value));
 
             return {
                 sidebarStore,
@@ -91,10 +109,13 @@
                 closeMenu,
                 showLanguageDropdown,
                 toggleDropdown,
+                changeLanguage,
+                locale,
                 toggleSubMenu,
                 isSubMenuVisible,
                 activeMenu,
                 menuItems,
+                siteInfoStore,
             };
         },
     };
@@ -109,7 +130,7 @@
         ref="mobileMenu"
     >
         <div class="ec-menu-title">
-            <span class="menu_title">My Menu</span>
+            <span class="menu_title">Bruknan</span>
             <button class="ec-close" @click="sidebarStore.closeMobileMenu">
                 ×
             </button>
@@ -136,7 +157,7 @@
                             aria-haspopup="true"
                             :aria-expanded="showLanguageDropdown"
                         >
-                            Language
+                            {{ $t('language') }}
                             <i
                                 class="ecicon eci-caret-down"
                                 aria-hidden="true"
@@ -148,14 +169,30 @@
                                 class="dropdown-menu"
                                 ref="dropdownMenu"
                             >
-                                <li class="active">
-                                    <a class="dropdown-item" href="#">
-                                        Russian
+                                <li
+                                    :class="{
+                                        active: activeLanguage === 'ru',
+                                    }"
+                                >
+                                    <a
+                                        class="dropdown-item"
+                                        href="#"
+                                        @click="changeLanguage('ru')"
+                                    >
+                                        {{ $t('locale.russian') }}
                                     </a>
                                 </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        English
+                                <li
+                                    :class="{
+                                        active: activeLanguage === 'en',
+                                    }"
+                                >
+                                    <a
+                                        class="dropdown-item"
+                                        href="#"
+                                        @click="changeLanguage('en')"
+                                    >
+                                        {{ $t('locale.english') }}
                                     </a>
                                 </li>
                             </ul>
@@ -166,25 +203,28 @@
                 <!-- Social Start -->
                 <div class="header-res-social">
                     <div class="header-top-social">
-                        <ul class="mb-0">
-                            <li class="list-inline-item">
-                                <a class="hdr-facebook" href="#">
-                                    <i class="ecicon eci-facebook"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="hdr-twitter" href="#">
-                                    <i class="ecicon eci-twitter"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="hdr-instagram" href="#">
-                                    <i class="ecicon eci-instagram"></i>
-                                </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a class="hdr-linkedin" href="#">
-                                    <i class="ecicon eci-linkedin"></i>
+                        <ul
+                            v-if="
+                                siteInfoStore && siteInfoStore.social_networks
+                            "
+                            class="mb-0"
+                        >
+                            <li
+                                v-for="network in siteInfoStore.social_networks ||
+                                []"
+                                :key="network.slug"
+                                class="list-inline-item"
+                            >
+                                <a
+                                    :class="'hdr-' + network.slug.toLowerCase()"
+                                    :href="network.url"
+                                    :aria-label="network.name"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <i
+                                        :class="'ecicon eci-' + network.slug"
+                                    ></i>
                                 </a>
                             </li>
                         </ul>

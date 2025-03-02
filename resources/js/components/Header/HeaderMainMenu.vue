@@ -1,5 +1,6 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
+    import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { getMenuItems } from '@/data/menuData';
     import MenuItem from './MenuItem.vue';
     import { computed, ref, onMounted, onUnmounted } from 'vue';
@@ -13,12 +14,14 @@
         },
         setup() {
             const { t } = useI18n();
+            const siteInfoStore = useSiteInfoStore();
 
             const getIconPath = (name) => getImagePath('icons', name);
             const getMenuBannerPath = (name) =>
                 getImagePath('menu-banner', name);
 
-            const menuItems = computed(() => getMenuItems(t));
+            const categories = ref([]);
+            const menuItems = computed(() => getMenuItems(t, categories.value));
 
             const isScrollingDown = ref(false);
             const isScrolledToTop = ref(true);
@@ -38,9 +41,12 @@
             const isHomePage = ref(false);
             const { url } = usePage();
 
-            onMounted(() => {
+            onMounted(async () => {
                 window.addEventListener('scroll', onScroll);
                 isHomePage.value = url === '/';
+
+                await siteInfoStore.fetchSiteInfo();
+                categories.value = siteInfoStore.categories ?? [];
             });
 
             onUnmounted(() => window.removeEventListener('scroll', onScroll));

@@ -45,7 +45,7 @@
                         <form class="ec-btn-group-form" action="#">
                             <input
                                 class="form-control ec-search-bar"
-                                placeholder="Search products..."
+                                :placeholder="$t('search_products')"
                                 type="text"
                             />
                             <button class="submit" type="submit">

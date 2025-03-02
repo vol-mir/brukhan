@@ -435,19 +435,19 @@
             }
             .mega-menu {
                 @include ease3;
-                width: $width-100;
+                width: auto;
                 margin-top: 15px;
-                padding: 20px 0px 30px 30px;
+                padding: 10px 0px 10px 20px;
                 position: $absolute;
                 box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
                 background: $white-color;
                 opacity: 0;
                 visibility: hidden;
-                left: 0;
+                left: auto;
                 z-index: 15;
                 li {
                     ul {
-                        width: 25%;
+                        width: 100%;
                         margin-right: 30px;
                         li.menu_title {
                             a {
