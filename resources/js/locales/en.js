@@ -41,6 +41,7 @@ export default {
         top_products: 'Top products',
         services: 'Services',
         arrivals: 'New arrivals',
+        product: 'Product',
     },
     scroll_to_section: 'Scroll To Section',
     free_shipping: 'Free Shipping',
@@ -74,4 +75,6 @@ export default {
     action2: 'Great deals on all Festool accessories!',
     nice_offer: 'Nice offer',
     search_products: 'Search products...',
+    sku: 'Sku',
+    description: 'Description',
 };

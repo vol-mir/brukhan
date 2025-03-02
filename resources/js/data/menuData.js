@@ -4,7 +4,7 @@ export const getMenuItems = (t) => [
     {
         type: 'link',
         label: t('menu.home'),
-        link: '/',
+        link: 'home',
     },
     {
         type: 'submenu',
@@ -20,27 +20,27 @@ export const getMenuItems = (t) => [
                     {
                         type: 'link',
                         label: 'Left sidebar 3 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Left sidebar 4 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Right sidebar 3 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Right sidebar 4 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Full width 4 column',
-                        link: '#',
+                        link: 'home',
                     },
                 ],
             },
@@ -52,27 +52,27 @@ export const getMenuItems = (t) => [
                     {
                         type: 'link',
                         label: 'Banner left sidebar 3 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Banner left sidebar 4 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Banner right sidebar 3 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Banner right sidebar 4 column',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Banner Full width 4 column',
-                        link: '#',
+                        link: 'home',
                     },
                 ],
             },
@@ -84,24 +84,24 @@ export const getMenuItems = (t) => [
                     {
                         type: 'link',
                         label: '3 Columns full width',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: '4 Columns full width',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: '5 Columns full width',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: '6 Columns full width',
-                        link: '#',
+                        link: 'home',
                     },
-                    { type: 'link', label: 'Banner 3 Columns', link: '#' },
+                    { type: 'link', label: 'Banner 3 Columns', link: 'home' },
                 ],
             },
             {
@@ -109,31 +109,31 @@ export const getMenuItems = (t) => [
                 label: 'List Variation',
                 path: ['categories', 'list-variation'],
                 children: [
-                    { type: 'link', label: 'Shop left sidebar', link: '#' },
+                    { type: 'link', label: 'Shop left sidebar', link: 'home' },
                     {
                         type: 'link',
                         label: 'Shop right sidebar',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Banner left sidebar',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Banner right sidebar',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'link',
                         label: 'Full width 2 columns',
-                        link: '#',
+                        link: 'home',
                     },
                     {
                         type: 'banner',
                         src: getImagePath('menu-banner', '1.jpg'),
-                        href: '#',
+                        href: 'home',
                     },
                 ],
             },

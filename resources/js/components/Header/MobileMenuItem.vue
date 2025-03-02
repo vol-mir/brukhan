@@ -1,4 +1,5 @@
 <script>
+    import { inject } from 'vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
@@ -20,6 +21,13 @@
                 required: true,
             },
         },
+        setup() {
+            const route = inject('route');
+
+            return {
+                route,
+            };
+        },
         computed: {
             isSubMenu() {
                 return this.item.type === 'submenu';
@@ -39,7 +47,7 @@
         :class="{ active: isSubMenu && isSubMenuVisible(item.path) }"
         @click="isSubMenu && toggleSubMenu(item.path, $event)"
     >
-        <InertiaLink v-if="isLink" :href="item.link">
+        <InertiaLink v-if="isLink" :href="route(item.link)">
             {{ item.label }}
         </InertiaLink>
 

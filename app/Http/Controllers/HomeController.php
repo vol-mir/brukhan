@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Actions\GetProductBySlugAction;
+use App\Http\Requests\GetProductBySlugRequest;
+use App\Http\Resources\ProductResource;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -55,6 +58,13 @@ class HomeController extends Controller
     {
         return Inertia::render('TrackOrder', [
             'page' => $this->getPageData('policy_personal_data'),
+        ]);
+    }
+
+    public function getProductBySlug(GetProductBySlugRequest $request, GetProductBySlugAction $action): Response
+    {
+        return Inertia::render('Product', [
+            'product' => ProductResource::make($action->run($request->toData())),
         ]);
     }
 }

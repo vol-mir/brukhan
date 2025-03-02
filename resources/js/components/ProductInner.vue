@@ -1,8 +1,13 @@
 <script>
+    import { inject } from 'vue';
     import { getImagePath } from '@/utils/imageHelper';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
         name: 'ProductInner',
+        components: {
+            InertiaLink,
+        },
         props: {
             product: {
                 type: Object,
@@ -18,8 +23,11 @@
             },
         },
         setup() {
+            const route = inject('route');
+
             return {
                 getImagePath,
+                route,
             };
         },
     };
@@ -43,8 +51,8 @@
                         loading="lazy"
                     />
                 </a>
-                <a
-                    href="#"
+                <InertiaLink
+                    :href="route('get-product-by-slug', { slug: product.slug })"
                     class="quickview"
                     data-link-action="quickview"
                     title="Quick view"
@@ -56,12 +64,16 @@
                         class="svg_img pro_svg"
                         alt=""
                     />
-                </a>
+                </InertiaLink>
             </div>
         </div>
         <div class="ec-pro-content">
             <h5 class="ec-pro-title">
-                <a href="#">{{ product.name }}</a>
+                <InertiaLink
+                    :href="route('get-product-by-slug', { slug: product.slug })"
+                >
+                    {{ product.name }}
+                </InertiaLink>
             </h5>
             <div class="ec-pro-rating">
                 <i
@@ -73,7 +85,7 @@
             </div>
             <span class="ec-price">
                 <!--<span class="old-price"></span>-->
-                <span class="new-price">${{ product.price }}</span>
+                <span class="new-price">₽{{ product.price }}</span>
             </span>
         </div>
     </div>

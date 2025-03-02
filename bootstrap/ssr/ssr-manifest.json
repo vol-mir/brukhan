@@ -5,7 +5,7 @@
   "resources/js/Layout.vue?vue&type=style&index=0&lang.css": [],
   "resources/js/apiClient.js": [],
   "resources/js/components/AppFooter.vue": [],
-  "resources/js/components/AppFooter.vue?vue&type=style&index=0&scoped=e6a3327c&lang.css": [],
+  "resources/js/components/AppFooter.vue?vue&type=style&index=0&scoped=8e65052b&lang.css": [],
   "resources/js/components/AppLoader.vue": [],
   "resources/js/components/Header/AppHeader.vue": [],
   "resources/js/components/Header/HeaderBottom.vue": [],
@@ -46,10 +46,13 @@
   "resources/js/pages/Home.vue": [],
   "resources/js/pages/Home.vue?vue&type=style&index=0&scoped=0afc70bc&lang.css": [],
   "resources/js/pages/PrivacyPolicy.vue": [],
+  "resources/js/pages/Product.vue": [],
+  "resources/js/pages/Product.vue?vue&type=style&index=0&scoped=3fea166c&lang.css": [],
   "resources/js/pages/TermsCondition.vue": [],
   "resources/js/pages/TrackOrder.vue": [],
   "resources/js/ssr.js": [],
   "resources/js/stores/sidebarStore.js": [],
   "resources/js/stores/siteInfoStore.js": [],
-  "resources/js/utils/imageHelper.js": []
+  "resources/js/utils/imageHelper.js": [],
+  "resources/js/ziggy.js": []
 }

@@ -8,6 +8,9 @@ export default [
     pluginJs.configs.recommended,
     ...pluginVue.configs['flat/essential'],
     {
+        ignores: ['resources/js/ziggy.js'],
+    },
+    {
         files: ['**/*.{js,mjs,cjs,vue}'],
         ignores: ['node_modules/**'],
     },

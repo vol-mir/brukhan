@@ -1,4 +1,5 @@
 <script>
+    import { inject } from 'vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
@@ -15,6 +16,13 @@
                 type: Boolean,
                 default: false,
             },
+        },
+        setup() {
+            const route = inject('route');
+
+            return {
+                route,
+            };
         },
         computed: {
             isSubMenu() {
@@ -37,7 +45,7 @@
             'dropdown position-static': isSubMenu && item.megaMenu,
         }"
     >
-        <InertiaLink v-if="isLink" :href="item.link">
+        <InertiaLink v-if="isLink" :href="route(item.link)">
             {{ item.label }}
         </InertiaLink>
 

@@ -41,6 +41,7 @@ export default {
         top_products: 'Лучшие товары',
         services: 'Услуги',
         arrivals: 'Новые поступления',
+        product: 'Продукт',
     },
     scroll_to_section: 'Прокрутить до раздела',
     free_shipping: 'Бесплатная доставка',
@@ -76,4 +77,6 @@ export default {
     action2: 'Выгодные предложения на все комплектующие Festool!',
     nice_offer: 'Приятное предложение',
     search_products: 'Найти продукты...',
+    sku: 'Артикул',
+    description: 'Описание',
 };

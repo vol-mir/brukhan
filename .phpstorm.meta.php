@@ -2006,8 +2006,8 @@ namespace PHPSTORM_META {
 'log-viewer.folders.delete','log-viewer.files','log-viewer.files.request-download','log-viewer.files.clear-cache','log-viewer.files.delete',
 'log-viewer.files.clear-cache-all','log-viewer.files.delete-multiple-files','log-viewer.logs','log-viewer.folders.download','log-viewer.files.download',
 'log-viewer.index','home','about-us','contacts',
-'faq','privacy-policy','terms-condition','track-order','api.site-info',
-'api.get-products-by-tags',);
+'faq','privacy-policy','terms-condition','track-order','get-product-by-slug',
+'api.v1.common.site-info','api.v1.product.get-products-by-tags',);
         registerArgumentsSet('views', 
 'app','filament.resources.setting-resource.pages.settings','filament-actions::badge-action','filament-actions::badge-group','filament-actions::button-action',
 'filament-actions::button-group','filament-actions::components.action','filament-actions::components.actions','filament-actions::components.group','filament-actions::components.modals',

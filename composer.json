@@ -15,7 +15,8 @@
         "laravel/tinker": "^2.9",
         "livewire/livewire": "^3.5",
         "opcodesio/log-viewer": "^3.12",
-        "spatie/laravel-data": "^4.11"
+        "spatie/laravel-data": "^4.11",
+        "tightenco/ziggy": "^2.5"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^3.3",

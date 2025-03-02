@@ -3,6 +3,8 @@ import { createSSRApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { createPinia } from 'pinia';
 import { createI18n } from 'vue-i18n';
+import { ZiggyVue } from 'ziggy-js';
+import { Ziggy } from './ziggy.js';
 import AOS from 'aos';
 import 'animate.css';
 import Layout from './Layout.vue';
@@ -33,6 +35,8 @@ createInertiaApp({
 
         const pinia = createPinia();
         app.use(pinia);
+
+        app.use(ZiggyVue, Ziggy);
 
         app.use(i18n);
         app.use(plugin).mount(el);

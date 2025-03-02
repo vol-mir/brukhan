@@ -40,7 +40,6 @@
 
             onMounted(() => {
                 window.addEventListener('scroll', onScroll);
-                console.log(url);
                 isHomePage.value = url === '/';
             });
 

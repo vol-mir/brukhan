@@ -25,3 +25,8 @@ $ php artisan make:filament-user
 ```shell
 $ php artisan log-viewer:publish
 ```
+
+### Generate routes
+```shell
+$ php artisan ziggy:generate
+```

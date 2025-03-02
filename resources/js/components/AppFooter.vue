@@ -3,7 +3,7 @@
     import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { useSidebarStore } from '@/stores/sidebarStore';
     import { Link as InertiaLink } from '@inertiajs/vue3';
-    import { onMounted } from 'vue';
+    import { onMounted, inject } from 'vue';
 
     export default {
         name: 'AppFooter',
@@ -11,6 +11,7 @@
             InertiaLink,
         },
         setup() {
+            const route = inject('route');
             const sidebarStore = useSidebarStore();
             const siteInfoStore = useSiteInfoStore();
             const getIconPath = (name) => getImagePath('icons', name);
@@ -21,6 +22,7 @@
             });
 
             return {
+                route,
                 sidebarStore,
                 getIconPath,
                 getLogoPath,
@@ -67,7 +69,7 @@
                         <div class="col-sm-12 col-lg-3 ec-footer-contact">
                             <div class="ec-footer-widget">
                                 <div class="ec-footer-logo">
-                                    <InertiaLink href="/">
+                                    <InertiaLink :href="route('home')">
                                         <img
                                             :src="
                                                 getLogoPath('footer-logo.png')
@@ -153,12 +155,16 @@
                                     >
                                         <ul class="align-items-center">
                                             <li class="ec-footer-link">
-                                                <InertiaLink href="/about-us">
+                                                <InertiaLink
+                                                    :href="route('about-us')"
+                                                >
                                                     {{ $t('page.about_us') }}
                                                 </InertiaLink>
                                             </li>
                                             <li class="ec-footer-link">
-                                                <InertiaLink href="/faq">
+                                                <InertiaLink
+                                                    :href="route('faq')"
+                                                >
                                                     {{ $t('page.faq') }}
                                                 </InertiaLink>
                                             </li>
@@ -172,7 +178,9 @@
                                                 </a>
                                             </li>
                                             <li class="ec-footer-link">
-                                                <InertiaLink href="/contacts">
+                                                <InertiaLink
+                                                    :href="route('contacts')"
+                                                >
                                                     {{ $t('page.contact_us') }}
                                                 </InertiaLink>
                                             </li>
@@ -200,7 +208,9 @@
                                         <ul class="align-items-center">
                                             <li class="ec-footer-link">
                                                 <InertiaLink
-                                                    href="/privacy-policy"
+                                                    :href="
+                                                        route('privacy-policy')
+                                                    "
                                                 >
                                                     {{
                                                         $t(
@@ -211,7 +221,9 @@
                                             </li>
                                             <li class="ec-footer-link">
                                                 <InertiaLink
-                                                    href="/terms-condition"
+                                                    :href="
+                                                        route('terms-condition')
+                                                    "
                                                 >
                                                     {{
                                                         $t(
@@ -222,7 +234,9 @@
                                             </li>
                                             <li class="ec-footer-link">
                                                 <InertiaLink
-                                                    href="/terms-condition"
+                                                    :href="
+                                                        route('terms-condition')
+                                                    "
                                                 >
                                                     {{
                                                         $t('page.bank_details')
@@ -349,7 +363,7 @@
                                 <div class="ec-copy">
                                     © 2024-{{ currentYear }}
                                     <InertiaLink
-                                        href="/"
+                                        :href="route('home')"
                                         class="site-name text-upper"
                                     >
                                         {{ siteInfoStore.full_name }}.
@@ -386,7 +400,7 @@
                 </div>
                 <div class="ec-nav-panel-icons"></div>
                 <div class="ec-nav-panel-icons">
-                    <InertiaLink href="/" class="ec-header-btn">
+                    <InertiaLink :href="route('home')" class="ec-header-btn">
                         <img
                             :src="getIconPath('home.svg')"
                             class="svg_img header_svg"
