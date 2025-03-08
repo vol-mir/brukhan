@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Data\ProductData;
+use App\Data\ShowProductData;
 use Illuminate\Foundation\Http\FormRequest;
 
 class GetProductBySlugRequest extends FormRequest
@@ -32,8 +32,8 @@ class GetProductBySlugRequest extends FormRequest
         ]);
     }
 
-    public function toData(): ProductData
+    public function toData(): ShowProductData
     {
-        return ProductData::from($this->validated());
+        return ShowProductData::from($this->validated());
     }
 }
