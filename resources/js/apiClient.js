@@ -1,7 +1,10 @@
 class ApiClient {
-    static async get(url) {
+    static async get(url, params = {}) {
         try {
-            const response = await fetch(url);
+            const queryString = new URLSearchParams(params).toString();
+            const fullUrl = queryString ? `${url}?${queryString}` : url;
+
+            const response = await fetch(fullUrl);
             if (!response.ok) {
                 throw new Error(`Error: ${response.statusText}`);
             }

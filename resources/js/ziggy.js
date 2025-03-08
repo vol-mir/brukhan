@@ -292,8 +292,13 @@ const Ziggy = {
         'privacy-policy': { uri: 'privacy-policy', methods: ['GET', 'HEAD'] },
         'terms-condition': { uri: 'terms-condition', methods: ['GET', 'HEAD'] },
         'track-order': { uri: 'track-order', methods: ['GET', 'HEAD'] },
-        'get-product-by-slug': {
+        'show-product': {
             uri: 'product\/{slug}',
+            methods: ['GET', 'HEAD'],
+            parameters: ['slug'],
+        },
+        'show-category': {
+            uri: 'category\/{slug}',
             methods: ['GET', 'HEAD'],
             parameters: ['slug'],
         },
@@ -301,8 +306,22 @@ const Ziggy = {
             uri: 'api\/v1\/site-info',
             methods: ['GET', 'HEAD'],
         },
-        'api.v1.product.get-products-by-tags': {
+        'api.v1.common.popular-tags': {
+            uri: 'api\/v1\/popular-tags',
+            methods: ['GET', 'HEAD'],
+        },
+        'api.v1.product.tags': {
             uri: 'api\/v1\/products\/tags',
+            methods: ['GET', 'HEAD'],
+        },
+        'api.v1.product.get-product': {
+            uri: 'api\/v1\/product\/{slug}',
+            methods: ['GET', 'HEAD'],
+            wheres: { slug: '[a-zA-Z0-9-]+' },
+            parameters: ['slug'],
+        },
+        'api.v1.product.get-products': {
+            uri: 'api\/v1\/products',
             methods: ['GET', 'HEAD'],
         },
     },

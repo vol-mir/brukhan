@@ -48,7 +48,14 @@
         :class="{ active: isSubMenu && isSubMenuVisible(item.path) }"
         @click="isSubMenu && toggleSubMenu(item.path, $event)"
     >
-        <InertiaLink v-if="isLink" :href="route(item.link)">
+        <InertiaLink
+            v-if="isLink"
+            :href="
+                item.slug
+                    ? route(item.link, { slug: item.slug })
+                    : route(item.link)
+            "
+        >
             {{ item.label }}
         </InertiaLink>
 

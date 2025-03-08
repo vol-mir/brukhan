@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
-use App\Data\GetProductData;
+use App\Data\CategoryData;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShowProductRequest extends FormRequest
+class ShowCategoryRequest extends FormRequest
 {
     /**
      * @return array<string, mixed>
@@ -18,7 +18,7 @@ class ShowProductRequest extends FormRequest
             'slug' => [
                 'required',
                 'string',
-                'exists:products,slug',
+                'exists:categories,slug',
             ],
         ];
     }
@@ -32,8 +32,8 @@ class ShowProductRequest extends FormRequest
         ]);
     }
 
-    public function toData(): GetProductData
+    public function toData(): CategoryData
     {
-        return GetProductData::from($this->validated());
+        return CategoryData::from($this->validated());
     }
 }

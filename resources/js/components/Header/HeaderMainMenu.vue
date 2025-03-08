@@ -74,17 +74,6 @@
             <div class="row">
                 <div class="col-md-12 align-self-center">
                     <div class="ec-main-menu">
-                        <a
-                            href="javascript:void(0)"
-                            class="ec-header-btn ec-sidebar-toggle"
-                        >
-                            <img
-                                :src="getIconPath('category-icon.svg')"
-                                class="svg_img header_svg"
-                                alt="Category icon"
-                                loading="lazy"
-                            />
-                        </a>
                         <ul>
                             <MenuItem
                                 v-for="(item, index) in menuItems"

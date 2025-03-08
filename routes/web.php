@@ -13,5 +13,6 @@ Route::controller(HomeController::class)->group(function (): void {
     Route::get('/privacy-policy', 'privacyPolicy')->name('privacy-policy');
     Route::get('/terms-condition', 'termsCondition')->name('terms-condition');
     Route::get('/track-order', 'trackOrder')->name('track-order');
-    Route::get('/product/{slug}', 'getProductBySlug')->name('get-product-by-slug');
+    Route::get('/product/{slug}', 'showProduct')->name('show-product');
+    Route::get('/category/{slug}', 'showCategory')->name('show-category');
 });

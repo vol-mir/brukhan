@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Actions;
 
-use App\Data\ShowProductData;
+use App\Data\GetProductData;
 use App\Models\Product;
 
-class GetProductBySlugAction
+class ShowProductAction
 {
-    public function run(ShowProductData $data): Product
+    public function run(GetProductData $data): Product
     {
         return Product::query()
             ->where('slug', $data->slug)

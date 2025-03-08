@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Api\V1;
 
-use App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
- * @mixin Product
+ * @mixin ProductImage
  */
-class ProductResource extends JsonResource
+class ProductImageResource extends JsonResource
 {
     public static $wrap = null;
 
@@ -24,7 +24,9 @@ class ProductResource extends JsonResource
     {
         return [
             'name' => $this->name,
-            'slug' => $this->slug,
+            'is_main' => $this->is_main,
+            'description' => $this->description,
+            'image' => url('/') . '/' . $this->image,
         ];
     }
 }

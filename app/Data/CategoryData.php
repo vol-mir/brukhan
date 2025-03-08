@@ -6,7 +6,7 @@ namespace App\Data;
 
 use Spatie\LaravelData\Data;
 
-class GetProductData extends Data
+class CategoryData extends Data
 {
     public function __construct(
         public string $slug,

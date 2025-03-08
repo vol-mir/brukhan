@@ -1,5 +1,5 @@
-import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, inject, resolveComponent, withCtx, createTextVNode, toDisplayString, computed, onUnmounted, createVNode, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
-import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderComponent, ssrRenderSlot } from "vue/server-renderer";
+import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, inject, resolveComponent, withCtx, createTextVNode, toDisplayString, computed, onUnmounted, createVNode, watch, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
+import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderStyle, ssrRenderComponent, ssrRenderSlot, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
 import { Link, Head, createInertiaApp } from "@inertiajs/vue3";
@@ -19,7 +19,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$u = {
+const _sfc_main$v = {
   name: "AppLoader",
   props: {
     loading: {
@@ -28,20 +28,20 @@ const _sfc_main$u = {
     }
   }
 };
-function _sfc_ssrRender$t(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$u(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   if ($props.loading) {
     _push(`<div${ssrRenderAttrs(mergeProps({ id: "ec-overlay" }, _attrs))}><span class="loader_img"></span></div>`);
   } else {
     _push(`<!---->`);
   }
 }
-const _sfc_setup$u = _sfc_main$u.setup;
-_sfc_main$u.setup = (props, ctx) => {
+const _sfc_setup$v = _sfc_main$v.setup;
+_sfc_main$v.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppLoader.vue");
-  return _sfc_setup$u ? _sfc_setup$u(props, ctx) : void 0;
+  return _sfc_setup$v ? _sfc_setup$v(props, ctx) : void 0;
 };
-const AppLoader = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["ssrRender", _sfc_ssrRender$t]]);
+const AppLoader = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["ssrRender", _sfc_ssrRender$u]]);
 const useSidebarStore = defineStore("sidebar", {
   state: () => ({
     isMobileMenuOpen: false,
@@ -65,9 +65,11 @@ const useSidebarStore = defineStore("sidebar", {
   }
 });
 class ApiClient {
-  static async get(url) {
+  static async get(url, params = {}) {
     try {
-      const response = await fetch(url);
+      const queryString = new URLSearchParams(params).toString();
+      const fullUrl = queryString ? `${url}?${queryString}` : url;
+      const response = await fetch(fullUrl);
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
@@ -125,7 +127,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
     }
   }
 });
-const _sfc_main$t = {
+const _sfc_main$u = {
   name: "HeaderTop",
   setup() {
     const sidebarStore = useSidebarStore();
@@ -171,37 +173,37 @@ const _sfc_main$t = {
     };
   }
 };
-function _sfc_ssrRender$s(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-f92f61e1><div class="container" data-v-f92f61e1><div class="row align-items-center" data-v-f92f61e1><div class="col text-left header-top-left d-none d-lg-block" data-v-f92f61e1><div class="header-top-social" data-v-f92f61e1><span class="social-text text-upper" data-v-f92f61e1>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+function _sfc_ssrRender$t(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-c22700d5><div class="container" data-v-c22700d5><div class="row align-items-center" data-v-c22700d5><div class="col text-left header-top-left d-none d-lg-block" data-v-c22700d5><div class="header-top-social" data-v-c22700d5><span class="social-text text-upper" data-v-c22700d5>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-f92f61e1><!--[-->`);
+    _push(`<ul class="mb-0" data-v-c22700d5><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks, (network) => {
-      _push(`<li class="list-inline-item" data-v-f92f61e1><a${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}" target="_blank" rel="noopener noreferrer" data-v-f92f61e1><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-f92f61e1></i></a></li>`);
+      _push(`<li class="list-inline-item" data-v-c22700d5><a${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}" target="_blank" rel="noopener noreferrer" data-v-c22700d5><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-c22700d5></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col header-top-right d-none d-lg-block" data-v-f92f61e1><div class="header-top-lan-curr d-flex justify-content-end" data-v-f92f61e1><div class="header-top-lan dropdown" data-v-f92f61e1><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-f92f61e1>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-f92f61e1></i></button><template>`);
+  _push(`</div></div><div class="col header-top-right d-none d-lg-block" data-v-c22700d5><div class="header-top-lan-curr d-flex justify-content-end" data-v-c22700d5><div class="header-top-lan dropdown" data-v-c22700d5><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-c22700d5>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-c22700d5></i></button><template>`);
   if ($setup.showLanguageDropdown) {
-    _push(`<ul class="dropdown-menu" data-v-f92f61e1><li class="${ssrRenderClass({
+    _push(`<ul class="dropdown-menu" data-v-c22700d5><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "ru"
-    })}" data-v-f92f61e1><a class="dropdown-item" href="#" data-v-f92f61e1>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
+    })}" data-v-c22700d5><a class="dropdown-item" href="#" data-v-c22700d5>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "en"
-    })}" data-v-f92f61e1><a class="dropdown-item" href="#" data-v-f92f61e1>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
+    })}" data-v-c22700d5><a class="dropdown-item" href="#" data-v-c22700d5>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</template></div></div></div><div class="col d-lg-none" data-v-f92f61e1><div class="ec-header-bottons" data-v-f92f61e1><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle" data-v-f92f61e1><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy" data-v-f92f61e1></a><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-f92f61e1><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-f92f61e1></a></div></div></div></div></div>`);
+  _push(`</template></div></div></div><div class="col d-lg-none" data-v-c22700d5><div class="ec-header-bottons" data-v-c22700d5><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-c22700d5><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-c22700d5></a></div></div></div></div></div>`);
 }
-const _sfc_setup$t = _sfc_main$t.setup;
-_sfc_main$t.setup = (props, ctx) => {
+const _sfc_setup$u = _sfc_main$u.setup;
+_sfc_main$u.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderTop.vue");
-  return _sfc_setup$t ? _sfc_setup$t(props, ctx) : void 0;
+  return _sfc_setup$u ? _sfc_setup$u(props, ctx) : void 0;
 };
-const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["ssrRender", _sfc_ssrRender$s], ["__scopeId", "data-v-f92f61e1"]]);
-const _sfc_main$s = {
+const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["ssrRender", _sfc_ssrRender$t], ["__scopeId", "data-v-c22700d5"]]);
+const _sfc_main$t = {
   name: "HeaderTop",
   setup() {
     const getIconPath = (name) => getImagePath("icons", name);
@@ -212,16 +214,16 @@ const _sfc_main$s = {
     };
   }
 };
-function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$s(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-none d-lg-block" }, _attrs))}><div class="container position-relative"><div class="row"><div class="ec-flex"><div class="align-self-center"><div class="header-logo"><a href="#"><img${ssrRenderAttr("src", $setup.getLogoPath("logo.png"))} alt="Site Logo" loading="lazy"><img class="dark-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))} alt="Site Logo" style="${ssrRenderStyle({ "display": "none" })}" loading="lazy"></a></div></div><div class="align-self-center"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar"${ssrRenderAttr("placeholder", _ctx.$t("search_products"))} type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="Search" loading="lazy"></button></form></div></div><div class="align-self-center"><div class="ec-header-bottons"></div></div></div></div></div></div>`);
 }
-const _sfc_setup$s = _sfc_main$s.setup;
-_sfc_main$s.setup = (props, ctx) => {
+const _sfc_setup$t = _sfc_main$t.setup;
+_sfc_main$t.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderBottom.vue");
-  return _sfc_setup$s ? _sfc_setup$s(props, ctx) : void 0;
+  return _sfc_setup$t ? _sfc_setup$t(props, ctx) : void 0;
 };
-const HeaderBottom = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r]]);
+const HeaderBottom = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["ssrRender", _sfc_ssrRender$s]]);
 const splitCategoriesIntoColumns = (categories, columns = 4, maxPerColumn = 8) => {
   const result = Array.from({ length: columns }, () => []);
   let columnIndex = 0;
@@ -252,7 +254,8 @@ const getMenuItems = (t, categories) => {
         children: column.map((category) => ({
           type: "link",
           label: category.name,
-          link: category.link
+          link: category.link,
+          slug: category.slug
         }))
       }))
     },
@@ -317,7 +320,7 @@ const getMenuItems = (t, categories) => {
     }
   ];
 };
-const _sfc_main$r = {
+const _sfc_main$s = {
   name: "MenuItem",
   components: {
     InertiaLink: Link
@@ -350,7 +353,7 @@ const _sfc_main$r = {
     }
   }
 };
-function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_MenuItem = resolveComponent("MenuItem", true);
   _push(`<li${ssrRenderAttrs(mergeProps({
@@ -361,7 +364,7 @@ function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _attrs))}>`);
   if ($options.isLink) {
     _push(ssrRenderComponent(_component_InertiaLink, {
-      href: $setup.route($props.item.link)
+      href: $props.item.slug ? $setup.route($props.item.link, { slug: $props.item.slug }) : $setup.route($props.item.link)
     }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
         if (_push2) {
@@ -442,14 +445,14 @@ function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</li>`);
 }
-const _sfc_setup$r = _sfc_main$r.setup;
-_sfc_main$r.setup = (props, ctx) => {
+const _sfc_setup$s = _sfc_main$s.setup;
+_sfc_main$s.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/MenuItem.vue");
-  return _sfc_setup$r ? _sfc_setup$r(props, ctx) : void 0;
+  return _sfc_setup$s ? _sfc_setup$s(props, ctx) : void 0;
 };
-const MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["ssrRender", _sfc_ssrRender$q]]);
-const _sfc_main$q = {
+const MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r]]);
+const _sfc_main$r = {
   name: "HeaderMainMenu",
   components: {
     MenuItem
@@ -489,12 +492,12 @@ const _sfc_main$q = {
     };
   }
 };
-function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_MenuItem = resolveComponent("MenuItem");
   _push(`<div${ssrRenderAttrs(mergeProps({
     id: "ec-main-menu-desk",
     class: ["d-none d-lg-block sticky-nav", { menu_fixed: $setup.isScrollingDown || !$setup.isScrolledToTop }]
-  }, _attrs))}><div class="container position-relative"><div class="row"><div class="col-md-12 align-self-center"><div class="ec-main-menu"><a href="javascript:void(0)" class="ec-header-btn ec-sidebar-toggle"><img${ssrRenderAttr("src", $setup.getIconPath("category-icon.svg"))} class="svg_img header_svg" alt="Category icon" loading="lazy"></a><ul><!--[-->`);
+  }, _attrs))}><div class="container position-relative"><div class="row"><div class="col-md-12 align-self-center"><div class="ec-main-menu"><ul><!--[-->`);
   ssrRenderList($setup.menuItems, (item, index) => {
     _push(ssrRenderComponent(_component_MenuItem, {
       key: index,
@@ -509,14 +512,14 @@ function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</ul></div></div></div></div></div>`);
 }
-const _sfc_setup$q = _sfc_main$q.setup;
-_sfc_main$q.setup = (props, ctx) => {
+const _sfc_setup$r = _sfc_main$r.setup;
+_sfc_main$r.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMainMenu.vue");
-  return _sfc_setup$q ? _sfc_setup$q(props, ctx) : void 0;
+  return _sfc_setup$r ? _sfc_setup$r(props, ctx) : void 0;
 };
-const HeaderMainMenu = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["ssrRender", _sfc_ssrRender$p]]);
-const _sfc_main$p = {
+const HeaderMainMenu = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["ssrRender", _sfc_ssrRender$q]]);
+const _sfc_main$q = {
   name: "HeaderResponsiveBottom",
   setup() {
     const getIconPath = (name) => getImagePath("icons", name);
@@ -527,17 +530,17 @@ const _sfc_main$p = {
     };
   }
 };
-function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-lg-none" }, _attrs))}><div class="container position-relative"><div class="row"><div class="col"><div class="header-logo"><a href="#"><img${ssrRenderAttr("src", $setup.getLogoPath("logo.png"))} alt="Site Logo"><img class="dark-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))} alt="Site Logo" style="${ssrRenderStyle({ "display": "none" })}" loading="lazy"></a></div></div><div class="col"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar"${ssrRenderAttr("placeholder", _ctx.$t("search_products"))} type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="icon" loading="lazy"></button></form></div></div></div></div></div>`);
 }
-const _sfc_setup$p = _sfc_main$p.setup;
-_sfc_main$p.setup = (props, ctx) => {
+const _sfc_setup$q = _sfc_main$q.setup;
+_sfc_main$q.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderResponsiveBottom.vue");
-  return _sfc_setup$p ? _sfc_setup$p(props, ctx) : void 0;
+  return _sfc_setup$q ? _sfc_setup$q(props, ctx) : void 0;
 };
-const HeaderResponsiveBottom = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["ssrRender", _sfc_ssrRender$o]]);
-const _sfc_main$o = {
+const HeaderResponsiveBottom = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["ssrRender", _sfc_ssrRender$p]]);
+const _sfc_main$p = {
   name: "MobileMenuItem",
   components: {
     InertiaLink: Link
@@ -574,7 +577,7 @@ const _sfc_main$o = {
     }
   }
 };
-function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem", true);
   if ($props.item.label) {
@@ -583,7 +586,7 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }, _attrs))}>`);
     if ($options.isLink) {
       _push(ssrRenderComponent(_component_InertiaLink, {
-        href: $setup.route($props.item.link)
+        href: $props.item.slug ? $setup.route($props.item.link, { slug: $props.item.slug }) : $setup.route($props.item.link)
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -647,14 +650,14 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<!---->`);
   }
 }
-const _sfc_setup$o = _sfc_main$o.setup;
-_sfc_main$o.setup = (props, ctx) => {
+const _sfc_setup$p = _sfc_main$p.setup;
+_sfc_main$p.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/MobileMenuItem.vue");
-  return _sfc_setup$o ? _sfc_setup$o(props, ctx) : void 0;
+  return _sfc_setup$p ? _sfc_setup$p(props, ctx) : void 0;
 };
-const MobileMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["ssrRender", _sfc_ssrRender$n]]);
-const _sfc_main$n = {
+const MobileMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["ssrRender", _sfc_ssrRender$o]]);
+const _sfc_main$o = {
   name: "HeaderMobileMenu",
   components: {
     MobileMenuItem
@@ -741,7 +744,7 @@ const _sfc_main$n = {
     };
   }
 };
-function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem");
   _push(`<div${ssrRenderAttrs(mergeProps({
     id: "ec-mobile-menu",
@@ -778,14 +781,14 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</div></div></div></div></div>`);
 }
-const _sfc_setup$n = _sfc_main$n.setup;
-_sfc_main$n.setup = (props, ctx) => {
+const _sfc_setup$o = _sfc_main$o.setup;
+_sfc_main$o.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMobileMenu.vue");
-  return _sfc_setup$n ? _sfc_setup$n(props, ctx) : void 0;
+  return _sfc_setup$o ? _sfc_setup$o(props, ctx) : void 0;
 };
-const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$m], ["__scopeId", "data-v-8df93deb"]]);
-const _sfc_main$m = {
+const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["ssrRender", _sfc_ssrRender$n], ["__scopeId", "data-v-8df93deb"]]);
+const _sfc_main$n = {
   __name: "AppHeader",
   __ssrInlineRender: true,
   setup(__props) {
@@ -800,13 +803,13 @@ const _sfc_main$m = {
     };
   }
 };
-const _sfc_setup$m = _sfc_main$m.setup;
-_sfc_main$m.setup = (props, ctx) => {
+const _sfc_setup$n = _sfc_main$n.setup;
+_sfc_main$n.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/AppHeader.vue");
-  return _sfc_setup$m ? _sfc_setup$m(props, ctx) : void 0;
+  return _sfc_setup$n ? _sfc_setup$n(props, ctx) : void 0;
 };
-const _sfc_main$l = {
+const _sfc_main$m = {
   name: "SideOverlay",
   setup() {
     const sidebarStore = useSidebarStore();
@@ -823,20 +826,20 @@ const _sfc_main$l = {
     }
   }
 };
-function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({
     class: "ec-side-cart-overlay",
     style: $options.overlayStyle
   }, _attrs))} data-v-9db8e227></div>`);
 }
-const _sfc_setup$l = _sfc_main$l.setup;
-_sfc_main$l.setup = (props, ctx) => {
+const _sfc_setup$m = _sfc_main$m.setup;
+_sfc_main$m.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SideOverlay.vue");
-  return _sfc_setup$l ? _sfc_setup$l(props, ctx) : void 0;
+  return _sfc_setup$m ? _sfc_setup$m(props, ctx) : void 0;
 };
-const SideOverlay = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["ssrRender", _sfc_ssrRender$l], ["__scopeId", "data-v-9db8e227"]]);
-const _sfc_main$k = {
+const SideOverlay = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["ssrRender", _sfc_ssrRender$m], ["__scopeId", "data-v-9db8e227"]]);
+const _sfc_main$l = {
   name: "AppFooter",
   components: {
     InertiaLink: Link
@@ -874,7 +877,7 @@ const _sfc_main$k = {
     }
   }
 };
-function _sfc_ssrRender$k(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-8e65052b><div class="footer-container" data-v-8e65052b><div class="footer-offer" data-v-8e65052b><div class="container" data-v-8e65052b><div class="row" data-v-8e65052b><div class="text-center footer-off-msg" data-v-8e65052b><span data-v-8e65052b>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-8e65052b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-8e65052b><div class="container" data-v-8e65052b><div class="row" data-v-8e65052b><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-8e65052b><div class="ec-footer-widget" data-v-8e65052b><div class="ec-footer-logo" data-v-8e65052b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -1069,14 +1072,14 @@ function _sfc_ssrRender$k(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></div><!--]-->`);
 }
-const _sfc_setup$k = _sfc_main$k.setup;
-_sfc_main$k.setup = (props, ctx) => {
+const _sfc_setup$l = _sfc_main$l.setup;
+_sfc_main$l.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppFooter.vue");
-  return _sfc_setup$k ? _sfc_setup$k(props, ctx) : void 0;
+  return _sfc_setup$l ? _sfc_setup$l(props, ctx) : void 0;
 };
-const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["ssrRender", _sfc_ssrRender$k], ["__scopeId", "data-v-8e65052b"]]);
-const _sfc_main$j = {
+const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["ssrRender", _sfc_ssrRender$l], ["__scopeId", "data-v-8e65052b"]]);
+const _sfc_main$k = {
   data() {
     return {
       visible: false
@@ -1100,24 +1103,24 @@ const _sfc_main$j = {
     }
   }
 };
-function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$k(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<a${ssrRenderAttrs(mergeProps({
     id: "scrollUp",
     style: $data.visible ? null : { display: "none" }
   }, _attrs))} data-v-068d078c><i class="ecicon eci-arrow-up" aria-hidden="true" data-v-068d078c></i></a>`);
 }
-const _sfc_setup$j = _sfc_main$j.setup;
-_sfc_main$j.setup = (props, ctx) => {
+const _sfc_setup$k = _sfc_main$k.setup;
+_sfc_main$k.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ScrollUp.vue");
-  return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
+  return _sfc_setup$k ? _sfc_setup$k(props, ctx) : void 0;
 };
-const ScrollUp = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-068d078c"]]);
-const _sfc_main$i = {
+const ScrollUp = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["ssrRender", _sfc_ssrRender$k], ["__scopeId", "data-v-068d078c"]]);
+const _sfc_main$j = {
   components: {
     InertiaHead: Head,
     AppLoader,
-    AppHeader: _sfc_main$m,
+    AppHeader: _sfc_main$n,
     SideOverlay,
     AppFooter,
     ScrollUp
@@ -1147,7 +1150,7 @@ const _sfc_main$i = {
     }
   }
 };
-function _sfc_ssrRender$i(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaHead = resolveComponent("InertiaHead");
   const _component_AppLoader = resolveComponent("AppLoader");
   const _component_AppHeader = resolveComponent("AppHeader");
@@ -1180,14 +1183,14 @@ function _sfc_ssrRender$i(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_ScrollUp, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$i = _sfc_main$i.setup;
-_sfc_main$i.setup = (props, ctx) => {
+const _sfc_setup$j = _sfc_main$j.setup;
+_sfc_main$j.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Layout.vue");
-  return _sfc_setup$i ? _sfc_setup$i(props, ctx) : void 0;
+  return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
-const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["ssrRender", _sfc_ssrRender$i]]);
-const _sfc_main$h = {
+const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j]]);
+const _sfc_main$i = {
   name: "InstagramFeed",
   components: {
     Swiper,
@@ -1203,7 +1206,7 @@ const _sfc_main$h = {
     Autoplay
   }
 };
-function _sfc_ssrRender$h(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$i(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_swiper = resolveComponent("swiper");
   const _component_swiper_slide = resolveComponent("swiper-slide");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-instagram-section module section-space-p" }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">Instagram Feed</h2><h2 class="ec-title">Instagram Feed</h2><p class="sub-title">Share your store with us</p></div></div></div></div><div class="ec-insta-wrapper"><div class="ec-insta-outer"><div class="container" data-aos="fade">`);
@@ -1549,14 +1552,14 @@ function _sfc_ssrRender$h(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></section>`);
 }
-const _sfc_setup$h = _sfc_main$h.setup;
-_sfc_main$h.setup = (props, ctx) => {
+const _sfc_setup$i = _sfc_main$i.setup;
+_sfc_main$i.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/InstagramFeed.vue");
-  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
+  return _sfc_setup$i ? _sfc_setup$i(props, ctx) : void 0;
 };
-const InstagramFeed = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["ssrRender", _sfc_ssrRender$h]]);
-const _sfc_main$g = {
+const InstagramFeed = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["ssrRender", _sfc_ssrRender$i]]);
+const _sfc_main$h = {
   name: "ListServices",
   setup() {
     return {
@@ -1564,20 +1567,20 @@ const _sfc_main$g = {
     };
   }
 };
-function _sfc_ssrRender$g(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$h(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-services-section section-space-p",
     id: "services"
   }, _attrs))} data-v-7dae444e><h2 class="d-none" data-v-7dae444e>Services</h2><div class="container" data-v-7dae444e><div class="row" data-v-7dae444e><div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_1.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("free_shipping"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("free_shipping_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_2 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_2.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("support"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("support_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_3 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_3.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("about_return"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("about_return_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_4 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_4.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("payment_secure"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("payment_secure_description"))}</p></div></div></div></div></div></section>`);
 }
-const _sfc_setup$g = _sfc_main$g.setup;
-_sfc_main$g.setup = (props, ctx) => {
+const _sfc_setup$h = _sfc_main$h.setup;
+_sfc_main$h.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ListServices.vue");
-  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
+  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
 };
-const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["ssrRender", _sfc_ssrRender$g], ["__scopeId", "data-v-7dae444e"]]);
-const _sfc_main$f = {
+const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["ssrRender", _sfc_ssrRender$h], ["__scopeId", "data-v-7dae444e"]]);
+const _sfc_main$g = {
   name: "TestimonialReviews",
   components: {
     Swiper,
@@ -1603,7 +1606,7 @@ const _sfc_main$f = {
     }
   }
 };
-function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$g(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_swiper = resolveComponent("swiper");
   const _component_swiper_slide = resolveComponent("swiper-slide");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-test-section section-space-ptb-100 section-space-m" }, _attrs))} data-v-8676085a><div class="container" data-v-8676085a><div class="row" data-v-8676085a><div class="col-md-12 text-center" data-v-8676085a><div class="section-title mb-0" data-v-8676085a><h2 class="ec-bg-title" data-v-8676085a>Testimonial</h2><h2 class="ec-title" data-v-8676085a>Client Review</h2><p class="sub-title mb-3" data-v-8676085a>What say client about us</p></div></div></div><div class="row" data-v-8676085a><div class="ec-test-outer" data-v-8676085a>`);
@@ -2022,14 +2025,14 @@ function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></section>`);
 }
-const _sfc_setup$f = _sfc_main$f.setup;
-_sfc_main$f.setup = (props, ctx) => {
+const _sfc_setup$g = _sfc_main$g.setup;
+_sfc_main$g.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TestimonialReviews.vue");
-  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
 };
-const TestimonialReviews = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f], ["__scopeId", "data-v-8676085a"]]);
-const _sfc_main$e = {
+const TestimonialReviews = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["ssrRender", _sfc_ssrRender$g], ["__scopeId", "data-v-8676085a"]]);
+const _sfc_main$f = {
   name: "AboutUs",
   layout: Layout,
   components: {
@@ -2049,7 +2052,7 @@ const _sfc_main$e = {
     };
   }
 };
-function _sfc_ssrRender$e(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
   const _component_TestimonialReviews = resolveComponent("TestimonialReviews");
   const _component_ListServices = resolveComponent("ListServices");
@@ -2073,18 +2076,346 @@ function _sfc_ssrRender$e(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_InstagramFeed, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$e = _sfc_main$e.setup;
-_sfc_main$e.setup = (props, ctx) => {
+const _sfc_setup$f = _sfc_main$f.setup;
+_sfc_main$f.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/AboutUs.vue");
-  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
+  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
 };
-const AboutUs = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["ssrRender", _sfc_ssrRender$e]]);
+const AboutUs = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f]]);
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: AboutUs
 }, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$e = {
+  name: "ProductInner",
+  components: {
+    InertiaLink: Link
+  },
+  props: {
+    product: {
+      type: Object,
+      required: true,
+      validator(value) {
+        return typeof value.name === "string" && typeof value.image_main === "string" && typeof value.image_hover === "string" && typeof value.price === "number";
+      }
+    }
+  },
+  setup() {
+    const route = inject("route");
+    return {
+      getImagePath,
+      route
+    };
+  }
+};
+function _sfc_ssrRender$e(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_InertiaLink = resolveComponent("InertiaLink");
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr("src", $props.product.image_main)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr("src", $props.product.image_hover)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a>`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: $setup.route("show-product", { slug: $props.product.slug }),
+    class: "quickview",
+    "data-link-action": "quickview",
+    title: "Quick view",
+    "data-bs-toggle": "modal",
+    "data-bs-target": "#ec_quickview_modal"
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<img${ssrRenderAttr("src", $setup.getImagePath("icons", "quickview.svg"))} class="svg_img pro_svg" alt=""${_scopeId}>`);
+      } else {
+        return [
+          createVNode("img", {
+            src: $setup.getImagePath("icons", "quickview.svg"),
+            class: "svg_img pro_svg",
+            alt: ""
+          }, null, 8, ["src"])
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</div></div><div class="ec-pro-content"><h5 class="ec-pro-title">`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: $setup.route("show-product", { slug: $props.product.slug })
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate($props.product.name)}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString($props.product.name), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</h5><div class="ec-pro-rating"><!--[-->`);
+  ssrRenderList(5, (index) => {
+    _push(`<i class="${ssrRenderClass([{ fill: index <= $props.product.rating }, "ecicon eci-star"])}"></i>`);
+  });
+  _push(`<!--]--></div><span class="ec-price"><span class="new-price">₽${ssrInterpolate($props.product.price)}</span></span></div></div>`);
+}
+const _sfc_setup$e = _sfc_main$e.setup;
+_sfc_main$e.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ProductInner.vue");
+  return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
+};
+const ProductInner = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["ssrRender", _sfc_ssrRender$e]]);
 const _sfc_main$d = {
+  name: "Category",
+  layout: Layout,
+  components: {
+    InertiaLink: Link,
+    ProductInner
+  },
+  props: {
+    category: {
+      type: Object,
+      required: true
+    }
+  },
+  setup(props) {
+    const route = inject("route");
+    const siteInfoStore = useSiteInfoStore();
+    const fullCategory = ref([]);
+    const sortOption = ref("low_price");
+    const pagination = ref({
+      total: 0,
+      per_page: 12,
+      current_page: 1,
+      last_page: 1
+    });
+    const priceRange = ref({ min: "", max: "" });
+    const popularTags = ref([]);
+    const selectedTags = ref([]);
+    const fetchFullCategory = async (slug, order = { field: "price", direction: "asc" }, page = 1, range_price = { min: "", max: "" }, tags = []) => {
+      if (!slug) return;
+      try {
+        const data = await ApiClient.get(`/api/v1/products`, {
+          category: slug,
+          [`order[${order.field}]`]: order.direction,
+          page,
+          ...range_price.min && { min_price: range_price.min },
+          ...range_price.max && { max_price: range_price.max },
+          ...tags.length && { tags: tags.join(",") }
+        });
+        fullCategory.value = data.products;
+        pagination.value = data.pagination;
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    const fetchPopularTags = async () => {
+      try {
+        const data = await ApiClient.get(`/api/v1/popular-tags`);
+        popularTags.value = data.popular_tags;
+      } catch (error) {
+        console.error("Error fetching popular tags:", error);
+      }
+    };
+    onMounted(async () => {
+      var _a;
+      document.body.classList.add("shop_page");
+      await siteInfoStore.fetchSiteInfo();
+      if ((_a = props.category) == null ? void 0 : _a.slug) {
+        await fetchFullCategory(props.category.slug);
+      }
+      await fetchPopularTags();
+    });
+    onBeforeUnmount(() => {
+      document.body.classList.remove("shop_page");
+    });
+    watch(
+      priceRange,
+      async () => {
+        var _a;
+        if ((_a = props.category) == null ? void 0 : _a.slug) {
+          await fetchFullCategory(
+            props.category.slug,
+            sortOrder.value,
+            pagination.value.current_page,
+            priceRange.value,
+            selectedTags.value
+          );
+        }
+      },
+      { deep: true }
+    );
+    const onSortChange = async () => {
+      var _a;
+      if ((_a = props.category) == null ? void 0 : _a.slug) {
+        await fetchFullCategory(
+          props.category.slug,
+          sortOrder.value,
+          pagination.value.current_page,
+          priceRange.value,
+          selectedTags.value
+        );
+      }
+    };
+    const startItem = computed(() => {
+      return (pagination.value.current_page - 1) * pagination.value.per_page + 1;
+    });
+    const endItem = computed(() => {
+      return Math.min(
+        pagination.value.current_page * pagination.value.per_page,
+        pagination.value.total
+      );
+    });
+    const pages = computed(() => {
+      const totalPages = pagination.value.last_page;
+      const currentPage = pagination.value.current_page;
+      if (totalPages <= 7) {
+        return Array.from({ length: totalPages }, (_, i) => i + 1);
+      }
+      const visiblePages = [];
+      const startPages = [1, 2, 3];
+      const endPages = [totalPages - 2, totalPages - 1, totalPages];
+      if (currentPage <= 4) {
+        visiblePages.push(...startPages, "...", ...endPages);
+      } else if (currentPage >= totalPages - 3) {
+        visiblePages.push(...startPages, "...", ...endPages);
+      } else {
+        visiblePages.push(
+          ...startPages,
+          "...",
+          currentPage,
+          "...",
+          ...endPages
+        );
+      }
+      return visiblePages;
+    });
+    const goToPage = async (page) => {
+      if (page >= 1 && page <= pagination.value.last_page) {
+        pagination.value.current_page = page;
+        await fetchFullCategory(
+          props.category.slug,
+          sortOrder.value,
+          page
+        );
+      }
+    };
+    const sortOrder = computed(() => {
+      return {
+        field: "price",
+        direction: sortOption.value === "low_price" ? "asc" : "desc"
+      };
+    });
+    const onTagChange = async (tagSlug) => {
+      var _a;
+      if (selectedTags.value.includes(tagSlug)) {
+        selectedTags.value = selectedTags.value.filter(
+          (tag) => tag !== tagSlug
+        );
+      } else {
+        selectedTags.value.push(tagSlug);
+      }
+      if ((_a = props.category) == null ? void 0 : _a.slug) {
+        await fetchFullCategory(
+          props.category.slug,
+          sortOrder.value,
+          pagination.value.current_page,
+          priceRange.value,
+          selectedTags.value
+        );
+      }
+    };
+    return {
+      route,
+      getImagePath,
+      siteInfoStore,
+      fullCategory,
+      sortOption,
+      onSortChange,
+      pagination,
+      startItem,
+      endItem,
+      pages,
+      goToPage,
+      priceRange,
+      popularTags,
+      selectedTags,
+      onTagChange
+    };
+  }
+};
+function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_InertiaLink = resolveComponent("InertiaLink");
+  const _component_ProductInner = resolveComponent("ProductInner");
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb" data-v-be03754a><div class="container" data-v-be03754a><div class="row" data-v-be03754a><div class="col-12" data-v-be03754a><div class="row ec_breadcrumb_inner" data-v-be03754a><div class="col-md-6 col-sm-12" data-v-be03754a><h2 class="ec-breadcrumb-title" data-v-be03754a>${ssrInterpolate($props.category.name)}</h2></div><div class="col-md-6 col-sm-12" data-v-be03754a><ul class="ec-breadcrumb-list" data-v-be03754a><li class="ec-breadcrumb-item" data-v-be03754a>`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: $setup.route("home")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li class="ec-breadcrumb-item active" data-v-be03754a>${ssrInterpolate(_ctx.$t("menu.shop"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p" data-v-be03754a><div class="container" data-v-be03754a><div class="row" data-v-be03754a><div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first margin-b-30" data-v-be03754a><div class="ec-pro-list-top d-flex" data-v-be03754a><div class="col-md-12 ec-sort-select" data-v-be03754a><span class="sort-by" data-v-be03754a>${ssrInterpolate(_ctx.$t("sort_by"))}</span><div class="ec-select-inner" data-v-be03754a><select name="ec-select" id="ec-select" data-v-be03754a><option value="low_price" data-v-be03754a${ssrIncludeBooleanAttr(Array.isArray($setup.sortOption) ? ssrLooseContain($setup.sortOption, "low_price") : ssrLooseEqual($setup.sortOption, "low_price")) ? " selected" : ""}>${ssrInterpolate(_ctx.$t("low_price"))}</option><option value="high_price" data-v-be03754a${ssrIncludeBooleanAttr(Array.isArray($setup.sortOption) ? ssrLooseContain($setup.sortOption, "high_price") : ssrLooseEqual($setup.sortOption, "high_price")) ? " selected" : ""}>${ssrInterpolate(_ctx.$t("high_price"))}</option></select></div></div></div><div class="shop-pro-content" data-v-be03754a><div class="shop-pro-inner" data-v-be03754a><div class="row" data-v-be03754a><!--[-->`);
+  ssrRenderList($setup.fullCategory, (product) => {
+    _push(`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content" data-v-be03754a>`);
+    _push(ssrRenderComponent(_component_ProductInner, { product }, null, _parent));
+    _push(`</div>`);
+  });
+  _push(`<!--]-->`);
+  if ($setup.fullCategory.length === 0) {
+    _push(`<div class="col-12 text-center" data-v-be03754a><p class="no-products-found" data-v-be03754a>${ssrInterpolate(_ctx.$t("products_not_found"))}</p></div>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div></div>`);
+  if ($setup.fullCategory.length > 10) {
+    _push(`<div class="ec-pro-pagination" data-v-be03754a><div class="ec-pro-pagination" data-v-be03754a><ul class="ec-pro-pagination-inner" data-v-be03754a><li data-v-be03754a><a href="#" class="${ssrRenderClass([{
+      disabled: $setup.pagination.current_page === 1
+    }, "next"])}" data-v-be03754a><i class="ecicon eci-angle-left" data-v-be03754a></i></a></li><!--[-->`);
+    ssrRenderList($setup.pages, (page) => {
+      _push(`<li data-v-be03754a>`);
+      if (page !== "...") {
+        _push(`<a href="#" class="${ssrRenderClass({
+          active: page === $setup.pagination.current_page
+        })}" data-v-be03754a>${ssrInterpolate(page)}</a>`);
+      } else {
+        _push(`<span class="pagination-ellipsis" data-v-be03754a>${ssrInterpolate(page)}</span>`);
+      }
+      _push(`</li>`);
+    });
+    _push(`<!--]--><li data-v-be03754a><a href="#" class="${ssrRenderClass([{
+      disabled: $setup.pagination.current_page === $setup.pagination.last_page
+    }, "next"])}" data-v-be03754a><i class="ecicon eci-angle-right" data-v-be03754a></i></a></li></ul></div></div>`);
+  } else {
+    _push(`<!---->`);
+  }
+  _push(`</div></div><div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last" data-v-be03754a><div id="shop_sidebar" data-v-be03754a><div class="ec-sidebar-heading" data-v-be03754a><h1 data-v-be03754a>${ssrInterpolate(_ctx.$t("filter_products_by"))}</h1></div><div class="ec-sidebar-wrap" data-v-be03754a><div class="ec-sidebar-block" data-v-be03754a><div class="ec-sb-title" data-v-be03754a><h3 class="ec-sidebar-title" data-v-be03754a>${ssrInterpolate(_ctx.$t("collections"))}</h3></div><div class="ec-sb-block-content" data-v-be03754a><ul data-v-be03754a><!--[-->`);
+  ssrRenderList($setup.popularTags, (tag) => {
+    _push(`<li data-v-be03754a><div class="ec-sidebar-block-item" data-v-be03754a><input type="checkbox"${ssrRenderAttr("value", tag.slug)}${ssrIncludeBooleanAttr(
+      $setup.selectedTags.includes(
+        tag.slug
+      )
+    ) ? " checked" : ""} data-v-be03754a><a href="#" data-v-be03754a>${ssrInterpolate(tag.name)}</a><span class="checked" data-v-be03754a></span></div></li>`);
+  });
+  _push(`<!--]--></ul></div></div><div class="ec-sidebar-block" data-v-be03754a><div class="ec-sb-title" data-v-be03754a><h3 class="ec-sidebar-title" data-v-be03754a>${ssrInterpolate(_ctx.$t("price"))}</h3></div><div class="ec-sb-block-content es-price-slider" data-v-be03754a><div class="ec-price-filter" data-v-be03754a><div id="ec-sliderPrice" class="filter__slider-price" data-v-be03754a></div><div class="ec-price-input" data-v-be03754a><label class="filter__label" data-v-be03754a><input type="number"${ssrRenderAttr("value", $setup.priceRange.min)} class="filter__input" placeholder="0" data-v-be03754a></label><span class="ec-price-divider" data-v-be03754a></span><label class="filter__label" data-v-be03754a><input type="number"${ssrRenderAttr("value", $setup.priceRange.max)} class="filter__input" placeholder="0" data-v-be03754a></label></div></div></div></div></div></div></div></div></div></section><!--]-->`);
+}
+const _sfc_setup$d = _sfc_main$d.setup;
+_sfc_main$d.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Category.vue");
+  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+};
+const Category = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["ssrRender", _sfc_ssrRender$d], ["__scopeId", "data-v-be03754a"]]);
+const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Category
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$c = {
   name: "Contacts",
   layout: Layout,
   setup() {
@@ -2096,7 +2427,7 @@ const _sfc_main$d = {
     });
   }
 };
-function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">Contact Us</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_router_link, { to: { name: "home" } }, {
@@ -2113,14 +2444,14 @@ function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</li><li class="ec-breadcrumb-item active"> Contact Us </li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="ec-common-wrapper"><div class="ec-contact-leftside"><div class="ec-contact-container"><div class="ec-contact-form"><form action="#" method="post"><span class="ec-contact-wrap"><label>First Name*</label><input type="text" name="firstname" placeholder="Enter your first name" required></span><span class="ec-contact-wrap"><label>Last Name*</label><input type="text" name="lastname" placeholder="Enter your last name" required></span><span class="ec-contact-wrap"><label>Email*</label><input type="email" name="email" placeholder="Enter your email address" required></span><span class="ec-contact-wrap"><label>Phone Number*</label><input type="text" name="phonenumber" placeholder="Enter your phone number" required></span><span class="ec-contact-wrap"><label>Comments/Questions*</label><textarea name="address" placeholder="Please leave your comments here.."></textarea></span><span class="ec-contact-wrap ec-recaptcha"><span class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></span><input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha"><span class="help-block with-errors"></span></span><span class="ec-contact-wrap ec-contact-btn"><button class="btn btn-primary" type="submit"> Submit </button></span></form></div></div></div><div class="ec-contact-rightside"><div class="ec_contact_map"><div class="ec_map_canvas"><iframe id="ec_map_canvas" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d71263.65594328841!2d144.93151478652146!3d-37.8734290780509!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1615963387757!5m2!1sen!2sus"></iframe><a href="https://sites.google.com/view/maps-api-v2/mapv2"></a></div></div><div class="ec_contact_info"><h1 class="ec_contact_info_head">Contact us</h1><ul class="align-items-center"><li class="ec-contact-item"><i class="ecicon eci-map-marker" aria-hidden="true"></i><span>Address :</span> 71 Pilgrim Avenue Chevy Chase, east california. east california. MD 20815, USA </li><li class="ec-contact-item align-items-center"><i class="ecicon eci-phone" aria-hidden="true"></i><span>Call Us :</span><a href="tel:+440123456789"> +44 0123 456 789 </a></li><li class="ec-contact-item align-items-center"><i class="ecicon eci-envelope" aria-hidden="true"></i><span>Email :</span><a href="mailto:example@ec-email.com"> example@ec-email.com </a></li></ul></div></div></div></div></div></section><!--]-->`);
 }
-const _sfc_setup$d = _sfc_main$d.setup;
-_sfc_main$d.setup = (props, ctx) => {
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Contacts.vue");
-  return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
-const Contacts = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["ssrRender", _sfc_ssrRender$d]]);
-const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Contacts = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c]]);
+const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Contacts
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2176,7 +2507,7 @@ const getFaqItems = () => [
     ]
   }
 ];
-const _sfc_main$c = {
+const _sfc_main$b = {
   name: "Faq",
   layout: Layout,
   data() {
@@ -2196,7 +2527,7 @@ const _sfc_main$c = {
     }
   }
 };
-function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_router_link = resolveComponent("router-link");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb" data-v-29b49df6><div class="container" data-v-29b49df6><div class="row" data-v-29b49df6><div class="col-12" data-v-29b49df6><div class="row ec_breadcrumb_inner" data-v-29b49df6><div class="col-md-6 col-sm-12" data-v-29b49df6><h2 class="ec-breadcrumb-title" data-v-29b49df6>FAQ</h2></div><div class="col-md-6 col-sm-12" data-v-29b49df6><ul class="ec-breadcrumb-list" data-v-29b49df6><li class="ec-breadcrumb-item" data-v-29b49df6>`);
   _push(ssrRenderComponent(_component_router_link, { to: { name: "home" } }, {
@@ -2229,18 +2560,18 @@ function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]--></div></div></div></section><!--]-->`);
 }
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Faq.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const Faq = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c], ["__scopeId", "data-v-29b49df6"]]);
-const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Faq = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b], ["__scopeId", "data-v-29b49df6"]]);
+const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Faq
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$b = {
+const _sfc_main$a = {
   name: "ListBrands",
   components: {
     Swiper,
@@ -2257,7 +2588,7 @@ const _sfc_main$b = {
     Autoplay
   }
 };
-function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_swiper = resolveComponent("swiper");
   const _component_swiper_slide = resolveComponent("swiper-slide");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-brand-area section-space-p" }, _attrs))}><h2 class="d-none">Brand</h2><div class="container"><div class="row"><div class="ec-brand-outer" data-aos="zoom-in">`);
@@ -2346,14 +2677,14 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></section>`);
 }
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ListBrands.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const ListBrands = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b]]);
-const _sfc_main$a = {
+const ListBrands = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender$a]]);
+const _sfc_main$9 = {
   name: "SuperOffer",
   setup() {
     return {
@@ -2361,92 +2692,16 @@ const _sfc_main$a = {
     };
   }
 };
-function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-offer-section section-space-p section-space-m" }, _attrs))} data-v-97f1f7a9><h2 class="d-none" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("offer"))}</h2><div class="container" data-v-97f1f7a9><div class="row justify-content-end" data-v-97f1f7a9><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center ec-offer-content" data-v-97f1f7a9><h2 class="ec-offer-title" data-aos="slide-down" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("routers"))}</h2><h3 class="ec-offer-stitle" data-aos="slide-up" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("super"))} ${ssrInterpolate(_ctx.$t("offer"))}</h3><span class="ec-offer-img" data-aos="zoom-in" data-v-97f1f7a9><img${ssrRenderAttr("src", $setup.getImagePath("offer-image", "1.png"))} alt="offer image" loading="lazy" data-v-97f1f7a9></span><span class="ec-offer-desc" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("routers"))}</span><span class="ec-offer-price" data-v-97f1f7a9>$40.00 ${ssrInterpolate(_ctx.$t("only"))}</span><a class="btn btn-primary btn-shop-now" data-aos="zoom-in" href="#" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("shop_now"))}</a></div></div></div></section>`);
-}
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SuperOffer.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
-};
-const SuperOffer = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender$a], ["__scopeId", "data-v-97f1f7a9"]]);
-const _sfc_main$9 = {
-  name: "ProductInner",
-  components: {
-    InertiaLink: Link
-  },
-  props: {
-    product: {
-      type: Object,
-      required: true,
-      validator(value) {
-        return typeof value.name === "string" && typeof value.image_main === "string" && typeof value.image_hover === "string" && typeof value.price === "number";
-      }
-    }
-  },
-  setup() {
-    const route = inject("route");
-    return {
-      getImagePath,
-      route
-    };
-  }
-};
 function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr("src", $props.product.image_main)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr("src", $props.product.image_hover)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a>`);
-  _push(ssrRenderComponent(_component_InertiaLink, {
-    href: $setup.route("get-product-by-slug", { slug: $props.product.slug }),
-    class: "quickview",
-    "data-link-action": "quickview",
-    title: "Quick view",
-    "data-bs-toggle": "modal",
-    "data-bs-target": "#ec_quickview_modal"
-  }, {
-    default: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getImagePath("icons", "quickview.svg"))} class="svg_img pro_svg" alt=""${_scopeId}>`);
-      } else {
-        return [
-          createVNode("img", {
-            src: $setup.getImagePath("icons", "quickview.svg"),
-            class: "svg_img pro_svg",
-            alt: ""
-          }, null, 8, ["src"])
-        ];
-      }
-    }),
-    _: 1
-  }, _parent));
-  _push(`</div></div><div class="ec-pro-content"><h5 class="ec-pro-title">`);
-  _push(ssrRenderComponent(_component_InertiaLink, {
-    href: $setup.route("get-product-by-slug", { slug: $props.product.slug })
-  }, {
-    default: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(`${ssrInterpolate($props.product.name)}`);
-      } else {
-        return [
-          createTextVNode(toDisplayString($props.product.name), 1)
-        ];
-      }
-    }),
-    _: 1
-  }, _parent));
-  _push(`</h5><div class="ec-pro-rating"><!--[-->`);
-  ssrRenderList(5, (index) => {
-    _push(`<i class="${ssrRenderClass([{ fill: index <= $props.product.rating }, "ecicon eci-star"])}"></i>`);
-  });
-  _push(`<!--]--></div><span class="ec-price"><span class="new-price">₽${ssrInterpolate($props.product.price)}</span></span></div></div>`);
+  _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-offer-section section-space-p section-space-m" }, _attrs))} data-v-97f1f7a9><h2 class="d-none" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("offer"))}</h2><div class="container" data-v-97f1f7a9><div class="row justify-content-end" data-v-97f1f7a9><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center ec-offer-content" data-v-97f1f7a9><h2 class="ec-offer-title" data-aos="slide-down" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("routers"))}</h2><h3 class="ec-offer-stitle" data-aos="slide-up" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("super"))} ${ssrInterpolate(_ctx.$t("offer"))}</h3><span class="ec-offer-img" data-aos="zoom-in" data-v-97f1f7a9><img${ssrRenderAttr("src", $setup.getImagePath("offer-image", "1.png"))} alt="offer image" loading="lazy" data-v-97f1f7a9></span><span class="ec-offer-desc" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("routers"))}</span><span class="ec-offer-price" data-v-97f1f7a9>$40.00 ${ssrInterpolate(_ctx.$t("only"))}</span><a class="btn btn-primary btn-shop-now" data-aos="zoom-in" href="#" data-v-97f1f7a9>${ssrInterpolate(_ctx.$t("shop_now"))}</a></div></div></div></section>`);
 }
 const _sfc_setup$9 = _sfc_main$9.setup;
 _sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ProductInner.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SuperOffer.vue");
   return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const ProductInner = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
+const SuperOffer = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9], ["__scopeId", "data-v-97f1f7a9"]]);
 const _sfc_main$8 = {
   name: "NewProducts",
   components: {
@@ -2813,7 +3068,7 @@ _sfc_main$4.setup = (props, ctx) => {
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
 const Home = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-0afc70bc"]]);
-const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2853,7 +3108,7 @@ _sfc_main$3.setup = (props, ctx) => {
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
 const PrivacyPolicy = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
-const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PrivacyPolicy
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2872,12 +3127,28 @@ const _sfc_main$2 = {
       required: true
     }
   },
-  setup() {
+  setup(props) {
     const route = inject("route");
     const activeTab = ref("description");
     const mainSwiper = ref(null);
+    const fullProduct = ref(null);
+    const fetchFullProduct = async (slug) => {
+      if (!slug) return;
+      try {
+        const response = await ApiClient.get(
+          `/api/v1/product/${slug}`
+        );
+        fullProduct.value = response.product;
+      } catch (error) {
+        console.error("Error fetching product by tag:", error);
+      }
+    };
     onMounted(() => {
+      var _a;
       document.body.classList.add("product_page");
+      if ((_a = props.product) == null ? void 0 : _a.slug) {
+        fetchFullProduct(props.product.slug);
+      }
     });
     onBeforeUnmount(() => {
       document.body.classList.remove("product_page");
@@ -2892,6 +3163,15 @@ const _sfc_main$2 = {
         mainSwiper.value.slidePrev();
       }
     };
+    watch(
+      () => {
+        var _a;
+        return (_a = props.product) == null ? void 0 : _a.slug;
+      },
+      (newSlug) => {
+        if (newSlug) fetchFullProduct(newSlug);
+      }
+    );
     return {
       modules: [Autoplay, FreeMode, Navigation, Thumbs],
       route,
@@ -2900,7 +3180,8 @@ const _sfc_main$2 = {
       slideToPrev,
       setMainSwiper: (swiper) => {
         mainSwiper.value = swiper;
-      }
+      },
+      fullProduct
     };
   },
   data() {
@@ -2910,7 +3191,8 @@ const _sfc_main$2 = {
   },
   computed: {
     safePresentation() {
-      return DOMPurify.sanitize(this.product.presentation);
+      var _a;
+      return DOMPurify.sanitize((_a = this.fullProduct) == null ? void 0 : _a.presentation);
     }
   },
   methods: {
@@ -2923,11 +3205,12 @@ const _sfc_main$2 = {
   }
 };
 function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  var _a, _b, _c, _d, _e;
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_swiper = resolveComponent("swiper");
   const _component_swiper_slide = resolveComponent("swiper-slide");
   const _component_NewProducts = resolveComponent("NewProducts");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb" data-v-3fea166c><div class="container" data-v-3fea166c><div class="row" data-v-3fea166c><div class="col-12" data-v-3fea166c><div class="row ec_breadcrumb_inner" data-v-3fea166c><div class="col-md-6 col-sm-12" data-v-3fea166c><h2 class="ec-breadcrumb-title" data-v-3fea166c>${ssrInterpolate($props.product.name)}</h2></div><div class="col-md-6 col-sm-12" data-v-3fea166c><ul class="ec-breadcrumb-list" data-v-3fea166c><li class="ec-breadcrumb-item" data-v-3fea166c>`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb" data-v-46e4e528><div class="container" data-v-46e4e528><div class="row" data-v-46e4e528><div class="col-12" data-v-46e4e528><div class="row ec_breadcrumb_inner" data-v-46e4e528><div class="col-md-6 col-sm-12" data-v-46e4e528><h2 class="ec-breadcrumb-title" data-v-46e4e528>${ssrInterpolate((_a = $setup.fullProduct) == null ? void 0 : _a.name)}</h2></div><div class="col-md-6 col-sm-12" data-v-46e4e528><ul class="ec-breadcrumb-list" data-v-46e4e528><li class="ec-breadcrumb-item" data-v-46e4e528>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home")
   }, {
@@ -2942,35 +3225,36 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active" data-v-3fea166c>${ssrInterpolate(_ctx.$t("menu.product"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p" data-v-3fea166c><div class="container" data-v-3fea166c><div class="row" data-v-3fea166c><div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12" data-v-3fea166c><div class="single-pro-block" data-v-3fea166c><div class="single-pro-inner" data-v-3fea166c><div class="row" data-v-3fea166c><div class="single-pro-img single-pro-img-no-sidebar" data-v-3fea166c><div class="product-gallery single-product-scroll" data-v-3fea166c>`);
+  _push(`</li><li class="ec-breadcrumb-item active" data-v-46e4e528>${ssrInterpolate(_ctx.$t("menu.product"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p" data-v-46e4e528><div class="container" data-v-46e4e528><div class="row" data-v-46e4e528><div class="ec-pro-rightside ec-common-rightside col-lg-12 col-md-12" data-v-46e4e528><div class="single-pro-block" data-v-46e4e528><div class="single-pro-inner" data-v-46e4e528><div class="row" data-v-46e4e528><div class="single-pro-img single-pro-img-no-sidebar" data-v-46e4e528><div class="product-gallery single-product-scroll" data-v-46e4e528>`);
   _push(ssrRenderComponent(_component_swiper, {
     class: "product-gallery-main",
     modules: [$options.Thumbs],
     thumbs: { swiper: $data.thumbsSwiper },
     "slides-per-view": 1,
     "space-between": 0,
-    loop: true,
     onSwiper: $setup.setMainSwiper
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
+      var _a2, _b2;
       if (_push2) {
         _push2(`<!--[-->`);
-        ssrRenderList($props.product.images, (image, index) => {
+        ssrRenderList((_a2 = $setup.fullProduct) == null ? void 0 : _a2.images, (image, index) => {
           _push2(ssrRenderComponent(_component_swiper_slide, {
             class: "product-gallery-main-slide",
             key: index
           }, {
             default: withCtx((_2, _push3, _parent3, _scopeId2) => {
+              var _a3, _b3;
               if (_push3) {
                 _push3(`<img${ssrRenderAttr("src", image.image)}${ssrRenderAttr(
                   "alt",
-                  image.name ?? $props.product.name
-                )} loading="lazy" data-v-3fea166c${_scopeId2}>`);
+                  image.name ?? ((_a3 = $setup.fullProduct) == null ? void 0 : _a3.name)
+                )} loading="lazy" data-v-46e4e528${_scopeId2}>`);
               } else {
                 return [
                   createVNode("img", {
                     src: image.image,
-                    alt: image.name ?? $props.product.name,
+                    alt: image.name ?? ((_b3 = $setup.fullProduct) == null ? void 0 : _b3.name),
                     loading: "lazy"
                   }, null, 8, ["src", "alt"])
                 ];
@@ -2982,18 +3266,21 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(`<!--]-->`);
       } else {
         return [
-          (openBlock(true), createBlock(Fragment, null, renderList($props.product.images, (image, index) => {
+          (openBlock(true), createBlock(Fragment, null, renderList((_b2 = $setup.fullProduct) == null ? void 0 : _b2.images, (image, index) => {
             return openBlock(), createBlock(_component_swiper_slide, {
               class: "product-gallery-main-slide",
               key: index
             }, {
-              default: withCtx(() => [
-                createVNode("img", {
-                  src: image.image,
-                  alt: image.name ?? $props.product.name,
-                  loading: "lazy"
-                }, null, 8, ["src", "alt"])
-              ]),
+              default: withCtx(() => {
+                var _a3;
+                return [
+                  createVNode("img", {
+                    src: image.image,
+                    alt: image.name ?? ((_a3 = $setup.fullProduct) == null ? void 0 : _a3.name),
+                    loading: "lazy"
+                  }, null, 8, ["src", "alt"])
+                ];
+              }),
               _: 2
             }, 1024);
           }), 128))
@@ -3002,10 +3289,9 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`<div class="product-gallery-thumbs" data-v-3fea166c>`);
+  _push(`<div class="product-gallery-thumbs" data-v-46e4e528>`);
   _push(ssrRenderComponent(_component_swiper, {
     class: "product-gallery-thumbs-list",
-    loop: true,
     onSwiper: $options.setThumbsSwiper,
     modules: [$options.Navigation, $options.Thumbs],
     "slides-per-view": 4,
@@ -3019,24 +3305,26 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
+      var _a2, _b2;
       if (_push2) {
         _push2(`<!--[-->`);
-        ssrRenderList($props.product.images, (image, index) => {
+        ssrRenderList((_a2 = $setup.fullProduct) == null ? void 0 : _a2.images, (image, index) => {
           _push2(ssrRenderComponent(_component_swiper_slide, {
             class: "product-gallery-thumbs-slide",
             key: index
           }, {
             default: withCtx((_2, _push3, _parent3, _scopeId2) => {
+              var _a3, _b3;
               if (_push3) {
                 _push3(`<img${ssrRenderAttr("src", image.image)}${ssrRenderAttr(
                   "alt",
-                  image.name ?? $props.product.name
-                )} loading="lazy" data-v-3fea166c${_scopeId2}>`);
+                  image.name ?? ((_a3 = $setup.fullProduct) == null ? void 0 : _a3.name)
+                )} loading="lazy" data-v-46e4e528${_scopeId2}>`);
               } else {
                 return [
                   createVNode("img", {
                     src: image.image,
-                    alt: image.name ?? $props.product.name,
+                    alt: image.name ?? ((_b3 = $setup.fullProduct) == null ? void 0 : _b3.name),
                     loading: "lazy"
                   }, null, 8, ["src", "alt"])
                 ];
@@ -3048,18 +3336,21 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(`<!--]-->`);
       } else {
         return [
-          (openBlock(true), createBlock(Fragment, null, renderList($props.product.images, (image, index) => {
+          (openBlock(true), createBlock(Fragment, null, renderList((_b2 = $setup.fullProduct) == null ? void 0 : _b2.images, (image, index) => {
             return openBlock(), createBlock(_component_swiper_slide, {
               class: "product-gallery-thumbs-slide",
               key: index
             }, {
-              default: withCtx(() => [
-                createVNode("img", {
-                  src: image.image,
-                  alt: image.name ?? $props.product.name,
-                  loading: "lazy"
-                }, null, 8, ["src", "alt"])
-              ]),
+              default: withCtx(() => {
+                var _a3;
+                return [
+                  createVNode("img", {
+                    src: image.image,
+                    alt: image.name ?? ((_a3 = $setup.fullProduct) == null ? void 0 : _a3.name),
+                    loading: "lazy"
+                  }, null, 8, ["src", "alt"])
+                ];
+              }),
               _: 2
             }, 1024);
           }), 128))
@@ -3068,18 +3359,19 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`<div class="swiper-buttons" data-v-3fea166c><div class="swiper-button-next" data-v-3fea166c></div><div class="swiper-button-prev" data-v-3fea166c></div></div></div></div></div><div class="single-pro-desc single-pro-desc-no-sidebar" data-v-3fea166c><div class="single-pro-content" data-v-3fea166c><h5 class="ec-single-title" data-v-3fea166c>${ssrInterpolate($props.product.name)}</h5><div class="ec-single-rating-wrap" data-v-3fea166c><div class="ec-single-rating" data-v-3fea166c><!--[-->`);
+  _push(`<div class="swiper-buttons" data-v-46e4e528><div class="swiper-button-next" data-v-46e4e528></div><div class="swiper-button-prev" data-v-46e4e528></div></div></div></div></div><div class="single-pro-desc single-pro-desc-no-sidebar" data-v-46e4e528><div class="single-pro-content" data-v-46e4e528><h5 class="ec-single-title" data-v-46e4e528>${ssrInterpolate((_b = $setup.fullProduct) == null ? void 0 : _b.name)}</h5><div class="ec-single-rating-wrap" data-v-46e4e528><div class="ec-single-rating" data-v-46e4e528><!--[-->`);
   ssrRenderList(5, (index) => {
+    var _a2;
     _push(`<i class="${ssrRenderClass([{
-      fill: index <= $props.product.rating
-    }, "ecicon eci-star"])}" data-v-3fea166c></i>`);
+      fill: index <= ((_a2 = $setup.fullProduct) == null ? void 0 : _a2.rating)
+    }, "ecicon eci-star"])}" data-v-46e4e528></i>`);
   });
-  _push(`<!--]--></div></div><div class="ec-single-desc" data-v-3fea166c>${ssrInterpolate($props.product.description)}</div><div class="ec-single-price-stoke" data-v-3fea166c><div class="ec-single-price" data-v-3fea166c><span class="new-price" data-v-3fea166c> ₽${ssrInterpolate($props.product.price)}</span></div><div class="ec-single-stoke" data-v-3fea166c><span class="ec-single-sku" data-v-3fea166c>${ssrInterpolate(_ctx.$t("sku"))}: ${ssrInterpolate($props.product.sku)}</span></div></div></div></div></div></div></div><div class="ec-single-pro-tab" data-v-3fea166c><div class="ec-single-pro-tab-wrapper" data-v-3fea166c><div class="ec-single-pro-tab-nav" data-v-3fea166c><ul class="nav nav-tabs" data-v-3fea166c><li class="nav-item" data-v-3fea166c><a class="${ssrRenderClass([{
+  _push(`<!--]--></div></div><div class="ec-single-desc" data-v-46e4e528>${ssrInterpolate((_c = $setup.fullProduct) == null ? void 0 : _c.description)}</div><div class="ec-single-price-stoke" data-v-46e4e528><div class="ec-single-price" data-v-46e4e528><span class="new-price" data-v-46e4e528> ₽${ssrInterpolate((_d = $setup.fullProduct) == null ? void 0 : _d.price)}</span></div><div class="ec-single-stoke" data-v-46e4e528><span class="ec-single-sku" data-v-46e4e528>${ssrInterpolate(_ctx.$t("sku"))}: ${ssrInterpolate((_e = $setup.fullProduct) == null ? void 0 : _e.sku)}</span></div></div></div></div></div></div></div><div class="ec-single-pro-tab" data-v-46e4e528><div class="ec-single-pro-tab-wrapper" data-v-46e4e528><div class="ec-single-pro-tab-nav" data-v-46e4e528><ul class="nav nav-tabs" data-v-46e4e528><li class="nav-item" data-v-46e4e528><a class="${ssrRenderClass([{
     active: $setup.activeTab === "description"
-  }, "nav-link"])}" data-v-3fea166c>${ssrInterpolate(_ctx.$t("description"))}</a></li></ul></div><div class="tab-content ec-single-pro-tab-content" data-v-3fea166c><div class="${ssrRenderClass([
+  }, "nav-link"])}" data-v-46e4e528>${ssrInterpolate(_ctx.$t("description"))}</a></li></ul></div><div class="tab-content ec-single-pro-tab-content" data-v-46e4e528><div class="${ssrRenderClass([
     "tab-pane fade show",
     { active: $setup.activeTab === "description" }
-  ])}" data-v-3fea166c><div class="ec-single-pro-tab-desc" data-v-3fea166c>${$options.safePresentation ?? ""}</div></div></div></div></div></div></div></div></section>`);
+  ])}" data-v-46e4e528><div class="ec-single-pro-tab-desc" data-v-46e4e528>${$options.safePresentation ?? ""}</div></div></div></div></div></div></div></div></section>`);
   _push(ssrRenderComponent(_component_NewProducts, null, null, _parent));
   _push(`<!--]-->`);
 }
@@ -3089,8 +3381,8 @@ _sfc_main$2.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Product.vue");
   return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const Product = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-3fea166c"]]);
-const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Product = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-46e4e528"]]);
+const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Product
 }, Symbol.toStringTag, { value: "Module" }));
@@ -3130,7 +3422,7 @@ _sfc_main$1.setup = (props, ctx) => {
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
 const TermsCondition = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
-const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: TermsCondition
 }, Symbol.toStringTag, { value: "Module" }));
@@ -3174,7 +3466,7 @@ _sfc_main.setup = (props, ctx) => {
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 const TrackOrder = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
-const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: TrackOrder
 }, Symbol.toStringTag, { value: "Module" }));
@@ -3472,8 +3764,13 @@ const Ziggy = {
     "privacy-policy": { uri: "privacy-policy", methods: ["GET", "HEAD"] },
     "terms-condition": { uri: "terms-condition", methods: ["GET", "HEAD"] },
     "track-order": { uri: "track-order", methods: ["GET", "HEAD"] },
-    "get-product-by-slug": {
+    "show-product": {
       uri: "product/{slug}",
+      methods: ["GET", "HEAD"],
+      parameters: ["slug"]
+    },
+    "show-category": {
+      uri: "category/{slug}",
       methods: ["GET", "HEAD"],
       parameters: ["slug"]
     },
@@ -3481,8 +3778,22 @@ const Ziggy = {
       uri: "api/v1/site-info",
       methods: ["GET", "HEAD"]
     },
-    "api.v1.product.get-products-by-tags": {
+    "api.v1.common.popular-tags": {
+      uri: "api/v1/popular-tags",
+      methods: ["GET", "HEAD"]
+    },
+    "api.v1.product.tags": {
       uri: "api/v1/products/tags",
+      methods: ["GET", "HEAD"]
+    },
+    "api.v1.product.get-product": {
+      uri: "api/v1/product/{slug}",
+      methods: ["GET", "HEAD"],
+      wheres: { slug: "[a-zA-Z0-9-]+" },
+      parameters: ["slug"]
+    },
+    "api.v1.product.get-products": {
+      uri: "api/v1/products",
       methods: ["GET", "HEAD"]
     }
   }
@@ -3532,7 +3843,8 @@ const ru = {
     top_products: "Лучшие товары",
     services: "Услуги",
     arrivals: "Новые поступления",
-    product: "Продукт"
+    product: "Продукт",
+    shop: "Магазин"
   },
   scroll_to_section: "Прокрутить до раздела",
   free_shipping: "Бесплатная доставка",
@@ -3543,6 +3855,7 @@ const ru = {
   about_return_description: "Просто верните товар в течение 30 дней для обмена",
   payment_secure: "Безопасная оплата",
   payment_secure_description: "Свяжитесь с нами 24 часа в сутки, 7 дней в неделю",
+  collections: "Коллекции",
   our_top_collection: "Наша лучшая коллекция",
   top_categories: "Лучшие категории",
   browse_top_categories: "Просмотрите коллекцию лучших категорий",
@@ -3566,7 +3879,15 @@ const ru = {
   nice_offer: "Приятное предложение",
   search_products: "Найти продукты...",
   sku: "Артикул",
-  description: "Описание"
+  description: "Описание",
+  sort_by: "Сортировать по",
+  low_price: "Низкая цена",
+  high_price: "Высокая цена",
+  filter_products_by: "Фильтровать продукты по",
+  price: "Цена",
+  more_categories: "Больше категорий",
+  category: "Категория",
+  products_not_found: "Продукты не найдены"
 };
 const en = {
   locale: {
@@ -3610,7 +3931,8 @@ const en = {
     top_products: "Top products",
     services: "Services",
     arrivals: "New arrivals",
-    product: "Product"
+    product: "Product",
+    shop: "Shop"
   },
   scroll_to_section: "Scroll To Section",
   free_shipping: "Free Shipping",
@@ -3623,6 +3945,7 @@ const en = {
   payment_secure_description: "Contact us 24 hours a day, 7 days a week",
   our_top_collection: "Our Top Collection",
   top_categories: "Top Categories",
+  collections: "Collections",
   browse_top_categories: "Browse The Collection of Top Categories",
   browse_top_products: "Browse The Collection of Top Products",
   view_all: "View All",
@@ -3644,7 +3967,15 @@ const en = {
   nice_offer: "Nice offer",
   search_products: "Search products...",
   sku: "Sku",
-  description: "Description"
+  description: "Description",
+  sort_by: "Sort by",
+  low_price: "Low price",
+  high_price: "High price",
+  filter_products_by: "Filter Products By",
+  price: "Price",
+  more_categories: "More Categories",
+  category: "Category",
+  products_not_found: "Products not found"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({
@@ -3658,7 +3989,7 @@ createServer(
     page,
     render: renderToString,
     resolve: (name) => {
-      const pages = /* @__PURE__ */ Object.assign({ "./pages/AboutUs.vue": __vite_glob_0_0, "./pages/Contacts.vue": __vite_glob_0_1, "./pages/Faq.vue": __vite_glob_0_2, "./pages/Home.vue": __vite_glob_0_3, "./pages/PrivacyPolicy.vue": __vite_glob_0_4, "./pages/Product.vue": __vite_glob_0_5, "./pages/TermsCondition.vue": __vite_glob_0_6, "./pages/TrackOrder.vue": __vite_glob_0_7 });
+      const pages = /* @__PURE__ */ Object.assign({ "./pages/AboutUs.vue": __vite_glob_0_0, "./pages/Category.vue": __vite_glob_0_1, "./pages/Contacts.vue": __vite_glob_0_2, "./pages/Faq.vue": __vite_glob_0_3, "./pages/Home.vue": __vite_glob_0_4, "./pages/PrivacyPolicy.vue": __vite_glob_0_5, "./pages/Product.vue": __vite_glob_0_6, "./pages/TermsCondition.vue": __vite_glob_0_7, "./pages/TrackOrder.vue": __vite_glob_0_8 });
       const page2 = pages[`./pages/${name}.vue`];
       page2.default.layout = page2.default.layout || Layout;
       return page2;

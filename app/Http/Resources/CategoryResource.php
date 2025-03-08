@@ -11,7 +11,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 /**
  * @mixin Product
  */
-class ProductResource extends JsonResource
+class CategoryResource extends JsonResource
 {
     public static $wrap = null;
 

@@ -1,11 +1,12 @@
 <script>
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
-    import { onBeforeUnmount, onMounted, inject, ref } from 'vue';
+    import { onBeforeUnmount, onMounted, inject, ref, watch } from 'vue';
     import Layout from '@/Layout.vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
     import DOMPurify from 'dompurify';
     import NewProducts from '@/components/NewProducts.vue';
+    import ApiClient from '@/apiClient';
 
     export default {
         name: 'Product',
@@ -22,13 +23,31 @@
                 required: true,
             },
         },
-        setup() {
+        setup(props) {
             const route = inject('route');
             const activeTab = ref('description');
             const mainSwiper = ref(null);
+            const fullProduct = ref(null);
+
+            const fetchFullProduct = async (slug) => {
+                if (!slug) return;
+
+                try {
+                    const response = await ApiClient.get(
+                        `/api/v1/product/${slug}`
+                    );
+                    fullProduct.value = response.product;
+                } catch (error) {
+                    console.error('Error fetching product by tag:', error);
+                }
+            };
 
             onMounted(() => {
                 document.body.classList.add('product_page');
+
+                if (props.product?.slug) {
+                    fetchFullProduct(props.product.slug);
+                }
             });
 
             onBeforeUnmount(() => {
@@ -47,6 +66,13 @@
                 }
             };
 
+            watch(
+                () => props.product?.slug,
+                (newSlug) => {
+                    if (newSlug) fetchFullProduct(newSlug);
+                }
+            );
+
             return {
                 modules: [Autoplay, FreeMode, Navigation, Thumbs],
                 route,
@@ -56,6 +82,7 @@
                 setMainSwiper: (swiper) => {
                     mainSwiper.value = swiper;
                 },
+                fullProduct,
             };
         },
         data() {
@@ -65,7 +92,7 @@
         },
         computed: {
             safePresentation() {
-                return DOMPurify.sanitize(this.product.presentation);
+                return DOMPurify.sanitize(this.fullProduct?.presentation);
             },
         },
         methods: {
@@ -88,7 +115,7 @@
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
                             <h2 class="ec-breadcrumb-title">
-                                {{ product.name }}
+                                {{ fullProduct?.name }}
                             </h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -135,21 +162,20 @@
                                             :thumbs="{ swiper: thumbsSwiper }"
                                             :slides-per-view="1"
                                             :space-between="0"
-                                            :loop="true"
                                             @swiper="setMainSwiper"
                                         >
                                             <swiper-slide
                                                 class="product-gallery-main-slide"
                                                 v-for="(
                                                     image, index
-                                                ) in product.images"
+                                                ) in fullProduct?.images"
                                                 :key="index"
                                             >
                                                 <img
                                                     :src="image.image"
                                                     :alt="
                                                         image.name ??
-                                                        product.name
+                                                        fullProduct?.name
                                                     "
                                                     loading="lazy"
                                                 />
@@ -159,7 +185,6 @@
                                         <div class="product-gallery-thumbs">
                                             <swiper
                                                 class="product-gallery-thumbs-list"
-                                                :loop="true"
                                                 @swiper="setThumbsSwiper"
                                                 :modules="[Navigation, Thumbs]"
                                                 :slides-per-view="4"
@@ -176,14 +201,14 @@
                                                     class="product-gallery-thumbs-slide"
                                                     v-for="(
                                                         image, index
-                                                    ) in product.images"
+                                                    ) in fullProduct?.images"
                                                     :key="index"
                                                 >
                                                     <img
                                                         :src="image.image"
                                                         :alt="
                                                             image.name ??
-                                                            product.name
+                                                            fullProduct?.name
                                                         "
                                                         loading="lazy"
                                                     />
@@ -208,7 +233,7 @@
                                 >
                                     <div class="single-pro-content">
                                         <h5 class="ec-single-title">
-                                            {{ product.name }}
+                                            {{ fullProduct?.name }}
                                         </h5>
                                         <div class="ec-single-rating-wrap">
                                             <div class="ec-single-rating">
@@ -219,24 +244,24 @@
                                                     :class="{
                                                         fill:
                                                             index <=
-                                                            product.rating,
+                                                            fullProduct?.rating,
                                                     }"
                                                 ></i>
                                             </div>
                                         </div>
                                         <div class="ec-single-desc">
-                                            {{ product.description }}
+                                            {{ fullProduct?.description }}
                                         </div>
                                         <div class="ec-single-price-stoke">
                                             <div class="ec-single-price">
                                                 <span class="new-price">
-                                                    ₽{{ product.price }}
+                                                    ₽{{ fullProduct?.price }}
                                                 </span>
                                             </div>
                                             <div class="ec-single-stoke">
                                                 <span class="ec-single-sku">
                                                     {{ $t('sku') }}:
-                                                    {{ product.sku }}
+                                                    {{ fullProduct?.sku }}
                                                 </span>
                                             </div>
                                         </div>

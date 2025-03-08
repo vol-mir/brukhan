@@ -52,7 +52,7 @@
                     />
                 </a>
                 <InertiaLink
-                    :href="route('get-product-by-slug', { slug: product.slug })"
+                    :href="route('show-product', { slug: product.slug })"
                     class="quickview"
                     data-link-action="quickview"
                     title="Quick view"
@@ -70,7 +70,7 @@
         <div class="ec-pro-content">
             <h5 class="ec-pro-title">
                 <InertiaLink
-                    :href="route('get-product-by-slug', { slug: product.slug })"
+                    :href="route('show-product', { slug: product.slug })"
                 >
                     {{ product.name }}
                 </InertiaLink>

@@ -48,6 +48,7 @@ class ProductResource extends JsonResource
             'slug' => $this->slug,
             'sku' => $this->sku,
             'description' => $this->description,
+            'presentation' => $this->presentation,
             'is_popular' => $this->is_popular,
             'rating' => $this->rating,
             'category' => [
@@ -57,6 +58,7 @@ class ProductResource extends JsonResource
             'price' => $this->price,
             'image_main' => $imageMain,
             'image_hover' => $imageHover ?? $imageMain,
+            'images' => ProductImageResource::collection($this->images)
         ];
     }
 }

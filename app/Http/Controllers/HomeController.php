@@ -4,8 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Actions\GetProductBySlugAction;
-use App\Http\Requests\GetProductBySlugRequest;
+use App\Actions\ShowCategoryAction;
+use App\Actions\ShowProductAction;
+use App\Http\Requests\ShowCategoryRequest;
+use App\Http\Requests\ShowProductRequest;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\ProductResource;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -61,10 +64,17 @@ class HomeController extends Controller
         ]);
     }
 
-    public function getProductBySlug(GetProductBySlugRequest $request, GetProductBySlugAction $action): Response
+    public function showProduct(ShowProductRequest $request, ShowProductAction $action): Response
     {
         return Inertia::render('Product', [
             'product' => ProductResource::make($action->run($request->toData())),
+        ]);
+    }
+
+    public function showCategory(ShowCategoryRequest $request, ShowCategoryAction $action): Response
+    {
+        return Inertia::render('Category', [
+            'category' => CategoryResource::make($action->run($request->toData())),
         ]);
     }
 }

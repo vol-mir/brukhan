@@ -42,6 +42,7 @@ export default {
         services: 'Услуги',
         arrivals: 'Новые поступления',
         product: 'Продукт',
+        shop: 'Магазин',
     },
     scroll_to_section: 'Прокрутить до раздела',
     free_shipping: 'Бесплатная доставка',
@@ -55,6 +56,7 @@ export default {
     payment_secure: 'Безопасная оплата',
     payment_secure_description:
         'Свяжитесь с нами 24 часа в сутки, 7 дней в неделю',
+    collections: 'Коллекции',
     our_top_collection: 'Наша лучшая коллекция',
     top_categories: 'Лучшие категории',
     browse_top_categories: 'Просмотрите коллекцию лучших категорий',
@@ -79,4 +81,12 @@ export default {
     search_products: 'Найти продукты...',
     sku: 'Артикул',
     description: 'Описание',
+    sort_by: 'Сортировать по',
+    low_price: 'Низкая цена',
+    high_price: 'Высокая цена',
+    filter_products_by: 'Фильтровать продукты по',
+    price: 'Цена',
+    more_categories: 'Больше категорий',
+    category: 'Категория',
+    products_not_found: 'Продукты не найдены',
 };

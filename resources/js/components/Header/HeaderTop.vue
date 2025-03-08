@@ -161,18 +161,6 @@
                     <div class="ec-header-bottons">
                         <a
                             href="javascript:void(0)"
-                            class="ec-header-btn ec-sidebar-toggle"
-                        >
-                            <img
-                                :src="getIconPath('category-icon.svg')"
-                                class="svg_img header_svg"
-                                alt="Category icon"
-                                loading="lazy"
-                            />
-                        </a>
-
-                        <a
-                            href="javascript:void(0)"
                             @click="sidebarStore.toggleMobileMenu"
                             class="ec-header-btn ec-side-toggle d-lg-none"
                         >
@@ -207,5 +195,8 @@
     .fade-enter-to,
     .fade-leave-from {
         opacity: 1;
+    }
+    .ec-header-bottons {
+        min-height: 25px;
     }
 </style>

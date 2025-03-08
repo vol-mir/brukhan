@@ -37,6 +37,7 @@ export const getMenuItems = (t, categories) => {
                     type: 'link',
                     label: category.name,
                     link: category.link,
+                    slug: category.slug,
                 })),
             })),
         },

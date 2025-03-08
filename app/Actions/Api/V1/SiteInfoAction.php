@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Actions\Api\V1\Common;
+namespace App\Actions\Api\V1;
 
 use App\Http\Resources\Api\V1\BrandResource;
 use App\Http\Resources\Api\V1\CategoryResource;
