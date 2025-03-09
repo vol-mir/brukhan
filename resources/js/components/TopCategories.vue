@@ -1,8 +1,12 @@
 <script>
     import { useSiteInfoStore } from '@/stores/siteInfoStore';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
         name: 'TopCategories',
+        components: {
+            InertiaLink,
+        },
         setup() {
             const siteInfoStore = useSiteInfoStore();
 
@@ -73,7 +77,10 @@
                             >
                                 <div class="cat-desc">
                                     <span>{{ category.name }}</span>
-                                    <span>510 {{ $t('products') }}</span>
+                                    <span>
+                                        {{ category.product_count }}
+                                        {{ $t('products') }}
+                                    </span>
                                 </div>
                             </a>
                         </li>
@@ -108,9 +115,16 @@
                                 />
                             </div>
                             <span class="panel-overlay">
-                                <a href="#" class="btn btn-primary">
+                                <InertiaLink
+                                    :href="
+                                        route(category.link, {
+                                            slug: category.slug,
+                                        })
+                                    "
+                                    class="btn btn-primary"
+                                >
                                     {{ $t('view_all') }}
-                                </a>
+                                </InertiaLink>
                             </span>
                         </div>
                     </div>

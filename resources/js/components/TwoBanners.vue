@@ -1,8 +1,12 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
         name: 'TwoBanners',
+        components: {
+            InertiaLink,
+        },
         setup() {
             return {
                 getImagePath,
@@ -44,7 +48,15 @@
                                 </div>
                                 <div class="banner-content">
                                     <span class="ec-banner-btn">
-                                        <a href="#">{{ $t('order_now') }}</a>
+                                        <InertiaLink
+                                            :href="
+                                                route('show-category', {
+                                                    slug: 'surupoverty-i-dreli',
+                                                })
+                                            "
+                                        >
+                                            {{ $t('order_now') }}
+                                        </InertiaLink>
                                     </span>
                                 </div>
                             </div>
@@ -74,7 +86,15 @@
                                 </div>
                                 <div class="banner-content">
                                     <span class="ec-banner-btn">
-                                        <a href="#">{{ $t('order_now') }}</a>
+                                        <InertiaLink
+                                            :href="
+                                                route('show-category', {
+                                                    slug: 'frezery',
+                                                })
+                                            "
+                                        >
+                                            {{ $t('order_now') }}
+                                        </InertiaLink>
                                     </span>
                                 </div>
                             </div>

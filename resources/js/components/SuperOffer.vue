@@ -1,8 +1,12 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
         name: 'SuperOffer',
+        components: {
+            InertiaLink,
+        },
         setup() {
             return {
                 getImagePath,
@@ -34,14 +38,14 @@
                         />
                     </span>
                     <span class="ec-offer-desc">{{ $t('routers') }}</span>
-                    <span class="ec-offer-price">$40.00 {{ $t('only') }}</span>
-                    <a
+                    <span class="ec-offer-price">₽40.00 {{ $t('only') }}</span>
+                    <InertiaLink
                         class="btn btn-primary btn-shop-now"
                         data-aos="zoom-in"
-                        href="#"
+                        :href="route('show-category', { slug: 'frezery' })"
                     >
                         {{ $t('shop_now') }}
-                    </a>
+                    </InertiaLink>
                 </div>
             </div>
         </div>

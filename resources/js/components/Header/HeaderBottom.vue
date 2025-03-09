@@ -1,8 +1,12 @@
 <script>
     import { getImagePath } from '@/utils/imageHelper';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
 
     export default {
         name: 'HeaderTop',
+        components: {
+            InertiaLink,
+        },
         setup() {
             const getIconPath = (name) => getImagePath('icons', name);
             const getLogoPath = (name) => getImagePath('logo', name);
@@ -24,7 +28,7 @@
                     <!-- Header Logo Start -->
                     <div class="align-self-center">
                         <div class="header-logo">
-                            <a href="#">
+                            <InertiaLink :href="route('home')">
                                 <img
                                     :src="getLogoPath('logo.png')"
                                     alt="Site Logo"
@@ -37,7 +41,7 @@
                                     style="display: none"
                                     loading="lazy"
                                 />
-                            </a>
+                            </InertiaLink>
                         </div>
                     </div>
                     <!-- Header Logo End -->

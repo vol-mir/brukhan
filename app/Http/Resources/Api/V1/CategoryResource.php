@@ -27,6 +27,18 @@ class CategoryResource extends JsonResource
             'name' => $this->name,
             'slug' => $this->slug,
             'link' => 'show-category',
+            'product_count' => $this->getProductCount(),
         ];
+    }
+
+    private function getProductCount(): int
+    {
+        $productCount = $this->products()->count();
+
+        foreach ($this->children as $child) {
+            $productCount += (new self($child))->getProductCount();
+        }
+
+        return $productCount;
     }
 }
