@@ -3,9 +3,9 @@
     import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { getMenuItems } from '@/data/menuData';
     import MenuItem from './MenuItem.vue';
-    import { computed, ref, onMounted, onUnmounted } from 'vue';
+    import { watch, computed, ref, onMounted, onUnmounted, inject } from 'vue';
     import { useI18n } from 'vue-i18n';
-    import { usePage } from '@inertiajs/inertia-vue3';
+    import { usePage } from "@inertiajs/vue3";
 
     export default {
         name: 'HeaderMainMenu',
@@ -15,6 +15,25 @@
         setup() {
             const { t } = useI18n();
             const siteInfoStore = useSiteInfoStore();
+            const route = inject('route');
+
+            const isHomePage = ref(false);
+            const currentPageUrl = ref(null);
+
+            const getPageData = () => {
+                try {
+                    const page = usePage();
+                    return page || {};
+                } catch {
+                    return {};
+                }
+            };
+
+            const normalizeUrl = (url) => {
+                if (!url) return "";
+                const parsed = new URL(url, window.location.origin);
+                return parsed.origin + parsed.pathname.replace(/\/$/, "");
+            };
 
             const getIconPath = (name) => getImagePath('icons', name);
             const getMenuBannerPath = (name) =>
@@ -27,6 +46,12 @@
             const isScrolledToTop = ref(true);
             let lastScrollTop = 0;
 
+            const checkIfHomePage = () => {
+                const homeRoute = normalizeUrl(route("home"));
+                const currentUrl = normalizeUrl(currentPageUrl.value || window.location.href);
+                isHomePage.value = currentUrl === homeRoute;
+            };
+
             const onScroll = () => {
                 const scrollTop =
                     window.scrollY || document.documentElement.scrollTop;
@@ -38,18 +63,27 @@
                 lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
             };
 
-            const isHomePage = ref(false);
-            const { url } = usePage();
-
             onMounted(async () => {
                 window.addEventListener('scroll', onScroll);
-                isHomePage.value = url === '/';
+
+                const page = getPageData();
+                currentPageUrl.value = page?.url || window.location.href;
+                checkIfHomePage();
 
                 await siteInfoStore.fetchSiteInfo();
                 categories.value = siteInfoStore.categories ?? [];
             });
 
             onUnmounted(() => window.removeEventListener('scroll', onScroll));
+
+            watch(
+                () => getPageData().url,
+                (newUrl) => {
+                    currentPageUrl.value = newUrl;
+                    checkIfHomePage();
+                },
+                { immediate: true }
+            );
 
             return {
                 getIconPath,
@@ -95,7 +129,7 @@
                                     </li>
                                     <li>
                                         <a
-                                            href="#top-products"
+                                            href="#topProducts"
                                             class="nav-scroll"
                                         >
                                             {{ $t('menu.top_products') }}

@@ -2,8 +2,7 @@ import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComp
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderComponent, ssrRenderStyle, ssrRenderSlot, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
-import { Link, Head, createInertiaApp } from "@inertiajs/vue3";
-import { usePage } from "@inertiajs/inertia-vue3";
+import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation, Thumbs, FreeMode } from "swiper/modules";
 import DOMPurify from "dompurify";
@@ -490,28 +489,64 @@ const _sfc_main$r = {
   setup() {
     const { t } = useI18n();
     const siteInfoStore = useSiteInfoStore();
+    const route = inject("route");
+    const isHomePage = ref(false);
+    const currentPageUrl = ref(null);
+    const getPageData = () => {
+      try {
+        const page = usePage();
+        return page || {};
+      } catch {
+        return {};
+      }
+    };
+    const normalizeUrl = (url) => {
+      var _a;
+      if (!url) return "";
+      const parsed = new URL(url, (_a = window == null ? void 0 : window.location) == null ? void 0 : _a.origin);
+      return (parsed == null ? void 0 : parsed.origin) + (parsed == null ? void 0 : parsed.pathname.replace(/\/$/, ""));
+    };
     const getIconPath = (name) => getImagePath("icons", name);
     const getMenuBannerPath = (name) => getImagePath("menu-banner", name);
     const categories = ref([]);
-    const menuItems = computed(() => getMenuItems(t, categories.value));
+    const menuItems = computed(() => getMenuItems(t, categories == null ? void 0 : categories.value));
     const isScrollingDown = ref(false);
     const isScrolledToTop = ref(true);
     let lastScrollTop = 0;
+    const checkIfHomePage = () => {
+      var _a;
+      const homeRoute = normalizeUrl(route("home"));
+      const currentUrl = normalizeUrl((currentPageUrl == null ? void 0 : currentPageUrl.value) || ((_a = window == null ? void 0 : window.location) == null ? void 0 : _a.href));
+      isHomePage.value = currentUrl === homeRoute;
+    };
     const onScroll = () => {
-      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      var _a;
+      const scrollTop = (window == null ? void 0 : window.scrollY) || ((_a = document == null ? void 0 : document.documentElement) == null ? void 0 : _a.scrollTop);
       isScrollingDown.value = scrollTop > lastScrollTop;
       isScrolledToTop.value = scrollTop === 0;
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     };
-    const isHomePage = ref(false);
-    const { url } = usePage();
     onMounted(async () => {
+      var _a;
       window.addEventListener("scroll", onScroll);
-      isHomePage.value = url === "/";
+      const page = getPageData();
+      currentPageUrl.value = (page == null ? void 0 : page.url) || ((_a = window == null ? void 0 : window.location) == null ? void 0 : _a.href);
+      checkIfHomePage();
       await siteInfoStore.fetchSiteInfo();
-      categories.value = siteInfoStore.categories ?? [];
+      categories.value = (siteInfoStore == null ? void 0 : siteInfoStore.categories) ?? [];
     });
     onUnmounted(() => window.removeEventListener("scroll", onScroll));
+    watch(
+      () => {
+        var _a;
+        return (_a = getPageData()) == null ? void 0 : _a.url;
+      },
+      (newUrl) => {
+        currentPageUrl.value = newUrl;
+        checkIfHomePage();
+      },
+      { immediate: true }
+    );
     return {
       getIconPath,
       getMenuBannerPath,
@@ -536,7 +571,7 @@ function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]-->`);
   if ($setup.isHomePage) {
-    _push(`<li class="dropdown scroll-to"><a href="javascript:void(0)"><img${ssrRenderAttr("src", $setup.getIconPath("scroll.svg"))} class="svg_img header_svg scroll" alt="scroll" loading="lazy"></a><ul class="sub-menu"><li class="menu_title">${ssrInterpolate(_ctx.$t("scroll_to_section"))}</li><li><a href="#top-products" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.top_products"))}</a></li><li><a href="#categories" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.categories"))}</a></li><li><a href="#services" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.services"))}</a></li><li><a href="#arrivals" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.arrivals"))}</a></li></ul></li>`);
+    _push(`<li class="dropdown scroll-to"><a href="javascript:void(0)"><img${ssrRenderAttr("src", $setup.getIconPath("scroll.svg"))} class="svg_img header_svg scroll" alt="scroll" loading="lazy"></a><ul class="sub-menu"><li class="menu_title">${ssrInterpolate(_ctx.$t("scroll_to_section"))}</li><li><a href="#topProducts" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.top_products"))}</a></li><li><a href="#categories" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.categories"))}</a></li><li><a href="#services" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.services"))}</a></li><li><a href="#arrivals" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.arrivals"))}</a></li></ul></li>`);
   } else {
     _push(`<!---->`);
   }
@@ -2829,7 +2864,9 @@ function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "ec-banner section section-space-p" }, _attrs))}><h2 class="d-none">${ssrInterpolate(_ctx.$t("banner"))}</h2><div class="container"><div class="ec-banner-inner"><div class="ec-banner-block ec-banner-block-2"><div class="row"><div class="banner-block col-lg-6 col-md-12 margin-b-30" data-aos="flip-right"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "2.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle">${ssrInterpolate(_ctx.$t("new_arrivals"))}</span><span class="ec-banner-title">${ssrInterpolate(_ctx.$t("screwdriver"))}</span><span class="ec-banner-discount"> 30% ${ssrInterpolate(_ctx.$t("discount"))}</span></div><div class="banner-content"><span class="ec-banner-btn">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
-    href: _ctx.route("show-category", { slug: "surupoverty-i-dreli" })
+    href: _ctx.route("show-category", {
+      slug: "surupoverty-i-dreli"
+    })
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -2844,7 +2881,9 @@ function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</span></div></div></div><div class="banner-block col-lg-6 col-md-12" data-aos="flip-left"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "3.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle">${ssrInterpolate(_ctx.$t("new_trending"))}</span><span class="ec-banner-title">${ssrInterpolate(_ctx.$t("routers"))}</span><span class="ec-banner-discount">${ssrInterpolate(_ctx.$t("action1"))} <br> 20% ${ssrInterpolate(_ctx.$t("discount"))}</span></div><div class="banner-content"><span class="ec-banner-btn">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
-    href: _ctx.route("show-category", { slug: "frezery" })
+    href: _ctx.route("show-category", {
+      slug: "frezery"
+    })
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -2914,7 +2953,7 @@ function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_ProductInner = resolveComponent("ProductInner");
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-product-tab section-space-p",
-    id: "top-products"
+    id: "topProducts"
   }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><p class="sub-title">${ssrInterpolate(_ctx.$t("browse_top_products"))}</p></div></div><div class="col-md-12 text-center"><ul class="ec-pro-tab-nav nav justify-content-center"><!--[-->`);
   ssrRenderList($setup.tabs, (tab, index) => {
     _push(`<li class="nav-item"><a class="${ssrRenderClass([
@@ -2974,16 +3013,16 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-category-section section-space-p",
     id: "categories"
-  }, _attrs))} data-v-820ad990><div class="container" data-v-820ad990><div class="row" data-v-820ad990><div class="col-md-12 text-center" data-v-820ad990><div class="section-title" data-v-820ad990><h2 class="ec-bg-title" data-v-820ad990>${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title" data-v-820ad990>${ssrInterpolate(_ctx.$t("top_categories"))}</h2><p class="sub-title" data-v-820ad990>${ssrInterpolate(_ctx.$t("browse_top_categories"))}</p></div></div></div><div class="row" data-v-820ad990><div class="col-lg-3" data-v-820ad990><ul class="ec-cat-tab-nav nav" data-v-820ad990><!--[-->`);
+  }, _attrs))} data-v-83389112><div class="container" data-v-83389112><div class="row" data-v-83389112><div class="col-md-12 text-center" data-v-83389112><div class="section-title" data-v-83389112><h2 class="ec-bg-title" data-v-83389112>${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title" data-v-83389112>${ssrInterpolate(_ctx.$t("top_categories"))}</h2><p class="sub-title" data-v-83389112>${ssrInterpolate(_ctx.$t("browse_top_categories"))}</p></div></div></div><div class="row" data-v-83389112><div class="col-lg-3" data-v-83389112><ul class="ec-cat-tab-nav nav" data-v-83389112><!--[-->`);
   ssrRenderList($setup.siteInfoStore.top_categories, (category, index) => {
-    _push(`<li class="cat-item" data-v-820ad990><a class="${ssrRenderClass([
+    _push(`<li class="cat-item" data-v-83389112><a class="${ssrRenderClass([
       "cat-link",
       {
         active: $data.activeTab === "tab-cat-" + category.slug || $data.activeTab === "" && index === 0
       }
-    ])}" data-bs-toggle="tab"${ssrRenderAttr("href", "#tab-cat-" + category.slug)} data-v-820ad990><div class="cat-desc" data-v-820ad990><span data-v-820ad990>${ssrInterpolate(category.name)}</span><span data-v-820ad990>${ssrInterpolate(category.product_count)} ${ssrInterpolate(_ctx.$t("products"))}</span></div></a></li>`);
+    ])}" data-bs-toggle="tab"${ssrRenderAttr("href", "#tab-cat-" + category.slug)} data-v-83389112><div class="cat-desc" data-v-83389112><span data-v-83389112>${ssrInterpolate(category.name)}</span><span data-v-83389112>${ssrInterpolate(category.product_count)} ${ssrInterpolate(_ctx.$t("products"))}</span></div></a></li>`);
   });
-  _push(`<!--]--></ul></div><div class="col-lg-9" data-v-820ad990><div class="tab-content" data-v-820ad990><!--[-->`);
+  _push(`<!--]--></ul></div><div class="col-lg-9" data-v-83389112><div class="tab-content" data-v-83389112><!--[-->`);
   ssrRenderList($setup.siteInfoStore.top_categories, (category, index) => {
     _push(`<div class="${ssrRenderClass([
       "tab-pane",
@@ -2991,9 +3030,11 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       {
         "show active": $data.activeTab === "tab-cat-" + category.slug || $data.activeTab === "" && index === 0
       }
-    ])}"${ssrRenderAttr("id", "tab-cat-" + category.slug)} data-v-820ad990><div class="row" data-v-820ad990><img class="img-top-category"${ssrRenderAttr("src", category.image)} alt="" data-v-820ad990></div><span class="panel-overlay" data-v-820ad990>`);
+    ])}"${ssrRenderAttr("id", "tab-cat-" + category.slug)} data-v-83389112><div class="row" data-v-83389112><img class="img-top-category"${ssrRenderAttr("src", category.image)} alt="" data-v-83389112></div><span class="panel-overlay" data-v-83389112>`);
     _push(ssrRenderComponent(_component_InertiaLink, {
-      href: _ctx.route(category.link, { slug: category.slug }),
+      href: _ctx.route(category.link, {
+        slug: category.slug
+      }),
       class: "btn btn-primary"
     }, {
       default: withCtx((_, _push2, _parent2, _scopeId) => {
@@ -3017,7 +3058,7 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TopCategories.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-820ad990"]]);
+const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-83389112"]]);
 const _sfc_main$4 = {
   name: "HomePage",
   layout: Layout,

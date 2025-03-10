@@ -59,7 +59,7 @@
 
 <template>
     <!-- Product tab Area Start -->
-    <section class="section ec-product-tab section-space-p" id="top-products">
+    <section class="section ec-product-tab section-space-p" id="topProducts">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
