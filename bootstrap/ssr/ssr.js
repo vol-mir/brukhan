@@ -3556,28 +3556,36 @@ const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: Product
 }, Symbol.toStringTag, { value: "Module" }));
+function useBodyClass(className) {
+  onMounted(() => {
+    document.body.classList.add(className);
+  });
+  onBeforeUnmount(() => {
+    document.body.classList.remove(className);
+  });
+}
 const _sfc_main$1 = {
   name: "TermsCondition",
   layout: Layout,
+  components: {
+    InertiaLink: Link
+  },
   setup() {
-    onMounted(() => {
-      document.body.classList.add("terms_condition_page");
-    });
-    onBeforeUnmount(() => {
-      document.body.classList.remove("terms_condition_page");
-    });
+    useBodyClass("terms_condition_page");
   }
 };
 function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_router_link = resolveComponent("router-link");
+  const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title"> Terms &amp; Condition </h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
-  _push(ssrRenderComponent(_component_router_link, { to: { name: "home" } }, {
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("home")
+  }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(` Home `);
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
       } else {
         return [
-          createTextVNode(" Home ")
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
         ];
       }
     }),
@@ -3596,14 +3604,6 @@ const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: TermsCondition
 }, Symbol.toStringTag, { value: "Module" }));
-function useBodyClass(className) {
-  onMounted(() => {
-    document.body.classList.add(className);
-  });
-  onBeforeUnmount(() => {
-    document.body.classList.remove(className);
-  });
-}
 function useImagePath(folder) {
   const getImagePath2 = (name) => new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
   return { getImagePath: getImagePath2 };

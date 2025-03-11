@@ -1,18 +1,16 @@
 <script>
-    import { onBeforeUnmount, onMounted } from 'vue';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
+    import { useBodyClass } from '@/composables/useBodyClass';
 
     export default {
         name: 'TermsCondition',
         layout: Layout,
+        components: {
+            InertiaLink,
+        },
         setup() {
-            onMounted(() => {
-                document.body.classList.add('terms_condition_page');
-            });
-
-            onBeforeUnmount(() => {
-                document.body.classList.remove('terms_condition_page');
-            });
+            useBodyClass('terms_condition_page');
         },
     };
 </script>
@@ -30,18 +28,18 @@
                             </h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <!-- ec-breadcrumb-list start -->
+                            <!-- breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item">
-                                    <router-link :to="{ name: 'home' }">
-                                        Home
-                                    </router-link>
+                                    <InertiaLink :href="route('home')">
+                                        {{ $t('menu.home') }}
+                                    </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">
                                     Condition
                                 </li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
+                            <!-- breadcrumb-list end -->
                         </div>
                     </div>
                 </div>

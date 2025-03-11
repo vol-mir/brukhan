@@ -33,7 +33,7 @@
                             <h2 class="ec-breadcrumb-title">Track Order</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <!-- ec-breadcrumb-list start -->
+                            <!-- breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item">
                                     <InertiaLink :href="route('home')">
@@ -42,7 +42,7 @@
                                 </li>
                                 <li class="ec-breadcrumb-item active">Track</li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
+                            <!-- breadcrumb-list end -->
                         </div>
                     </div>
                 </div>
