@@ -124,27 +124,12 @@
         }
     }
     .media-1 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.7),
-                rgba(0, 0, 0, 0.7)
-            ),
-            url(../images/blog-image/11.jpg);
         background-position: center;
     }
     .media-2 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.7),
-                rgba(0, 0, 0, 0.7)
-            ),
-            url(../images/blog-image/12.jpg);
         background-position: center;
     }
     .media-3 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.7),
-                rgba(0, 0, 0, 0.7)
-            ),
-            url(../images/blog-image/13.jpg);
         background-position: center;
     }
 }
@@ -203,27 +188,12 @@
         }
 
         .bg-img-1 {
-            background-image: linear-gradient(
-                    rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)
-                ),
-                url(../images/blog-image/14.jpg);
             background-position: center;
         }
         .bg-img-2 {
-            background-image: linear-gradient(
-                    rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)
-                ),
-                url(../images/blog-image/15.jpg);
             background-position: center;
         }
         .bg-img-3 {
-            background-image: linear-gradient(
-                    rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)
-                ),
-                url(../images/blog-image/16.jpg);
             background-position: center;
         }
     }
@@ -477,8 +447,6 @@
                     vertical-align: middle;
                     &:before {
                         content: '';
-                        background: url(../images/icons/licons.svg) -2px -6px
-                            no-repeat;
                         background-size: 250px;
                         width: 26px;
                         height: 20px;
@@ -534,18 +502,12 @@
     }
 }
 .ec-blog-card.media-1 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(../images/blog-image/11.jpg);
     background-position: center;
 }
 .ec-blog-card.media-2 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(../images/blog-image/12.jpg);
     background-position: center;
 }
 .ec-blog-card.media-3 {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url(../images/blog-image/13.jpg);
     background-position: center;
 }
 
@@ -687,27 +649,12 @@
     }
 
     .ec-wrapper.wrp-img-1 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.5)
-            ),
-            url(../images/blog-image/11.jpg);
         background-position: center;
     }
     .ec-wrapper.wrp-img-2 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.5)
-            ),
-            url(../images/blog-image/12.jpg);
         background-position: center;
     }
     .ec-wrapper.wrp-img-3 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0.5)
-            ),
-            url(../images/blog-image/13.jpg);
         background-position: center;
     }
 }
@@ -814,27 +761,12 @@
     }
 
     .ec-wrapper.wrp-img-1 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.2),
-                rgba(0, 0, 0, 0.2)
-            ),
-            url(../images/blog-image/14.jpg);
         background-position: center;
     }
     .ec-wrapper.wrp-img-2 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.2),
-                rgba(0, 0, 0, 0.2)
-            ),
-            url(../images/blog-image/15.jpg);
         background-position: center;
     }
     .ec-wrapper.wrp-img-3 {
-        background-image: linear-gradient(
-                rgba(0, 0, 0, 0.2),
-                rgba(0, 0, 0, 0.2)
-            ),
-            url(../images/blog-image/16.jpg);
         background-position: center;
     }
 }

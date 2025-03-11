@@ -37,6 +37,7 @@
         "@inertiajs/inertia-vue3": "^0.6.0",
         "@inertiajs/vue3": "^2.0.2",
         "@vue/server-renderer": "^3.5.13",
+        "@vueuse/core": "^13.0.0",
         "animate.css": "^4.1.1",
         "aos": "^2.3.4",
         "bootstrap": "^5.3.3",

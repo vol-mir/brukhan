@@ -22,7 +22,7 @@ class BrandFactory extends Factory
     {
         $company = fake()->company;
 
-        $imageUrl = 'https://dummyimage.com/300x100/ccc/000&text=' . $company;
+        $imageUrl = 'https://dummyimage.com/200x200/ccc/000&text=' . $company;
 
         $response = Http::get($imageUrl);
 
