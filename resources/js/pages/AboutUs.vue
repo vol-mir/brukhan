@@ -39,18 +39,18 @@
                             <h2 class="ec-breadcrumb-title">About Us</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <!-- ec-breadcrumb-list start -->
+                            <!-- breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item">
-                                    <router-link :to="{ name: 'home' }">
-                                        Home
-                                    </router-link>
+                                    <InertiaLink :href="route('home')">
+                                        {{ $t('menu.home') }}
+                                    </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">
                                     About Us
                                 </li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
+                            <!-- breadcrumb-list end -->
                         </div>
                     </div>
                 </div>
