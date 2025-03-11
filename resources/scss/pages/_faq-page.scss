@@ -59,12 +59,6 @@ h2.ec-faq-heading {
     margin-bottom: 15px;
     width: $width-100;
     background-color: $card-bg-white;
-    &:first-child {
-        .ec-faq-content {
-            display: block;
-            background-color: $card-bg-white;
-        }
-    }
     &:last-child {
         margin-bottom: 0;
     }
@@ -95,7 +89,6 @@ h4.ec-faq-title {
 }
 .ec-faq-content {
     border-top: 2px solid $border-color-4;
-    display: none;
     padding: 7px 15px 8px;
     p {
         font-size: 14px;

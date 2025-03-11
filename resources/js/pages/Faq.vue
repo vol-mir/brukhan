@@ -1,25 +1,26 @@
 <script>
-    import { getFaqItems } from '@/data/faqData';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
+    import FaqAccordion from '@/components/FaqAccordion.vue';
+    import { getFaqItems } from '@/data/faqData';
+    import { useFaq } from '@/composables/useFaq';
 
     export default {
         name: 'Faq',
         layout: Layout,
-        data() {
-            return {
-                faqItems: getFaqItems(),
-                activeIndexes: new Set(),
-            };
+        components: {
+            InertiaLink,
+            FaqAccordion,
         },
-        methods: {
-            toggleFaq(faqIndex, itemIndex) {
-                const combinedIndex = `faq-${faqIndex}-item-${itemIndex}`;
-                if (this.activeIndexes.has(combinedIndex)) {
-                    this.activeIndexes.delete(combinedIndex); // Закрытие блока
-                } else {
-                    this.activeIndexes.add(combinedIndex); // Открытие блока
-                }
-            },
+        setup() {
+            const { activeIndexes, toggleFaq } = useFaq();
+            const faqItems = getFaqItems();
+
+            return {
+                faqItems,
+                activeIndexes,
+                toggleFaq,
+            };
         },
     };
 </script>
@@ -35,16 +36,16 @@
                             <h2 class="ec-breadcrumb-title">FAQ</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <!-- ec-breadcrumb-list start -->
+                            <!-- breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item">
-                                    <router-link :to="{ name: 'home' }">
-                                        Home
-                                    </router-link>
+                                    <InertiaLink :href="route('home')">
+                                        {{ $t('menu.home') }}
+                                    </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">FAQ</li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
+                            <!-- breadcrumb-list end -->
                         </div>
                     </div>
                 </div>
@@ -74,30 +75,18 @@
                     >
                         <h2 class="ec-faq-heading">{{ faq.name }}</h2>
                         <div id="ec-faq">
-                            <div
+                            <FaqAccordion
                                 v-for="(item, itemIndex) in faq.items"
                                 :key="`faq-${faqIndex}-item-${itemIndex}`"
-                                class="col-sm-12 ec-faq-block"
-                            >
-                                <h4
-                                    class="ec-faq-title"
-                                    @click="toggleFaq(faqIndex, itemIndex)"
-                                >
-                                    {{ item.title }}
-                                </h4>
-                                <transition name="slide-fade">
-                                    <div
-                                        v-if="
-                                            activeIndexes.has(
-                                                `faq-${faqIndex}-item-${itemIndex}`
-                                            )
-                                        "
-                                        class="ec-faq-content ec-faq-dropdown"
-                                    >
-                                        <p>{{ item.content }}</p>
-                                    </div>
-                                </transition>
-                            </div>
+                                :title="item.title"
+                                :content="item.content"
+                                :isActive="
+                                    activeIndexes.has(
+                                        `faq-${faqIndex}-item-${itemIndex}`
+                                    )
+                                "
+                                @toggle="toggleFaq(faqIndex, itemIndex)"
+                            />
                         </div>
                     </div>
                 </div>
@@ -106,25 +95,3 @@
     </section>
     <!-- FAQ page end -->
 </template>
-
-<style scoped>
-    .ec-faq-content {
-        display: block;
-    }
-    .slide-fade-enter-active,
-    .slide-fade-leave-active {
-        transition:
-            max-height 0.5s ease,
-            opacity 0.5s ease;
-    }
-    .slide-fade-enter-from,
-    .slide-fade-leave-to {
-        max-height: 0;
-        opacity: 0;
-    }
-    .slide-fade-enter-to,
-    .slide-fade-leave-from {
-        max-height: 500px;
-        opacity: 1;
-    }
-</style>
