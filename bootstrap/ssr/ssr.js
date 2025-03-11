@@ -2581,7 +2581,7 @@ function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
 const _sfc_setup$c = _sfc_main$c.setup;
 _sfc_main$c.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/FaqAccordion.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/modules/faq/components/FaqAccordion.vue");
   return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
 };
 const FaqAccordion = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c]]);
