@@ -5,7 +5,7 @@
     import MenuItem from './MenuItem.vue';
     import { watch, computed, ref, onMounted, onUnmounted, inject } from 'vue';
     import { useI18n } from 'vue-i18n';
-    import { usePage } from "@inertiajs/vue3";
+    import { usePage } from '@inertiajs/vue3';
 
     export default {
         name: 'HeaderMainMenu',
@@ -30,9 +30,9 @@
             };
 
             const normalizeUrl = (url) => {
-                if (!url) return "";
+                if (!url) return '';
                 const parsed = new URL(url, window.location.origin);
-                return parsed.origin + parsed.pathname.replace(/\/$/, "");
+                return parsed.origin + parsed.pathname.replace(/\/$/, '');
             };
 
             const getIconPath = (name) => getImagePath('icons', name);
@@ -47,8 +47,10 @@
             let lastScrollTop = 0;
 
             const checkIfHomePage = () => {
-                const homeRoute = normalizeUrl(route("home"));
-                const currentUrl = normalizeUrl(currentPageUrl.value || window.location.href);
+                const homeRoute = normalizeUrl(route('home'));
+                const currentUrl = normalizeUrl(
+                    currentPageUrl.value || window.location.href
+                );
                 isHomePage.value = currentUrl === homeRoute;
             };
 

@@ -1,23 +1,22 @@
 <script>
-    import { getImagePath } from '@/utils/imageHelper';
-    import { onBeforeUnmount, onMounted } from 'vue';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
+    import { useBodyClass } from '@/composables/useBodyClass';
+    import { useImagePath } from '@/composables/useImagePath';
 
     export default {
-        name: 'PrivacyPolicyPage',
+        name: 'TrackOrderPage',
         layout: Layout,
+        components: {
+            InertiaLink,
+        },
         setup() {
-            const getIconPath = (name) => getImagePath('icons', name);
-            onMounted(() => {
-                document.body.classList.add('track_order_page');
-            });
+            useBodyClass('track_order_page');
 
-            onBeforeUnmount(() => {
-                document.body.classList.remove('track_order_page');
-            });
+            const { getImagePath } = useImagePath('icons');
 
             return {
-                getIconPath,
+                getImagePath,
             };
         },
     };
@@ -37,9 +36,9 @@
                             <!-- ec-breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item">
-                                    <router-link :to="{ name: 'home' }">
-                                        Home
-                                    </router-link>
+                                    <InertiaLink :href="route('home')">
+                                        {{ $t('menu.home') }}
+                                    </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">Track</li>
                             </ul>
@@ -74,7 +73,7 @@
                                 <li class="step0 active">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getIconPath('track_1.png')"
+                                            :src="getImagePath('track_1.png')"
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -89,7 +88,7 @@
                                 <li class="step0 active">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getIconPath('track_2.png')"
+                                            :src="getImagePath('track_2.png')"
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -104,7 +103,7 @@
                                 <li class="step0 active">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getIconPath('track_3.png')"
+                                            :src="getImagePath('track_3.png')"
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -119,7 +118,7 @@
                                 <li class="step0">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getIconPath('track_4.png')"
+                                            :src="getImagePath('track_4.png')"
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -134,7 +133,7 @@
                                 <li class="step0">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getIconPath('track_5.png')"
+                                            :src="getImagePath('track_5.png')"
                                             alt="track_order"
                                             loading="lazy"
                                         />
