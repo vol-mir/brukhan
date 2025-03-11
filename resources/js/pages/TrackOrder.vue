@@ -73,7 +73,12 @@
                                 <li class="step0 active">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getImagePath('icons', 'track_1.png')"
+                                            :src="
+                                                getImagePath(
+                                                    'icons',
+                                                    'track_1.png'
+                                                )
+                                            "
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -88,7 +93,12 @@
                                 <li class="step0 active">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getImagePath('icons', 'track_2.png')"
+                                            :src="
+                                                getImagePath(
+                                                    'icons',
+                                                    'track_2.png'
+                                                )
+                                            "
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -103,7 +113,12 @@
                                 <li class="step0 active">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getImagePath('icons', 'track_3.png')"
+                                            :src="
+                                                getImagePath(
+                                                    'icons',
+                                                    'track_3.png'
+                                                )
+                                            "
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -118,7 +133,12 @@
                                 <li class="step0">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getImagePath('icons', 'track_4.png')"
+                                            :src="
+                                                getImagePath(
+                                                    'icons',
+                                                    'track_4.png'
+                                                )
+                                            "
                                             alt="track_order"
                                             loading="lazy"
                                         />
@@ -133,7 +153,12 @@
                                 <li class="step0">
                                     <span class="ec-track-icon">
                                         <img
-                                            :src="getImagePath('icons', 'track_5.png')"
+                                            :src="
+                                                getImagePath(
+                                                    'icons',
+                                                    'track_5.png'
+                                                )
+                                            "
                                             alt="track_order"
                                             loading="lazy"
                                         />

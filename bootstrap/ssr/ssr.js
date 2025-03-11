@@ -2151,18 +2151,20 @@ const _sfc_main$f = {
   }
 };
 function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_router_link = resolveComponent("router-link");
+  const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_TestimonialReviews = resolveComponent("TestimonialReviews");
   const _component_ListServices = resolveComponent("ListServices");
   const _component_InstagramFeed = resolveComponent("InstagramFeed");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">About Us</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
-  _push(ssrRenderComponent(_component_router_link, { to: { name: "home" } }, {
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("home")
+  }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(` Home `);
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
       } else {
         return [
-          createTextVNode(" Home ")
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
         ];
       }
     }),
@@ -2516,25 +2518,25 @@ const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
 const _sfc_main$c = {
   name: "Contacts",
   layout: Layout,
+  components: {
+    InertiaLink: Link
+  },
   setup() {
-    onMounted(() => {
-      document.body.classList.add("contact_us_page");
-    });
-    onBeforeUnmount(() => {
-      document.body.classList.remove("contact_us_page");
-    });
+    useBodyClass("contact_us_page");
   }
 };
 function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_router_link = resolveComponent("router-link");
+  const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">Contact Us</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
-  _push(ssrRenderComponent(_component_router_link, { to: { name: "home" } }, {
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("home")
+  }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(` Home `);
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
       } else {
         return [
-          createTextVNode(" Home ")
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
         ];
       }
     }),
@@ -3636,7 +3638,37 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">Track</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="ec-trackorder-content col-md-12"><div class="ec-trackorder-inner"><div class="ec-trackorder-top"><h2 class="ec-order-id">order #6152</h2><div class="ec-order-detail"><div>Expected arrival 14-02-2021-2022</div><div> Grasshoppers <span>v534hb</span></div></div></div><div class="ec-trackorder-bottom"><div class="ec-progress-track"><ul id="ec-progressbar"><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_1.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> processed </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_2.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> designing </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_3.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> shipped </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_4.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> enroute </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_5.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> arrived </span></li></ul></div></div></div></div></div></section><!--]-->`);
+  _push(`</li><li class="ec-breadcrumb-item active">Track</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="ec-trackorder-content col-md-12"><div class="ec-trackorder-inner"><div class="ec-trackorder-top"><h2 class="ec-order-id">order #6152</h2><div class="ec-order-detail"><div>Expected arrival 14-02-2021-2022</div><div> Grasshoppers <span>v534hb</span></div></div></div><div class="ec-trackorder-bottom"><div class="ec-progress-track"><ul id="ec-progressbar"><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr(
+    "src",
+    $setup.getImagePath(
+      "icons",
+      "track_1.png"
+    )
+  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> processed </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr(
+    "src",
+    $setup.getImagePath(
+      "icons",
+      "track_2.png"
+    )
+  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> designing </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr(
+    "src",
+    $setup.getImagePath(
+      "icons",
+      "track_3.png"
+    )
+  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> shipped </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr(
+    "src",
+    $setup.getImagePath(
+      "icons",
+      "track_4.png"
+    )
+  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> enroute </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr(
+    "src",
+    $setup.getImagePath(
+      "icons",
+      "track_5.png"
+    )
+  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> arrived </span></li></ul></div></div></div></div></div></section><!--]-->`);
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {

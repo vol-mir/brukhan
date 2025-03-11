@@ -1,18 +1,16 @@
 <script>
-    import { onBeforeUnmount, onMounted } from 'vue';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
+    import { useBodyClass } from '@/composables/useBodyClass';
 
     export default {
         name: 'Contacts',
         layout: Layout,
+        components: {
+            InertiaLink,
+        },
         setup() {
-            onMounted(() => {
-                document.body.classList.add('contact_us_page');
-            });
-
-            onBeforeUnmount(() => {
-                document.body.classList.remove('contact_us_page');
-            });
+            useBodyClass('contact_us_page');
         },
     };
 </script>
@@ -28,18 +26,18 @@
                             <h2 class="ec-breadcrumb-title">Contact Us</h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <!-- ec-breadcrumb-list start -->
+                            <!-- breadcrumb-list start -->
                             <ul class="ec-breadcrumb-list">
                                 <li class="ec-breadcrumb-item">
-                                    <router-link :to="{ name: 'home' }">
-                                        Home
-                                    </router-link>
+                                    <InertiaLink :href="route('home')">
+                                        {{ $t('menu.home') }}
+                                    </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">
                                     Contact Us
                                 </li>
                             </ul>
-                            <!-- ec-breadcrumb-list end -->
+                            <!-- breadcrumb-list end -->
                         </div>
                     </div>
                 </div>

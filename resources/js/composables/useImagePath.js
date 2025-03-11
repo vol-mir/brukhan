@@ -3,4 +3,3 @@ export function useImagePath() {
         new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
     return { getImagePath };
 }
-
