@@ -501,46 +501,39 @@ const _sfc_main$r = {
       }
     };
     const normalizeUrl = (url) => {
-      var _a;
       if (!url) return "";
-      const parsed = new URL(url, (_a = window == null ? void 0 : window.location) == null ? void 0 : _a.origin);
-      return (parsed == null ? void 0 : parsed.origin) + (parsed == null ? void 0 : parsed.pathname.replace(/\/$/, ""));
+      const parsed = new URL(url, window.location.origin);
+      return parsed.origin + parsed.pathname.replace(/\/$/, "");
     };
     const getIconPath = (name) => getImagePath("icons", name);
     const getMenuBannerPath = (name) => getImagePath("menu-banner", name);
     const categories = ref([]);
-    const menuItems = computed(() => getMenuItems(t, categories == null ? void 0 : categories.value));
+    const menuItems = computed(() => getMenuItems(t, categories.value));
     const isScrollingDown = ref(false);
     const isScrolledToTop = ref(true);
     let lastScrollTop = 0;
     const checkIfHomePage = () => {
-      var _a;
       const homeRoute = normalizeUrl(route("home"));
-      const currentUrl = normalizeUrl((currentPageUrl == null ? void 0 : currentPageUrl.value) || ((_a = window == null ? void 0 : window.location) == null ? void 0 : _a.href));
+      const currentUrl = normalizeUrl(currentPageUrl.value || window.location.href);
       isHomePage.value = currentUrl === homeRoute;
     };
     const onScroll = () => {
-      var _a;
-      const scrollTop = (window == null ? void 0 : window.scrollY) || ((_a = document == null ? void 0 : document.documentElement) == null ? void 0 : _a.scrollTop);
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
       isScrollingDown.value = scrollTop > lastScrollTop;
       isScrolledToTop.value = scrollTop === 0;
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
     };
     onMounted(async () => {
-      var _a;
       window.addEventListener("scroll", onScroll);
       const page = getPageData();
-      currentPageUrl.value = (page == null ? void 0 : page.url) || ((_a = window == null ? void 0 : window.location) == null ? void 0 : _a.href);
+      currentPageUrl.value = (page == null ? void 0 : page.url) || window.location.href;
       checkIfHomePage();
       await siteInfoStore.fetchSiteInfo();
-      categories.value = (siteInfoStore == null ? void 0 : siteInfoStore.categories) ?? [];
+      categories.value = siteInfoStore.categories ?? [];
     });
     onUnmounted(() => window.removeEventListener("scroll", onScroll));
     watch(
-      () => {
-        var _a;
-        return (_a = getPageData()) == null ? void 0 : _a.url;
-      },
+      () => getPageData().url,
       (newUrl) => {
         currentPageUrl.value = newUrl;
         checkIfHomePage();

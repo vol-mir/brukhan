@@ -18,5 +18,16 @@ class DatabaseSeeder extends Seeder
             LeadTypeSeeder::class,
             PageSeeder::class,
         ]);
+
+        if (app()->environment('local')) {
+            $this->call([
+                BrandSeeder::class,
+                CategorySeeder::class,
+                ProductSeeder::class,
+                TagSeeder::class,
+                ProductTagSeeder::class,
+                ProductImageSeeder::class,
+            ]);
+        }
     }
 }

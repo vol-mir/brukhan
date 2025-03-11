@@ -97,7 +97,7 @@ class CategoryResource extends Resource
                             ->image()
                             ->imageEditor()
                             ->disk('public')
-                            ->directory('images/brands')
+                            ->directory('images/categories')
                             ->columnSpan('full')
                             ->getUploadedFileNameForStorageUsing(fn(TemporaryUploadedFile $file): Stringable => str(Str::uuid() . '.' . $file->extension()))
                             ->label(__('fields.image')),
