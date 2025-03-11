@@ -1,7 +1,8 @@
 <script>
-    import { onBeforeUnmount, onMounted } from 'vue';
-    import { getImagePath } from '@/utils/imageHelper';
+    import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
+    import { useBodyClass } from '@/composables/useBodyClass';
+    import { useImagePath } from '@/composables/useImagePath';
     import InstagramFeed from '@/components/InstagramFeed.vue';
     import ListServices from '@/components/ListServices.vue';
     import TestimonialReviews from '@/components/TestimonialReviews.vue';
@@ -10,18 +11,15 @@
         name: 'AboutUs',
         layout: Layout,
         components: {
+            InertiaLink,
             InstagramFeed,
             ListServices,
             TestimonialReviews,
         },
         setup() {
-            onMounted(() => {
-                document.body.classList.add('aboutus_page');
-            });
+            useBodyClass('aboutus_page');
 
-            onBeforeUnmount(() => {
-                document.body.classList.remove('aboutus_page');
-            });
+            const { getImagePath } = useImagePath();
 
             return {
                 getImagePath,

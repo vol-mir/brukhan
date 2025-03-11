@@ -1,8 +1,8 @@
+import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
 import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createVNode, inject, createTextVNode, toDisplayString, computed, onUnmounted, watch, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderComponent, ssrRenderStyle, ssrRenderSlot, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
-import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import { Autoplay, Navigation, Thumbs, FreeMode } from "swiper/modules";
 import DOMPurify from "dompurify";
@@ -10,7 +10,6 @@ import createServer from "@inertiajs/vue3/server";
 import { renderToString } from "@vue/server-renderer";
 import { ZiggyVue } from "ziggy-js";
 import AOS from "aos";
-const getImagePath = (folder, name) => new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
 const _export_sfc = (sfc, props) => {
   const target = sfc.__vccOpts || sfc;
   for (const [key, val] of props) {
@@ -41,6 +40,7 @@ _sfc_main$v.setup = (props, ctx) => {
   return _sfc_setup$v ? _sfc_setup$v(props, ctx) : void 0;
 };
 const AppLoader = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["ssrRender", _sfc_ssrRender$u]]);
+const getImagePath = (folder, name) => new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
 const useSidebarStore = defineStore("sidebar", {
   state: () => ({
     isMobileMenuOpen: false,
@@ -1279,6 +1279,18 @@ _sfc_main$j.setup = (props, ctx) => {
   return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
 const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j]]);
+function useBodyClass(className) {
+  onMounted(() => {
+    document.body.classList.add(className);
+  });
+  onBeforeUnmount(() => {
+    document.body.classList.remove(className);
+  });
+}
+function useImagePath() {
+  const getImagePath2 = (folder, name) => new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
+  return { getImagePath: getImagePath2 };
+}
 const _sfc_main$i = {
   name: "InstagramFeed",
   components: {
@@ -2125,19 +2137,16 @@ const _sfc_main$f = {
   name: "AboutUs",
   layout: Layout,
   components: {
+    InertiaLink: Link,
     InstagramFeed,
     ListServices,
     TestimonialReviews
   },
   setup() {
-    onMounted(() => {
-      document.body.classList.add("aboutus_page");
-    });
-    onBeforeUnmount(() => {
-      document.body.classList.remove("aboutus_page");
-    });
+    useBodyClass("aboutus_page");
+    const { getImagePath: getImagePath2 } = useImagePath();
     return {
-      getImagePath
+      getImagePath: getImagePath2
     };
   }
 };
@@ -3242,14 +3251,6 @@ const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
-function useBodyClass(className) {
-  onMounted(() => {
-    document.body.classList.add(className);
-  });
-  onBeforeUnmount(() => {
-    document.body.classList.remove(className);
-  });
-}
 const _sfc_main$3 = {
   name: "PrivacyPolicy",
   layout: Layout,
@@ -3604,10 +3605,6 @@ const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   __proto__: null,
   default: TermsCondition
 }, Symbol.toStringTag, { value: "Module" }));
-function useImagePath(folder) {
-  const getImagePath2 = (name) => new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
-  return { getImagePath: getImagePath2 };
-}
 const _sfc_main = {
   name: "TrackOrderPage",
   layout: Layout,
@@ -3616,7 +3613,7 @@ const _sfc_main = {
   },
   setup() {
     useBodyClass("track_order_page");
-    const { getImagePath: getImagePath2 } = useImagePath("icons");
+    const { getImagePath: getImagePath2 } = useImagePath();
     return {
       getImagePath: getImagePath2
     };
@@ -3639,7 +3636,7 @@ function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $op
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">Track</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="ec-trackorder-content col-md-12"><div class="ec-trackorder-inner"><div class="ec-trackorder-top"><h2 class="ec-order-id">order #6152</h2><div class="ec-order-detail"><div>Expected arrival 14-02-2021-2022</div><div> Grasshoppers <span>v534hb</span></div></div></div><div class="ec-trackorder-bottom"><div class="ec-progress-track"><ul id="ec-progressbar"><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("track_1.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> processed </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("track_2.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> designing </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("track_3.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> shipped </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("track_4.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> enroute </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("track_5.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> arrived </span></li></ul></div></div></div></div></div></section><!--]-->`);
+  _push(`</li><li class="ec-breadcrumb-item active">Track</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="ec-trackorder-content col-md-12"><div class="ec-trackorder-inner"><div class="ec-trackorder-top"><h2 class="ec-order-id">order #6152</h2><div class="ec-order-detail"><div>Expected arrival 14-02-2021-2022</div><div> Grasshoppers <span>v534hb</span></div></div></div><div class="ec-trackorder-bottom"><div class="ec-progress-track"><ul id="ec-progressbar"><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_1.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> processed </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_2.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> designing </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_3.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> shipped </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_4.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> enroute </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr("src", $setup.getImagePath("icons", "track_5.png"))} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> arrived </span></li></ul></div></div></div></div></div></section><!--]-->`);
 }
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
