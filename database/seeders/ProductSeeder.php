@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Category;
@@ -15,8 +17,8 @@ class ProductSeeder extends Seeder
     {
         $categories = Category::all();
 
-        $categories->each(function ($category) {
-            Product::factory(rand(10, 30))
+        $categories->each(function ($category): void {
+            Product::factory(random_int(10, 30))
                 ->create([
                     'category_id' => $category->id,
                 ]);

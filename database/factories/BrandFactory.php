@@ -20,9 +20,9 @@ class BrandFactory extends Factory
      */
     public function definition(): array
     {
-        $company = $this->faker->company;
+        $company = fake()->company;
 
-        $imageUrl = "https://dummyimage.com/300x100/ccc/000&text=$company";
+        $imageUrl = 'https://dummyimage.com/300x100/ccc/000&text=' . $company;
 
         $response = Http::get($imageUrl);
 
@@ -37,8 +37,8 @@ class BrandFactory extends Factory
             'name' => $company,
             'slug' => Str::slug($company),
             'image' => $fileName,
-            'description' => $this->faker->sentence,
-            'url' => $this->faker->url,
+            'description' => fake()->sentence,
+            'url' => fake()->url,
             'created_at' => now(),
             'updated_at' => now(),
         ];

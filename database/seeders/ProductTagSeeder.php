@@ -1,8 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Models\Category;
 use App\Models\Product;
 use App\Models\Tag;
 use Illuminate\Database\Seeder;
@@ -16,11 +17,10 @@ class ProductTagSeeder extends Seeder
     {
         $tags = Tag::all();
 
-        Product::all()->each(function ($product) use ($tags) {
-            $randomTags = $tags->random(rand(1, 5))->pluck('id');
+        Product::all()->each(function ($product) use ($tags): void {
+            $randomTags = $tags->random(random_int(1, 5))->pluck('id');
 
             $product->tags()->sync($randomTags);
         });
-
     }
 }

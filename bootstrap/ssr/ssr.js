@@ -2432,7 +2432,7 @@ const _sfc_main$d = {
 function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_ProductInner = resolveComponent("ProductInner");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb" data-v-be03754a><div class="container" data-v-be03754a><div class="row" data-v-be03754a><div class="col-12" data-v-be03754a><div class="row ec_breadcrumb_inner" data-v-be03754a><div class="col-md-6 col-sm-12" data-v-be03754a><h2 class="ec-breadcrumb-title" data-v-be03754a>${ssrInterpolate($props.category.name)}</h2></div><div class="col-md-6 col-sm-12" data-v-be03754a><ul class="ec-breadcrumb-list" data-v-be03754a><li class="ec-breadcrumb-item" data-v-be03754a>`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb" data-v-f1f6cf53><div class="container" data-v-f1f6cf53><div class="row" data-v-f1f6cf53><div class="col-12" data-v-f1f6cf53><div class="row ec_breadcrumb_inner" data-v-f1f6cf53><div class="col-md-6 col-sm-12" data-v-f1f6cf53><h2 class="ec-breadcrumb-title" data-v-f1f6cf53>${ssrInterpolate($props.category.name)}</h2></div><div class="col-md-6 col-sm-12" data-v-f1f6cf53><ul class="ec-breadcrumb-list" data-v-f1f6cf53><li class="ec-breadcrumb-item" data-v-f1f6cf53>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home")
   }, {
@@ -2447,49 +2447,49 @@ function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active" data-v-be03754a>${ssrInterpolate(_ctx.$t("menu.shop"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p" data-v-be03754a><div class="container" data-v-be03754a><div class="row" data-v-be03754a><div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first margin-b-30" data-v-be03754a><div class="ec-pro-list-top d-flex" data-v-be03754a><div class="col-md-12 ec-sort-select" data-v-be03754a><span class="sort-by" data-v-be03754a>${ssrInterpolate(_ctx.$t("sort_by"))}</span><div class="ec-select-inner" data-v-be03754a><select name="ec-select" id="ec-select" data-v-be03754a><option value="low_price" data-v-be03754a${ssrIncludeBooleanAttr(Array.isArray($setup.sortOption) ? ssrLooseContain($setup.sortOption, "low_price") : ssrLooseEqual($setup.sortOption, "low_price")) ? " selected" : ""}>${ssrInterpolate(_ctx.$t("low_price"))}</option><option value="high_price" data-v-be03754a${ssrIncludeBooleanAttr(Array.isArray($setup.sortOption) ? ssrLooseContain($setup.sortOption, "high_price") : ssrLooseEqual($setup.sortOption, "high_price")) ? " selected" : ""}>${ssrInterpolate(_ctx.$t("high_price"))}</option></select></div></div></div><div class="shop-pro-content" data-v-be03754a><div class="shop-pro-inner" data-v-be03754a><div class="row" data-v-be03754a><!--[-->`);
+  _push(`</li><li class="ec-breadcrumb-item active" data-v-f1f6cf53>${ssrInterpolate(_ctx.$t("menu.shop"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p" data-v-f1f6cf53><div class="container" data-v-f1f6cf53><div class="row" data-v-f1f6cf53><div class="ec-shop-rightside col-lg-9 col-md-12 order-lg-last order-md-first margin-b-30" data-v-f1f6cf53><div class="ec-pro-list-top d-flex" data-v-f1f6cf53><div class="col-md-12 ec-sort-select" data-v-f1f6cf53><span class="sort-by" data-v-f1f6cf53>${ssrInterpolate(_ctx.$t("sort_by"))}</span><div class="ec-select-inner" data-v-f1f6cf53><select name="ec-select" id="ec-select" data-v-f1f6cf53><option value="low_price" data-v-f1f6cf53${ssrIncludeBooleanAttr(Array.isArray($setup.sortOption) ? ssrLooseContain($setup.sortOption, "low_price") : ssrLooseEqual($setup.sortOption, "low_price")) ? " selected" : ""}>${ssrInterpolate(_ctx.$t("low_price"))}</option><option value="high_price" data-v-f1f6cf53${ssrIncludeBooleanAttr(Array.isArray($setup.sortOption) ? ssrLooseContain($setup.sortOption, "high_price") : ssrLooseEqual($setup.sortOption, "high_price")) ? " selected" : ""}>${ssrInterpolate(_ctx.$t("high_price"))}</option></select></div></div></div><div class="shop-pro-content" data-v-f1f6cf53><div class="shop-pro-inner" data-v-f1f6cf53><div class="row" data-v-f1f6cf53><!--[-->`);
   ssrRenderList($setup.fullCategory, (product) => {
-    _push(`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content" data-v-be03754a>`);
+    _push(`<div class="col-lg-3 col-md-6 col-sm-6 col-xs-6 mb-6 pro-gl-content" data-v-f1f6cf53>`);
     _push(ssrRenderComponent(_component_ProductInner, { product }, null, _parent));
     _push(`</div>`);
   });
   _push(`<!--]-->`);
   if ($setup.fullCategory.length === 0) {
-    _push(`<div class="col-12 text-center" data-v-be03754a><p class="no-products-found" data-v-be03754a>${ssrInterpolate(_ctx.$t("products_not_found"))}</p></div>`);
+    _push(`<div class="col-12 text-center" data-v-f1f6cf53><p class="no-products-found" data-v-f1f6cf53>${ssrInterpolate(_ctx.$t("products_not_found"))}</p></div>`);
   } else {
     _push(`<!---->`);
   }
   _push(`</div></div>`);
-  if ($setup.fullCategory.length > 10) {
-    _push(`<div class="ec-pro-pagination" data-v-be03754a><div class="ec-pro-pagination" data-v-be03754a><ul class="ec-pro-pagination-inner" data-v-be03754a><li data-v-be03754a><a href="#" class="${ssrRenderClass([{
+  if ($setup.pages.length > 1) {
+    _push(`<div class="ec-pro-pagination" data-v-f1f6cf53><div class="ec-pro-pagination" data-v-f1f6cf53><ul class="ec-pro-pagination-inner" data-v-f1f6cf53><li data-v-f1f6cf53><a href="#" class="${ssrRenderClass([{
       disabled: $setup.pagination.current_page === 1
-    }, "next"])}" data-v-be03754a><i class="ecicon eci-angle-left" data-v-be03754a></i></a></li><!--[-->`);
+    }, "next"])}" data-v-f1f6cf53><i class="ecicon eci-angle-left" data-v-f1f6cf53></i></a></li><!--[-->`);
     ssrRenderList($setup.pages, (page) => {
-      _push(`<li data-v-be03754a>`);
+      _push(`<li data-v-f1f6cf53>`);
       if (page !== "...") {
         _push(`<a href="#" class="${ssrRenderClass({
           active: page === $setup.pagination.current_page
-        })}" data-v-be03754a>${ssrInterpolate(page)}</a>`);
+        })}" data-v-f1f6cf53>${ssrInterpolate(page)}</a>`);
       } else {
-        _push(`<span class="pagination-ellipsis" data-v-be03754a>${ssrInterpolate(page)}</span>`);
+        _push(`<span class="pagination-ellipsis" data-v-f1f6cf53>${ssrInterpolate(page)}</span>`);
       }
       _push(`</li>`);
     });
-    _push(`<!--]--><li data-v-be03754a><a href="#" class="${ssrRenderClass([{
+    _push(`<!--]--><li data-v-f1f6cf53><a href="#" class="${ssrRenderClass([{
       disabled: $setup.pagination.current_page === $setup.pagination.last_page
-    }, "next"])}" data-v-be03754a><i class="ecicon eci-angle-right" data-v-be03754a></i></a></li></ul></div></div>`);
+    }, "next"])}" data-v-f1f6cf53><i class="ecicon eci-angle-right" data-v-f1f6cf53></i></a></li></ul></div></div>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last" data-v-be03754a><div id="shop_sidebar" data-v-be03754a><div class="ec-sidebar-heading" data-v-be03754a><h1 data-v-be03754a>${ssrInterpolate(_ctx.$t("filter_products_by"))}</h1></div><div class="ec-sidebar-wrap" data-v-be03754a><div class="ec-sidebar-block" data-v-be03754a><div class="ec-sb-title" data-v-be03754a><h3 class="ec-sidebar-title" data-v-be03754a>${ssrInterpolate(_ctx.$t("collections"))}</h3></div><div class="ec-sb-block-content" data-v-be03754a><ul data-v-be03754a><!--[-->`);
+  _push(`</div></div><div class="ec-shop-leftside col-lg-3 col-md-12 order-lg-first order-md-last" data-v-f1f6cf53><div id="shop_sidebar" data-v-f1f6cf53><div class="ec-sidebar-heading" data-v-f1f6cf53><h1 data-v-f1f6cf53>${ssrInterpolate(_ctx.$t("filter_products_by"))}</h1></div><div class="ec-sidebar-wrap" data-v-f1f6cf53><div class="ec-sidebar-block" data-v-f1f6cf53><div class="ec-sb-title" data-v-f1f6cf53><h3 class="ec-sidebar-title" data-v-f1f6cf53>${ssrInterpolate(_ctx.$t("collections"))}</h3></div><div class="ec-sb-block-content" data-v-f1f6cf53><ul data-v-f1f6cf53><!--[-->`);
   ssrRenderList($setup.popularTags, (tag) => {
-    _push(`<li data-v-be03754a><div class="ec-sidebar-block-item" data-v-be03754a><input type="checkbox"${ssrRenderAttr("value", tag.slug)}${ssrIncludeBooleanAttr(
+    _push(`<li data-v-f1f6cf53><div class="ec-sidebar-block-item" data-v-f1f6cf53><input type="checkbox"${ssrRenderAttr("value", tag.slug)}${ssrIncludeBooleanAttr(
       $setup.selectedTags.includes(
         tag.slug
       )
-    ) ? " checked" : ""} data-v-be03754a><a href="#" data-v-be03754a>${ssrInterpolate(tag.name)}</a><span class="checked" data-v-be03754a></span></div></li>`);
+    ) ? " checked" : ""} data-v-f1f6cf53><a href="#" data-v-f1f6cf53>${ssrInterpolate(tag.name)}</a><span class="checked" data-v-f1f6cf53></span></div></li>`);
   });
-  _push(`<!--]--></ul></div></div><div class="ec-sidebar-block" data-v-be03754a><div class="ec-sb-title" data-v-be03754a><h3 class="ec-sidebar-title" data-v-be03754a>${ssrInterpolate(_ctx.$t("price"))}</h3></div><div class="ec-sb-block-content es-price-slider" data-v-be03754a><div class="ec-price-filter" data-v-be03754a><div id="ec-sliderPrice" class="filter__slider-price" data-v-be03754a></div><div class="ec-price-input" data-v-be03754a><label class="filter__label" data-v-be03754a><input type="number"${ssrRenderAttr("value", $setup.priceRange.min)} class="filter__input" placeholder="0" data-v-be03754a></label><span class="ec-price-divider" data-v-be03754a></span><label class="filter__label" data-v-be03754a><input type="number"${ssrRenderAttr("value", $setup.priceRange.max)} class="filter__input" placeholder="0" data-v-be03754a></label></div></div></div></div></div></div></div></div></div></section><!--]-->`);
+  _push(`<!--]--></ul></div></div><div class="ec-sidebar-block" data-v-f1f6cf53><div class="ec-sb-title" data-v-f1f6cf53><h3 class="ec-sidebar-title" data-v-f1f6cf53>${ssrInterpolate(_ctx.$t("price"))}</h3></div><div class="ec-sb-block-content es-price-slider" data-v-f1f6cf53><div class="ec-price-filter" data-v-f1f6cf53><div id="ec-sliderPrice" class="filter__slider-price" data-v-f1f6cf53></div><div class="ec-price-input" data-v-f1f6cf53><label class="filter__label" data-v-f1f6cf53><input type="number"${ssrRenderAttr("value", $setup.priceRange.min)} class="filter__input" placeholder="0" data-v-f1f6cf53></label><span class="ec-price-divider" data-v-f1f6cf53></span><label class="filter__label" data-v-f1f6cf53><input type="number"${ssrRenderAttr("value", $setup.priceRange.max)} class="filter__input" placeholder="0" data-v-f1f6cf53></label></div></div></div></div></div></div></div></div></div></section><!--]-->`);
 }
 const _sfc_setup$d = _sfc_main$d.setup;
 _sfc_main$d.setup = (props, ctx) => {
@@ -2497,7 +2497,7 @@ _sfc_main$d.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Category.vue");
   return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
-const Category = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["ssrRender", _sfc_ssrRender$d], ["__scopeId", "data-v-be03754a"]]);
+const Category = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["ssrRender", _sfc_ssrRender$d], ["__scopeId", "data-v-f1f6cf53"]]);
 const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Category

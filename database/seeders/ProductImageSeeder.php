@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
 use App\Models\Product;
@@ -15,12 +17,11 @@ class ProductImageSeeder extends Seeder
     {
         $products = Product::all();
 
-        $products->each(function ($product) {
-            ProductImage::factory(rand(3,6))
+        $products->each(function ($product): void {
+            ProductImage::factory(random_int(3, 6))
                 ->create([
                     'product_id' => $product->id,
                 ]);
         });
-
     }
 }

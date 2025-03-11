@@ -313,7 +313,7 @@
                         <!-- Pagination Start -->
                         <div
                             class="ec-pro-pagination"
-                            v-if="fullCategory.length > 10"
+                            v-if="pages.length > 1"
                         >
                             <div class="ec-pro-pagination">
                                 <ul class="ec-pro-pagination-inner">
