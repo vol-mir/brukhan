@@ -39,6 +39,27 @@
     * {
         direction: ltr;
     }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #fff; /* Цвет стрелок */
+        background-color: rgba(0, 0, 0, 0.5); /* Фон стрелок */
+        padding: 10px;
+        border-radius: 50%;
+    }
+
+    .swiper-button-next:hover,
+    .swiper-button-prev:hover {
+        background-color: rgba(0, 0, 0, 0.8); /* Эффект при наведении */
+    }
+
+    .background-blur {
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+        padding: 10px;
+        display: inline-block;
+        color: black;
+    }
 }
 .ec-slide-content {
     position: relative;
