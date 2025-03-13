@@ -3,26 +3,29 @@
     import Layout from '@/Layout.vue';
     import { useBodyClass } from '@/composables/useBodyClass';
     import { useImagePath } from '@/composables/useImagePath';
-    import InstagramFeed from '@/components/InstagramFeed.vue';
+    import { useSiteInfo } from '@/composables/useSiteInfo';
     import ListServices from '@/components/ListServices.vue';
-    import TestimonialReviews from '@/components/TestimonialReviews.vue';
+    import NewProducts from '@/components/NewProducts.vue';
+    import ListBrands from '@/components/ListBrands.vue';
 
     export default {
         name: 'AboutUs',
         layout: Layout,
         components: {
             InertiaLink,
-            InstagramFeed,
             ListServices,
-            TestimonialReviews,
+            NewProducts,
+            ListBrands,
         },
         setup() {
             useBodyClass('aboutus_page');
 
             const { getImagePath } = useImagePath();
+            const { siteInfoStore } = useSiteInfo();
 
             return {
                 getImagePath,
+                siteInfoStore,
             };
         },
     };
@@ -36,7 +39,9 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">About Us</h2>
+                            <h2 class="ec-breadcrumb-title">
+                                {{ $t('menu.about_us') }}
+                            </h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- breadcrumb-list start -->
@@ -47,7 +52,7 @@
                                     </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">
-                                    About Us
+                                    {{ $t('menu.about_us') }}
                                 </li>
                             </ul>
                             <!-- breadcrumb-list end -->
@@ -65,9 +70,11 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="section-title">
-                        <h2 class="ec-bg-title">About Us</h2>
-                        <h2 class="ec-title">About Us</h2>
-                        <p class="sub-title mb-3">About our business Firm</p>
+                        <h2 class="ec-bg-title">{{ $t('page.about_us') }}</h2>
+                        <h2 class="ec-title">{{ $t('page.about_us') }}</h2>
+                        <p class="sub-title mb-3">
+                            {{ $t('about_my_business') }}
+                        </p>
                     </div>
                 </div>
                 <div class="ec-common-wrapper">
@@ -78,7 +85,9 @@
                             <div class="ec-cms-block-inner">
                                 <img
                                     class="a-img"
-                                    :src="getImagePath('offer-image', '1.jpg')"
+                                    :src="
+                                        getImagePath('common', 'about-us.jpg')
+                                    "
                                     alt="about"
                                     loading="lazy"
                                 />
@@ -89,33 +98,10 @@
                         >
                             <div class="ec-cms-block-inner">
                                 <h3 class="ec-cms-block-title">
-                                    What is the ekka?
+                                    {{ siteInfoStore.full_name }}
                                 </h3>
                                 <p>
-                                    Electronic typesetting text of the printing
-                                    and typesetting industry. when an unknown
-                                    printer took a galley of type and scrambled
-                                    it to make a type specimen book. Lorem Ipsum
-                                    is simply dutmmy text ever since the 1500s,
-                                    It has survived not only, but also the leap
-                                    into electronic typesetting.
-                                </p>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the
-                                    printing. It has survived not only five
-                                    centuries, but also the leap into electronic
-                                    typesetting.
-                                </p>
-                                <p>
-                                    Also the leap into electronic typesetting
-                                    printing and typesetting industry. It has
-                                    survived not only five centuries, but also
-                                    the leap into electronic typesetting, when
-                                    an unknown printer took a galley of type and
-                                    scrambled it to make a type specimen book.
-                                    It has survived not only five centuries, but
-                                    also the leap into electronic typesetting,
-                                    remaining essentially unchanged.
+                                    {{ siteInfoStore.description }}
                                 </p>
                             </div>
                         </div>
@@ -126,7 +112,7 @@
     </section>
     <!-- About Us page end -->
 
-    <TestimonialReviews />
     <ListServices />
-    <InstagramFeed />
+    <NewProducts />
+    <ListBrands />
 </template>

@@ -65,6 +65,7 @@ class SiteInfoAction
             'company' => config('app.name'),
             'address' => $setting?->address,
             'full_name' => $setting?->full_name,
+            'description' => $setting?->description,
             'social_networks' => SocialNetworkResource::collection(SocialNetwork::query()->get()),
             'brands' => BrandResource::collection(Brand::query()->get()),
             'top_categories' => CategoryResource::collection($topCategories),

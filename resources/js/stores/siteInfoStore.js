@@ -8,6 +8,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
         company: null,
         address: null,
         full_name: null,
+        description: null,
         social_networks: [],
         brands: [],
         top_categories: [],
@@ -34,6 +35,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
                         this.company = response.company ?? null;
                         this.address = response.address ?? null;
                         this.full_name = response.full_name ?? null;
+                        this.description = response.description ?? null;
                         this.social_networks = response.social_networks || [];
                         this.brands = response.brands || [];
                         this.top_categories = response.top_categories || [];

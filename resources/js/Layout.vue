@@ -9,7 +9,7 @@
         <meta name="theme-color" content="#23aa08" />
 
         <!-- Favicons Icon -->
-        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     </InertiaHead>
     <AppLoader :loading="loading" />
     <AppHeader />

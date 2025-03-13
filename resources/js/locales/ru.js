@@ -89,4 +89,5 @@ export default {
     more_categories: 'Больше категорий',
     category: 'Категория',
     products_not_found: 'Продукты не найдены',
+    about_my_business: 'О моем бизнесе',
 };

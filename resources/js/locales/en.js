@@ -87,4 +87,5 @@ export default {
     more_categories: 'More Categories',
     category: 'Category',
     products_not_found: 'Products not found',
+    about_my_business: 'About my business',
 };
