@@ -1,10 +1,15 @@
 <template>
     <InertiaHead>
-        <title>{{ page?.title || 'Default Title' }}</title>
-        <meta
-            name="description"
-            :content="page?.description || 'Default Description'"
-        />
+        <title>{{ page?.title }}</title>
+        <meta name="description" :content="page?.description" />
+        <meta name="keywords" :content="page?.keywords" />
+        <meta name="country" content="RU" />
+        <meta name="author" content="Брухан Юрий Игоревич" />
+        <meta name="copyright" content="Brukhan Import" />
+        <meta name="theme-color" content="#23aa08" />
+
+        <!-- Favicons Icon -->
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon"/>
     </InertiaHead>
     <AppLoader :loading="loading" />
     <AppHeader />

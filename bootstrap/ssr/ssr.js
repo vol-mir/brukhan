@@ -1249,16 +1249,36 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<!--[-->`);
   _push(ssrRenderComponent(_component_InertiaHead, null, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
-      var _a, _b, _c, _d;
+      var _a, _b, _c, _d, _e, _f;
       if (_push2) {
-        _push2(`<title${_scopeId}>${ssrInterpolate(((_a = $props.page) == null ? void 0 : _a.title) || "Default Title")}</title><meta name="description"${ssrRenderAttr("content", ((_b = $props.page) == null ? void 0 : _b.description) || "Default Description")}${_scopeId}>`);
+        _push2(`<title${_scopeId}>${ssrInterpolate((_a = $props.page) == null ? void 0 : _a.title)}</title><meta name="description"${ssrRenderAttr("content", (_b = $props.page) == null ? void 0 : _b.description)}${_scopeId}><meta name="keywords"${ssrRenderAttr("content", (_c = $props.page) == null ? void 0 : _c.keywords)}${_scopeId}><meta name="country" content="RU"${_scopeId}><meta name="author" content="Брухан Юрий Игоревич"${_scopeId}><meta name="copyright" content="Brukhan Import"${_scopeId}><meta name="theme-color" content="#23aa08"${_scopeId}>`);
       } else {
         return [
-          createVNode("title", null, toDisplayString(((_c = $props.page) == null ? void 0 : _c.title) || "Default Title"), 1),
+          createVNode("title", null, toDisplayString((_d = $props.page) == null ? void 0 : _d.title), 1),
           createVNode("meta", {
             name: "description",
-            content: ((_d = $props.page) == null ? void 0 : _d.description) || "Default Description"
-          }, null, 8, ["content"])
+            content: (_e = $props.page) == null ? void 0 : _e.description
+          }, null, 8, ["content"]),
+          createVNode("meta", {
+            name: "keywords",
+            content: (_f = $props.page) == null ? void 0 : _f.keywords
+          }, null, 8, ["content"]),
+          createVNode("meta", {
+            name: "country",
+            content: "RU"
+          }),
+          createVNode("meta", {
+            name: "author",
+            content: "Брухан Юрий Игоревич"
+          }),
+          createVNode("meta", {
+            name: "copyright",
+            content: "Brukhan Import"
+          }),
+          createVNode("meta", {
+            name: "theme-color",
+            content: "#23aa08"
+          })
         ];
       }
     }),

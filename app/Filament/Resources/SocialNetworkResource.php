@@ -87,9 +87,6 @@ class SocialNetworkResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->height(50)
-                    ->label(__('fields.image')),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable()

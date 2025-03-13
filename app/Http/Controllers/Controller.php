@@ -18,44 +18,53 @@ abstract class Controller
     public function getPageData(TitleType $titleType, mixed $data): array
     {
         return match (true) {
-            $titleType === TitleType::Page && is_string($data) => (function () use ($data): array {
+            $titleType === TitleType::Page => (function () use ($data): array {
                 $page = Page::query()->whereName($data)->first();
                 $title = $page->title ?? config('app.name');
                 $description = $page->description ?? config('app.name');
+                $keywords = $page->keywords ?? config('app.name');
 
                 return [
                     'title' => $title,
-                    'description' => $description
+                    'description' => $description,
+                    'keywords' => $keywords,
                 ];
             })(),
 
             $titleType === TitleType::Product && $data instanceof Product => (function () use ($data): array {
                 $title = $data->name ?? config('app.name');
                 $description = $data->description ?? config('app.name');
+                $keywords = $data->name ?? config('app.name');
 
                 return [
                     'title' => $title,
-                    'description' => $description
+                    'description' => $description,
+                    'keywords' => $keywords,
                 ];
             })(),
 
             $titleType === TitleType::Category && $data instanceof Category => (function () use ($data): array {
                 $title = $data->name ?? config('app.name');
                 $description = $data->description ?? config('app.name');
+                $keywords = $data->name ?? config('app.name');
 
                 return [
                     'title' => $title,
-                    'description' => $description
+                    'description' => $description,
+                    'keywords' => $keywords,
                 ];
             })(),
 
             default => (function (): array {
+                $page = Page::query()->whereName('home')->first();
                 $title = config('app.name');
-                $description = config('app.name');
+                $description = $page->description ?? config('app.name');
+                $keywords = $page->keywords ?? config('app.name');
 
                 return [
                     'title' => $title,
-                    'description' => $description
+                    'description' => $description,
+                    'keywords' => $keywords,
                 ];
             })(),
         };
