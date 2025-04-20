@@ -44,7 +44,6 @@ export default {
         product: 'Product',
         shop: 'Shop',
     },
-    scroll_to_section: 'Scroll To Section',
     free_shipping: 'Free Shipping',
     free_shipping_description:
         'Free shipping on all US order or order above $200',

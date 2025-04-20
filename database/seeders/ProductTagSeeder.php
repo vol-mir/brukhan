@@ -18,7 +18,7 @@ class ProductTagSeeder extends Seeder
         $tags = Tag::all();
 
         Product::all()->each(function ($product) use ($tags): void {
-            $randomTags = $tags->random(random_int(1, 5))->pluck('id');
+            $randomTags = $tags->random(mt_rand(1, 5))->pluck('id');
 
             $product->tags()->sync($randomTags);
         });

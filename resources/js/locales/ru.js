@@ -44,7 +44,6 @@ export default {
         product: 'Продукт',
         shop: 'Магазин',
     },
-    scroll_to_section: 'Прокрутить до раздела',
     free_shipping: 'Бесплатная доставка',
     free_shipping_description:
         'Бесплатная доставка по США или для заказов свыше $200',

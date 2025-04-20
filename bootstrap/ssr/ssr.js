@@ -507,8 +507,6 @@ const _sfc_main$s = {
       const parsed = new URL(url, window.location.origin);
       return parsed.origin + parsed.pathname.replace(/\/$/, "");
     };
-    const getIconPath = (name) => getImagePath("icons", name);
-    const getMenuBannerPath = (name) => getImagePath("menu-banner", name);
     const categories = ref([]);
     const menuItems = computed(() => getMenuItems(t, categories.value));
     const isScrollingDown = ref(false);
@@ -545,8 +543,6 @@ const _sfc_main$s = {
       { immediate: true }
     );
     return {
-      getIconPath,
-      getMenuBannerPath,
       menuItems,
       isScrollingDown,
       isScrolledToTop,
@@ -566,13 +562,7 @@ function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
       item
     }, null, _parent));
   });
-  _push(`<!--]-->`);
-  if ($setup.isHomePage) {
-    _push(`<li class="dropdown scroll-to"><a href="javascript:void(0)"><img${ssrRenderAttr("src", $setup.getIconPath("scroll.svg"))} class="svg_img header_svg scroll" alt="scroll" loading="lazy"></a><ul class="sub-menu"><li class="menu_title">${ssrInterpolate(_ctx.$t("scroll_to_section"))}</li><li><a href="#topProducts" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.top_products"))}</a></li><li><a href="#categories" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.categories"))}</a></li><li><a href="#services" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.services"))}</a></li><li><a href="#arrivals" class="nav-scroll">${ssrInterpolate(_ctx.$t("menu.arrivals"))}</a></li></ul></li>`);
-  } else {
-    _push(`<!---->`);
-  }
-  _push(`</ul></div></div></div></div></div>`);
+  _push(`<!--]--></ul></div></div></div></div></div>`);
 }
 const _sfc_setup$s = _sfc_main$s.setup;
 _sfc_main$s.setup = (props, ctx) => {
@@ -3338,7 +3328,6 @@ const ru = {
     product: "Продукт",
     shop: "Магазин"
   },
-  scroll_to_section: "Прокрутить до раздела",
   free_shipping: "Бесплатная доставка",
   free_shipping_description: "Бесплатная доставка по США или для заказов свыше $200",
   support: "Круглосуточная поддержка",
@@ -3427,7 +3416,6 @@ const en = {
     product: "Product",
     shop: "Shop"
   },
-  scroll_to_section: "Scroll To Section",
   free_shipping: "Free Shipping",
   free_shipping_description: "Free shipping on all US order or order above $200",
   support: "24X7 Support",

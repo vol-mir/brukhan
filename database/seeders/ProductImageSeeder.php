@@ -18,7 +18,7 @@ class ProductImageSeeder extends Seeder
         $products = Product::all();
 
         $products->each(function ($product): void {
-            ProductImage::factory(random_int(3, 6))
+            ProductImage::factory(mt_rand(2, 4))
                 ->create([
                     'product_id' => $product->id,
                 ]);

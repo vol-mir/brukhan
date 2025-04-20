@@ -35,10 +35,6 @@
                 return parsed.origin + parsed.pathname.replace(/\/$/, '');
             };
 
-            const getIconPath = (name) => getImagePath('icons', name);
-            const getMenuBannerPath = (name) =>
-                getImagePath('menu-banner', name);
-
             const categories = ref([]);
             const menuItems = computed(() => getMenuItems(t, categories.value));
 
@@ -88,8 +84,6 @@
             );
 
             return {
-                getIconPath,
-                getMenuBannerPath,
                 menuItems,
                 isScrollingDown,
                 isScrolledToTop,
@@ -116,47 +110,6 @@
                                 :key="index"
                                 :item="item"
                             />
-                            <li class="dropdown scroll-to" v-if="isHomePage">
-                                <a href="javascript:void(0)">
-                                    <img
-                                        :src="getIconPath('scroll.svg')"
-                                        class="svg_img header_svg scroll"
-                                        alt="scroll"
-                                        loading="lazy"
-                                    />
-                                </a>
-                                <ul class="sub-menu">
-                                    <li class="menu_title">
-                                        {{ $t('scroll_to_section') }}
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#topProducts"
-                                            class="nav-scroll"
-                                        >
-                                            {{ $t('menu.top_products') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="#categories"
-                                            class="nav-scroll"
-                                        >
-                                            {{ $t('menu.categories') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#services" class="nav-scroll">
-                                            {{ $t('menu.services') }}
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#arrivals" class="nav-scroll">
-                                            {{ $t('menu.arrivals') }}
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                 </div>
