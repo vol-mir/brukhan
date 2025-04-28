@@ -1,4 +1,5 @@
 <script>
+    import { computed } from 'vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
     import { useBodyClass } from '@/composables/useBodyClass';
@@ -23,9 +24,15 @@
             const { getImagePath } = useImagePath();
             const { siteInfoStore } = useSiteInfo();
 
+            const formattedDescription = computed(() =>
+                siteInfoStore.description
+                    ? siteInfoStore.description.replace(/\n/g, '<br>')
+                    : ''
+            );
+
             return {
                 getImagePath,
-                siteInfoStore,
+                formattedDescription,
             };
         },
     };
@@ -70,11 +77,10 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="section-title">
-                        <h2 class="ec-bg-title">{{ $t('page.about_us') }}</h2>
-                        <h2 class="ec-title">{{ $t('page.about_us') }}</h2>
-                        <p class="sub-title mb-3">
+                        <h1 class="ec-bg-title">
                             {{ $t('about_my_business') }}
-                        </p>
+                        </h1>
+                        <h1 class="ec-title">{{ $t('about_my_business') }}</h1>
                     </div>
                 </div>
                 <div class="ec-common-wrapper">
@@ -88,7 +94,7 @@
                                     :src="
                                         getImagePath('common', 'about-us.jpg')
                                     "
-                                    alt="about"
+                                    alt="about-my-business"
                                     loading="lazy"
                                 />
                             </div>
@@ -97,12 +103,7 @@
                             class="col-md-6 ec-cms-block ec-abcms-block text-center"
                         >
                             <div class="ec-cms-block-inner">
-                                <h3 class="ec-cms-block-title">
-                                    {{ siteInfoStore.full_name }}
-                                </h3>
-                                <p>
-                                    {{ siteInfoStore.description }}
-                                </p>
+                                <p v-html="formattedDescription"></p>
                             </div>
                         </div>
                     </div>

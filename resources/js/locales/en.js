@@ -45,8 +45,7 @@ export default {
         shop: 'Shop',
     },
     free_shipping: 'Free Shipping',
-    free_shipping_description:
-        'Free shipping on all US order or order above $200',
+    free_shipping_description: 'Free shipping for orders over ₽16 000',
     support: '24X7 Support',
     support_description: 'Contact us 24 hours a day, 7 days a week',
     about_return: '30 Days Return',
@@ -86,5 +85,5 @@ export default {
     more_categories: 'More Categories',
     category: 'Category',
     products_not_found: 'Products not found',
-    about_my_business: 'About my business',
+    about_my_business: 'About our business',
 };

@@ -45,8 +45,7 @@ export default {
         shop: 'Магазин',
     },
     free_shipping: 'Бесплатная доставка',
-    free_shipping_description:
-        'Бесплатная доставка по США или для заказов свыше $200',
+    free_shipping_description: 'Бесплатная доставка для заказов свыше ₽16 000',
     support: 'Круглосуточная поддержка',
     support_description: 'Свяжитесь с нами 24 часа в сутки, 7 дней в неделю',
     about_return: 'Возврат в течение 30 дней',
@@ -88,5 +87,5 @@ export default {
     more_categories: 'Больше категорий',
     category: 'Категория',
     products_not_found: 'Продукты не найдены',
-    about_my_business: 'О моем бизнесе',
+    about_my_business: 'О нашем бизнесе',
 };

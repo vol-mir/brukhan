@@ -1,5 +1,4 @@
 <script>
-    import { getImagePath } from '@/utils/imageHelper';
     import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { getMenuItems } from '@/data/menuData';
     import MenuItem from './MenuItem.vue';

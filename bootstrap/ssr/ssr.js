@@ -1,5 +1,5 @@
-import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
 import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createVNode, inject, createTextVNode, toDisplayString, computed, onUnmounted, watch, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
+import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderComponent, ssrRenderStyle, ssrRenderSlot, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
@@ -1571,9 +1571,12 @@ const _sfc_main$f = {
     useBodyClass("aboutus_page");
     const { getImagePath: getImagePath2 } = useImagePath();
     const { siteInfoStore } = useSiteInfo();
+    const formattedDescription = computed(
+      () => siteInfoStore.description ? siteInfoStore.description.replace(/\n/g, "<br>") : ""
+    );
     return {
       getImagePath: getImagePath2,
-      siteInfoStore
+      formattedDescription
     };
   }
 };
@@ -1597,10 +1600,10 @@ function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.about_us"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">${ssrInterpolate(_ctx.$t("page.about_us"))}</h2><h2 class="ec-title">${ssrInterpolate(_ctx.$t("page.about_us"))}</h2><p class="sub-title mb-3">${ssrInterpolate(_ctx.$t("about_my_business"))}</p></div></div><div class="ec-common-wrapper"><div class="row"><div class="col-md-6 ec-cms-block ec-abcms-block text-center"><div class="ec-cms-block-inner"><img class="a-img"${ssrRenderAttr(
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.about_us"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("about_my_business"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("about_my_business"))}</h1></div></div><div class="ec-common-wrapper"><div class="row"><div class="col-md-6 ec-cms-block ec-abcms-block text-center"><div class="ec-cms-block-inner"><img class="a-img"${ssrRenderAttr(
     "src",
     $setup.getImagePath("common", "about-us.jpg")
-  )} alt="about" loading="lazy"></div></div><div class="col-md-6 ec-cms-block ec-abcms-block text-center"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title">${ssrInterpolate($setup.siteInfoStore.full_name)}</h3><p>${ssrInterpolate($setup.siteInfoStore.description)}</p></div></div></div></div></div></div></section>`);
+  )} alt="about-my-business" loading="lazy"></div></div><div class="col-md-6 ec-cms-block ec-abcms-block text-center"><div class="ec-cms-block-inner"><p>${$setup.formattedDescription ?? ""}</p></div></div></div></div></div></div></section>`);
   _push(ssrRenderComponent(_component_ListServices, null, null, _parent));
   _push(ssrRenderComponent(_component_NewProducts, null, null, _parent));
   _push(ssrRenderComponent(_component_ListBrands, null, null, _parent));
@@ -3329,7 +3332,7 @@ const ru = {
     shop: "Магазин"
   },
   free_shipping: "Бесплатная доставка",
-  free_shipping_description: "Бесплатная доставка по США или для заказов свыше $200",
+  free_shipping_description: "Бесплатная доставка для заказов свыше ₽16 000",
   support: "Круглосуточная поддержка",
   support_description: "Свяжитесь с нами 24 часа в сутки, 7 дней в неделю",
   about_return: "Возврат в течение 30 дней",
@@ -3369,7 +3372,7 @@ const ru = {
   more_categories: "Больше категорий",
   category: "Категория",
   products_not_found: "Продукты не найдены",
-  about_my_business: "О моем бизнесе"
+  about_my_business: "О нашем бизнесе"
 };
 const en = {
   locale: {
@@ -3417,7 +3420,7 @@ const en = {
     shop: "Shop"
   },
   free_shipping: "Free Shipping",
-  free_shipping_description: "Free shipping on all US order or order above $200",
+  free_shipping_description: "Free shipping for orders over ₽16 000",
   support: "24X7 Support",
   support_description: "Contact us 24 hours a day, 7 days a week",
   about_return: "30 Days Return",
@@ -3457,7 +3460,7 @@ const en = {
   more_categories: "More Categories",
   category: "Category",
   products_not_found: "Products not found",
-  about_my_business: "About my business"
+  about_my_business: "About our business"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({
