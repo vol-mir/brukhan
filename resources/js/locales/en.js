@@ -25,6 +25,8 @@ export default {
     contact_us: 'Contact us',
     call_us: 'Call us',
     email: 'Email',
+    phone: 'Phone',
+    address: 'Address',
     menu: {
         home: 'Home',
         categories: 'Categories',
@@ -87,4 +89,12 @@ export default {
     products_not_found: 'Products not found',
     about_my_business: 'About our business',
     full_text_for_faq: 'Frequently asked questions',
+    form: {
+        first_name: 'First name',
+        last_name: 'Last name',
+        email: 'Email',
+        phone: 'Phone number',
+        message: 'Message',
+        send: 'Send',
+    },
 };

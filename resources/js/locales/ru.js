@@ -25,6 +25,8 @@ export default {
     contact_us: 'Свяжитесь с нами',
     call_us: 'Позвоните нам',
     email: 'Email',
+    phone: 'Телефон',
+    address: 'Адрес',
     menu: {
         home: 'Главная',
         categories: 'Категории',
@@ -89,4 +91,12 @@ export default {
     products_not_found: 'Продукты не найдены',
     about_my_business: 'О нашем бизнесе',
     full_text_for_faq: 'Часто задаваемые вопросы',
+    form: {
+        first_name: 'Имя',
+        last_name: 'Фамилия',
+        email: 'Email',
+        phone: 'Телефон',
+        message: 'Сообщение',
+        send: 'Отправить',
+    },
 };

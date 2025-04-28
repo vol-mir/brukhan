@@ -37,7 +37,9 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">FAQ</h2>
+                            <h2 class="ec-breadcrumb-title">
+                                {{ $t('menu.faq') }}
+                            </h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- breadcrumb-list start -->
@@ -47,7 +49,9 @@
                                         {{ $t('menu.home') }}
                                     </InertiaLink>
                                 </li>
-                                <li class="ec-breadcrumb-item active">FAQ</li>
+                                <li class="ec-breadcrumb-item active">
+                                    {{ $t('menu.faq') }}
+                                </li>
                             </ul>
                             <!-- breadcrumb-list end -->
                         </div>

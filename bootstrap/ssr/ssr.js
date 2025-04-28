@@ -93,7 +93,10 @@ const useSiteInfoStore = defineStore("siteInfo", {
     categories: [],
     top_products: [],
     loaded: false,
-    loadingPromise: null
+    loadingPromise: null,
+    map: null,
+    emails: [],
+    phones: []
   }),
   actions: {
     async fetchSiteInfo() {
@@ -112,6 +115,9 @@ const useSiteInfoStore = defineStore("siteInfo", {
           this.description = response.description ?? null;
           this.social_networks = response.social_networks || [];
           this.brands = response.brands || [];
+          this.map = response.map || null;
+          this.emails = response.emails || [];
+          this.phones = response.phones || [];
           this.top_categories = response.top_categories || [];
           this.categories = response.categories || [];
           this.top_products = response.top_products || [];
@@ -1894,11 +1900,15 @@ const _sfc_main$d = {
   },
   setup() {
     useBodyClass("contact_us_page");
+    const { siteInfoStore } = useSiteInfo();
+    return {
+      siteInfoStore
+    };
   }
 };
 function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">Contact Us</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.contact_us"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: _ctx.route("home")
   }, {
@@ -1913,7 +1923,15 @@ function _sfc_ssrRender$d(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active"> Contact Us </li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="ec-common-wrapper"><div class="ec-contact-leftside"><div class="ec-contact-container"><div class="ec-contact-form"><form action="#" method="post"><span class="ec-contact-wrap"><label>First Name*</label><input type="text" name="firstname" placeholder="Enter your first name" required></span><span class="ec-contact-wrap"><label>Last Name*</label><input type="text" name="lastname" placeholder="Enter your last name" required></span><span class="ec-contact-wrap"><label>Email*</label><input type="email" name="email" placeholder="Enter your email address" required></span><span class="ec-contact-wrap"><label>Phone Number*</label><input type="text" name="phonenumber" placeholder="Enter your phone number" required></span><span class="ec-contact-wrap"><label>Comments/Questions*</label><textarea name="address" placeholder="Please leave your comments here.."></textarea></span><span class="ec-contact-wrap ec-recaptcha"><span class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></span><input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha"><span class="help-block with-errors"></span></span><span class="ec-contact-wrap ec-contact-btn"><button class="btn btn-primary" type="submit"> Submit </button></span></form></div></div></div><div class="ec-contact-rightside"><div class="ec_contact_map"><div class="ec_map_canvas"><iframe id="ec_map_canvas" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d71263.65594328841!2d144.93151478652146!3d-37.8734290780509!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1615963387757!5m2!1sen!2sus"></iframe><a href="https://sites.google.com/view/maps-api-v2/mapv2"></a></div></div><div class="ec_contact_info"><h1 class="ec_contact_info_head">Contact us</h1><ul class="align-items-center"><li class="ec-contact-item"><i class="ecicon eci-map-marker" aria-hidden="true"></i><span>Address :</span> 71 Pilgrim Avenue Chevy Chase, east california. east california. MD 20815, USA </li><li class="ec-contact-item align-items-center"><i class="ecicon eci-phone" aria-hidden="true"></i><span>Call Us :</span><a href="tel:+440123456789"> +44 0123 456 789 </a></li><li class="ec-contact-item align-items-center"><i class="ecicon eci-envelope" aria-hidden="true"></i><span>Email :</span><a href="mailto:example@ec-email.com"> example@ec-email.com </a></li></ul></div></div></div></div></div></section><!--]-->`);
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.contact_us"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="ec-common-wrapper"><div class="ec-contact-leftside"><div class="ec-contact-container"><div class="ec-contact-form"><form action="#" method="post"><span class="ec-contact-wrap"><label>${ssrInterpolate(_ctx.$t("form.first_name"))}* </label><input type="text" name="firstname"${ssrRenderAttr("placeholder", _ctx.$t("form.first_name"))} required></span><span class="ec-contact-wrap"><label>${ssrInterpolate(_ctx.$t("form.last_name"))}* </label><input type="text" name="lastname"${ssrRenderAttr("placeholder", _ctx.$t("form.last_name"))} required></span><span class="ec-contact-wrap"><label>${ssrInterpolate(_ctx.$t("form.email"))}*</label><input type="email" name="email"${ssrRenderAttr("placeholder", _ctx.$t("form.email"))} required></span><span class="ec-contact-wrap"><label>${ssrInterpolate(_ctx.$t("form.phone"))}*</label><input type="text" name="phonenumber"${ssrRenderAttr("placeholder", _ctx.$t("form.phone"))} required></span><span class="ec-contact-wrap"><label>${ssrInterpolate(_ctx.$t("form.message"))}*</label><textarea name="address"${ssrRenderAttr("placeholder", _ctx.$t("form.message"))}></textarea></span><span class="ec-contact-wrap ec-recaptcha"><span class="g-recaptcha" data-sitekey="6LfKURIUAAAAAO50vlwWZkyK_G2ywqE52NU7YO0S" data-callback="verifyRecaptchaCallback" data-expired-callback="expiredRecaptchaCallback"></span><input class="form-control d-none" data-recaptcha="true" required data-error="Please complete the Captcha"><span class="help-block with-errors"></span></span><span class="ec-contact-wrap ec-contact-btn"><button class="btn btn-primary" type="submit">${ssrInterpolate(_ctx.$t("form.send"))}</button></span></form></div></div></div><div class="ec-contact-rightside"><div class="ec_contact_map"><div class="ec_map_canvas"><iframe id="ec_map_canvas"${ssrRenderAttr("src", $setup.siteInfoStore.map)}></iframe></div></div><div class="ec_contact_info"><h1 class="ec_contact_info_head">${ssrInterpolate(_ctx.$t("page.contact_us"))}</h1><ul class="align-items-center"><li class="ec-contact-item"><i class="ecicon eci-map-marker" aria-hidden="true"></i><span>${ssrInterpolate(_ctx.$t("address"))} :</span> ${ssrInterpolate($setup.siteInfoStore.address)}</li><!--[-->`);
+  ssrRenderList($setup.siteInfoStore.phones, (phone, index) => {
+    _push(`<li class="ec-contact-item align-items-center"><i class="ecicon eci-phone" aria-hidden="true"></i><span>${ssrInterpolate(_ctx.$t("phone"))} : </span><a${ssrRenderAttr("href", `tel:${phone.replace(/\s+/g, "")}`)}>${ssrInterpolate(phone)}</a></li>`);
+  });
+  _push(`<!--]--><!--[-->`);
+  ssrRenderList($setup.siteInfoStore.emails, (email, index) => {
+    _push(`<li class="ec-contact-item align-items-center"><i class="ecicon eci-envelope" aria-hidden="true"></i><span>${ssrInterpolate(_ctx.$t("email"))} :</span><a${ssrRenderAttr("href", `mailto:${email}`)}>${ssrInterpolate(email)}</a></li>`);
+  });
+  _push(`<!--]--></ul></div></div></div></div></div></section><!--]-->`);
 }
 const _sfc_setup$d = _sfc_main$d.setup;
 _sfc_main$d.setup = (props, ctx) => {
@@ -2030,7 +2048,7 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   const _component_FaqAccordion = resolveComponent("FaqAccordion");
   const _component_ListServices = resolveComponent("ListServices");
   const _component_ListBrands = resolveComponent("ListBrands");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">FAQ</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.faq"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: _ctx.route("home")
   }, {
@@ -2045,7 +2063,7 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">FAQ</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("full_text_for_faq"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("full_text_for_faq"))}</h1></div></div><div class="ec-faq-wrapper"><!--[-->`);
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.faq"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("full_text_for_faq"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("full_text_for_faq"))}</h1></div></div><div class="ec-faq-wrapper"><!--[-->`);
   ssrRenderList($setup.faqItems, (faq, faqIndex) => {
     _push(`<div class="ec-faq-container"><h2 class="ec-faq-heading">${ssrInterpolate(faq.name)}</h2><div id="ec-faq"><!--[-->`);
     ssrRenderList(faq.items, (item, itemIndex) => {
@@ -3316,6 +3334,8 @@ const ru = {
   contact_us: "Свяжитесь с нами",
   call_us: "Позвоните нам",
   email: "Email",
+  phone: "Телефон",
+  address: "Адрес",
   menu: {
     home: "Главная",
     categories: "Категории",
@@ -3377,7 +3397,15 @@ const ru = {
   category: "Категория",
   products_not_found: "Продукты не найдены",
   about_my_business: "О нашем бизнесе",
-  full_text_for_faq: "Часто задаваемые вопросы"
+  full_text_for_faq: "Часто задаваемые вопросы",
+  form: {
+    first_name: "Имя",
+    last_name: "Фамилия",
+    email: "Email",
+    phone: "Телефон",
+    message: "Сообщение",
+    send: "Отправить"
+  }
 };
 const en = {
   locale: {
@@ -3405,6 +3433,8 @@ const en = {
   contact_us: "Contact us",
   call_us: "Call us",
   email: "Email",
+  phone: "Phone",
+  address: "Address",
   menu: {
     home: "Home",
     categories: "Categories",
@@ -3466,7 +3496,15 @@ const en = {
   category: "Category",
   products_not_found: "Products not found",
   about_my_business: "About our business",
-  full_text_for_faq: "Frequently asked questions"
+  full_text_for_faq: "Frequently asked questions",
+  form: {
+    first_name: "First name",
+    last_name: "Last name",
+    email: "Email",
+    phone: "Phone number",
+    message: "Message",
+    send: "Send"
+  }
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({

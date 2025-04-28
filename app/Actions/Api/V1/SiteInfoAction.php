@@ -32,6 +32,16 @@ class SiteInfoAction
             ->where('is_main', true)
             ->value('value');
 
+        $phones = Contact::query()
+            ->whereHas('contactType', fn($q) => $q->where('slug', 'phone'))
+            ->pluck('value')
+            ->toArray();
+
+        $emails = Contact::query()
+            ->whereHas('contactType', fn($q) => $q->where('slug', 'email'))
+            ->pluck('value')
+            ->toArray();
+
         $setting = Setting::query()
             ->where('slug', 'main')
             ->first();
@@ -62,10 +72,13 @@ class SiteInfoAction
         return [
             'main_phone' => $mainPhone,
             'main_email' => $mainEmail,
+            'phones' => $phones,
+            'emails' => $emails,
             'company' => config('app.name'),
             'address' => $setting?->address,
             'full_name' => $setting?->full_name,
             'description' => $setting?->description,
+            'map' => $setting?->map,
             'social_networks' => SocialNetworkResource::collection(SocialNetwork::query()->get()),
             'brands' => BrandResource::collection(Brand::query()->get()),
             'top_categories' => CategoryResource::collection($topCategories),

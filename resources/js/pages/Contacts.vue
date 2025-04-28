@@ -2,6 +2,7 @@
     import { Link as InertiaLink } from '@inertiajs/vue3';
     import Layout from '@/Layout.vue';
     import { useBodyClass } from '@/composables/useBodyClass';
+    import { useSiteInfo } from '@/composables/useSiteInfo';
 
     export default {
         name: 'Contacts',
@@ -11,6 +12,12 @@
         },
         setup() {
             useBodyClass('contact_us_page');
+
+            const { siteInfoStore } = useSiteInfo();
+
+            return {
+                siteInfoStore,
+            };
         },
     };
 </script>
@@ -23,7 +30,9 @@
                 <div class="col-12">
                     <div class="row ec_breadcrumb_inner">
                         <div class="col-md-6 col-sm-12">
-                            <h2 class="ec-breadcrumb-title">Contact Us</h2>
+                            <h2 class="ec-breadcrumb-title">
+                                {{ $t('menu.contact_us') }}
+                            </h2>
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <!-- breadcrumb-list start -->
@@ -34,7 +43,7 @@
                                     </InertiaLink>
                                 </li>
                                 <li class="ec-breadcrumb-item active">
-                                    Contact Us
+                                    {{ $t('menu.contact_us') }}
                                 </li>
                             </ul>
                             <!-- breadcrumb-list end -->
@@ -56,46 +65,50 @@
                             <div class="ec-contact-form">
                                 <form action="#" method="post">
                                     <span class="ec-contact-wrap">
-                                        <label>First Name*</label>
+                                        <label>
+                                            {{ $t('form.first_name') }}*
+                                        </label>
                                         <input
                                             type="text"
                                             name="firstname"
-                                            placeholder="Enter your first name"
+                                            :placeholder="$t('form.first_name')"
                                             required
                                         />
                                     </span>
                                     <span class="ec-contact-wrap">
-                                        <label>Last Name*</label>
+                                        <label>
+                                            {{ $t('form.last_name') }}*
+                                        </label>
                                         <input
                                             type="text"
                                             name="lastname"
-                                            placeholder="Enter your last name"
+                                            :placeholder="$t('form.last_name')"
                                             required
                                         />
                                     </span>
                                     <span class="ec-contact-wrap">
-                                        <label>Email*</label>
+                                        <label>{{ $t('form.email') }}*</label>
                                         <input
                                             type="email"
                                             name="email"
-                                            placeholder="Enter your email address"
+                                            :placeholder="$t('form.email')"
                                             required
                                         />
                                     </span>
                                     <span class="ec-contact-wrap">
-                                        <label>Phone Number*</label>
+                                        <label>{{ $t('form.phone') }}*</label>
                                         <input
                                             type="text"
                                             name="phonenumber"
-                                            placeholder="Enter your phone number"
+                                            :placeholder="$t('form.phone')"
                                             required
                                         />
                                     </span>
                                     <span class="ec-contact-wrap">
-                                        <label>Comments/Questions*</label>
+                                        <label>{{ $t('form.message') }}*</label>
                                         <textarea
                                             name="address"
-                                            placeholder="Please leave your comments here.."
+                                            :placeholder="$t('form.message')"
                                         ></textarea>
                                     </span>
                                     <span class="ec-contact-wrap ec-recaptcha">
@@ -122,7 +135,7 @@
                                             class="btn btn-primary"
                                             type="submit"
                                         >
-                                            Submit
+                                            {{ $t('form.send') }}
                                         </button>
                                     </span>
                                 </form>
@@ -134,43 +147,55 @@
                             <div class="ec_map_canvas">
                                 <iframe
                                     id="ec_map_canvas"
-                                    src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d71263.65594328841!2d144.93151478652146!3d-37.8734290780509!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1615963387757!5m2!1sen!2sus"
+                                    :src="siteInfoStore.map"
                                 ></iframe>
-                                <a
-                                    href="https://sites.google.com/view/maps-api-v2/mapv2"
-                                ></a>
                             </div>
                         </div>
                         <div class="ec_contact_info">
-                            <h1 class="ec_contact_info_head">Contact us</h1>
+                            <h1 class="ec_contact_info_head">
+                                {{ $t('page.contact_us') }}
+                            </h1>
                             <ul class="align-items-center">
                                 <li class="ec-contact-item">
                                     <i
                                         class="ecicon eci-map-marker"
                                         aria-hidden="true"
                                     ></i>
-                                    <span>Address :</span>
-                                    71 Pilgrim Avenue Chevy Chase, east
-                                    california. east california. MD 20815, USA
+                                    <span>{{ $t('address') }} :</span>
+                                    {{ siteInfoStore.address }}
                                 </li>
-                                <li class="ec-contact-item align-items-center">
+                                <li
+                                    v-for="(
+                                        phone, index
+                                    ) in siteInfoStore.phones"
+                                    :key="index"
+                                    class="ec-contact-item align-items-center"
+                                >
                                     <i
                                         class="ecicon eci-phone"
                                         aria-hidden="true"
                                     ></i>
-                                    <span>Call Us :</span>
-                                    <a href="tel:+440123456789">
-                                        +44 0123 456 789
+                                    <span>{{ $t('phone') }} :&nbsp;</span>
+                                    <a
+                                        :href="`tel:${phone.replace(/\s+/g, '')}`"
+                                    >
+                                        {{ phone }}
                                     </a>
                                 </li>
-                                <li class="ec-contact-item align-items-center">
+                                <li
+                                    v-for="(
+                                        email, index
+                                    ) in siteInfoStore.emails"
+                                    :key="index"
+                                    class="ec-contact-item align-items-center"
+                                >
                                     <i
                                         class="ecicon eci-envelope"
                                         aria-hidden="true"
                                     ></i>
-                                    <span>Email :</span>
-                                    <a href="mailto:example@ec-email.com">
-                                        example@ec-email.com
+                                    <span>{{ $t('email') }} :</span>
+                                    <a :href="`mailto:${email}`">
+                                        {{ email }}
                                     </a>
                                 </li>
                             </ul>
