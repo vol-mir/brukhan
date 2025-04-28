@@ -86,4 +86,5 @@ export default {
     category: 'Category',
     products_not_found: 'Products not found',
     about_my_business: 'About our business',
+    full_text_for_faq: 'Frequently asked questions',
 };

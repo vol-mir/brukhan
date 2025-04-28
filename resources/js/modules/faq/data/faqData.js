@@ -1,56 +1,41 @@
 export const getFaqItems = () => [
     {
-        name: 'General',
+        name: 'Общие вопросы',
         items: [
             {
-                title: 'What is the multi vendor services?',
-                content: 'Lorem Ipsum is simply dummy text...',
-            },
-            {
-                title: 'How to buy many products at a time?',
-                content: 'Lorem Ipsum is simply dummy text...',
-            },
-            {
-                title: 'Refund policy for customer',
+                title: 'Как оформить заказ на доставку товара из Европы?',
                 content:
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem\n' +
-                    "Ipsum has been the industry's standard dummy text ever since the 1500s, when an\n" +
-                    'unknown printer took a galley of type and scrambled it to make a type specimen\n' +
-                    'book. It has survived not only five centuries, but also the leap into electronic\n' +
-                    'typesetting, remaining essentially unchanged. ',
+                    'Свяжитесь с нами любым удобным способом - по телефону, email или через сайт. Опишите желаемый товар, и наши сотрудники подберут для вас лучшие предложения.',
             },
             {
-                title: 'Exchange policy for customer',
-                content: 'Lorem Ipsum is simply dummy text...',
+                title: 'Требуется ли предоплата?',
+                content:
+                    'В большинстве случаев мы работаем без предоплаты - оплата осуществляется после приемки заказа на складе.',
             },
             {
-                title: 'Give away products available',
-                content: 'Lorem Ipsum is simply dummy text...',
-            },
-        ],
-    },
-    {
-        name: 'Information',
-        items: [
-            {
-                title: 'What is the multi vendor services?',
-                content: 'Lorem Ipsum is simply dummy text...',
+                title: 'Как рассчитывается стоимость доставки?',
+                content:
+                    'Стоимость зависит от объёма, веса, категории товара, а также страны-поставщика и места назначения. Мы предложим вам оптимальные условия после подтверждения заказа.',
             },
             {
-                title: 'How to buy many products at a time?',
-                content: 'Lorem Ipsum is simply dummy text...',
+                title: 'Какие товары можно заказать?',
+                content:
+                    'Мы осуществляем доставку большинства легальных товаров. Если у вас есть сомнения, уточните у наших специалистов - мы проверим возможность доставки.',
             },
             {
-                title: 'Refund policy for customer',
-                content: 'Lorem Ipsum is simply dummy text...',
+                title: 'Как проходит таможенное оформление?',
+                content:
+                    'Все вопросы, связанные с оформлением документов и таможенной очисткой, мы берём на себя. Вам не придётся заниматься этим самостоятельно.',
             },
             {
-                title: 'Exchange policy for customer',
-                content: 'Lorem Ipsum is simply dummy text...',
+                title: 'Можно ли отследить заказ?',
+                content:
+                    'Да, после оформления отправки по России и СНГ через СДЭК мы предоставим вам трек-номер для отслеживания.',
             },
             {
-                title: 'Give away products available',
-                content: 'Lorem Ipsum is simply dummy text...',
+                title: 'Как оплатить заказ?',
+                content:
+                    'Оплата производится после прибытия и приемки товара на нашем складе. Возможны разные варианты оплаты по согласованию.',
             },
         ],
     },

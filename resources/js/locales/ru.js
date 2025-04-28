@@ -88,4 +88,5 @@ export default {
     category: 'Категория',
     products_not_found: 'Продукты не найдены',
     about_my_business: 'О нашем бизнесе',
+    full_text_for_faq: 'Часто задаваемые вопросы',
 };

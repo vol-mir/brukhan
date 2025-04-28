@@ -1944,52 +1944,35 @@ _sfc_main$c.setup = (props, ctx) => {
 const FaqAccordion = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c]]);
 const getFaqItems = () => [
   {
-    name: "General",
+    name: "Общие вопросы",
     items: [
       {
-        title: "What is the multi vendor services?",
-        content: "Lorem Ipsum is simply dummy text..."
+        title: "Как оформить заказ на доставку товара из Европы?",
+        content: "Свяжитесь с нами любым удобным способом - по телефону, email или через сайт. Опишите желаемый товар, и наши сотрудники подберут для вас лучшие предложения."
       },
       {
-        title: "How to buy many products at a time?",
-        content: "Lorem Ipsum is simply dummy text..."
+        title: "Требуется ли предоплата?",
+        content: "В большинстве случаев мы работаем без предоплаты - оплата осуществляется после приемки заказа на складе."
       },
       {
-        title: "Refund policy for customer",
-        content: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem\nIpsum has been the industry's standard dummy text ever since the 1500s, when an\nunknown printer took a galley of type and scrambled it to make a type specimen\nbook. It has survived not only five centuries, but also the leap into electronic\ntypesetting, remaining essentially unchanged. "
+        title: "Как рассчитывается стоимость доставки?",
+        content: "Стоимость зависит от объёма, веса, категории товара, а также страны-поставщика и места назначения. Мы предложим вам оптимальные условия после подтверждения заказа."
       },
       {
-        title: "Exchange policy for customer",
-        content: "Lorem Ipsum is simply dummy text..."
+        title: "Какие товары можно заказать?",
+        content: "Мы осуществляем доставку большинства легальных товаров. Если у вас есть сомнения, уточните у наших специалистов - мы проверим возможность доставки."
       },
       {
-        title: "Give away products available",
-        content: "Lorem Ipsum is simply dummy text..."
-      }
-    ]
-  },
-  {
-    name: "Information",
-    items: [
-      {
-        title: "What is the multi vendor services?",
-        content: "Lorem Ipsum is simply dummy text..."
+        title: "Как проходит таможенное оформление?",
+        content: "Все вопросы, связанные с оформлением документов и таможенной очисткой, мы берём на себя. Вам не придётся заниматься этим самостоятельно."
       },
       {
-        title: "How to buy many products at a time?",
-        content: "Lorem Ipsum is simply dummy text..."
+        title: "Можно ли отследить заказ?",
+        content: "Да, после оформления отправки по России и СНГ через СДЭК мы предоставим вам трек-номер для отслеживания."
       },
       {
-        title: "Refund policy for customer",
-        content: "Lorem Ipsum is simply dummy text..."
-      },
-      {
-        title: "Exchange policy for customer",
-        content: "Lorem Ipsum is simply dummy text..."
-      },
-      {
-        title: "Give away products available",
-        content: "Lorem Ipsum is simply dummy text..."
+        title: "Как оплатить заказ?",
+        content: "Оплата производится после прибытия и приемки товара на нашем складе. Возможны разные варианты оплаты по согласованию."
       }
     ]
   }
@@ -2014,7 +1997,9 @@ const _sfc_main$b = {
   layout: Layout,
   components: {
     InertiaLink: Link,
-    FaqAccordion
+    FaqAccordion,
+    ListServices,
+    ListBrands
   },
   setup() {
     const { activeIndexes, toggleFaq } = useFaq();
@@ -2029,6 +2014,8 @@ const _sfc_main$b = {
 function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_FaqAccordion = resolveComponent("FaqAccordion");
+  const _component_ListServices = resolveComponent("ListServices");
+  const _component_ListBrands = resolveComponent("ListBrands");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">FAQ</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: _ctx.route("home")
@@ -2044,7 +2031,7 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">FAQ</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">FAQ</h2><h2 class="ec-title">FAQ</h2><p class="sub-title mb-3"> Customer service management </p></div></div><div class="ec-faq-wrapper"><!--[-->`);
+  _push(`</li><li class="ec-breadcrumb-item active">FAQ</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("full_text_for_faq"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("full_text_for_faq"))}</h1></div></div><div class="ec-faq-wrapper"><!--[-->`);
   ssrRenderList($setup.faqItems, (faq, faqIndex) => {
     _push(`<div class="ec-faq-container"><h2 class="ec-faq-heading">${ssrInterpolate(faq.name)}</h2><div id="ec-faq"><!--[-->`);
     ssrRenderList(faq.items, (item, itemIndex) => {
@@ -2060,7 +2047,10 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     });
     _push(`<!--]--></div></div>`);
   });
-  _push(`<!--]--></div></div></div></section><!--]-->`);
+  _push(`<!--]--></div></div></div></section>`);
+  _push(ssrRenderComponent(_component_ListServices, null, null, _parent));
+  _push(ssrRenderComponent(_component_ListBrands, null, null, _parent));
+  _push(`<!--]-->`);
 }
 const _sfc_setup$b = _sfc_main$b.setup;
 _sfc_main$b.setup = (props, ctx) => {
@@ -3372,7 +3362,8 @@ const ru = {
   more_categories: "Больше категорий",
   category: "Категория",
   products_not_found: "Продукты не найдены",
-  about_my_business: "О нашем бизнесе"
+  about_my_business: "О нашем бизнесе",
+  full_text_for_faq: "Часто задаваемые вопросы"
 };
 const en = {
   locale: {
@@ -3460,7 +3451,8 @@ const en = {
   more_categories: "More Categories",
   category: "Category",
   products_not_found: "Products not found",
-  about_my_business: "About our business"
+  about_my_business: "About our business",
+  full_text_for_faq: "Frequently asked questions"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({

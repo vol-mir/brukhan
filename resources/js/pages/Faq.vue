@@ -4,6 +4,8 @@
     import FaqAccordion from '@/modules/faq/components/FaqAccordion.vue';
     import { getFaqItems } from '@/modules/faq/data/faqData';
     import { useFaq } from '@/modules/faq/composables/useFaq';
+    import ListServices from '@/components/ListServices.vue';
+    import ListBrands from '@/components/ListBrands.vue';
 
     export default {
         name: 'Faq',
@@ -11,6 +13,8 @@
         components: {
             InertiaLink,
             FaqAccordion,
+            ListServices,
+            ListBrands,
         },
         setup() {
             const { activeIndexes, toggleFaq } = useFaq();
@@ -60,11 +64,10 @@
             <div class="row">
                 <div class="col-md-12 text-center">
                     <div class="section-title">
-                        <h2 class="ec-bg-title">FAQ</h2>
-                        <h2 class="ec-title">FAQ</h2>
-                        <p class="sub-title mb-3">
-                            Customer service management
-                        </p>
+                        <h1 class="ec-bg-title">
+                            {{ $t('full_text_for_faq') }}
+                        </h1>
+                        <h1 class="ec-title">{{ $t('full_text_for_faq') }}</h1>
                     </div>
                 </div>
                 <div class="ec-faq-wrapper">
@@ -94,4 +97,7 @@
         </div>
     </section>
     <!-- FAQ page end -->
+
+    <ListServices />
+    <ListBrands />
 </template>
