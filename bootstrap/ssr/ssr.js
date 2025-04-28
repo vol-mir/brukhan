@@ -638,12 +638,22 @@ const _sfc_main$q = {
     toggleSubMenu: {
       type: Function,
       required: true
+    },
+    closeMobileMenu: {
+      type: Function,
+      required: false
     }
   },
-  setup() {
+  setup(props) {
     const route = inject("route");
+    const handleLinkClick = () => {
+      if (typeof props.closeMobileMenu === "function") {
+        props.closeMobileMenu();
+      }
+    };
     return {
-      route
+      route,
+      handleLinkClick
     };
   },
   computed: {
@@ -667,7 +677,8 @@ function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }, _attrs))}>`);
     if ($options.isLink) {
       _push(ssrRenderComponent(_component_InertiaLink, {
-        href: $props.item.slug ? $setup.route($props.item.link, { slug: $props.item.slug }) : $setup.route($props.item.link)
+        href: $props.item.slug ? $setup.route($props.item.link, { slug: $props.item.slug }) : $setup.route($props.item.link),
+        onClick: $setup.handleLinkClick
       }, {
         default: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
@@ -708,7 +719,8 @@ function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
           key: childIndex,
           item: child,
           "is-sub-menu-visible": $props.isSubMenuVisible,
-          "toggle-sub-menu": $props.toggleSubMenu
+          "toggle-sub-menu": $props.toggleSubMenu,
+          "close-mobile-menu": $props.closeMobileMenu
         }, null, _parent));
       });
       _push(`<!--]--></ul>`);
@@ -723,7 +735,8 @@ function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         key: childIndex,
         item: child,
         "is-sub-menu-visible": $props.isSubMenuVisible,
-        "toggle-sub-menu": $props.toggleSubMenu
+        "toggle-sub-menu": $props.toggleSubMenu,
+        "close-mobile-menu": $props.closeMobileMenu
       }, null, _parent));
     });
     _push(`<!--]-->`);
@@ -831,30 +844,31 @@ function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     id: "ec-mobile-menu",
     class: ["ec-side-cart ec-mobile-menu", { "ec-open": $setup.sidebarStore.isMobileMenuOpen ?? false }],
     ref: "mobileMenu"
-  }, _attrs))} data-v-8df93deb><div class="ec-menu-title" data-v-8df93deb><span class="menu_title" data-v-8df93deb>Bruknan</span><button class="ec-close" data-v-8df93deb> × </button></div><div class="ec-menu-inner" data-v-8df93deb><div class="ec-menu-content" data-v-8df93deb><ul data-v-8df93deb><!--[-->`);
+  }, _attrs))} data-v-07c6978c><div class="ec-menu-title" data-v-07c6978c><span class="menu_title" data-v-07c6978c>E-Kaufmann</span><button class="ec-close" data-v-07c6978c> × </button></div><div class="ec-menu-inner" data-v-07c6978c><div class="ec-menu-content" data-v-07c6978c><ul data-v-07c6978c><!--[-->`);
   ssrRenderList($setup.menuItems, (item, index) => {
     _push(ssrRenderComponent(_component_MobileMenuItem, {
       key: index,
       item,
       "is-sub-menu-visible": $setup.isSubMenuVisible,
-      "toggle-sub-menu": $setup.toggleSubMenu
+      "toggle-sub-menu": $setup.toggleSubMenu,
+      "close-mobile-menu": $setup.sidebarStore.closeMobileMenu
     }, null, _parent));
   });
-  _push(`<!--]--></ul></div><div class="header-res-lan-curr" data-v-8df93deb><div class="header-top-lan-curr" data-v-8df93deb><div class="header-top-lan dropdown" data-v-8df93deb><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-8df93deb>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-8df93deb></i></button>`);
+  _push(`<!--]--></ul></div><div class="header-res-lan-curr" data-v-07c6978c><div class="header-top-lan-curr" data-v-07c6978c><div class="header-top-lan dropdown" data-v-07c6978c><button class="dropdown-toggle text-upper" aria-haspopup="true"${ssrRenderAttr("aria-expanded", $setup.showLanguageDropdown)} data-v-07c6978c>${ssrInterpolate(_ctx.$t("language"))} <i class="ecicon eci-caret-down" aria-hidden="true" data-v-07c6978c></i></button>`);
   if ($setup.showLanguageDropdown) {
-    _push(`<ul class="dropdown-menu" data-v-8df93deb><li class="${ssrRenderClass({
+    _push(`<ul class="dropdown-menu" data-v-07c6978c><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "ru"
-    })}" data-v-8df93deb><a class="dropdown-item" href="#" data-v-8df93deb>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
+    })}" data-v-07c6978c><a class="dropdown-item" href="#" data-v-07c6978c>${ssrInterpolate(_ctx.$t("locale.russian"))}</a></li><li class="${ssrRenderClass({
       active: _ctx.activeLanguage === "en"
-    })}" data-v-8df93deb><a class="dropdown-item" href="#" data-v-8df93deb>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
+    })}" data-v-07c6978c><a class="dropdown-item" href="#" data-v-07c6978c>${ssrInterpolate(_ctx.$t("locale.english"))}</a></li></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="header-res-social" data-v-8df93deb><div class="header-top-social" data-v-8df93deb>`);
+  _push(`</div></div><div class="header-res-social" data-v-07c6978c><div class="header-top-social" data-v-07c6978c>`);
   if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-8df93deb><!--[-->`);
+    _push(`<ul class="mb-0" data-v-07c6978c><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
-      _push(`<li class="list-inline-item" data-v-8df93deb><a class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-8df93deb><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-8df93deb></i></a></li>`);
+      _push(`<li class="list-inline-item" data-v-07c6978c><a class="${ssrRenderClass("hdr-" + network.slug.toLowerCase())}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-07c6978c><i class="${ssrRenderClass("ecicon eci-" + network.slug)}" data-v-07c6978c></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
@@ -868,7 +882,7 @@ _sfc_main$p.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMobileMenu.vue");
   return _sfc_setup$p ? _sfc_setup$p(props, ctx) : void 0;
 };
-const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["ssrRender", _sfc_ssrRender$o], ["__scopeId", "data-v-8df93deb"]]);
+const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["ssrRender", _sfc_ssrRender$o], ["__scopeId", "data-v-07c6978c"]]);
 const _sfc_main$o = {
   __name: "AppHeader",
   __ssrInlineRender: true,

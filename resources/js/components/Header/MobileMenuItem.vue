@@ -20,12 +20,23 @@
                 type: Function,
                 required: true,
             },
+            closeMobileMenu: {
+                type: Function,
+                required: false,
+            },
         },
-        setup() {
+        setup(props) {
             const route = inject('route');
+
+            const handleLinkClick = () => {
+                if (typeof props.closeMobileMenu === 'function') {
+                    props.closeMobileMenu();
+                }
+            };
 
             return {
                 route,
+                handleLinkClick,
             };
         },
         computed: {
@@ -55,11 +66,17 @@
                     ? route(item.link, { slug: item.slug })
                     : route(item.link)
             "
+            @click="handleLinkClick"
         >
             {{ item.label }}
         </InertiaLink>
 
-        <a v-if="isBanner" :href="item.href" class="p-0">
+        <a
+            v-if="isBanner"
+            :href="item.href"
+            class="p-0"
+            @click="handleLinkClick"
+        >
             <img class="img-responsive" :src="item.src" alt="" loading="lazy" />
         </a>
 
@@ -80,6 +97,7 @@
                 :item="child"
                 :is-sub-menu-visible="isSubMenuVisible"
                 :toggle-sub-menu="toggleSubMenu"
+                :close-mobile-menu="closeMobileMenu"
             />
         </ul>
     </li>
@@ -90,5 +108,6 @@
         :item="child"
         :is-sub-menu-visible="isSubMenuVisible"
         :toggle-sub-menu="toggleSubMenu"
+        :close-mobile-menu="closeMobileMenu"
     />
 </template>

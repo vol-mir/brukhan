@@ -130,7 +130,7 @@
         ref="mobileMenu"
     >
         <div class="ec-menu-title">
-            <span class="menu_title">Bruknan</span>
+            <span class="menu_title">E-Kaufmann</span>
             <button class="ec-close" @click="sidebarStore.closeMobileMenu">
                 ×
             </button>
@@ -144,6 +144,7 @@
                         :item="item"
                         :is-sub-menu-visible="isSubMenuVisible"
                         :toggle-sub-menu="toggleSubMenu"
+                        :close-mobile-menu="sidebarStore.closeMobileMenu"
                     />
                 </ul>
             </div>
