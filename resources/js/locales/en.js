@@ -101,4 +101,18 @@ export default {
     policy_cookies: 'Cookie processing policy',
     bank_details: 'Bank details',
     delivery: 'Delivery information',
+    errors: {
+        titles: {
+            503: 'Service Unavailable',
+            500: 'Internal Server Error',
+            404: 'Page Not Found',
+            403: 'Forbidden',
+        },
+        errors: {
+            503: 'Sorry, we are doing some maintenance. Please check back soon.',
+            500: 'Whoops, something went wrong on our servers.',
+            404: 'Sorry, the page you are looking for could not be found.',
+            403: 'Sorry, you are forbidden from accessing this page.',
+        },
+    },
 };

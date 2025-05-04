@@ -22,11 +22,11 @@
 </template>
 
 <script>
-    import AppLoader from './components/AppLoader.vue';
-    import AppHeader from './components/Header/AppHeader.vue';
-    import SideOverlay from './components/SideOverlay.vue';
-    import AppFooter from './components/AppFooter.vue';
-    import ScrollUp from './components/ScrollUp.vue';
+    import AppLoader from '@/components/AppLoader.vue';
+    import AppHeader from '@/components/Header/AppHeader.vue';
+    import SideOverlay from '@/components/SideOverlay.vue';
+    import AppFooter from '@/components/AppFooter.vue';
+    import ScrollUp from '@/components/ScrollUp.vue';
     import { Head as InertiaHead } from '@inertiajs/vue3';
 
     export default {

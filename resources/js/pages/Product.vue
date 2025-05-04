@@ -2,7 +2,7 @@
     import { Swiper, SwiperSlide } from 'swiper/vue';
     import { Autoplay, FreeMode, Navigation, Thumbs } from 'swiper/modules';
     import { onBeforeUnmount, onMounted, inject, ref, watch } from 'vue';
-    import Layout from '@/Layout.vue';
+    import Layout from '@/layouts/LayoutBase.vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
     import DOMPurify from 'dompurify';
     import NewProducts from '@/components/NewProducts.vue';

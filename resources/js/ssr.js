@@ -8,7 +8,7 @@ import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './ziggy.js';
 import AOS from 'aos';
 import 'animate.css';
-import Layout from './Layout.vue';
+import Layout from '@/layouts/LayoutBase.vue';
 
 import ru from '@/locales/ru.js';
 import en from '@/locales/en.js';

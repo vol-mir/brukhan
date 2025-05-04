@@ -1,5 +1,5 @@
 <script>
-    import Layout from '@/Layout.vue';
+    import Layout from '@/layouts/LayoutBase.vue';
     import MainSlider from '@/modules/home/components/MainSlider.vue';
     import TabProducts from '@/components/TabProducts.vue';
     import TwoBanners from '@/components/TwoBanners.vue';

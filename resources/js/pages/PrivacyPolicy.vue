@@ -1,6 +1,6 @@
 <script>
     import { Link as InertiaLink } from '@inertiajs/vue3';
-    import Layout from '@/Layout.vue';
+    import Layout from '@/layouts/LayoutBase.vue';
     import { useBodyClass } from '@/composables/useBodyClass';
 
     export default {

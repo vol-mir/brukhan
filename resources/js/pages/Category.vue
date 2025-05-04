@@ -7,7 +7,7 @@
         watch,
         computed,
     } from 'vue';
-    import Layout from '@/Layout.vue';
+    import Layout from '@/layouts/LayoutBase.vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
     import { getImagePath } from '@/utils/imageHelper';
     import ProductInner from '@/components/ProductInner.vue';

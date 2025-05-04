@@ -1,6 +1,6 @@
 <script>
     import { Link as InertiaLink } from '@inertiajs/vue3';
-    import Layout from '@/Layout.vue';
+    import Layout from '@/layouts/LayoutBase.vue';
     import FaqAccordion from '@/modules/faq/components/FaqAccordion.vue';
     import { getFaqItems } from '@/modules/faq/data/faqData';
     import { useFaq } from '@/modules/faq/composables/useFaq';
