@@ -2178,8 +2178,6 @@ textarea.form-control.is-invalid {
     text-decoration: $textdecoration;
     vertical-align: middle;
     cursor: pointer;
-    -webkit-user-select: none;
-    user-select: none;
     background-color: transparent;
     border: 1px solid transparent;
     padding: 6px 12px;
@@ -4378,15 +4376,11 @@ textarea.form-control.is-invalid {
     }
     &:disabled {
         pointer-events: none;
-        -webkit-user-select: none;
-        user-select: none;
         opacity: 0.25;
     }
 }
 .btn-close.disabled {
     pointer-events: none;
-    -webkit-user-select: none;
-    user-select: none;
     opacity: 0.25;
 }
 .btn-close-white {
@@ -6644,8 +6638,6 @@ textarea.form-control.is-invalid {
     user-select: auto;
 }
 .user-select-none {
-    -webkit-user-select: none;
-    user-select: none;
 }
 .pe-none {
     pointer-events: none;

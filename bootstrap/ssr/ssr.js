@@ -1,4 +1,4 @@
-import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createVNode, inject, createTextVNode, toDisplayString, computed, onUnmounted, watch, openBlock, createBlock, Fragment, renderList, createSSRApp, h } from "vue";
+import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createVNode, inject, createTextVNode, toDisplayString, computed, onUnmounted, watch, openBlock, createBlock, Fragment, renderList, unref, createSSRApp, h } from "vue";
 import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderComponent, ssrRenderStyle, ssrRenderSlot, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
@@ -17,7 +17,7 @@ const _export_sfc = (sfc, props) => {
   }
   return target;
 };
-const _sfc_main$w = {
+const _sfc_main$x = {
   name: "AppLoader",
   props: {
     loading: {
@@ -26,20 +26,20 @@ const _sfc_main$w = {
     }
   }
 };
-function _sfc_ssrRender$v(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$w(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   if ($props.loading) {
     _push(`<div${ssrRenderAttrs(mergeProps({ id: "ec-overlay" }, _attrs))}><span class="loader_img"></span></div>`);
   } else {
     _push(`<!---->`);
   }
 }
-const _sfc_setup$w = _sfc_main$w.setup;
-_sfc_main$w.setup = (props, ctx) => {
+const _sfc_setup$x = _sfc_main$x.setup;
+_sfc_main$x.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppLoader.vue");
-  return _sfc_setup$w ? _sfc_setup$w(props, ctx) : void 0;
+  return _sfc_setup$x ? _sfc_setup$x(props, ctx) : void 0;
 };
-const AppLoader = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["ssrRender", _sfc_ssrRender$v]]);
+const AppLoader = /* @__PURE__ */ _export_sfc(_sfc_main$x, [["ssrRender", _sfc_ssrRender$w]]);
 const getImagePath = (folder, name) => new URL(`/resources/images/${folder}/${name}`, import.meta.url).href;
 const useSidebarStore = defineStore("sidebar", {
   state: () => ({
@@ -87,6 +87,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
     address: null,
     full_name: null,
     description: null,
+    bank_details: null,
     social_networks: [],
     brands: [],
     top_categories: [],
@@ -113,6 +114,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
           this.address = response.address ?? null;
           this.full_name = response.full_name ?? null;
           this.description = response.description ?? null;
+          this.bank_details = response.bank_details ?? null;
           this.social_networks = response.social_networks || [];
           this.brands = response.brands || [];
           this.map = response.map || null;
@@ -134,7 +136,7 @@ const useSiteInfoStore = defineStore("siteInfo", {
     }
   }
 });
-const _sfc_main$v = {
+const _sfc_main$w = {
   name: "HeaderTop",
   setup() {
     const sidebarStore = useSidebarStore();
@@ -180,7 +182,7 @@ const _sfc_main$v = {
     };
   }
 };
-function _sfc_ssrRender$u(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$v(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "header-top" }, _attrs))} data-v-c22700d5><div class="container" data-v-c22700d5><div class="row align-items-center" data-v-c22700d5><div class="col text-left header-top-left d-none d-lg-block" data-v-c22700d5><div class="header-top-social" data-v-c22700d5><span class="social-text text-upper" data-v-c22700d5>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore.social_networks) {
     _push(`<ul class="mb-0" data-v-c22700d5><!--[-->`);
@@ -203,14 +205,14 @@ function _sfc_ssrRender$u(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</template></div></div></div><div class="col d-lg-none" data-v-c22700d5><div class="ec-header-bottons" data-v-c22700d5><a href="javascript:void(0)" class="ec-header-btn ec-side-toggle d-lg-none" data-v-c22700d5><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="Menu icon" loading="lazy" data-v-c22700d5></a></div></div></div></div></div>`);
 }
-const _sfc_setup$v = _sfc_main$v.setup;
-_sfc_main$v.setup = (props, ctx) => {
+const _sfc_setup$w = _sfc_main$w.setup;
+_sfc_main$w.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderTop.vue");
-  return _sfc_setup$v ? _sfc_setup$v(props, ctx) : void 0;
+  return _sfc_setup$w ? _sfc_setup$w(props, ctx) : void 0;
 };
-const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["ssrRender", _sfc_ssrRender$u], ["__scopeId", "data-v-c22700d5"]]);
-const _sfc_main$u = {
+const HeaderTop = /* @__PURE__ */ _export_sfc(_sfc_main$w, [["ssrRender", _sfc_ssrRender$v], ["__scopeId", "data-v-c22700d5"]]);
+const _sfc_main$v = {
   name: "HeaderTop",
   components: {
     InertiaLink: Link
@@ -224,7 +226,7 @@ const _sfc_main$u = {
     };
   }
 };
-function _sfc_ssrRender$t(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$u(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-none d-lg-block" }, _attrs))}><div class="container position-relative"><div class="row"><div class="ec-flex"><div class="align-self-center"><div class="header-logo">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -254,13 +256,13 @@ function _sfc_ssrRender$t(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div><div class="align-self-center"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar"${ssrRenderAttr("placeholder", _ctx.$t("search_products"))} type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="Search" loading="lazy"></button></form></div></div><div class="align-self-center"><div class="ec-header-bottons"></div></div></div></div></div></div>`);
 }
-const _sfc_setup$u = _sfc_main$u.setup;
-_sfc_main$u.setup = (props, ctx) => {
+const _sfc_setup$v = _sfc_main$v.setup;
+_sfc_main$v.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderBottom.vue");
-  return _sfc_setup$u ? _sfc_setup$u(props, ctx) : void 0;
+  return _sfc_setup$v ? _sfc_setup$v(props, ctx) : void 0;
 };
-const HeaderBottom = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["ssrRender", _sfc_ssrRender$t]]);
+const HeaderBottom = /* @__PURE__ */ _export_sfc(_sfc_main$v, [["ssrRender", _sfc_ssrRender$u]]);
 const splitCategoriesIntoColumns = (categories, columns = 4, maxPerColumn = 8) => {
   const result = Array.from({ length: columns }, () => []);
   let columnIndex = 0;
@@ -340,13 +342,13 @@ const getMenuItems = (t, categories) => {
         },
         {
           type: "link",
-          label: t("menu.cookie_processing_policy"),
-          link: "terms-condition"
+          label: t("menu.policy_cookies"),
+          link: "policy-cookies"
         },
         {
           type: "link",
           label: t("menu.bank_details"),
-          link: "terms-condition"
+          link: "bank-details"
         }
       ]
     },
@@ -357,7 +359,7 @@ const getMenuItems = (t, categories) => {
     }
   ];
 };
-const _sfc_main$t = {
+const _sfc_main$u = {
   name: "MenuItem",
   components: {
     InertiaLink: Link
@@ -390,7 +392,7 @@ const _sfc_main$t = {
     }
   }
 };
-function _sfc_ssrRender$s(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$t(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_MenuItem = resolveComponent("MenuItem", true);
   _push(`<li${ssrRenderAttrs(mergeProps({
@@ -482,14 +484,14 @@ function _sfc_ssrRender$s(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</li>`);
 }
-const _sfc_setup$t = _sfc_main$t.setup;
-_sfc_main$t.setup = (props, ctx) => {
+const _sfc_setup$u = _sfc_main$u.setup;
+_sfc_main$u.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/MenuItem.vue");
-  return _sfc_setup$t ? _sfc_setup$t(props, ctx) : void 0;
+  return _sfc_setup$u ? _sfc_setup$u(props, ctx) : void 0;
 };
-const MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["ssrRender", _sfc_ssrRender$s]]);
-const _sfc_main$s = {
+const MenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$u, [["ssrRender", _sfc_ssrRender$t]]);
+const _sfc_main$t = {
   name: "HeaderMainMenu",
   components: {
     MenuItem
@@ -556,7 +558,7 @@ const _sfc_main$s = {
     };
   }
 };
-function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$s(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_MenuItem = resolveComponent("MenuItem");
   _push(`<div${ssrRenderAttrs(mergeProps({
     id: "ec-main-menu-desk",
@@ -570,14 +572,14 @@ function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]--></ul></div></div></div></div></div>`);
 }
-const _sfc_setup$s = _sfc_main$s.setup;
-_sfc_main$s.setup = (props, ctx) => {
+const _sfc_setup$t = _sfc_main$t.setup;
+_sfc_main$t.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMainMenu.vue");
-  return _sfc_setup$s ? _sfc_setup$s(props, ctx) : void 0;
+  return _sfc_setup$t ? _sfc_setup$t(props, ctx) : void 0;
 };
-const HeaderMainMenu = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r]]);
-const _sfc_main$r = {
+const HeaderMainMenu = /* @__PURE__ */ _export_sfc(_sfc_main$t, [["ssrRender", _sfc_ssrRender$s]]);
+const _sfc_main$s = {
   name: "HeaderResponsiveBottom",
   components: {
     InertiaLink: Link
@@ -591,7 +593,7 @@ const _sfc_main$r = {
     };
   }
 };
-function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$r(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-header-bottom d-lg-none" }, _attrs))}><div class="container position-relative"><div class="row"><div class="col"><div class="header-logo">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -620,14 +622,14 @@ function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div><div class="col"><div class="header-search"><form class="ec-btn-group-form" action="#"><input class="form-control ec-search-bar"${ssrRenderAttr("placeholder", _ctx.$t("search_products"))} type="text"><button class="submit" type="submit"><img${ssrRenderAttr("src", $setup.getIconPath("search.svg"))} class="svg_img header_svg" alt="icon" loading="lazy"></button></form></div></div></div></div></div>`);
 }
-const _sfc_setup$r = _sfc_main$r.setup;
-_sfc_main$r.setup = (props, ctx) => {
+const _sfc_setup$s = _sfc_main$s.setup;
+_sfc_main$s.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderResponsiveBottom.vue");
-  return _sfc_setup$r ? _sfc_setup$r(props, ctx) : void 0;
+  return _sfc_setup$s ? _sfc_setup$s(props, ctx) : void 0;
 };
-const HeaderResponsiveBottom = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["ssrRender", _sfc_ssrRender$q]]);
-const _sfc_main$q = {
+const HeaderResponsiveBottom = /* @__PURE__ */ _export_sfc(_sfc_main$s, [["ssrRender", _sfc_ssrRender$r]]);
+const _sfc_main$r = {
   name: "MobileMenuItem",
   components: {
     InertiaLink: Link
@@ -674,7 +676,7 @@ const _sfc_main$q = {
     }
   }
 };
-function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$q(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem", true);
   if ($props.item.label) {
@@ -750,14 +752,14 @@ function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _push(`<!---->`);
   }
 }
-const _sfc_setup$q = _sfc_main$q.setup;
-_sfc_main$q.setup = (props, ctx) => {
+const _sfc_setup$r = _sfc_main$r.setup;
+_sfc_main$r.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/MobileMenuItem.vue");
-  return _sfc_setup$q ? _sfc_setup$q(props, ctx) : void 0;
+  return _sfc_setup$r ? _sfc_setup$r(props, ctx) : void 0;
 };
-const MobileMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["ssrRender", _sfc_ssrRender$p]]);
-const _sfc_main$p = {
+const MobileMenuItem = /* @__PURE__ */ _export_sfc(_sfc_main$r, [["ssrRender", _sfc_ssrRender$q]]);
+const _sfc_main$q = {
   name: "HeaderMobileMenu",
   components: {
     MobileMenuItem
@@ -844,7 +846,7 @@ const _sfc_main$p = {
     };
   }
 };
-function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$p(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_MobileMenuItem = resolveComponent("MobileMenuItem");
   _push(`<div${ssrRenderAttrs(mergeProps({
     id: "ec-mobile-menu",
@@ -882,14 +884,14 @@ function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</div></div></div></div></div>`);
 }
-const _sfc_setup$p = _sfc_main$p.setup;
-_sfc_main$p.setup = (props, ctx) => {
+const _sfc_setup$q = _sfc_main$q.setup;
+_sfc_main$q.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/HeaderMobileMenu.vue");
-  return _sfc_setup$p ? _sfc_setup$p(props, ctx) : void 0;
+  return _sfc_setup$q ? _sfc_setup$q(props, ctx) : void 0;
 };
-const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$p, [["ssrRender", _sfc_ssrRender$o], ["__scopeId", "data-v-07c6978c"]]);
-const _sfc_main$o = {
+const HeaderMobileMenu = /* @__PURE__ */ _export_sfc(_sfc_main$q, [["ssrRender", _sfc_ssrRender$p], ["__scopeId", "data-v-07c6978c"]]);
+const _sfc_main$p = {
   __name: "AppHeader",
   __ssrInlineRender: true,
   setup(__props) {
@@ -904,13 +906,13 @@ const _sfc_main$o = {
     };
   }
 };
-const _sfc_setup$o = _sfc_main$o.setup;
-_sfc_main$o.setup = (props, ctx) => {
+const _sfc_setup$p = _sfc_main$p.setup;
+_sfc_main$p.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/Header/AppHeader.vue");
-  return _sfc_setup$o ? _sfc_setup$o(props, ctx) : void 0;
+  return _sfc_setup$p ? _sfc_setup$p(props, ctx) : void 0;
 };
-const _sfc_main$n = {
+const _sfc_main$o = {
   name: "SideOverlay",
   setup() {
     const sidebarStore = useSidebarStore();
@@ -927,20 +929,20 @@ const _sfc_main$n = {
     }
   }
 };
-function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$o(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({
     class: "ec-side-cart-overlay",
     style: $options.overlayStyle
   }, _attrs))} data-v-9db8e227></div>`);
 }
-const _sfc_setup$n = _sfc_main$n.setup;
-_sfc_main$n.setup = (props, ctx) => {
+const _sfc_setup$o = _sfc_main$o.setup;
+_sfc_main$o.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SideOverlay.vue");
-  return _sfc_setup$n ? _sfc_setup$n(props, ctx) : void 0;
+  return _sfc_setup$o ? _sfc_setup$o(props, ctx) : void 0;
 };
-const SideOverlay = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$n], ["__scopeId", "data-v-9db8e227"]]);
-const _sfc_main$m = {
+const SideOverlay = /* @__PURE__ */ _export_sfc(_sfc_main$o, [["ssrRender", _sfc_ssrRender$o], ["__scopeId", "data-v-9db8e227"]]);
+const _sfc_main$n = {
   name: "AppFooter",
   components: {
     InertiaLink: Link
@@ -978,9 +980,9 @@ const _sfc_main$m = {
     }
   }
 };
-function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-8e65052b><div class="footer-container" data-v-8e65052b><div class="footer-offer" data-v-8e65052b><div class="container" data-v-8e65052b><div class="row" data-v-8e65052b><div class="text-center footer-off-msg" data-v-8e65052b><span data-v-8e65052b>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-8e65052b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-8e65052b><div class="container" data-v-8e65052b><div class="row" data-v-8e65052b><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-8e65052b><div class="ec-footer-widget" data-v-8e65052b><div class="ec-footer-logo" data-v-8e65052b>`);
+  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-64eecb8b><div class="footer-container" data-v-64eecb8b><div class="footer-offer" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="row" data-v-64eecb8b><div class="text-center footer-off-msg" data-v-64eecb8b><span data-v-64eecb8b>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="row" data-v-64eecb8b><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><div class="ec-footer-logo" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home")
   }, {
@@ -989,7 +991,7 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(`<img${ssrRenderAttr(
           "src",
           $setup.getLogoPath("footer-logo.png")
-        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-8e65052b${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-8e65052b${_scopeId}>`);
+        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-64eecb8b${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-64eecb8b${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1009,13 +1011,13 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><h4 class="ec-footer-heading" data-v-8e65052b>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-8e65052b><i class="ecicon eci-angle-down" data-v-8e65052b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-8e65052b><ul class="align-items-center" data-v-8e65052b><li class="ec-footer-link" data-v-8e65052b>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-8e65052b><span data-v-8e65052b>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
+  _push(`</div><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-64eecb8b><span data-v-64eecb8b>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
     "href",
     "tel:" + $setup.siteInfoStore.main_phone
-  )} data-v-8e65052b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-8e65052b><span data-v-8e65052b>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
+  )} data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-64eecb8b><span data-v-64eecb8b>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
     "href",
     "mailto:" + $setup.siteInfoStore.main_email
-  )} data-v-8e65052b>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-8e65052b><div class="ec-footer-widget" data-v-8e65052b><h4 class="ec-footer-heading" data-v-8e65052b>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-8e65052b><i class="ecicon eci-angle-down" data-v-8e65052b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-8e65052b><ul class="align-items-center" data-v-8e65052b><li class="ec-footer-link" data-v-8e65052b>`);
+  )} data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("about-us")
   }, {
@@ -1030,7 +1032,7 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-8e65052b>`);
+  _push(`</li><li class="ec-footer-link" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("faq")
   }, {
@@ -1045,9 +1047,9 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-8e65052b><a href="#" data-v-8e65052b>${ssrInterpolate(_ctx.$t(
+  _push(`</li><li class="ec-footer-link" data-v-64eecb8b><a href="#" data-v-64eecb8b>${ssrInterpolate(_ctx.$t(
     "page.delivery_information"
-  ))}</a></li><li class="ec-footer-link" data-v-8e65052b>`);
+  ))}</a></li><li class="ec-footer-link" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("contacts")
   }, {
@@ -1062,7 +1064,7 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-8e65052b><div class="ec-footer-widget" data-v-8e65052b><h4 class="ec-footer-heading" data-v-8e65052b>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-8e65052b><i class="ecicon eci-angle-down" data-v-8e65052b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-8e65052b><ul class="align-items-center" data-v-8e65052b><li class="ec-footer-link" data-v-8e65052b>`);
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("privacy-policy")
   }, {
@@ -1081,28 +1083,28 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-8e65052b>`);
+  _push(`</li><li class="ec-footer-link" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
-    href: $setup.route("terms-condition")
+    href: $setup.route("policy-cookies")
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`${ssrInterpolate(_ctx.$t(
-          "page.cookie_processing_policy"
+          "page.policy_cookies"
         ))}`);
       } else {
         return [
           createTextVNode(toDisplayString(_ctx.$t(
-            "page.cookie_processing_policy"
+            "page.policy_cookies"
           )), 1)
         ];
       }
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-8e65052b>`);
+  _push(`</li><li class="ec-footer-link" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
-    href: $setup.route("terms-condition")
+    href: $setup.route("bank-details")
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
@@ -1115,26 +1117,26 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-8e65052b><div class="ec-footer-widget" data-v-8e65052b><h4 class="ec-footer-heading" data-v-8e65052b>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-8e65052b><i class="ecicon eci-angle-down" data-v-8e65052b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-8e65052b><ul class="align-items-center" data-v-8e65052b><li class="ec-footer-link" data-v-8e65052b>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-8e65052b><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-8e65052b><div id="ec_news_signup" class="ec-form" data-v-8e65052b><input class="ec-email" type="email" required=""${ssrRenderAttr(
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-64eecb8b><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-64eecb8b><div id="ec_news_signup" class="ec-form" data-v-64eecb8b><input class="ec-email" type="email" required=""${ssrRenderAttr(
     "placeholder",
     _ctx.$t(
       "enter_your_email"
     )
-  )} name="ec-email" value="" data-v-8e65052b><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-8e65052b><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-8e65052b></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-8e65052b><div class="container" data-v-8e65052b><div class="row align-items-center" data-v-8e65052b><div class="col text-left footer-bottom-left" data-v-8e65052b><div class="footer-bottom-social" data-v-8e65052b><span class="social-text text-upper" data-v-8e65052b>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  )} name="ec-email" value="" data-v-64eecb8b><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-64eecb8b><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-64eecb8b></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="row align-items-center" data-v-64eecb8b><div class="col text-left footer-bottom-left" data-v-64eecb8b><div class="footer-bottom-social" data-v-64eecb8b><span class="social-text text-upper" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-8e65052b><!--[-->`);
+    _push(`<ul class="mb-0" data-v-64eecb8b><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
-      _push(`<li class="list-inline-item" data-v-8e65052b><a class="${ssrRenderClass(
+      _push(`<li class="list-inline-item" data-v-64eecb8b><a class="${ssrRenderClass(
         "hdr-" + network.slug.toLowerCase()
-      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-8e65052b><i class="${ssrRenderClass(
+      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-64eecb8b><i class="${ssrRenderClass(
         "ecicon eci-" + network.slug
-      )}" data-v-8e65052b></i></a></li>`);
+      )}" data-v-64eecb8b></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col text-center footer-copy" data-v-8e65052b><div class="footer-bottom-copy" data-v-8e65052b><div class="ec-copy" data-v-8e65052b> © 2024-${ssrInterpolate($options.currentYear)} `);
+  _push(`</div></div><div class="col text-center footer-copy" data-v-64eecb8b><div class="footer-bottom-copy" data-v-64eecb8b><div class="ec-copy" data-v-64eecb8b> © 2024-${ssrInterpolate($options.currentYear)} `);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home"),
     class: "site-name text-upper"
@@ -1150,14 +1152,14 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-8e65052b><div class="container" data-v-8e65052b><div class="ec-nav-panel" data-v-8e65052b><div class="ec-nav-panel-icons" data-v-8e65052b><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-8e65052b><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-8e65052b></a></div><div class="ec-nav-panel-icons" data-v-8e65052b></div><div class="ec-nav-panel-icons" data-v-8e65052b>`);
+  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="ec-nav-panel" data-v-64eecb8b><div class="ec-nav-panel-icons" data-v-64eecb8b><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-64eecb8b><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-64eecb8b></a></div><div class="ec-nav-panel-icons" data-v-64eecb8b></div><div class="ec-nav-panel-icons" data-v-64eecb8b>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home"),
     class: "ec-header-btn"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-8e65052b${_scopeId}>`);
+        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-64eecb8b${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1173,14 +1175,14 @@ function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></div><!--]-->`);
 }
-const _sfc_setup$m = _sfc_main$m.setup;
-_sfc_main$m.setup = (props, ctx) => {
+const _sfc_setup$n = _sfc_main$n.setup;
+_sfc_main$n.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppFooter.vue");
-  return _sfc_setup$m ? _sfc_setup$m(props, ctx) : void 0;
+  return _sfc_setup$n ? _sfc_setup$n(props, ctx) : void 0;
 };
-const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["ssrRender", _sfc_ssrRender$m], ["__scopeId", "data-v-8e65052b"]]);
-const _sfc_main$l = {
+const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$n], ["__scopeId", "data-v-64eecb8b"]]);
+const _sfc_main$m = {
   data() {
     return {
       visible: false
@@ -1204,24 +1206,24 @@ const _sfc_main$l = {
     }
   }
 };
-function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$m(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<a${ssrRenderAttrs(mergeProps({
     id: "scrollUp",
     style: $data.visible ? null : { display: "none" }
   }, _attrs))} data-v-068d078c><i class="ecicon eci-arrow-up" aria-hidden="true" data-v-068d078c></i></a>`);
 }
-const _sfc_setup$l = _sfc_main$l.setup;
-_sfc_main$l.setup = (props, ctx) => {
+const _sfc_setup$m = _sfc_main$m.setup;
+_sfc_main$m.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ScrollUp.vue");
-  return _sfc_setup$l ? _sfc_setup$l(props, ctx) : void 0;
+  return _sfc_setup$m ? _sfc_setup$m(props, ctx) : void 0;
 };
-const ScrollUp = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["ssrRender", _sfc_ssrRender$l], ["__scopeId", "data-v-068d078c"]]);
-const _sfc_main$k = {
+const ScrollUp = /* @__PURE__ */ _export_sfc(_sfc_main$m, [["ssrRender", _sfc_ssrRender$m], ["__scopeId", "data-v-068d078c"]]);
+const _sfc_main$l = {
   components: {
     InertiaHead: Head,
     AppLoader,
-    AppHeader: _sfc_main$o,
+    AppHeader: _sfc_main$p,
     SideOverlay,
     AppFooter,
     ScrollUp
@@ -1251,7 +1253,7 @@ const _sfc_main$k = {
     }
   }
 };
-function _sfc_ssrRender$k(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaHead = resolveComponent("InertiaHead");
   const _component_AppLoader = resolveComponent("AppLoader");
   const _component_AppHeader = resolveComponent("AppHeader");
@@ -1309,13 +1311,13 @@ function _sfc_ssrRender$k(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_ScrollUp, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$k = _sfc_main$k.setup;
-_sfc_main$k.setup = (props, ctx) => {
+const _sfc_setup$l = _sfc_main$l.setup;
+_sfc_main$l.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Layout.vue");
-  return _sfc_setup$k ? _sfc_setup$k(props, ctx) : void 0;
+  return _sfc_setup$l ? _sfc_setup$l(props, ctx) : void 0;
 };
-const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["ssrRender", _sfc_ssrRender$k]]);
+const Layout = /* @__PURE__ */ _export_sfc(_sfc_main$l, [["ssrRender", _sfc_ssrRender$l]]);
 function useBodyClass(className) {
   onMounted(() => {
     document.body.classList.add(className);
@@ -1336,7 +1338,7 @@ function useSiteInfo() {
   onMounted(loadSiteInfo);
   return { siteInfoStore };
 }
-const _sfc_main$j = {
+const _sfc_main$k = {
   name: "ListServices",
   setup() {
     return {
@@ -1344,20 +1346,20 @@ const _sfc_main$j = {
     };
   }
 };
-function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$k(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-services-section section-space-p",
     id: "services"
   }, _attrs))} data-v-7dae444e><h2 class="d-none" data-v-7dae444e>Services</h2><div class="container" data-v-7dae444e><div class="row" data-v-7dae444e><div class="ec_ser_content ec_ser_content_1 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_1.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("free_shipping"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("free_shipping_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_2 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_2.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("support"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("support_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_3 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_3.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("about_return"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("about_return_description"))}</p></div></div></div><div class="ec_ser_content ec_ser_content_4 col-sm-12 col-md-6 col-lg-3" data-aos="zoom-in" data-v-7dae444e><div class="ec_ser_inner" data-v-7dae444e><div class="ec-service-image" data-v-7dae444e><img${ssrRenderAttr("src", $setup.getImagePath("icons", "service_4.svg"))} class="svg_img" alt="" loading="lazy" data-v-7dae444e></div><div class="ec-service-desc" data-v-7dae444e><h2 data-v-7dae444e>${ssrInterpolate(_ctx.$t("payment_secure"))}</h2><p data-v-7dae444e>${ssrInterpolate(_ctx.$t("payment_secure_description"))}</p></div></div></div></div></div></section>`);
 }
-const _sfc_setup$j = _sfc_main$j.setup;
-_sfc_main$j.setup = (props, ctx) => {
+const _sfc_setup$k = _sfc_main$k.setup;
+_sfc_main$k.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ListServices.vue");
-  return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
+  return _sfc_setup$k ? _sfc_setup$k(props, ctx) : void 0;
 };
-const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j], ["__scopeId", "data-v-7dae444e"]]);
-const _sfc_main$i = {
+const ListServices = /* @__PURE__ */ _export_sfc(_sfc_main$k, [["ssrRender", _sfc_ssrRender$k], ["__scopeId", "data-v-7dae444e"]]);
+const _sfc_main$j = {
   name: "ProductInner",
   components: {
     InertiaLink: Link
@@ -1379,7 +1381,7 @@ const _sfc_main$i = {
     };
   }
 };
-function _sfc_ssrRender$i(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$j(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr("src", $props.product.image_main)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr("src", $props.product.image_hover)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -1426,14 +1428,14 @@ function _sfc_ssrRender$i(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]--></div><span class="ec-price"><span class="new-price">₽${ssrInterpolate($props.product.price)}</span></span></div></div>`);
 }
-const _sfc_setup$i = _sfc_main$i.setup;
-_sfc_main$i.setup = (props, ctx) => {
+const _sfc_setup$j = _sfc_main$j.setup;
+_sfc_main$j.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ProductInner.vue");
-  return _sfc_setup$i ? _sfc_setup$i(props, ctx) : void 0;
+  return _sfc_setup$j ? _sfc_setup$j(props, ctx) : void 0;
 };
-const ProductInner = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["ssrRender", _sfc_ssrRender$i]]);
-const _sfc_main$h = {
+const ProductInner = /* @__PURE__ */ _export_sfc(_sfc_main$j, [["ssrRender", _sfc_ssrRender$j]]);
+const _sfc_main$i = {
   name: "NewProducts",
   components: {
     ProductInner
@@ -1445,7 +1447,7 @@ const _sfc_main$h = {
     };
   }
 };
-function _sfc_ssrRender$h(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$i(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_ProductInner = resolveComponent("ProductInner");
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-new-product section-space-p",
@@ -1458,14 +1460,14 @@ function _sfc_ssrRender$h(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]--><div class="col-sm-12 shop-all-btn"><a href="#">${ssrInterpolate(_ctx.$t("view_all"))}</a></div></div></div></section>`);
 }
-const _sfc_setup$h = _sfc_main$h.setup;
-_sfc_main$h.setup = (props, ctx) => {
+const _sfc_setup$i = _sfc_main$i.setup;
+_sfc_main$i.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/NewProducts.vue");
-  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
+  return _sfc_setup$i ? _sfc_setup$i(props, ctx) : void 0;
 };
-const NewProducts = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["ssrRender", _sfc_ssrRender$h]]);
-const _sfc_main$g = {
+const NewProducts = /* @__PURE__ */ _export_sfc(_sfc_main$i, [["ssrRender", _sfc_ssrRender$i]]);
+const _sfc_main$h = {
   name: "ListBrands",
   components: {
     Swiper,
@@ -1482,7 +1484,7 @@ const _sfc_main$g = {
     Autoplay
   }
 };
-function _sfc_ssrRender$g(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$h(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_swiper = resolveComponent("swiper");
   const _component_swiper_slide = resolveComponent("swiper-slide");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-brand-area section-space-p" }, _attrs))}><h2 class="d-none">Brand</h2><div class="container"><div class="row"><div class="ec-brand-outer" data-aos="zoom-in">`);
@@ -1571,14 +1573,14 @@ function _sfc_ssrRender$g(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></section>`);
 }
-const _sfc_setup$g = _sfc_main$g.setup;
-_sfc_main$g.setup = (props, ctx) => {
+const _sfc_setup$h = _sfc_main$h.setup;
+_sfc_main$h.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/ListBrands.vue");
-  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
+  return _sfc_setup$h ? _sfc_setup$h(props, ctx) : void 0;
 };
-const ListBrands = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["ssrRender", _sfc_ssrRender$g]]);
-const _sfc_main$f = {
+const ListBrands = /* @__PURE__ */ _export_sfc(_sfc_main$h, [["ssrRender", _sfc_ssrRender$h]]);
+const _sfc_main$g = {
   name: "AboutUs",
   layout: Layout,
   components: {
@@ -1600,7 +1602,7 @@ const _sfc_main$f = {
     };
   }
 };
-function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$g(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_ListServices = resolveComponent("ListServices");
   const _component_NewProducts = resolveComponent("NewProducts");
@@ -1629,16 +1631,66 @@ function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_ListBrands, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$f = _sfc_main$f.setup;
-_sfc_main$f.setup = (props, ctx) => {
+const _sfc_setup$g = _sfc_main$g.setup;
+_sfc_main$g.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/AboutUs.vue");
-  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+  return _sfc_setup$g ? _sfc_setup$g(props, ctx) : void 0;
 };
-const AboutUs = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f]]);
+const AboutUs = /* @__PURE__ */ _export_sfc(_sfc_main$g, [["ssrRender", _sfc_ssrRender$g]]);
 const __vite_glob_0_0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: AboutUs
+}, Symbol.toStringTag, { value: "Module" }));
+function useSanitizedHtml(rawValue) {
+  return computed(() => DOMPurify.sanitize(unref(rawValue) || ""));
+}
+const _sfc_main$f = {
+  name: "BankDetails",
+  layout: Layout,
+  components: {
+    InertiaLink: Link
+  },
+  setup() {
+    useBodyClass("bank_details_page");
+    const { siteInfoStore } = useSiteInfo();
+    const sanitizedBankDetails = useSanitizedHtml(
+      computed(() => siteInfoStore.bank_details)
+    );
+    return {
+      sanitizedBankDetails
+    };
+  }
+};
+function _sfc_ssrRender$f(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_InertiaLink = resolveComponent("InertiaLink");
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.bank_details"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("home")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.bank_details"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("bank_details"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("bank_details"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner">${$setup.sanitizedBankDetails ?? ""}</div></div></div></div></div></div></section><!--]-->`);
+}
+const _sfc_setup$f = _sfc_main$f.setup;
+_sfc_main$f.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/BankDetails.vue");
+  return _sfc_setup$f ? _sfc_setup$f(props, ctx) : void 0;
+};
+const BankDetails = /* @__PURE__ */ _export_sfc(_sfc_main$f, [["ssrRender", _sfc_ssrRender$f]]);
+const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: BankDetails
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main$e = {
   name: "Category",
@@ -1888,7 +1940,7 @@ _sfc_main$e.setup = (props, ctx) => {
   return _sfc_setup$e ? _sfc_setup$e(props, ctx) : void 0;
 };
 const Category = /* @__PURE__ */ _export_sfc(_sfc_main$e, [["ssrRender", _sfc_ssrRender$e], ["__scopeId", "data-v-2f5ce625"]]);
-const __vite_glob_0_1 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Category
 }, Symbol.toStringTag, { value: "Module" }));
@@ -1940,7 +1992,7 @@ _sfc_main$d.setup = (props, ctx) => {
   return _sfc_setup$d ? _sfc_setup$d(props, ctx) : void 0;
 };
 const Contacts = /* @__PURE__ */ _export_sfc(_sfc_main$d, [["ssrRender", _sfc_ssrRender$d]]);
-const __vite_glob_0_2 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Contacts
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2091,7 +2143,7 @@ _sfc_main$b.setup = (props, ctx) => {
   return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
 const Faq = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b]]);
-const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Faq
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2545,23 +2597,23 @@ _sfc_main$4.setup = (props, ctx) => {
   return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
 const Home = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4]]);
-const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main$3 = {
-  name: "PrivacyPolicy",
+  name: "PolicyCookies",
   layout: Layout,
   components: {
     InertiaLink: Link
   },
   setup() {
-    useBodyClass("terms_condition_page");
+    useBodyClass("policy_cookies_page");
   }
 };
 function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">Policy</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.policy_cookies"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: _ctx.route("home")
   }, {
@@ -2576,20 +2628,90 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active"> Policy </li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">Privacy &amp; Policy</h2><h2 class="ec-title">Privacy &amp; Policy</h2><p class="sub-title mb-3"> Welcome to the ekka multivendor marketplace </p></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> Welcome to Ekka Multi Market. </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> Ekka Websites </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> How browsing and vendor works? </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> Becoming an vendor </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div></div></div></div></div></section><!--]-->`);
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.policy_cookies"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("policy_cookies"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("policy_cookies"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 1. Общие положения </h3><p> Данная Политика использования файлов cookie (далее - Политика) относится к сайту e-kaufmann.ru, который принадлежит индивидуальному предпринимателю Брухан Юрий Игоревич (далее – Оператор). <br> Оператор использует файлы cookie и аналогичные технологии на своем сайте для обеспечения его корректной работы, улучшения пользовательского опыта и предоставления персонализированной информации. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 2. Что такое cookie? </h3><p> Файлы cookie - это небольшие текстовые файлы, которые сохраняются на вашем устройстве при посещении сайта. С помощью файлов cookie сайт может «запомнить» ваши действия и предпочтения на определенный период времени. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 3. Какие типы cookie используются </h3><p> Оператор может использовать на сайте следующие типы файлов cookie: <br> - Обязательные cookie - необходимы для работы сайта, обеспечивают навигацию и использование основных функций. <br> - Аналитические cookie - позволяют собирать обезличенную статистику о посещениях сайта, что помогает улучшать его работу и содержимое (например, Яндекс.Метрика, Google Analytics). <br> - Функциональные cookie - используются для запоминания ваших настроек и предпочтений (язык, оформление и проч.). <br> - Рекламные cookie - могут применяться для показа персонализированной рекламы или анализа эффективности рекламных кампаний (используются только с согласия пользователя). <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 4. Цели использования cookie </h3><p> - обеспечение корректной работы сайта; <br> - анализ и улучшение работы сайта; <br> - запоминание пользовательских настроек; <br> - предоставление информации, соответствующей интересам посетителя. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 5. Управление cookie </h3><p> Большинство браузеров по умолчанию принимают cookie. Вы можете изменить настройки браузера, чтобы блокировать или удалять cookie, а также получать уведомления о их отправке. Обратите внимание, что при отключении или удалении cookie некоторые функции сайта могут работать некорректно. Подробнее о настройках cookie можно узнать на официальных страницах поддержки вашего браузера. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 6. Изменения в политике </h3><p> Оператор может обновлять настоящую политику. Все изменения отображаются на данной странице с указанием даты обновления. </p></div></div></div></div></div></div></section><!--]-->`);
 }
 const _sfc_setup$3 = _sfc_main$3.setup;
 _sfc_main$3.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/PrivacyPolicy.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/PolicyCookies.vue");
   return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const PrivacyPolicy = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
-const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const PolicyCookies = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
+const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: PolicyCookies
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$2 = {
+  name: "PrivacyPolicy",
+  layout: Layout,
+  components: {
+    InertiaLink: Link
+  },
+  setup() {
+    useBodyClass("terms_condition_page");
+  }
+};
+function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_InertiaLink = resolveComponent("InertiaLink");
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.privacy_policy"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("home")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.privacy_policy"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("privacy_policy"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("privacy_policy"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 1. Общие положения </h3><p> 1.1. Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных индивидуального предпринимателя Брухан Юрий Игоревич (далее – Оператор). <br> 1.2. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну. <br> 1.3. Настоящая политика Оператора в отношении обработки персональных данных (далее – Политика) применяется ко всей информации, которую Оператор может получить о посетителях сайта e-kaufmann.ru (или иного используемого вами доменного имени). <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 2. Основные понятия, используемые в Политике </h3><p> - Персональные данные – любая информация, непосредственно или косвенно относящаяся к определённому или определяемому физическому лицу (субъекту персональных данных). <br> - Оператор – лицо, организующее и/или осуществляющее обработку персональных данных, а также определяющее цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными. <br> - Сайт – интернет-ресурс, размещённый в сети Интернет по адресу (укажите доменное имя вашего сайта). <br> - Пользователь – любой посетитель Сайта. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 3. Оператор может обрабатывать следующие персональные данные Пользователя </h3><p> - Фамилия, имя, отчество. <br> - Контактный телефон. <br> - Адрес электронной почты. <br> - Адрес для доставки (по необходимости). <br> - Иные данные, предоставляемые Пользователем. <br></p><p> Также на Сайте происходит сбор и обработка обезличенных данных о посетителях (в т.ч. файлов cookie) с помощью сервисов интернет-статистики (Яндекс.Метрика, Google Analytics и других). </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 4. Цели обработки персональных данных </h3><p> Обработка персональных данных Пользователя производится в целях: <br> - Оказания услуг по доставке товаров из Европы; <br> - Оформления заявок, заказов и иной документации; <br> - Обратной связи с Пользователем; <br> - Информирования об изменениях статуса заказов и новых предложениях (при согласии Пользователя); <br> - Проведения маркетинговых и иных исследований; <br> - Соблюдения требований законодательства РФ. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 5. Правовые основания обработки персональных данных </h3><p> Оператор обрабатывает персональные данные Пользователя только при заполнении Пользователем форм на Сайте и/или отправке данных Оператору самостоятельно посредством специальных форм и по согласованию с Пользователем. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 6. Порядок сбора, хранения, передачи и иных видов обработки персональных данных </h3><p> 6.1. Оператор обеспечивает сохранность персональных данных и принимает все возможные меры по исключению доступа к персональным данным неуполномоченных лиц. <br> 6.2. Персональные данные Пользователя ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства. <br> 6.3. В случае выявления неточностей в персональных данных Пользователь может их актуализировать, обратившись к Оператору по контактному адресу электронной почты. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 7. Сроки обработки персональных данных </h3><p> Персональные данные обрабатываются не дольше, чем этого требуют цели обработки, или чем это предусмотрено законодательством РФ. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 8. Права субъекта персональных данных </h3><p> Пользователь вправе: <br> - Получать информацию, касающуюся обработки его персональных данных; <br> - Требовать уточнения своих персональных данных, их блокирования или уничтожения при наличии оснований; <br> - Отозвать своё согласие на обработку персональных данных, направив Оператору уведомление по электронной почте. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 9. Заключительные положения </h3><p> 9.1. Оператор имеет право вносить изменения в настоящую Политику. Новая редакция Политики вступает в силу с момента её размещения на Сайте. <br> 9.2. Все предложения или вопросы по настоящей Политике следует направлять по электронной почте указанной на странице: `);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("contacts")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("page.contact_us"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("page.contact_us")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`<br> 9.3. Действующая Политика размещена на Сайте по адресу: `);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("privacy-policy")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("page.privacy_policy"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("page.privacy_policy")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(` . <br></p></div></div></div></div></div></div></section><!--]-->`);
+}
+const _sfc_setup$2 = _sfc_main$2.setup;
+_sfc_main$2.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/PrivacyPolicy.vue");
+  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
+};
+const PrivacyPolicy = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2]]);
+const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PrivacyPolicy
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$2 = {
+const _sfc_main$1 = {
   name: "Product",
   layout: Layout,
   components: {
@@ -2681,7 +2803,7 @@ const _sfc_main$2 = {
     }
   }
 };
-function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   var _a, _b, _c, _d, _e;
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_swiper = resolveComponent("swiper");
@@ -2852,56 +2974,16 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NewProducts, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$2 = _sfc_main$2.setup;
-_sfc_main$2.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Product.vue");
-  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
-};
-const Product = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2], ["__scopeId", "data-v-46e4e528"]]);
-const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Product
-}, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$1 = {
-  name: "TermsCondition",
-  layout: Layout,
-  components: {
-    InertiaLink: Link
-  },
-  setup() {
-    useBodyClass("terms_condition_page");
-  }
-};
-function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title"> Terms &amp; Condition </h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
-  _push(ssrRenderComponent(_component_InertiaLink, {
-    href: _ctx.route("home")
-  }, {
-    default: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
-      } else {
-        return [
-          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
-        ];
-      }
-    }),
-    _: 1
-  }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active"> Condition </li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">Terms &amp; Condition</h2><h2 class="ec-title">Terms &amp; Condition</h2><p class="sub-title mb-3"> Welcome to the ekka multivendor marketplace </p></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> Welcome to Ekka Multi Market. </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> Ekka Websites </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> How browsing and vendor works? </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> Becoming an vendor </h3><p> Lorem Ipsum is simply dummy text of the printing and typesetting industry. <b>Lorem Ipsum is simply dutmmy text</b> ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. <b>Lorem Ipsum is simply dutmmy text</b></p></div></div></div></div></div></div></section><!--]-->`);
-}
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/TermsCondition.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Product.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const TermsCondition = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
-const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Product = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-46e4e528"]]);
+const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: TermsCondition
+  default: Product
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main = {
   name: "TrackOrderPage",
@@ -2973,338 +3055,11 @@ _sfc_main.setup = (props, ctx) => {
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 const TrackOrder = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
-const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const __vite_glob_0_9 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: TrackOrder
 }, Symbol.toStringTag, { value: "Module" }));
-const Ziggy = {
-  url: "http://brukhan.local",
-  port: null,
-  defaults: {},
-  routes: {
-    "filament.exports.download": {
-      uri: "filament/exports/{export}/download",
-      methods: ["GET", "HEAD"],
-      parameters: ["export"],
-      bindings: { export: "id" }
-    },
-    "filament.imports.failed-rows.download": {
-      uri: "filament/imports/{import}/failed-rows/download",
-      methods: ["GET", "HEAD"],
-      parameters: ["import"],
-      bindings: { import: "id" }
-    },
-    "filament.admin.auth.login": {
-      uri: "admin/login",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.auth.logout": {
-      uri: "admin/logout",
-      methods: ["POST"]
-    },
-    "filament.admin.pages.dashboard": {
-      uri: "admin",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.blog-posts.index": {
-      uri: "admin/blog-posts",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.blog-posts.create": {
-      uri: "admin/blog-posts/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.blog-posts.edit": {
-      uri: "admin/blog-posts/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.blog-posts.view": {
-      uri: "admin/blog-posts/{record}",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.brands.index": {
-      uri: "admin/brands",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.brands.create": {
-      uri: "admin/brands/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.brands.edit": {
-      uri: "admin/brands/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.categories.index": {
-      uri: "admin/categories",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.categories.create": {
-      uri: "admin/categories/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.categories.edit": {
-      uri: "admin/categories/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.contacts.index": {
-      uri: "admin/contacts",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.contacts.create": {
-      uri: "admin/contacts/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.contacts.edit": {
-      uri: "admin/contacts/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.contact-types.index": {
-      uri: "admin/contact-types",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.contact-types.create": {
-      uri: "admin/contact-types/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.contact-types.edit": {
-      uri: "admin/contact-types/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.customers.index": {
-      uri: "admin/customers",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.customers.create": {
-      uri: "admin/customers/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.customers.edit": {
-      uri: "admin/customers/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.leads.index": {
-      uri: "admin/leads",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.leads.create": {
-      uri: "admin/leads/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.leads.edit": {
-      uri: "admin/leads/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.lead-types.index": {
-      uri: "admin/lead-types",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.lead-types.create": {
-      uri: "admin/lead-types/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.lead-types.edit": {
-      uri: "admin/lead-types/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.orders.index": {
-      uri: "admin/orders",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.orders.create": {
-      uri: "admin/orders/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.orders.edit": {
-      uri: "admin/orders/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.pages.index": {
-      uri: "admin/pages",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.pages.create": {
-      uri: "admin/pages/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.pages.edit": {
-      uri: "admin/pages/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.products.index": {
-      uri: "admin/products",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.products.create": {
-      uri: "admin/products/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.products.edit": {
-      uri: "admin/products/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.settings.index": {
-      uri: "admin/settings",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.social-networks.index": {
-      uri: "admin/social-networks",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.social-networks.create": {
-      uri: "admin/social-networks/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.social-networks.edit": {
-      uri: "admin/social-networks/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "filament.admin.resources.tags.index": {
-      uri: "admin/tags",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.tags.create": {
-      uri: "admin/tags/create",
-      methods: ["GET", "HEAD"]
-    },
-    "filament.admin.resources.tags.edit": {
-      uri: "admin/tags/{record}/edit",
-      methods: ["GET", "HEAD"],
-      parameters: ["record"]
-    },
-    "livewire.update": { uri: "livewire/update", methods: ["POST"] },
-    "livewire.upload-file": {
-      uri: "livewire/upload-file",
-      methods: ["POST"]
-    },
-    "livewire.preview-file": {
-      uri: "livewire/preview-file/{filename}",
-      methods: ["GET", "HEAD"],
-      parameters: ["filename"]
-    },
-    "log-viewer.hosts": {
-      uri: "admin/log-viewer/api/hosts",
-      methods: ["GET", "HEAD"]
-    },
-    "log-viewer.folders": {
-      uri: "admin/log-viewer/api/folders",
-      methods: ["GET", "HEAD"]
-    },
-    "log-viewer.folders.request-download": {
-      uri: "admin/log-viewer/api/folders/{folderIdentifier}/download/request",
-      methods: ["GET", "HEAD"],
-      parameters: ["folderIdentifier"]
-    },
-    "log-viewer.folders.clear-cache": {
-      uri: "admin/log-viewer/api/folders/{folderIdentifier}/clear-cache",
-      methods: ["POST"],
-      parameters: ["folderIdentifier"]
-    },
-    "log-viewer.folders.delete": {
-      uri: "admin/log-viewer/api/folders/{folderIdentifier}",
-      methods: ["DELETE"],
-      parameters: ["folderIdentifier"]
-    },
-    "log-viewer.files": {
-      uri: "admin/log-viewer/api/files",
-      methods: ["GET", "HEAD"]
-    },
-    "log-viewer.files.request-download": {
-      uri: "admin/log-viewer/api/files/{fileIdentifier}/download/request",
-      methods: ["GET", "HEAD"],
-      parameters: ["fileIdentifier"]
-    },
-    "log-viewer.files.clear-cache": {
-      uri: "admin/log-viewer/api/files/{fileIdentifier}/clear-cache",
-      methods: ["POST"],
-      parameters: ["fileIdentifier"]
-    },
-    "log-viewer.files.delete": {
-      uri: "admin/log-viewer/api/files/{fileIdentifier}",
-      methods: ["DELETE"],
-      parameters: ["fileIdentifier"]
-    },
-    "log-viewer.files.clear-cache-all": {
-      uri: "admin/log-viewer/api/clear-cache-all",
-      methods: ["POST"]
-    },
-    "log-viewer.files.delete-multiple-files": {
-      uri: "admin/log-viewer/api/delete-multiple-files",
-      methods: ["POST"]
-    },
-    "log-viewer.logs": {
-      uri: "admin/log-viewer/api/logs",
-      methods: ["GET", "HEAD"]
-    },
-    "log-viewer.folders.download": {
-      uri: "admin/log-viewer/api/folders/{folderIdentifier}/download",
-      methods: ["GET", "HEAD"],
-      parameters: ["folderIdentifier"]
-    },
-    "log-viewer.files.download": {
-      uri: "admin/log-viewer/api/files/{fileIdentifier}/download",
-      methods: ["GET", "HEAD"],
-      parameters: ["fileIdentifier"]
-    },
-    "log-viewer.index": {
-      uri: "admin/log-viewer/{view?}",
-      methods: ["GET", "HEAD"],
-      wheres: { view: "(.*)" },
-      parameters: ["view"]
-    },
-    home: { uri: "/", methods: ["GET", "HEAD"] },
-    "about-us": { uri: "about-us", methods: ["GET", "HEAD"] },
-    contacts: { uri: "contacts", methods: ["GET", "HEAD"] },
-    faq: { uri: "faq", methods: ["GET", "HEAD"] },
-    "privacy-policy": { uri: "privacy-policy", methods: ["GET", "HEAD"] },
-    "terms-condition": { uri: "terms-condition", methods: ["GET", "HEAD"] },
-    "track-order": { uri: "track-order", methods: ["GET", "HEAD"] },
-    "show-product": {
-      uri: "product/{slug}",
-      methods: ["GET", "HEAD"],
-      parameters: ["slug"]
-    },
-    "show-category": {
-      uri: "category/{slug}",
-      methods: ["GET", "HEAD"],
-      parameters: ["slug"]
-    },
-    "api.v1.common.site-info": {
-      uri: "api/v1/site-info",
-      methods: ["GET", "HEAD"]
-    },
-    "api.v1.common.popular-tags": {
-      uri: "api/v1/popular-tags",
-      methods: ["GET", "HEAD"]
-    },
-    "api.v1.product.tags": {
-      uri: "api/v1/products/tags",
-      methods: ["GET", "HEAD"]
-    },
-    "api.v1.product.get-product": {
-      uri: "api/v1/product/{slug}",
-      methods: ["GET", "HEAD"],
-      wheres: { slug: "[a-zA-Z0-9-]+" },
-      parameters: ["slug"]
-    },
-    "api.v1.product.get-products": {
-      uri: "api/v1/products",
-      methods: ["GET", "HEAD"]
-    }
-  }
-};
+const Ziggy = { "url": "http://brukhan.local", "port": null, "defaults": {}, "routes": { "filament.exports.download": { "uri": "filament/exports/{export}/download", "methods": ["GET", "HEAD"], "parameters": ["export"], "bindings": { "export": "id" } }, "filament.imports.failed-rows.download": { "uri": "filament/imports/{import}/failed-rows/download", "methods": ["GET", "HEAD"], "parameters": ["import"], "bindings": { "import": "id" } }, "filament.admin.auth.login": { "uri": "admin/login", "methods": ["GET", "HEAD"] }, "filament.admin.auth.logout": { "uri": "admin/logout", "methods": ["POST"] }, "filament.admin.pages.dashboard": { "uri": "admin", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.index": { "uri": "admin/blog-posts", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.create": { "uri": "admin/blog-posts/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.edit": { "uri": "admin/blog-posts/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.blog-posts.view": { "uri": "admin/blog-posts/{record}", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.brands.index": { "uri": "admin/brands", "methods": ["GET", "HEAD"] }, "filament.admin.resources.brands.create": { "uri": "admin/brands/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.brands.edit": { "uri": "admin/brands/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.categories.index": { "uri": "admin/categories", "methods": ["GET", "HEAD"] }, "filament.admin.resources.categories.create": { "uri": "admin/categories/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.categories.edit": { "uri": "admin/categories/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.contacts.index": { "uri": "admin/contacts", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contacts.create": { "uri": "admin/contacts/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contacts.edit": { "uri": "admin/contacts/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.contact-types.index": { "uri": "admin/contact-types", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contact-types.create": { "uri": "admin/contact-types/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contact-types.edit": { "uri": "admin/contact-types/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.customers.index": { "uri": "admin/customers", "methods": ["GET", "HEAD"] }, "filament.admin.resources.customers.create": { "uri": "admin/customers/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.customers.edit": { "uri": "admin/customers/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.leads.index": { "uri": "admin/leads", "methods": ["GET", "HEAD"] }, "filament.admin.resources.leads.create": { "uri": "admin/leads/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.leads.edit": { "uri": "admin/leads/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.lead-types.index": { "uri": "admin/lead-types", "methods": ["GET", "HEAD"] }, "filament.admin.resources.lead-types.create": { "uri": "admin/lead-types/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.lead-types.edit": { "uri": "admin/lead-types/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.orders.index": { "uri": "admin/orders", "methods": ["GET", "HEAD"] }, "filament.admin.resources.orders.create": { "uri": "admin/orders/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.orders.edit": { "uri": "admin/orders/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.pages.index": { "uri": "admin/pages", "methods": ["GET", "HEAD"] }, "filament.admin.resources.pages.create": { "uri": "admin/pages/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.pages.edit": { "uri": "admin/pages/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.products.index": { "uri": "admin/products", "methods": ["GET", "HEAD"] }, "filament.admin.resources.products.create": { "uri": "admin/products/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.products.edit": { "uri": "admin/products/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.settings.index": { "uri": "admin/settings", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.index": { "uri": "admin/social-networks", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.create": { "uri": "admin/social-networks/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.edit": { "uri": "admin/social-networks/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.tags.index": { "uri": "admin/tags", "methods": ["GET", "HEAD"] }, "filament.admin.resources.tags.create": { "uri": "admin/tags/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.tags.edit": { "uri": "admin/tags/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "livewire.update": { "uri": "livewire/update", "methods": ["POST"] }, "livewire.upload-file": { "uri": "livewire/upload-file", "methods": ["POST"] }, "livewire.preview-file": { "uri": "livewire/preview-file/{filename}", "methods": ["GET", "HEAD"], "parameters": ["filename"] }, "log-viewer.hosts": { "uri": "admin/log-viewer/api/hosts", "methods": ["GET", "HEAD"] }, "log-viewer.folders": { "uri": "admin/log-viewer/api/folders", "methods": ["GET", "HEAD"] }, "log-viewer.folders.request-download": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/download/request", "methods": ["GET", "HEAD"], "parameters": ["folderIdentifier"] }, "log-viewer.folders.clear-cache": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/clear-cache", "methods": ["POST"], "parameters": ["folderIdentifier"] }, "log-viewer.folders.delete": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}", "methods": ["DELETE"], "parameters": ["folderIdentifier"] }, "log-viewer.files": { "uri": "admin/log-viewer/api/files", "methods": ["GET", "HEAD"] }, "log-viewer.files.request-download": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/download/request", "methods": ["GET", "HEAD"], "parameters": ["fileIdentifier"] }, "log-viewer.files.clear-cache": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/clear-cache", "methods": ["POST"], "parameters": ["fileIdentifier"] }, "log-viewer.files.delete": { "uri": "admin/log-viewer/api/files/{fileIdentifier}", "methods": ["DELETE"], "parameters": ["fileIdentifier"] }, "log-viewer.files.clear-cache-all": { "uri": "admin/log-viewer/api/clear-cache-all", "methods": ["POST"] }, "log-viewer.files.delete-multiple-files": { "uri": "admin/log-viewer/api/delete-multiple-files", "methods": ["POST"] }, "log-viewer.logs": { "uri": "admin/log-viewer/api/logs", "methods": ["GET", "HEAD"] }, "log-viewer.folders.download": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/download", "methods": ["GET", "HEAD"], "parameters": ["folderIdentifier"] }, "log-viewer.files.download": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/download", "methods": ["GET", "HEAD"], "parameters": ["fileIdentifier"] }, "log-viewer.index": { "uri": "admin/log-viewer/{view?}", "methods": ["GET", "HEAD"], "wheres": { "view": "(.*)" }, "parameters": ["view"] }, "home": { "uri": "/", "methods": ["GET", "HEAD"] }, "about-us": { "uri": "about-us", "methods": ["GET", "HEAD"] }, "contacts": { "uri": "contacts", "methods": ["GET", "HEAD"] }, "faq": { "uri": "faq", "methods": ["GET", "HEAD"] }, "privacy-policy": { "uri": "privacy-policy", "methods": ["GET", "HEAD"] }, "policy-cookies": { "uri": "policy-cookies", "methods": ["GET", "HEAD"] }, "bank-details": { "uri": "bank-details", "methods": ["GET", "HEAD"] }, "track-order": { "uri": "track-order", "methods": ["GET", "HEAD"] }, "show-product": { "uri": "product/{slug}", "methods": ["GET", "HEAD"], "parameters": ["slug"] }, "show-category": { "uri": "category/{slug}", "methods": ["GET", "HEAD"], "parameters": ["slug"] }, "api.v1.common.site-info": { "uri": "api/v1/site-info", "methods": ["GET", "HEAD"] }, "api.v1.common.popular-tags": { "uri": "api/v1/popular-tags", "methods": ["GET", "HEAD"] }, "api.v1.product.tags": { "uri": "api/v1/products/tags", "methods": ["GET", "HEAD"] }, "api.v1.product.get-product": { "uri": "api/v1/product/{slug}", "methods": ["GET", "HEAD"], "wheres": { "slug": "[a-zA-Z0-9-]+" }, "parameters": ["slug"] }, "api.v1.product.get-products": { "uri": "api/v1/products", "methods": ["GET", "HEAD"] } } };
 if (typeof window !== "undefined" && typeof window.Ziggy !== "undefined") {
   Object.assign(Ziggy.routes, window.Ziggy.routes);
 }
@@ -3327,7 +3082,7 @@ const ru = {
     delivery_information: "Информация о доставке",
     contact_us: "Контакты",
     privacy_policy: "Политика персональных данных",
-    cookie_processing_policy: "Политика обработки cookie",
+    policy_cookies: "Политика обработки cookie",
     bank_details: "Банковские реквизиты"
   },
   any_questions: "Остались вопросы? Звоните",
@@ -3346,7 +3101,7 @@ const ru = {
     delivery_information: "Информация о доставке",
     contact_us: "Контакты",
     privacy_policy: "Политика персональных данных",
-    cookie_processing_policy: "Политика обработки cookie",
+    policy_cookies: "Политика обработки cookie",
     bank_details: "Банковские реквизиты",
     to_the_client: "Клиенту",
     top_products: "Лучшие товары",
@@ -3405,7 +3160,10 @@ const ru = {
     phone: "Телефон",
     message: "Сообщение",
     send: "Отправить"
-  }
+  },
+  privacy_policy: "Политика персональных данных",
+  policy_cookies: "Политика обработки cookie",
+  bank_details: "Банковские реквизиты"
 };
 const en = {
   locale: {
@@ -3426,7 +3184,7 @@ const en = {
     delivery_information: "Delivery information",
     contact_us: "Contact us",
     privacy_policy: "Privacy policy",
-    cookie_processing_policy: "Cookie processing policy",
+    policy_cookies: "Cookie processing policy",
     bank_details: "Bank details"
   },
   any_questions: "Got questions? Call us",
@@ -3445,7 +3203,7 @@ const en = {
     delivery_information: "Delivery information",
     contact_us: "Contact us",
     privacy_policy: "Privacy policy",
-    cookie_processing_policy: "Cookie processing policy",
+    policy_cookies: "Cookie processing policy",
     bank_details: "Bank details",
     to_the_client: "To the client",
     top_products: "Top products",
@@ -3504,7 +3262,10 @@ const en = {
     phone: "Phone number",
     message: "Message",
     send: "Send"
-  }
+  },
+  privacy_policy: "Privacy policy",
+  policy_cookies: "Cookie processing policy",
+  bank_details: "Bank details"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({
@@ -3518,7 +3279,7 @@ createServer(
     page,
     render: renderToString,
     resolve: (name) => {
-      const pages = /* @__PURE__ */ Object.assign({ "./pages/AboutUs.vue": __vite_glob_0_0, "./pages/Category.vue": __vite_glob_0_1, "./pages/Contacts.vue": __vite_glob_0_2, "./pages/Faq.vue": __vite_glob_0_3, "./pages/Home.vue": __vite_glob_0_4, "./pages/PrivacyPolicy.vue": __vite_glob_0_5, "./pages/Product.vue": __vite_glob_0_6, "./pages/TermsCondition.vue": __vite_glob_0_7, "./pages/TrackOrder.vue": __vite_glob_0_8 });
+      const pages = /* @__PURE__ */ Object.assign({ "./pages/AboutUs.vue": __vite_glob_0_0, "./pages/BankDetails.vue": __vite_glob_0_1, "./pages/Category.vue": __vite_glob_0_2, "./pages/Contacts.vue": __vite_glob_0_3, "./pages/Faq.vue": __vite_glob_0_4, "./pages/Home.vue": __vite_glob_0_5, "./pages/PolicyCookies.vue": __vite_glob_0_6, "./pages/PrivacyPolicy.vue": __vite_glob_0_7, "./pages/Product.vue": __vite_glob_0_8, "./pages/TrackOrder.vue": __vite_glob_0_9 });
       const page2 = pages[`./pages/${name}.vue`];
       page2.default.layout = page2.default.layout || Layout;
       return page2;

@@ -4,11 +4,6 @@
 body {
     font-size: 14px;
     color: #777;
-    user-select: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     font-family: $fontfamily;
     font-weight: 300;
     top: 0 !important;
@@ -1479,7 +1474,6 @@ h6 {
         padding-bottom: 2px;
         font-family: Helvetica, Arial, sans-serif;
         font-weight: bold;
-        -webkit-user-select: none;
         margin-top: 5px;
         margin-left: 5px;
         border-radius: 0 0 3px 3px;
@@ -1488,7 +1482,6 @@ h6 {
         font-size: 1.1em;
     }
     #stats {
-        -webkit-user-select: none;
         margin-top: 5px;
         margin-left: 5px;
         border-radius: 3px 3px 0 0;
@@ -1579,7 +1572,6 @@ h6 {
     display: flex;
     align-content: center;
     justify-content: center;
-    user-select: none;
     .ec-direct-body {
         align-content: center;
         justify-content: center;

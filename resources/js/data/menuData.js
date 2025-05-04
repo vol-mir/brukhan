@@ -85,13 +85,13 @@ export const getMenuItems = (t, categories) => {
                 },
                 {
                     type: 'link',
-                    label: t('menu.cookie_processing_policy'),
-                    link: 'terms-condition',
+                    label: t('menu.policy_cookies'),
+                    link: 'policy-cookies',
                 },
                 {
                     type: 'link',
                     label: t('menu.bank_details'),
-                    link: 'terms-condition',
+                    link: 'bank-details',
                 },
             ],
         },

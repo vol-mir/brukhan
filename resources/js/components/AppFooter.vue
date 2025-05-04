@@ -222,12 +222,12 @@
                                             <li class="ec-footer-link">
                                                 <InertiaLink
                                                     :href="
-                                                        route('terms-condition')
+                                                        route('policy-cookies')
                                                     "
                                                 >
                                                     {{
                                                         $t(
-                                                            'page.cookie_processing_policy'
+                                                            'page.policy_cookies'
                                                         )
                                                     }}
                                                 </InertiaLink>
@@ -235,7 +235,7 @@
                                             <li class="ec-footer-link">
                                                 <InertiaLink
                                                     :href="
-                                                        route('terms-condition')
+                                                        route('bank-details')
                                                     "
                                                 >
                                                     {{

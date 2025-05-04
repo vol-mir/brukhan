@@ -53,6 +53,8 @@
     - User Page
     - Offer Page
     - Thank you Page
+    - Policy Cookies Page
+    - Bank Details Page
 
 -----------------------------------------------------------------------------------*/
 
@@ -118,6 +120,8 @@
 @import './pages/_wishlist';
 @import './pages/_thank-you';
 @import './pages/_payment-fail';
+@import './pages/_policy-cookies-page';
+@import './pages/_bank-details-page';
 
 // Additional style
 @import './components/_responsive';

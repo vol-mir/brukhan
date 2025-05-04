@@ -9,6 +9,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
         address: null,
         full_name: null,
         description: null,
+        bank_details: null,
         social_networks: [],
         brands: [],
         top_categories: [],
@@ -39,6 +40,7 @@ export const useSiteInfoStore = defineStore('siteInfo', {
                         this.address = response.address ?? null;
                         this.full_name = response.full_name ?? null;
                         this.description = response.description ?? null;
+                        this.bank_details = response.bank_details ?? null;
                         this.social_networks = response.social_networks || [];
                         this.brands = response.brands || [];
                         this.map = response.map || null;

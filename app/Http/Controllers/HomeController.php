@@ -47,14 +47,21 @@ class HomeController extends Controller
     public function privacyPolicy(): Response
     {
         return Inertia::render('PrivacyPolicy', [
-            'page' => $this->getPageData(TitleType::Page, 'policy_personal_data'),
+            'page' => $this->getPageData(TitleType::Page, 'privacy_policy'),
         ]);
     }
 
-    public function termsCondition(): Response
+    public function policyCookies(): Response
     {
-        return Inertia::render('TermsCondition', [
-            'page' => $this->getPageData(TitleType::Page, 'policy_personal_data'),
+        return Inertia::render('PolicyCookies', [
+            'page' => $this->getPageData(TitleType::Page, 'policy_cookies'),
+        ]);
+    }
+
+    public function bankDetails(): Response
+    {
+        return Inertia::render('BankDetails', [
+            'page' => $this->getPageData(TitleType::Page, 'bank_details'),
         ]);
     }
 

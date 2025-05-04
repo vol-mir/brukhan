@@ -78,6 +78,7 @@ class SiteInfoAction
             'address' => $setting?->address,
             'full_name' => $setting?->full_name,
             'description' => $setting?->description,
+            'bank_details' => $setting?->bank_details,
             'map' => $setting?->map,
             'social_networks' => SocialNetworkResource::collection(SocialNetwork::query()->get()),
             'brands' => BrandResource::collection(Brand::query()->get()),
