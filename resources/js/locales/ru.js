@@ -15,7 +15,7 @@ export default {
     page: {
         about_us: 'О нас',
         faq: 'Часто задаваемые вопросы',
-        delivery_information: 'Информация о доставке',
+        delivery: 'Информация о доставке',
         contact_us: 'Контакты',
         privacy_policy: 'Политика персональных данных',
         policy_cookies: 'Политика обработки cookie',
@@ -34,7 +34,7 @@ export default {
         contacts: 'Контакты',
         company: 'Компания',
         faq: 'Часто задаваемые вопросы',
-        delivery_information: 'Информация о доставке',
+        delivery: 'Информация о доставке',
         contact_us: 'Контакты',
         privacy_policy: 'Политика персональных данных',
         policy_cookies: 'Политика обработки cookie',
@@ -102,4 +102,5 @@ export default {
     privacy_policy: 'Политика персональных данных',
     policy_cookies: 'Политика обработки cookie',
     bank_details: 'Банковские реквизиты',
+    delivery: 'Информация о доставке',
 };

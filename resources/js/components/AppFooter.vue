@@ -169,13 +169,11 @@
                                                 </InertiaLink>
                                             </li>
                                             <li class="ec-footer-link">
-                                                <a href="#">
-                                                    {{
-                                                        $t(
-                                                            'page.delivery_information'
-                                                        )
-                                                    }}
-                                                </a>
+                                                <InertiaLink
+                                                    :href="route('delivery')"
+                                                >
+                                                    {{ $t('page.delivery') }}
+                                                </InertiaLink>
                                             </li>
                                             <li class="ec-footer-link">
                                                 <InertiaLink

@@ -320,8 +320,8 @@ const getMenuItems = (t, categories) => {
         },
         {
           type: "link",
-          label: t("menu.delivery_information"),
-          link: "track-order"
+          label: t("menu.delivery"),
+          link: "delivery"
         },
         {
           type: "link",
@@ -982,7 +982,7 @@ const _sfc_main$n = {
 };
 function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-64eecb8b><div class="footer-container" data-v-64eecb8b><div class="footer-offer" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="row" data-v-64eecb8b><div class="text-center footer-off-msg" data-v-64eecb8b><span data-v-64eecb8b>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="row" data-v-64eecb8b><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><div class="ec-footer-logo" data-v-64eecb8b>`);
+  _push(`<!--[--><footer class="ec-footer section-space-mt" data-v-1e85e613><div class="footer-container" data-v-1e85e613><div class="footer-offer" data-v-1e85e613><div class="container" data-v-1e85e613><div class="row" data-v-1e85e613><div class="text-center footer-off-msg" data-v-1e85e613><span data-v-1e85e613>${ssrInterpolate(_ctx.$t("any_questions"))}</span><a${ssrRenderAttr("href", "tel:" + $setup.siteInfoStore.main_phone)} data-v-1e85e613>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></div></div></div></div><div class="footer-top section-space-footer-p" data-v-1e85e613><div class="container" data-v-1e85e613><div class="row" data-v-1e85e613><div class="col-sm-12 col-lg-3 ec-footer-contact" data-v-1e85e613><div class="ec-footer-widget" data-v-1e85e613><div class="ec-footer-logo" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home")
   }, {
@@ -991,7 +991,7 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
         _push2(`<img${ssrRenderAttr(
           "src",
           $setup.getLogoPath("footer-logo.png")
-        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-64eecb8b${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-64eecb8b${_scopeId}>`);
+        )}${ssrRenderAttr("alt", $setup.siteInfoStore.full_name)} loading="lazy" data-v-1e85e613${_scopeId}><img class="dark-footer-logo"${ssrRenderAttr("src", $setup.getLogoPath("dark-logo.png"))}${ssrRenderAttr("alt", $setup.siteInfoStore.social_networks)} style="${ssrRenderStyle({ "display": "none" })}" loading="lazy" data-v-1e85e613${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1011,13 +1011,13 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</div><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-64eecb8b><span data-v-64eecb8b>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
+  _push(`</div><h4 class="ec-footer-heading" data-v-1e85e613>${ssrInterpolate(_ctx.$t("contact_us"))} <div class="ec-heading-res" data-v-1e85e613><i class="ecicon eci-angle-down" data-v-1e85e613></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "contacts" ? null : { display: "none" })}" data-v-1e85e613><ul class="align-items-center" data-v-1e85e613><li class="ec-footer-link" data-v-1e85e613>${ssrInterpolate($setup.siteInfoStore.address)}</li><li class="ec-footer-link" data-v-1e85e613><span data-v-1e85e613>${ssrInterpolate(_ctx.$t("call_us"))}: </span><a${ssrRenderAttr(
     "href",
     "tel:" + $setup.siteInfoStore.main_phone
-  )} data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-64eecb8b><span data-v-64eecb8b>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
+  )} data-v-1e85e613>${ssrInterpolate($setup.siteInfoStore.main_phone)}</a></li><li class="ec-footer-link" data-v-1e85e613><span data-v-1e85e613>${ssrInterpolate(_ctx.$t("email"))}:</span><a${ssrRenderAttr(
     "href",
     "mailto:" + $setup.siteInfoStore.main_email
-  )} data-v-64eecb8b>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>`);
+  )} data-v-1e85e613>${ssrInterpolate($setup.siteInfoStore.main_email)}</a></li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-info" data-v-1e85e613><div class="ec-footer-widget" data-v-1e85e613><h4 class="ec-footer-heading" data-v-1e85e613>${ssrInterpolate(_ctx.$t("information"))} <div class="ec-heading-res" data-v-1e85e613><i class="ecicon eci-angle-down" data-v-1e85e613></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "information" ? null : { display: "none" })}" data-v-1e85e613><ul class="align-items-center" data-v-1e85e613><li class="ec-footer-link" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("about-us")
   }, {
@@ -1032,7 +1032,7 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-64eecb8b>`);
+  _push(`</li><li class="ec-footer-link" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("faq")
   }, {
@@ -1047,9 +1047,22 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-64eecb8b><a href="#" data-v-64eecb8b>${ssrInterpolate(_ctx.$t(
-    "page.delivery_information"
-  ))}</a></li><li class="ec-footer-link" data-v-64eecb8b>`);
+  _push(`</li><li class="ec-footer-link" data-v-1e85e613>`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: $setup.route("delivery")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("page.delivery"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("page.delivery")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li class="ec-footer-link" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("contacts")
   }, {
@@ -1064,7 +1077,7 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>`);
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-service" data-v-1e85e613><div class="ec-footer-widget" data-v-1e85e613><h4 class="ec-footer-heading" data-v-1e85e613>${ssrInterpolate(_ctx.$t("to_the_client"))} <div class="ec-heading-res" data-v-1e85e613><i class="ecicon eci-angle-down" data-v-1e85e613></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "services" ? null : { display: "none" })}" data-v-1e85e613><ul class="align-items-center" data-v-1e85e613><li class="ec-footer-link" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("privacy-policy")
   }, {
@@ -1083,7 +1096,7 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-64eecb8b>`);
+  _push(`</li><li class="ec-footer-link" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("policy-cookies")
   }, {
@@ -1102,7 +1115,7 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-footer-link" data-v-64eecb8b>`);
+  _push(`</li><li class="ec-footer-link" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("bank-details")
   }, {
@@ -1117,26 +1130,26 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-64eecb8b><div class="ec-footer-widget" data-v-64eecb8b><h4 class="ec-footer-heading" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-64eecb8b><i class="ecicon eci-angle-down" data-v-64eecb8b></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-64eecb8b><ul class="align-items-center" data-v-64eecb8b><li class="ec-footer-link" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-64eecb8b><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-64eecb8b><div id="ec_news_signup" class="ec-form" data-v-64eecb8b><input class="ec-email" type="email" required=""${ssrRenderAttr(
+  _push(`</li></ul></div></div></div><div class="col-sm-12 col-lg-3 ec-footer-news" data-v-1e85e613><div class="ec-footer-widget" data-v-1e85e613><h4 class="ec-footer-heading" data-v-1e85e613>${ssrInterpolate(_ctx.$t("newsletter"))} <div class="ec-heading-res" data-v-1e85e613><i class="ecicon eci-angle-down" data-v-1e85e613></i></div></h4><div class="ec-footer-links ec-footer-dropdown" style="${ssrRenderStyle($data.activeIndex === "newsletter" ? null : { display: "none" })}" data-v-1e85e613><ul class="align-items-center" data-v-1e85e613><li class="ec-footer-link" data-v-1e85e613>${ssrInterpolate(_ctx.$t("special_promos"))}</li></ul><div class="ec-subscribe-form" data-v-1e85e613><form id="ec-newsletter-form" name="ec-newsletter-form" method="post" action="#" data-v-1e85e613><div id="ec_news_signup" class="ec-form" data-v-1e85e613><input class="ec-email" type="email" required=""${ssrRenderAttr(
     "placeholder",
     _ctx.$t(
       "enter_your_email"
     )
-  )} name="ec-email" value="" data-v-64eecb8b><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-64eecb8b><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-64eecb8b></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="row align-items-center" data-v-64eecb8b><div class="col text-left footer-bottom-left" data-v-64eecb8b><div class="footer-bottom-social" data-v-64eecb8b><span class="social-text text-upper" data-v-64eecb8b>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
+  )} name="ec-email" value="" data-v-1e85e613><button id="ec-news-btn" class="button btn-primary" type="submit" name="subscribe" value="" data-v-1e85e613><i class="ecicon eci-paper-plane-o" aria-hidden="true" data-v-1e85e613></i></button></div></form></div></div></div></div></div></div></div><div class="footer-bottom" data-v-1e85e613><div class="container" data-v-1e85e613><div class="row align-items-center" data-v-1e85e613><div class="col text-left footer-bottom-left" data-v-1e85e613><div class="footer-bottom-social" data-v-1e85e613><span class="social-text text-upper" data-v-1e85e613>${ssrInterpolate(_ctx.$t("follow_us_on"))}: </span>`);
   if ($setup.siteInfoStore && $setup.siteInfoStore.social_networks) {
-    _push(`<ul class="mb-0" data-v-64eecb8b><!--[-->`);
+    _push(`<ul class="mb-0" data-v-1e85e613><!--[-->`);
     ssrRenderList($setup.siteInfoStore.social_networks || [], (network) => {
-      _push(`<li class="list-inline-item" data-v-64eecb8b><a class="${ssrRenderClass(
+      _push(`<li class="list-inline-item" data-v-1e85e613><a class="${ssrRenderClass(
         "hdr-" + network.slug.toLowerCase()
-      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-64eecb8b><i class="${ssrRenderClass(
+      )}"${ssrRenderAttr("href", network.url)}${ssrRenderAttr("aria-label", network.name)} target="_blank" rel="noopener noreferrer" data-v-1e85e613><i class="${ssrRenderClass(
         "ecicon eci-" + network.slug
-      )}" data-v-64eecb8b></i></a></li>`);
+      )}" data-v-1e85e613></i></a></li>`);
     });
     _push(`<!--]--></ul>`);
   } else {
     _push(`<!---->`);
   }
-  _push(`</div></div><div class="col text-center footer-copy" data-v-64eecb8b><div class="footer-bottom-copy" data-v-64eecb8b><div class="ec-copy" data-v-64eecb8b> © 2024-${ssrInterpolate($options.currentYear)} `);
+  _push(`</div></div><div class="col text-center footer-copy" data-v-1e85e613><div class="footer-bottom-copy" data-v-1e85e613><div class="ec-copy" data-v-1e85e613> © 2024-${ssrInterpolate($options.currentYear)} `);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home"),
     class: "site-name text-upper"
@@ -1152,14 +1165,14 @@ function _sfc_ssrRender$n(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-64eecb8b><div class="container" data-v-64eecb8b><div class="ec-nav-panel" data-v-64eecb8b><div class="ec-nav-panel-icons" data-v-64eecb8b><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-64eecb8b><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-64eecb8b></a></div><div class="ec-nav-panel-icons" data-v-64eecb8b></div><div class="ec-nav-panel-icons" data-v-64eecb8b>`);
+  _push(` ${ssrInterpolate(_ctx.$t("all_rights_reserved"))}. </div></div></div></div></div></div></div></footer><div class="ec-nav-toolbar" data-v-1e85e613><div class="container" data-v-1e85e613><div class="ec-nav-panel" data-v-1e85e613><div class="ec-nav-panel-icons" data-v-1e85e613><a href="javascript:void(0)" class="navbar-toggler-btn ec-header-btn ec-side-toggle" data-v-1e85e613><img${ssrRenderAttr("src", $setup.getIconPath("menu.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-1e85e613></a></div><div class="ec-nav-panel-icons" data-v-1e85e613></div><div class="ec-nav-panel-icons" data-v-1e85e613>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("home"),
     class: "ec-header-btn"
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-64eecb8b${_scopeId}>`);
+        _push2(`<img${ssrRenderAttr("src", $setup.getIconPath("home.svg"))} class="svg_img header_svg" alt="icon" loading="lazy" data-v-1e85e613${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
@@ -1181,7 +1194,7 @@ _sfc_main$n.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/AppFooter.vue");
   return _sfc_setup$n ? _sfc_setup$n(props, ctx) : void 0;
 };
-const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$n], ["__scopeId", "data-v-64eecb8b"]]);
+const AppFooter = /* @__PURE__ */ _export_sfc(_sfc_main$n, [["ssrRender", _sfc_ssrRender$n], ["__scopeId", "data-v-1e85e613"]]);
 const _sfc_main$m = {
   data() {
     return {
@@ -1997,6 +2010,54 @@ const __vite_glob_0_3 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.def
   default: Contacts
 }, Symbol.toStringTag, { value: "Module" }));
 const _sfc_main$c = {
+  name: "Delivery",
+  layout: Layout,
+  components: {
+    InertiaLink: Link,
+    ListServices
+  },
+  setup() {
+    useBodyClass("delivery_page");
+    const { getImagePath: getImagePath2 } = useImagePath();
+    return {
+      getImagePath: getImagePath2
+    };
+  }
+};
+function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+  const _component_InertiaLink = resolveComponent("InertiaLink");
+  const _component_ListServices = resolveComponent("ListServices");
+  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.delivery"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: _ctx.route("home")
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
+      } else {
+        return [
+          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.delivery"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("delivery"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("delivery"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><p><strong> Доставка по России и СНГ - быстро и удобно! </strong></p><br><p> Мы отправляем заказы в любую точку России и стран СНГ с помощью нашего надежного партнёра <strong>СДЭК</strong> . <br> После оформления заказа вы сможете выбрать: </p><p> - удобный <strong>пункт выдачи</strong><br> - <strong>курьерскую доставку</strong> прямо на ваш адрес <br></p><br><p> Отправка осуществляется в кратчайшие сроки, а после передачи заказа транспортной компании вы получите трек-номер для отслеживания посылки. </p><br><p><strong>Стоимость и сроки доставки</strong> рассчитываются автоматически при оформлении заказа - всё зависит от вашего региона и способа получения. <br> Для вашего удобства доступны различные варианты оплаты, включая <strong>наложенный платёж</strong> . </p></div></div></div></div></div></div></section>`);
+  _push(ssrRenderComponent(_component_ListServices, null, null, _parent));
+  _push(`<!--]-->`);
+}
+const _sfc_setup$c = _sfc_main$c.setup;
+_sfc_main$c.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Delivery.vue");
+  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+};
+const Delivery = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c]]);
+const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  default: Delivery
+}, Symbol.toStringTag, { value: "Module" }));
+const _sfc_main$b = {
   name: "FaqAccordion",
   props: {
     title: { type: String, required: true },
@@ -2010,7 +2071,7 @@ const _sfc_main$c = {
     }
   }
 };
-function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "col-sm-12 ec-faq-block" }, _attrs))}><h4 class="ec-faq-title">${ssrInterpolate($props.title)}</h4>`);
   if ($props.isActive) {
     _push(`<div class="ec-faq-content ec-faq-dropdown"><p>${ssrInterpolate($props.content)}</p></div>`);
@@ -2019,13 +2080,13 @@ function _sfc_ssrRender$c(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }
   _push(`</div>`);
 }
-const _sfc_setup$c = _sfc_main$c.setup;
-_sfc_main$c.setup = (props, ctx) => {
+const _sfc_setup$b = _sfc_main$b.setup;
+_sfc_main$b.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/modules/faq/components/FaqAccordion.vue");
-  return _sfc_setup$c ? _sfc_setup$c(props, ctx) : void 0;
+  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
 };
-const FaqAccordion = /* @__PURE__ */ _export_sfc(_sfc_main$c, [["ssrRender", _sfc_ssrRender$c]]);
+const FaqAccordion = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b]]);
 const getFaqItems = () => [
   {
     name: "Общие вопросы",
@@ -2076,7 +2137,7 @@ function useFaq() {
     toggleFaq
   };
 }
-const _sfc_main$b = {
+const _sfc_main$a = {
   name: "Faq",
   layout: Layout,
   components: {
@@ -2095,7 +2156,7 @@ const _sfc_main$b = {
     };
   }
 };
-function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_FaqAccordion = resolveComponent("FaqAccordion");
   const _component_ListServices = resolveComponent("ListServices");
@@ -2136,14 +2197,14 @@ function _sfc_ssrRender$b(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_ListBrands, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$b = _sfc_main$b.setup;
-_sfc_main$b.setup = (props, ctx) => {
+const _sfc_setup$a = _sfc_main$a.setup;
+_sfc_main$a.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Faq.vue");
-  return _sfc_setup$b ? _sfc_setup$b(props, ctx) : void 0;
+  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
 };
-const Faq = /* @__PURE__ */ _export_sfc(_sfc_main$b, [["ssrRender", _sfc_ssrRender$b]]);
-const __vite_glob_0_4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Faq = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender$a]]);
+const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Faq
 }, Symbol.toStringTag, { value: "Module" }));
@@ -2169,24 +2230,24 @@ function useSwiper() {
     setThumbsSwiper
   };
 }
-const _sfc_main$a = {
+const _sfc_main$9 = {
   props: {
     title: String,
     subtitle: String,
     buttonText: String
   }
 };
-function _sfc_ssrRender$a(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   _push(`<div${ssrRenderAttrs(mergeProps({ class: "container align-self-center" }, _attrs))}><div class="row"><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center"><div class="ec-slide-content slider-animation slide-one"><h1 class="ec-slide-title background-blur">${ssrInterpolate($props.title)}</h1><h2 class="ec-slide-stitle background-blur">${ssrInterpolate($props.subtitle)}</h2><a href="#" class="btn btn-lg btn-secondary">${ssrInterpolate($props.buttonText)}</a></div></div></div></div>`);
 }
-const _sfc_setup$a = _sfc_main$a.setup;
-_sfc_main$a.setup = (props, ctx) => {
+const _sfc_setup$9 = _sfc_main$9.setup;
+_sfc_main$9.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/modules/home/components/SlideContent.vue");
-  return _sfc_setup$a ? _sfc_setup$a(props, ctx) : void 0;
+  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
 };
-const SlideContent = /* @__PURE__ */ _export_sfc(_sfc_main$a, [["ssrRender", _sfc_ssrRender$a]]);
-const _sfc_main$9 = {
+const SlideContent = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
+const _sfc_main$8 = {
   name: "MainSlider",
   components: {
     Swiper,
@@ -2210,7 +2271,7 @@ const _sfc_main$9 = {
     };
   }
 };
-function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_swiper = resolveComponent("swiper");
   const _component_swiper_slide = resolveComponent("swiper-slide");
   const _component_SlideContent = resolveComponent("SlideContent");
@@ -2300,14 +2361,14 @@ function _sfc_ssrRender$9(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div>`);
 }
-const _sfc_setup$9 = _sfc_main$9.setup;
-_sfc_main$9.setup = (props, ctx) => {
+const _sfc_setup$8 = _sfc_main$8.setup;
+_sfc_main$8.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/modules/home/components/MainSlider.vue");
-  return _sfc_setup$9 ? _sfc_setup$9(props, ctx) : void 0;
+  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
 };
-const MainSlider = /* @__PURE__ */ _export_sfc(_sfc_main$9, [["ssrRender", _sfc_ssrRender$9]]);
-const _sfc_main$8 = {
+const MainSlider = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$8]]);
+const _sfc_main$7 = {
   name: "TabProducts",
   components: {
     ProductInner
@@ -2351,7 +2412,7 @@ const _sfc_main$8 = {
     };
   }
 };
-function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_ProductInner = resolveComponent("ProductInner");
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-product-tab section-space-p",
@@ -2381,14 +2442,14 @@ function _sfc_ssrRender$8(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]--></div></div></div></div></section>`);
 }
-const _sfc_setup$8 = _sfc_main$8.setup;
-_sfc_main$8.setup = (props, ctx) => {
+const _sfc_setup$7 = _sfc_main$7.setup;
+_sfc_main$7.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TabProducts.vue");
-  return _sfc_setup$8 ? _sfc_setup$8(props, ctx) : void 0;
+  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
 };
-const TabProducts = /* @__PURE__ */ _export_sfc(_sfc_main$8, [["ssrRender", _sfc_ssrRender$8]]);
-const _sfc_main$7 = {
+const TabProducts = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["ssrRender", _sfc_ssrRender$7]]);
+const _sfc_main$6 = {
   name: "TwoBanners",
   components: {
     InertiaLink: Link
@@ -2399,7 +2460,7 @@ const _sfc_main$7 = {
     };
   }
 };
-function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "ec-banner section section-space-p" }, _attrs))}><h2 class="d-none">${ssrInterpolate(_ctx.$t("banner"))}</h2><div class="container"><div class="ec-banner-inner"><div class="ec-banner-block ec-banner-block-2"><div class="row"><div class="banner-block col-lg-6 col-md-12 margin-b-30" data-aos="flip-right"><div class="bnr-overlay"><img${ssrRenderAttr("src", $setup.getImagePath("banner", "2.jpg"))} alt="" loading="lazy"><div class="banner-text"><span class="ec-banner-stitle">${ssrInterpolate(_ctx.$t("new_arrivals"))}</span><span class="ec-banner-title">${ssrInterpolate(_ctx.$t("screwdriver"))}</span><span class="ec-banner-discount"> 30% ${ssrInterpolate(_ctx.$t("discount"))}</span></div><div class="banner-content"><span class="ec-banner-btn">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -2437,14 +2498,14 @@ function _sfc_ssrRender$7(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</span></div></div></div></div></div></div></div></section>`);
 }
-const _sfc_setup$7 = _sfc_main$7.setup;
-_sfc_main$7.setup = (props, ctx) => {
+const _sfc_setup$6 = _sfc_main$6.setup;
+_sfc_main$6.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TwoBanners.vue");
-  return _sfc_setup$7 ? _sfc_setup$7(props, ctx) : void 0;
+  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
 };
-const TwoBanners = /* @__PURE__ */ _export_sfc(_sfc_main$7, [["ssrRender", _sfc_ssrRender$7]]);
-const _sfc_main$6 = {
+const TwoBanners = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6]]);
+const _sfc_main$5 = {
   name: "TopCategories",
   components: {
     InertiaLink: Link
@@ -2466,7 +2527,7 @@ const _sfc_main$6 = {
     }
   }
 };
-function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-category-section section-space-p",
@@ -2510,14 +2571,14 @@ function _sfc_ssrRender$6(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   });
   _push(`<!--]--></div></div></div></div></section>`);
 }
-const _sfc_setup$6 = _sfc_main$6.setup;
-_sfc_main$6.setup = (props, ctx) => {
+const _sfc_setup$5 = _sfc_main$5.setup;
+_sfc_main$5.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TopCategories.vue");
-  return _sfc_setup$6 ? _sfc_setup$6(props, ctx) : void 0;
+  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$6, [["ssrRender", _sfc_ssrRender$6], ["__scopeId", "data-v-83389112"]]);
-const _sfc_main$5 = {
+const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-83389112"]]);
+const _sfc_main$4 = {
   name: "SuperOffer",
   components: {
     InertiaLink: Link
@@ -2528,7 +2589,7 @@ const _sfc_main$5 = {
     };
   }
 };
-function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<section${ssrRenderAttrs(mergeProps({ class: "section ec-offer-section section-space-p section-space-m" }, _attrs))} data-v-291b75f5><h2 class="d-none" data-v-291b75f5>${ssrInterpolate(_ctx.$t("offer"))}</h2><div class="container" data-v-291b75f5><div class="row justify-content-end" data-v-291b75f5><div class="col-xl-6 col-lg-7 col-md-7 col-sm-7 align-self-center ec-offer-content" data-v-291b75f5><h2 class="ec-offer-title" data-aos="slide-down" data-v-291b75f5>${ssrInterpolate(_ctx.$t("routers"))}</h2><h3 class="ec-offer-stitle" data-aos="slide-up" data-v-291b75f5>${ssrInterpolate(_ctx.$t("super"))} ${ssrInterpolate(_ctx.$t("offer"))}</h3><span class="ec-offer-img" data-aos="zoom-in" data-v-291b75f5><img${ssrRenderAttr("src", $setup.getImagePath("offer-image", "1.png"))} alt="offer image" loading="lazy" data-v-291b75f5></span><span class="ec-offer-desc" data-v-291b75f5>${ssrInterpolate(_ctx.$t("routers"))}</span><span class="ec-offer-price" data-v-291b75f5>₽40.00 ${ssrInterpolate(_ctx.$t("only"))}</span>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -2549,14 +2610,14 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</div></div></div></section>`);
 }
-const _sfc_setup$5 = _sfc_main$5.setup;
-_sfc_main$5.setup = (props, ctx) => {
+const _sfc_setup$4 = _sfc_main$4.setup;
+_sfc_main$4.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/SuperOffer.vue");
-  return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
+  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
 };
-const SuperOffer = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-291b75f5"]]);
-const _sfc_main$4 = {
+const SuperOffer = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4], ["__scopeId", "data-v-291b75f5"]]);
+const _sfc_main$3 = {
   name: "HomePage",
   layout: Layout,
   components: {
@@ -2570,7 +2631,7 @@ const _sfc_main$4 = {
     ListBrands
   }
 };
-function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_MainSlider = resolveComponent("MainSlider");
   const _component_TabProducts = resolveComponent("TabProducts");
   const _component_TwoBanners = resolveComponent("TwoBanners");
@@ -2590,18 +2651,18 @@ function _sfc_ssrRender$4(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_ListBrands, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$4 = _sfc_main$4.setup;
-_sfc_main$4.setup = (props, ctx) => {
+const _sfc_setup$3 = _sfc_main$3.setup;
+_sfc_main$3.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Home.vue");
-  return _sfc_setup$4 ? _sfc_setup$4(props, ctx) : void 0;
+  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
 };
-const Home = /* @__PURE__ */ _export_sfc(_sfc_main$4, [["ssrRender", _sfc_ssrRender$4]]);
-const __vite_glob_0_5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const Home = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
+const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Home
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$3 = {
+const _sfc_main$2 = {
   name: "PolicyCookies",
   layout: Layout,
   components: {
@@ -2611,7 +2672,7 @@ const _sfc_main$3 = {
     useBodyClass("policy_cookies_page");
   }
 };
-function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.policy_cookies"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -2630,18 +2691,18 @@ function _sfc_ssrRender$3(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.policy_cookies"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("policy_cookies"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("policy_cookies"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 1. Общие положения </h3><p> Данная Политика использования файлов cookie (далее - Политика) относится к сайту e-kaufmann.ru, который принадлежит индивидуальному предпринимателю Брухан Юрий Игоревич (далее – Оператор). <br> Оператор использует файлы cookie и аналогичные технологии на своем сайте для обеспечения его корректной работы, улучшения пользовательского опыта и предоставления персонализированной информации. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 2. Что такое cookie? </h3><p> Файлы cookie - это небольшие текстовые файлы, которые сохраняются на вашем устройстве при посещении сайта. С помощью файлов cookie сайт может «запомнить» ваши действия и предпочтения на определенный период времени. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 3. Какие типы cookie используются </h3><p> Оператор может использовать на сайте следующие типы файлов cookie: <br> - Обязательные cookie - необходимы для работы сайта, обеспечивают навигацию и использование основных функций. <br> - Аналитические cookie - позволяют собирать обезличенную статистику о посещениях сайта, что помогает улучшать его работу и содержимое (например, Яндекс.Метрика, Google Analytics). <br> - Функциональные cookie - используются для запоминания ваших настроек и предпочтений (язык, оформление и проч.). <br> - Рекламные cookie - могут применяться для показа персонализированной рекламы или анализа эффективности рекламных кампаний (используются только с согласия пользователя). <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 4. Цели использования cookie </h3><p> - обеспечение корректной работы сайта; <br> - анализ и улучшение работы сайта; <br> - запоминание пользовательских настроек; <br> - предоставление информации, соответствующей интересам посетителя. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 5. Управление cookie </h3><p> Большинство браузеров по умолчанию принимают cookie. Вы можете изменить настройки браузера, чтобы блокировать или удалять cookie, а также получать уведомления о их отправке. Обратите внимание, что при отключении или удалении cookie некоторые функции сайта могут работать некорректно. Подробнее о настройках cookie можно узнать на официальных страницах поддержки вашего браузера. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 6. Изменения в политике </h3><p> Оператор может обновлять настоящую политику. Все изменения отображаются на данной странице с указанием даты обновления. </p></div></div></div></div></div></div></section><!--]-->`);
 }
-const _sfc_setup$3 = _sfc_main$3.setup;
-_sfc_main$3.setup = (props, ctx) => {
+const _sfc_setup$2 = _sfc_main$2.setup;
+_sfc_main$2.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/PolicyCookies.vue");
-  return _sfc_setup$3 ? _sfc_setup$3(props, ctx) : void 0;
+  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
 };
-const PolicyCookies = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["ssrRender", _sfc_ssrRender$3]]);
-const __vite_glob_0_6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const PolicyCookies = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2]]);
+const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PolicyCookies
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$2 = {
+const _sfc_main$1 = {
   name: "PrivacyPolicy",
   layout: Layout,
   components: {
@@ -2651,7 +2712,7 @@ const _sfc_main$2 = {
     useBodyClass("terms_condition_page");
   }
 };
-function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
   _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">${ssrInterpolate(_ctx.$t("menu.privacy_policy"))}</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
@@ -2700,18 +2761,18 @@ function _sfc_ssrRender$2(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(` . <br></p></div></div></div></div></div></div></section><!--]-->`);
 }
-const _sfc_setup$2 = _sfc_main$2.setup;
-_sfc_main$2.setup = (props, ctx) => {
+const _sfc_setup$1 = _sfc_main$1.setup;
+_sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/PrivacyPolicy.vue");
-  return _sfc_setup$2 ? _sfc_setup$2(props, ctx) : void 0;
+  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const PrivacyPolicy = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["ssrRender", _sfc_ssrRender$2]]);
-const __vite_glob_0_7 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const PrivacyPolicy = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1]]);
+const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: PrivacyPolicy
 }, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main$1 = {
+const _sfc_main = {
   name: "Product",
   layout: Layout,
   components: {
@@ -2803,7 +2864,7 @@ const _sfc_main$1 = {
     }
   }
 };
-function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
+function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   var _a, _b, _c, _d, _e;
   const _component_InertiaLink = resolveComponent("InertiaLink");
   const _component_swiper = resolveComponent("swiper");
@@ -2974,92 +3035,18 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(ssrRenderComponent(_component_NewProducts, null, null, _parent));
   _push(`<!--]-->`);
 }
-const _sfc_setup$1 = _sfc_main$1.setup;
-_sfc_main$1.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Product.vue");
-  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
-};
-const Product = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender$1], ["__scopeId", "data-v-46e4e528"]]);
-const __vite_glob_0_8 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
-  __proto__: null,
-  default: Product
-}, Symbol.toStringTag, { value: "Module" }));
-const _sfc_main = {
-  name: "TrackOrderPage",
-  layout: Layout,
-  components: {
-    InertiaLink: Link
-  },
-  setup() {
-    useBodyClass("track_order_page");
-    const { getImagePath: getImagePath2 } = useImagePath();
-    return {
-      getImagePath: getImagePath2
-    };
-  }
-};
-function _sfc_ssrRender(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
-  const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<!--[--><div class="sticky-header-next-sec ec-breadcrumb section-space-mb"><div class="container"><div class="row"><div class="col-12"><div class="row ec_breadcrumb_inner"><div class="col-md-6 col-sm-12"><h2 class="ec-breadcrumb-title">Track Order</h2></div><div class="col-md-6 col-sm-12"><ul class="ec-breadcrumb-list"><li class="ec-breadcrumb-item">`);
-  _push(ssrRenderComponent(_component_InertiaLink, {
-    href: _ctx.route("home")
-  }, {
-    default: withCtx((_, _push2, _parent2, _scopeId) => {
-      if (_push2) {
-        _push2(`${ssrInterpolate(_ctx.$t("menu.home"))}`);
-      } else {
-        return [
-          createTextVNode(toDisplayString(_ctx.$t("menu.home")), 1)
-        ];
-      }
-    }),
-    _: 1
-  }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">Track</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="ec-trackorder-content col-md-12"><div class="ec-trackorder-inner"><div class="ec-trackorder-top"><h2 class="ec-order-id">order #6152</h2><div class="ec-order-detail"><div>Expected arrival 14-02-2021-2022</div><div> Grasshoppers <span>v534hb</span></div></div></div><div class="ec-trackorder-bottom"><div class="ec-progress-track"><ul id="ec-progressbar"><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr(
-    "src",
-    $setup.getImagePath(
-      "icons",
-      "track_1.png"
-    )
-  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> processed </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr(
-    "src",
-    $setup.getImagePath(
-      "icons",
-      "track_2.png"
-    )
-  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> designing </span></li><li class="step0 active"><span class="ec-track-icon"><img${ssrRenderAttr(
-    "src",
-    $setup.getImagePath(
-      "icons",
-      "track_3.png"
-    )
-  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> shipped </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr(
-    "src",
-    $setup.getImagePath(
-      "icons",
-      "track_4.png"
-    )
-  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> enroute </span></li><li class="step0"><span class="ec-track-icon"><img${ssrRenderAttr(
-    "src",
-    $setup.getImagePath(
-      "icons",
-      "track_5.png"
-    )
-  )} alt="track_order" loading="lazy"></span><span class="ec-progressbar-track"></span><span class="ec-track-title"> order <br> arrived </span></li></ul></div></div></div></div></div></section><!--]-->`);
-}
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/TrackOrder.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/pages/Product.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
-const TrackOrder = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender]]);
+const Product = /* @__PURE__ */ _export_sfc(_sfc_main, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-46e4e528"]]);
 const __vite_glob_0_9 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: TrackOrder
+  default: Product
 }, Symbol.toStringTag, { value: "Module" }));
-const Ziggy = { "url": "http://brukhan.local", "port": null, "defaults": {}, "routes": { "filament.exports.download": { "uri": "filament/exports/{export}/download", "methods": ["GET", "HEAD"], "parameters": ["export"], "bindings": { "export": "id" } }, "filament.imports.failed-rows.download": { "uri": "filament/imports/{import}/failed-rows/download", "methods": ["GET", "HEAD"], "parameters": ["import"], "bindings": { "import": "id" } }, "filament.admin.auth.login": { "uri": "admin/login", "methods": ["GET", "HEAD"] }, "filament.admin.auth.logout": { "uri": "admin/logout", "methods": ["POST"] }, "filament.admin.pages.dashboard": { "uri": "admin", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.index": { "uri": "admin/blog-posts", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.create": { "uri": "admin/blog-posts/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.edit": { "uri": "admin/blog-posts/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.blog-posts.view": { "uri": "admin/blog-posts/{record}", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.brands.index": { "uri": "admin/brands", "methods": ["GET", "HEAD"] }, "filament.admin.resources.brands.create": { "uri": "admin/brands/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.brands.edit": { "uri": "admin/brands/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.categories.index": { "uri": "admin/categories", "methods": ["GET", "HEAD"] }, "filament.admin.resources.categories.create": { "uri": "admin/categories/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.categories.edit": { "uri": "admin/categories/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.contacts.index": { "uri": "admin/contacts", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contacts.create": { "uri": "admin/contacts/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contacts.edit": { "uri": "admin/contacts/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.contact-types.index": { "uri": "admin/contact-types", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contact-types.create": { "uri": "admin/contact-types/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contact-types.edit": { "uri": "admin/contact-types/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.customers.index": { "uri": "admin/customers", "methods": ["GET", "HEAD"] }, "filament.admin.resources.customers.create": { "uri": "admin/customers/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.customers.edit": { "uri": "admin/customers/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.leads.index": { "uri": "admin/leads", "methods": ["GET", "HEAD"] }, "filament.admin.resources.leads.create": { "uri": "admin/leads/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.leads.edit": { "uri": "admin/leads/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.lead-types.index": { "uri": "admin/lead-types", "methods": ["GET", "HEAD"] }, "filament.admin.resources.lead-types.create": { "uri": "admin/lead-types/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.lead-types.edit": { "uri": "admin/lead-types/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.orders.index": { "uri": "admin/orders", "methods": ["GET", "HEAD"] }, "filament.admin.resources.orders.create": { "uri": "admin/orders/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.orders.edit": { "uri": "admin/orders/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.pages.index": { "uri": "admin/pages", "methods": ["GET", "HEAD"] }, "filament.admin.resources.pages.create": { "uri": "admin/pages/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.pages.edit": { "uri": "admin/pages/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.products.index": { "uri": "admin/products", "methods": ["GET", "HEAD"] }, "filament.admin.resources.products.create": { "uri": "admin/products/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.products.edit": { "uri": "admin/products/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.settings.index": { "uri": "admin/settings", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.index": { "uri": "admin/social-networks", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.create": { "uri": "admin/social-networks/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.edit": { "uri": "admin/social-networks/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.tags.index": { "uri": "admin/tags", "methods": ["GET", "HEAD"] }, "filament.admin.resources.tags.create": { "uri": "admin/tags/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.tags.edit": { "uri": "admin/tags/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "livewire.update": { "uri": "livewire/update", "methods": ["POST"] }, "livewire.upload-file": { "uri": "livewire/upload-file", "methods": ["POST"] }, "livewire.preview-file": { "uri": "livewire/preview-file/{filename}", "methods": ["GET", "HEAD"], "parameters": ["filename"] }, "log-viewer.hosts": { "uri": "admin/log-viewer/api/hosts", "methods": ["GET", "HEAD"] }, "log-viewer.folders": { "uri": "admin/log-viewer/api/folders", "methods": ["GET", "HEAD"] }, "log-viewer.folders.request-download": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/download/request", "methods": ["GET", "HEAD"], "parameters": ["folderIdentifier"] }, "log-viewer.folders.clear-cache": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/clear-cache", "methods": ["POST"], "parameters": ["folderIdentifier"] }, "log-viewer.folders.delete": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}", "methods": ["DELETE"], "parameters": ["folderIdentifier"] }, "log-viewer.files": { "uri": "admin/log-viewer/api/files", "methods": ["GET", "HEAD"] }, "log-viewer.files.request-download": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/download/request", "methods": ["GET", "HEAD"], "parameters": ["fileIdentifier"] }, "log-viewer.files.clear-cache": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/clear-cache", "methods": ["POST"], "parameters": ["fileIdentifier"] }, "log-viewer.files.delete": { "uri": "admin/log-viewer/api/files/{fileIdentifier}", "methods": ["DELETE"], "parameters": ["fileIdentifier"] }, "log-viewer.files.clear-cache-all": { "uri": "admin/log-viewer/api/clear-cache-all", "methods": ["POST"] }, "log-viewer.files.delete-multiple-files": { "uri": "admin/log-viewer/api/delete-multiple-files", "methods": ["POST"] }, "log-viewer.logs": { "uri": "admin/log-viewer/api/logs", "methods": ["GET", "HEAD"] }, "log-viewer.folders.download": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/download", "methods": ["GET", "HEAD"], "parameters": ["folderIdentifier"] }, "log-viewer.files.download": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/download", "methods": ["GET", "HEAD"], "parameters": ["fileIdentifier"] }, "log-viewer.index": { "uri": "admin/log-viewer/{view?}", "methods": ["GET", "HEAD"], "wheres": { "view": "(.*)" }, "parameters": ["view"] }, "home": { "uri": "/", "methods": ["GET", "HEAD"] }, "about-us": { "uri": "about-us", "methods": ["GET", "HEAD"] }, "contacts": { "uri": "contacts", "methods": ["GET", "HEAD"] }, "faq": { "uri": "faq", "methods": ["GET", "HEAD"] }, "privacy-policy": { "uri": "privacy-policy", "methods": ["GET", "HEAD"] }, "policy-cookies": { "uri": "policy-cookies", "methods": ["GET", "HEAD"] }, "bank-details": { "uri": "bank-details", "methods": ["GET", "HEAD"] }, "track-order": { "uri": "track-order", "methods": ["GET", "HEAD"] }, "show-product": { "uri": "product/{slug}", "methods": ["GET", "HEAD"], "parameters": ["slug"] }, "show-category": { "uri": "category/{slug}", "methods": ["GET", "HEAD"], "parameters": ["slug"] }, "api.v1.common.site-info": { "uri": "api/v1/site-info", "methods": ["GET", "HEAD"] }, "api.v1.common.popular-tags": { "uri": "api/v1/popular-tags", "methods": ["GET", "HEAD"] }, "api.v1.product.tags": { "uri": "api/v1/products/tags", "methods": ["GET", "HEAD"] }, "api.v1.product.get-product": { "uri": "api/v1/product/{slug}", "methods": ["GET", "HEAD"], "wheres": { "slug": "[a-zA-Z0-9-]+" }, "parameters": ["slug"] }, "api.v1.product.get-products": { "uri": "api/v1/products", "methods": ["GET", "HEAD"] } } };
+const Ziggy = { "url": "http://brukhan.local", "port": null, "defaults": {}, "routes": { "filament.exports.download": { "uri": "filament/exports/{export}/download", "methods": ["GET", "HEAD"], "parameters": ["export"], "bindings": { "export": "id" } }, "filament.imports.failed-rows.download": { "uri": "filament/imports/{import}/failed-rows/download", "methods": ["GET", "HEAD"], "parameters": ["import"], "bindings": { "import": "id" } }, "filament.admin.auth.login": { "uri": "admin/login", "methods": ["GET", "HEAD"] }, "filament.admin.auth.logout": { "uri": "admin/logout", "methods": ["POST"] }, "filament.admin.pages.dashboard": { "uri": "admin", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.index": { "uri": "admin/blog-posts", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.create": { "uri": "admin/blog-posts/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.blog-posts.edit": { "uri": "admin/blog-posts/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.blog-posts.view": { "uri": "admin/blog-posts/{record}", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.brands.index": { "uri": "admin/brands", "methods": ["GET", "HEAD"] }, "filament.admin.resources.brands.create": { "uri": "admin/brands/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.brands.edit": { "uri": "admin/brands/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.categories.index": { "uri": "admin/categories", "methods": ["GET", "HEAD"] }, "filament.admin.resources.categories.create": { "uri": "admin/categories/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.categories.edit": { "uri": "admin/categories/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.contacts.index": { "uri": "admin/contacts", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contacts.create": { "uri": "admin/contacts/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contacts.edit": { "uri": "admin/contacts/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.contact-types.index": { "uri": "admin/contact-types", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contact-types.create": { "uri": "admin/contact-types/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.contact-types.edit": { "uri": "admin/contact-types/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.customers.index": { "uri": "admin/customers", "methods": ["GET", "HEAD"] }, "filament.admin.resources.customers.create": { "uri": "admin/customers/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.customers.edit": { "uri": "admin/customers/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.leads.index": { "uri": "admin/leads", "methods": ["GET", "HEAD"] }, "filament.admin.resources.leads.create": { "uri": "admin/leads/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.leads.edit": { "uri": "admin/leads/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.lead-types.index": { "uri": "admin/lead-types", "methods": ["GET", "HEAD"] }, "filament.admin.resources.lead-types.create": { "uri": "admin/lead-types/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.lead-types.edit": { "uri": "admin/lead-types/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.orders.index": { "uri": "admin/orders", "methods": ["GET", "HEAD"] }, "filament.admin.resources.orders.create": { "uri": "admin/orders/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.orders.edit": { "uri": "admin/orders/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.pages.index": { "uri": "admin/pages", "methods": ["GET", "HEAD"] }, "filament.admin.resources.pages.create": { "uri": "admin/pages/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.pages.edit": { "uri": "admin/pages/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.products.index": { "uri": "admin/products", "methods": ["GET", "HEAD"] }, "filament.admin.resources.products.create": { "uri": "admin/products/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.products.edit": { "uri": "admin/products/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.settings.index": { "uri": "admin/settings", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.index": { "uri": "admin/social-networks", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.create": { "uri": "admin/social-networks/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.social-networks.edit": { "uri": "admin/social-networks/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "filament.admin.resources.tags.index": { "uri": "admin/tags", "methods": ["GET", "HEAD"] }, "filament.admin.resources.tags.create": { "uri": "admin/tags/create", "methods": ["GET", "HEAD"] }, "filament.admin.resources.tags.edit": { "uri": "admin/tags/{record}/edit", "methods": ["GET", "HEAD"], "parameters": ["record"] }, "livewire.update": { "uri": "livewire/update", "methods": ["POST"] }, "livewire.upload-file": { "uri": "livewire/upload-file", "methods": ["POST"] }, "livewire.preview-file": { "uri": "livewire/preview-file/{filename}", "methods": ["GET", "HEAD"], "parameters": ["filename"] }, "log-viewer.hosts": { "uri": "admin/log-viewer/api/hosts", "methods": ["GET", "HEAD"] }, "log-viewer.folders": { "uri": "admin/log-viewer/api/folders", "methods": ["GET", "HEAD"] }, "log-viewer.folders.request-download": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/download/request", "methods": ["GET", "HEAD"], "parameters": ["folderIdentifier"] }, "log-viewer.folders.clear-cache": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/clear-cache", "methods": ["POST"], "parameters": ["folderIdentifier"] }, "log-viewer.folders.delete": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}", "methods": ["DELETE"], "parameters": ["folderIdentifier"] }, "log-viewer.files": { "uri": "admin/log-viewer/api/files", "methods": ["GET", "HEAD"] }, "log-viewer.files.request-download": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/download/request", "methods": ["GET", "HEAD"], "parameters": ["fileIdentifier"] }, "log-viewer.files.clear-cache": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/clear-cache", "methods": ["POST"], "parameters": ["fileIdentifier"] }, "log-viewer.files.delete": { "uri": "admin/log-viewer/api/files/{fileIdentifier}", "methods": ["DELETE"], "parameters": ["fileIdentifier"] }, "log-viewer.files.clear-cache-all": { "uri": "admin/log-viewer/api/clear-cache-all", "methods": ["POST"] }, "log-viewer.files.delete-multiple-files": { "uri": "admin/log-viewer/api/delete-multiple-files", "methods": ["POST"] }, "log-viewer.logs": { "uri": "admin/log-viewer/api/logs", "methods": ["GET", "HEAD"] }, "log-viewer.folders.download": { "uri": "admin/log-viewer/api/folders/{folderIdentifier}/download", "methods": ["GET", "HEAD"], "parameters": ["folderIdentifier"] }, "log-viewer.files.download": { "uri": "admin/log-viewer/api/files/{fileIdentifier}/download", "methods": ["GET", "HEAD"], "parameters": ["fileIdentifier"] }, "log-viewer.index": { "uri": "admin/log-viewer/{view?}", "methods": ["GET", "HEAD"], "wheres": { "view": "(.*)" }, "parameters": ["view"] }, "home": { "uri": "/", "methods": ["GET", "HEAD"] }, "about-us": { "uri": "about-us", "methods": ["GET", "HEAD"] }, "contacts": { "uri": "contacts", "methods": ["GET", "HEAD"] }, "faq": { "uri": "faq", "methods": ["GET", "HEAD"] }, "privacy-policy": { "uri": "privacy-policy", "methods": ["GET", "HEAD"] }, "policy-cookies": { "uri": "policy-cookies", "methods": ["GET", "HEAD"] }, "bank-details": { "uri": "bank-details", "methods": ["GET", "HEAD"] }, "delivery": { "uri": "delivery", "methods": ["GET", "HEAD"] }, "show-product": { "uri": "product/{slug}", "methods": ["GET", "HEAD"], "parameters": ["slug"] }, "show-category": { "uri": "category/{slug}", "methods": ["GET", "HEAD"], "parameters": ["slug"] }, "api.v1.common.site-info": { "uri": "api/v1/site-info", "methods": ["GET", "HEAD"] }, "api.v1.common.popular-tags": { "uri": "api/v1/popular-tags", "methods": ["GET", "HEAD"] }, "api.v1.product.tags": { "uri": "api/v1/products/tags", "methods": ["GET", "HEAD"] }, "api.v1.product.get-product": { "uri": "api/v1/product/{slug}", "methods": ["GET", "HEAD"], "wheres": { "slug": "[a-zA-Z0-9-]+" }, "parameters": ["slug"] }, "api.v1.product.get-products": { "uri": "api/v1/products", "methods": ["GET", "HEAD"] } } };
 if (typeof window !== "undefined" && typeof window.Ziggy !== "undefined") {
   Object.assign(Ziggy.routes, window.Ziggy.routes);
 }
@@ -3079,7 +3066,7 @@ const ru = {
   page: {
     about_us: "О нас",
     faq: "Часто задаваемые вопросы",
-    delivery_information: "Информация о доставке",
+    delivery: "Информация о доставке",
     contact_us: "Контакты",
     privacy_policy: "Политика персональных данных",
     policy_cookies: "Политика обработки cookie",
@@ -3098,7 +3085,7 @@ const ru = {
     contacts: "Контакты",
     company: "Компания",
     faq: "Часто задаваемые вопросы",
-    delivery_information: "Информация о доставке",
+    delivery: "Информация о доставке",
     contact_us: "Контакты",
     privacy_policy: "Политика персональных данных",
     policy_cookies: "Политика обработки cookie",
@@ -3163,7 +3150,8 @@ const ru = {
   },
   privacy_policy: "Политика персональных данных",
   policy_cookies: "Политика обработки cookie",
-  bank_details: "Банковские реквизиты"
+  bank_details: "Банковские реквизиты",
+  delivery: "Информация о доставке"
 };
 const en = {
   locale: {
@@ -3200,7 +3188,7 @@ const en = {
     contacts: "Contacts",
     company: "Company",
     faq: "FAQ",
-    delivery_information: "Delivery information",
+    delivery: "Delivery information",
     contact_us: "Contact us",
     privacy_policy: "Privacy policy",
     policy_cookies: "Cookie processing policy",
@@ -3265,7 +3253,8 @@ const en = {
   },
   privacy_policy: "Privacy policy",
   policy_cookies: "Cookie processing policy",
-  bank_details: "Bank details"
+  bank_details: "Bank details",
+  delivery: "Delivery information"
 };
 const defaultLocale = localStorage.getItem("locale") || "ru";
 const i18n = createI18n({
@@ -3279,7 +3268,7 @@ createServer(
     page,
     render: renderToString,
     resolve: (name) => {
-      const pages = /* @__PURE__ */ Object.assign({ "./pages/AboutUs.vue": __vite_glob_0_0, "./pages/BankDetails.vue": __vite_glob_0_1, "./pages/Category.vue": __vite_glob_0_2, "./pages/Contacts.vue": __vite_glob_0_3, "./pages/Faq.vue": __vite_glob_0_4, "./pages/Home.vue": __vite_glob_0_5, "./pages/PolicyCookies.vue": __vite_glob_0_6, "./pages/PrivacyPolicy.vue": __vite_glob_0_7, "./pages/Product.vue": __vite_glob_0_8, "./pages/TrackOrder.vue": __vite_glob_0_9 });
+      const pages = /* @__PURE__ */ Object.assign({ "./pages/AboutUs.vue": __vite_glob_0_0, "./pages/BankDetails.vue": __vite_glob_0_1, "./pages/Category.vue": __vite_glob_0_2, "./pages/Contacts.vue": __vite_glob_0_3, "./pages/Delivery.vue": __vite_glob_0_4, "./pages/Faq.vue": __vite_glob_0_5, "./pages/Home.vue": __vite_glob_0_6, "./pages/PolicyCookies.vue": __vite_glob_0_7, "./pages/PrivacyPolicy.vue": __vite_glob_0_8, "./pages/Product.vue": __vite_glob_0_9 });
       const page2 = pages[`./pages/${name}.vue`];
       page2.default.layout = page2.default.layout || Layout;
       return page2;

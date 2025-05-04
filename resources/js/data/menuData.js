@@ -63,8 +63,8 @@ export const getMenuItems = (t, categories) => {
                 },
                 {
                     type: 'link',
-                    label: t('menu.delivery_information'),
-                    link: 'track-order',
+                    label: t('menu.delivery'),
+                    link: 'delivery',
                 },
                 {
                     type: 'link',

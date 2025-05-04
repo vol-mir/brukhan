@@ -65,10 +65,10 @@ class HomeController extends Controller
         ]);
     }
 
-    public function trackOrder(): Response
+    public function delivery(): Response
     {
-        return Inertia::render('TrackOrder', [
-            'page' => $this->getPageData(TitleType::Page, 'policy_personal_data'),
+        return Inertia::render('Delivery', [
+            'page' => $this->getPageData(TitleType::Page, 'delivery'),
         ]);
     }
 

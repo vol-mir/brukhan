@@ -34,7 +34,7 @@ export default {
         contacts: 'Contacts',
         company: 'Company',
         faq: 'FAQ',
-        delivery_information: 'Delivery information',
+        delivery: 'Delivery information',
         contact_us: 'Contact us',
         privacy_policy: 'Privacy policy',
         policy_cookies: 'Cookie processing policy',
@@ -100,4 +100,5 @@ export default {
     privacy_policy: 'Privacy policy',
     policy_cookies: 'Cookie processing policy',
     bank_details: 'Bank details',
+    delivery: 'Delivery information',
 };

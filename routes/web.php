@@ -13,7 +13,7 @@ Route::controller(HomeController::class)->group(function (): void {
     Route::get('/privacy-policy', 'privacyPolicy')->name('privacy-policy');
     Route::get('/policy-cookies', 'policyCookies')->name('policy-cookies');
     Route::get('/bank-details', 'bankDetails')->name('bank-details');
-    Route::get('/track-order', 'trackOrder')->name('track-order');
+    Route::get('/delivery', 'delivery')->name('delivery');
     Route::get('/product/{slug}', 'showProduct')->name('show-product');
     Route::get('/category/{slug}', 'showCategory')->name('show-category');
 });
