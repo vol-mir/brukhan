@@ -40,13 +40,19 @@
                 <a href="#" class="image">
                     <img
                         class="main-image"
-                        :src="product.image_main"
+                        :src="
+                            product.image_main ??
+                            getImagePath('common', 'default.jpg')
+                        "
                         :alt="product.name"
                         loading="lazy"
                     />
                     <img
                         class="hover-image"
-                        :src="product.image_hover"
+                        :src="
+                            product.image_hover ??
+                            getImagePath('common', 'default.jpg')
+                        "
                         :alt="product.name"
                         loading="lazy"
                     />

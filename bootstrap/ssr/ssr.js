@@ -1396,7 +1396,13 @@ const _sfc_main$l = {
 };
 function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr("src", $props.product.image_main)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr("src", $props.product.image_hover)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr(
+    "src",
+    $props.product.image_main ?? $setup.getImagePath("common", "default.jpg")
+  )}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr(
+    "src",
+    $props.product.image_hover ?? $setup.getImagePath("common", "default.jpg")
+  )}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a>`);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: $setup.route("show-product", { slug: $props.product.slug }),
     class: "quickview",
