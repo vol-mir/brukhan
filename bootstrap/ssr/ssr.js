@@ -1382,29 +1382,63 @@ const _sfc_main$l = {
       type: Object,
       required: true,
       validator(value) {
-        return typeof value.name === "string" && typeof value.image_main === "string" && typeof value.image_hover === "string" && typeof value.price === "number";
+        const isValid = value && typeof value.name === "string" && value.name.length > 0 && typeof value.slug === "string" && value.slug.length > 0 && typeof value.price === "number" && (value.rating === void 0 || value.rating === null || typeof value.rating === "number") && (value.image_main === void 0 || value.image_main === null || typeof value.image_main === "string") && (value.image_hover === void 0 || value.image_hover === null || typeof value.image_hover === "string");
+        if (!isValid) {
+          console.warn("Invalid product prop received:", value);
+        }
+        return isValid;
       }
     }
   },
-  setup() {
+  setup(props) {
     const route = inject("route");
+    const { getImagePath: getImagePath2 } = useImagePath();
+    const defaultImage = getImagePath2("common", "default-product.jpg");
+    const quickviewIcon = getImagePath2("icons", "quickview.svg");
+    const productUrl = computed(
+      () => route("show-product", { slug: props.product.slug })
+    );
+    const safeRating = computed(() => props.product.rating ?? 0);
     return {
-      getImagePath,
-      route
+      defaultImage,
+      quickviewIcon,
+      productUrl,
+      safeRating,
+      props
     };
   }
 };
 function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $options) {
   const _component_InertiaLink = resolveComponent("InertiaLink");
-  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image"><a href="#" class="image"><img class="main-image"${ssrRenderAttr(
-    "src",
-    $props.product.image_main ?? $setup.getImagePath("common", "default.jpg")
-  )}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"><img class="hover-image"${ssrRenderAttr(
-    "src",
-    $props.product.image_hover ?? $setup.getImagePath("common", "default.jpg")
-  )}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"></a>`);
+  _push(`<div${ssrRenderAttrs(mergeProps({ class: "ec-product-inner" }, _attrs))}><div class="ec-pro-image-outer"><div class="ec-pro-image">`);
   _push(ssrRenderComponent(_component_InertiaLink, {
-    href: $setup.route("show-product", { slug: $props.product.slug }),
+    class: "image",
+    href: $setup.productUrl
+  }, {
+    default: withCtx((_, _push2, _parent2, _scopeId) => {
+      if (_push2) {
+        _push2(`<img class="main-image"${ssrRenderAttr("src", $props.product.image_main || $setup.defaultImage)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"${_scopeId}><img class="hover-image"${ssrRenderAttr("src", $props.product.image_hover || $setup.defaultImage)}${ssrRenderAttr("alt", $props.product.name)} loading="lazy"${_scopeId}>`);
+      } else {
+        return [
+          createVNode("img", {
+            class: "main-image",
+            src: $props.product.image_main || $setup.defaultImage,
+            alt: $props.product.name,
+            loading: "lazy"
+          }, null, 8, ["src", "alt"]),
+          createVNode("img", {
+            class: "hover-image",
+            src: $props.product.image_hover || $setup.defaultImage,
+            alt: $props.product.name,
+            loading: "lazy"
+          }, null, 8, ["src", "alt"])
+        ];
+      }
+    }),
+    _: 1
+  }, _parent));
+  _push(ssrRenderComponent(_component_InertiaLink, {
+    href: $setup.productUrl,
     class: "quickview",
     "data-link-action": "quickview",
     title: "Quick view",
@@ -1413,13 +1447,13 @@ function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
-        _push2(`<img${ssrRenderAttr("src", $setup.getImagePath("icons", "quickview.svg"))} class="svg_img pro_svg" alt=""${_scopeId}>`);
+        _push2(`<img${ssrRenderAttr("src", $setup.quickviewIcon)} class="svg_img pro_svg" alt="Quick view"${_scopeId}>`);
       } else {
         return [
           createVNode("img", {
-            src: $setup.getImagePath("icons", "quickview.svg"),
+            src: $setup.quickviewIcon,
             class: "svg_img pro_svg",
-            alt: ""
+            alt: "Quick view"
           }, null, 8, ["src"])
         ];
       }
@@ -1427,9 +1461,7 @@ function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     _: 1
   }, _parent));
   _push(`</div></div><div class="ec-pro-content"><h5 class="ec-pro-title">`);
-  _push(ssrRenderComponent(_component_InertiaLink, {
-    href: $setup.route("show-product", { slug: $props.product.slug })
-  }, {
+  _push(ssrRenderComponent(_component_InertiaLink, { href: $setup.productUrl }, {
     default: withCtx((_, _push2, _parent2, _scopeId) => {
       if (_push2) {
         _push2(`${ssrInterpolate($props.product.name)}`);
@@ -1443,7 +1475,7 @@ function _sfc_ssrRender$l(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   }, _parent));
   _push(`</h5><div class="ec-pro-rating"><!--[-->`);
   ssrRenderList(5, (index) => {
-    _push(`<i class="${ssrRenderClass([{ fill: index <= $props.product.rating }, "ecicon eci-star"])}"></i>`);
+    _push(`<i class="${ssrRenderClass([{ fill: index <= $setup.safeRating }, "ecicon eci-star"])}"></i>`);
   });
   _push(`<!--]--></div><span class="ec-price"><span class="new-price">₽${ssrInterpolate($props.product.price)}</span></span></div></div>`);
 }
@@ -2624,8 +2656,11 @@ const _sfc_main$5 = {
     InertiaLink: Link
   },
   setup() {
-    const siteInfoStore = useSiteInfoStore();
+    const { getImagePath: getImagePath2 } = useImagePath();
+    const { siteInfoStore } = useSiteInfo();
+    const defaultImage = getImagePath2("common", "default-category.jpg");
     return {
+      defaultImage,
       siteInfoStore
     };
   },
@@ -2634,9 +2669,18 @@ const _sfc_main$5 = {
       activeTab: ""
     };
   },
+  computed: {
+    topCategories() {
+      return this.siteInfoStore.top_categories || [];
+    }
+  },
   methods: {
     setActiveTab(tabId) {
       this.activeTab = tabId;
+    },
+    isActive(category, index) {
+      const id = `tab-cat-${category.slug}`;
+      return this.activeTab === id || this.activeTab === "" && index === 0;
     }
   }
 };
@@ -2645,24 +2689,20 @@ function _sfc_ssrRender$5(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
   _push(`<section${ssrRenderAttrs(mergeProps({
     class: "section ec-category-section section-space-p",
     id: "categories"
-  }, _attrs))} data-v-83389112><div class="container" data-v-83389112><div class="row" data-v-83389112><div class="col-md-12 text-center" data-v-83389112><div class="section-title" data-v-83389112><h2 class="ec-bg-title" data-v-83389112>${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title" data-v-83389112>${ssrInterpolate(_ctx.$t("top_categories"))}</h2><p class="sub-title" data-v-83389112>${ssrInterpolate(_ctx.$t("browse_top_categories"))}</p></div></div></div><div class="row" data-v-83389112><div class="col-lg-3" data-v-83389112><ul class="ec-cat-tab-nav nav" data-v-83389112><!--[-->`);
-  ssrRenderList($setup.siteInfoStore.top_categories, (category, index) => {
-    _push(`<li class="cat-item" data-v-83389112><a class="${ssrRenderClass([
+  }, _attrs))}><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h2 class="ec-bg-title">${ssrInterpolate(_ctx.$t("our_top_collection"))}</h2><h2 class="ec-title">${ssrInterpolate(_ctx.$t("top_categories"))}</h2><p class="sub-title">${ssrInterpolate(_ctx.$t("browse_top_categories"))}</p></div></div></div><div class="row"><div class="col-lg-3"><ul class="ec-cat-tab-nav nav"><!--[-->`);
+  ssrRenderList($options.topCategories, (category, index) => {
+    _push(`<li class="cat-item"><a class="${ssrRenderClass([
       "cat-link",
-      {
-        active: $data.activeTab === "tab-cat-" + category.slug || $data.activeTab === "" && index === 0
-      }
-    ])}" data-bs-toggle="tab"${ssrRenderAttr("href", "#tab-cat-" + category.slug)} data-v-83389112><div class="cat-desc" data-v-83389112><span data-v-83389112>${ssrInterpolate(category.name)}</span><span data-v-83389112>${ssrInterpolate(category.product_count)} ${ssrInterpolate(_ctx.$t("products"))}</span></div></a></li>`);
+      { active: $options.isActive(category, index) }
+    ])}" data-bs-toggle="tab"${ssrRenderAttr("href", `#tab-cat-${category.slug}`)}><div class="cat-desc"><span>${ssrInterpolate(category.name)}</span><span>${ssrInterpolate(category.product_count)} ${ssrInterpolate(_ctx.$t("products"))}</span></div></a></li>`);
   });
-  _push(`<!--]--></ul></div><div class="col-lg-9" data-v-83389112><div class="tab-content" data-v-83389112><!--[-->`);
-  ssrRenderList($setup.siteInfoStore.top_categories, (category, index) => {
+  _push(`<!--]--></ul></div><div class="col-lg-9"><div class="tab-content"><!--[-->`);
+  ssrRenderList($options.topCategories, (category, index) => {
     _push(`<div class="${ssrRenderClass([
       "tab-pane",
       "fade",
-      {
-        "show active": $data.activeTab === "tab-cat-" + category.slug || $data.activeTab === "" && index === 0
-      }
-    ])}"${ssrRenderAttr("id", "tab-cat-" + category.slug)} data-v-83389112><div class="row" data-v-83389112><img class="img-top-category"${ssrRenderAttr("src", category.image)} alt="" data-v-83389112></div><span class="panel-overlay" data-v-83389112>`);
+      { "show active": $options.isActive(category, index) }
+    ])}"${ssrRenderAttr("id", `tab-cat-${category.slug}`)}><div class="row"><img class="img-top-category"${ssrRenderAttr("src", category.image || $setup.defaultImage)}${ssrRenderAttr("alt", category.name)} loading="lazy"></div><span class="panel-overlay">`);
     _push(ssrRenderComponent(_component_InertiaLink, {
       href: _ctx.route(category.link, {
         slug: category.slug
@@ -2690,7 +2730,7 @@ _sfc_main$5.setup = (props, ctx) => {
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/components/TopCategories.vue");
   return _sfc_setup$5 ? _sfc_setup$5(props, ctx) : void 0;
 };
-const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5], ["__scopeId", "data-v-83389112"]]);
+const TopCategories = /* @__PURE__ */ _export_sfc(_sfc_main$5, [["ssrRender", _sfc_ssrRender$5]]);
 const _sfc_main$4 = {
   name: "SuperOffer",
   components: {
@@ -2842,7 +2882,7 @@ function _sfc_ssrRender$1(_ctx, _push, _parent, _attrs, $props, $setup, $data, $
     }),
     _: 1
   }, _parent));
-  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.privacy_policy"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("privacy_policy"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("privacy_policy"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 1. Общие положения </h3><p> 1.1. Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных индивидуального предпринимателя Брухан Юрий Игоревич (далее – Оператор). <br> 1.2. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну. <br> 1.3. Настоящая политика Оператора в отношении обработки персональных данных (далее – Политика) применяется ко всей информации, которую Оператор может получить о посетителях сайта e-kaufmann.ru (или иного используемого вами доменного имени). <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 2. Основные понятия, используемые в Политике </h3><p> - Персональные данные – любая информация, непосредственно или косвенно относящаяся к определённому или определяемому физическому лицу (субъекту персональных данных). <br> - Оператор – лицо, организующее и/или осуществляющее обработку персональных данных, а также определяющее цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными. <br> - Сайт – интернет-ресурс, размещённый в сети Интернет по адресу (укажите доменное имя вашего сайта). <br> - Пользователь – любой посетитель Сайта. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 3. Оператор может обрабатывать следующие персональные данные Пользователя </h3><p> - Фамилия, имя, отчество. <br> - Контактный телефон. <br> - Адрес электронной почты. <br> - Адрес для доставки (по необходимости). <br> - Иные данные, предоставляемые Пользователем. <br></p><p> Также на Сайте происходит сбор и обработка обезличенных данных о посетителях (в т.ч. файлов cookie) с помощью сервисов интернет-статистики (Яндекс.Метрика, Google Analytics и других). </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 4. Цели обработки персональных данных </h3><p> Обработка персональных данных Пользователя производится в целях: <br> - Оказания услуг по доставке товаров из Европы; <br> - Оформления заявок, заказов и иной документации; <br> - Обратной связи с Пользователем; <br> - Информирования об изменениях статуса заказов и новых предложениях (при согласии Пользователя); <br> - Проведения маркетинговых и иных исследований; <br> - Соблюдения требований законодательства РФ. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 5. Правовые основания обработки персональных данных </h3><p> Оператор обрабатывает персональные данные Пользователя только при заполнении Пользователем форм на Сайте и/или отправке данных Оператору самостоятельно посредством специальных форм и по согласованию с Пользователем. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 6. Порядок сбора, хранения, передачи и иных видов обработки персональных данных </h3><p> 6.1. Оператор обеспечивает сохранность персональных данных и принимает все возможные меры по исключению доступа к персональным данным неуполномоченных лиц. <br> 6.2. Персональные данные Пользователя ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства. <br> 6.3. В случае выявления неточностей в персональных данных Пользователь может их актуализировать, обратившись к Оператору по контактному адресу электронной почты. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 7. Сроки обработки персональных данных </h3><p> Персональные данные обрабатываются не дольше, чем этого требуют цели обработки, или чем это предусмотрено законодательством РФ. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 8. Права субъекта персональных данных </h3><p> Пользователь вправе: <br> - Получать информацию, касающуюся обработки его персональных данных; <br> - Требовать уточнения своих персональных данных, их блокирования или уничтожения при наличии оснований; <br> - Отозвать своё согласие на обработку персональных данных, направив Оператору уведомление по электронной почте. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 9. Заключительные положения </h3><p> 9.1. Оператор имеет право вносить изменения в настоящую Политику. Новая редакция Политики вступает в силу с момента её размещения на Сайте. <br> 9.2. Все предложения или вопросы по настоящей Политике следует направлять по электронной почте указанной на странице: `);
+  _push(`</li><li class="ec-breadcrumb-item active">${ssrInterpolate(_ctx.$t("menu.privacy_policy"))}</li></ul></div></div></div></div></div></div><section class="ec-page-content section-space-p"><div class="container"><div class="row"><div class="col-md-12 text-center"><div class="section-title"><h1 class="ec-bg-title">${ssrInterpolate(_ctx.$t("privacy_policy"))}</h1><h1 class="ec-title">${ssrInterpolate(_ctx.$t("privacy_policy"))}</h1></div></div><div class="col-md-12"><div class="ec-common-wrapper"><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 1. Общие положения </h3><p> 1.1. Настоящая политика обработки персональных данных составлена в соответствии с требованиями Федерального закона от 27.07.2006 №152-ФЗ «О персональных данных» и определяет порядок обработки персональных данных и меры по обеспечению безопасности персональных данных индивидуального предпринимателя Брухан Юрий Игоревич (далее – Оператор). <br> 1.2. Оператор ставит своей важнейшей целью и условием осуществления своей деятельности соблюдение прав и свобод человека и гражданина при обработке его персональных данных, в том числе защиты прав на неприкосновенность частной жизни, личную и семейную тайну. <br> 1.3. Настоящая политика Оператора в отношении обработки персональных данных (далее – Политика) применяется ко всей информации, которую Оператор может получить о посетителях сайта e-kaufmann.ru (или иного используемого вами доменного имени). <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 2. Основные понятия, используемые в Политике </h3><p> - Персональные данные – любая информация, непосредственно или косвенно относящаяся к определённому или определяемому физическому лицу (субъекту персональных данных). <br> - Оператор – лицо, организующее и/или осуществляющее обработку персональных данных, а также определяющее цели обработки персональных данных, состав персональных данных, подлежащих обработке, действия (операции), совершаемые с персональными данными. <br> - Сайт – интернет-ресурс, размещённый в сети Интернет по адресу e-kaufmann.ru. <br> - Пользователь – любой посетитель Сайта. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 3. Оператор может обрабатывать следующие персональные данные Пользователя </h3><p> - Фамилия, имя, отчество. <br> - Контактный телефон. <br> - Адрес электронной почты. <br> - Адрес для доставки (по необходимости). <br> - Иные данные, предоставляемые Пользователем. <br></p><p> Также на Сайте происходит сбор и обработка обезличенных данных о посетителях (в т.ч. файлов cookie) с помощью сервисов интернет-статистики (Яндекс.Метрика, Google Analytics и других). </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 4. Цели обработки персональных данных </h3><p> Обработка персональных данных Пользователя производится в целях: <br> - Оказания услуг по доставке товаров из Европы; <br> - Оформления заявок, заказов и иной документации; <br> - Обратной связи с Пользователем; <br> - Информирования об изменениях статуса заказов и новых предложениях (при согласии Пользователя); <br> - Проведения маркетинговых и иных исследований; <br> - Соблюдения требований законодательства РФ. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 5. Правовые основания обработки персональных данных </h3><p> Оператор обрабатывает персональные данные Пользователя только при заполнении Пользователем форм на Сайте и/или отправке данных Оператору самостоятельно посредством специальных форм и по согласованию с Пользователем. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 6. Порядок сбора, хранения, передачи и иных видов обработки персональных данных </h3><p> 6.1. Оператор обеспечивает сохранность персональных данных и принимает все возможные меры по исключению доступа к персональным данным неуполномоченных лиц. <br> 6.2. Персональные данные Пользователя ни при каких условиях не будут переданы третьим лицам, за исключением случаев, связанных с исполнением действующего законодательства. <br> 6.3. В случае выявления неточностей в персональных данных Пользователь может их актуализировать, обратившись к Оператору по контактному адресу электронной почты. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 7. Сроки обработки персональных данных </h3><p> Персональные данные обрабатываются не дольше, чем этого требуют цели обработки, или чем это предусмотрено законодательством РФ. </p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 8. Права субъекта персональных данных </h3><p> Пользователь вправе: <br> - Получать информацию, касающуюся обработки его персональных данных; <br> - Требовать уточнения своих персональных данных, их блокирования или уничтожения при наличии оснований; <br> - Отозвать своё согласие на обработку персональных данных, направив Оператору уведомление по электронной почте. <br></p></div></div><div class="col-sm-12 ec-cms-block"><div class="ec-cms-block-inner"><h3 class="ec-cms-block-title"> 9. Заключительные положения </h3><p> 9.1. Оператор имеет право вносить изменения в настоящую Политику. Новая редакция Политики вступает в силу с момента её размещения на Сайте. <br> 9.2. Все предложения или вопросы по настоящей Политике следует направлять по электронной почте указанной на странице: `);
   _push(ssrRenderComponent(_component_InertiaLink, {
     href: _ctx.route("contacts")
   }, {

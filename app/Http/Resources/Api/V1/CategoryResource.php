@@ -21,7 +21,7 @@ class CategoryResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'image' => url('/') . '/' . $this->image,
+            'image' => $this->image ? url('/') . '/' . $this->image : null,
             'description' => $this->description,
             'is_popular' => $this->is_popular,
             'name' => $this->name,

@@ -151,9 +151,15 @@ button.btn-close.qty_close {
             display: block;
             overflow: hidden;
             pointer-events: none;
+            width: 100%;
+            aspect-ratio: 4 / 3;
             img {
                 z-index: 1;
-                max-width: $width-100;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: center;
+                display: block;
                 transition: all 0.3s ease 0s;
             }
             img.hover-image {
@@ -410,10 +416,11 @@ button.btn-close.qty_close {
             a {
                 text-decoration: $textdecoration;
                 color: $text-color-777;
-                white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
-                display: block;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
                 font-size: 16px;
                 line-height: 1.5;
                 font-weight: 400;

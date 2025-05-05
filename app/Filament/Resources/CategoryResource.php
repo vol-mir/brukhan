@@ -121,10 +121,10 @@ class CategoryResource extends Resource
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_visible')
                     ->boolean()
-                    ->label(__('fields.is_popular')),
+                    ->label(__('fields.is_visible')),
                 Tables\Columns\IconColumn::make('is_popular')
                     ->boolean()
-                    ->label(__('fields.is_visible')),
+                    ->label(__('fields.is_popular')),
                 Tables\Columns\TextColumn::make('order')
                     ->label(__('fields.order'))
                     ->searchable()

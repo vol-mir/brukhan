@@ -1,6 +1,7 @@
 <script>
-    import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import { Link as InertiaLink } from '@inertiajs/vue3';
+    import { useImagePath } from '@/composables/useImagePath';
+    import { useSiteInfo } from '@/composables/useSiteInfo';
 
     export default {
         name: 'TopCategories',
@@ -8,9 +9,13 @@
             InertiaLink,
         },
         setup() {
-            const siteInfoStore = useSiteInfoStore();
+            const { getImagePath } = useImagePath();
+            const { siteInfoStore } = useSiteInfo();
+
+            const defaultImage = getImagePath('common', 'default-category.jpg');
 
             return {
+                defaultImage,
                 siteInfoStore,
             };
         },
@@ -19,9 +24,21 @@
                 activeTab: '',
             };
         },
+        computed: {
+            topCategories() {
+                return this.siteInfoStore.top_categories || [];
+            },
+        },
         methods: {
             setActiveTab(tabId) {
                 this.activeTab = tabId;
+            },
+            isActive(category, index) {
+                const id = `tab-cat-${category.slug}`;
+                return (
+                    this.activeTab === id ||
+                    (this.activeTab === '' && index === 0)
+                );
             },
         },
     };
@@ -53,27 +70,20 @@
                 <div class="col-lg-3">
                     <ul class="ec-cat-tab-nav nav">
                         <li
-                            v-for="(
-                                category, index
-                            ) in siteInfoStore.top_categories"
+                            v-for="(category, index) in topCategories"
                             :key="category.slug"
                             class="cat-item"
                         >
                             <a
                                 :class="[
                                     'cat-link',
-                                    {
-                                        active:
-                                            activeTab ===
-                                                'tab-cat-' + category.slug ||
-                                            (activeTab === '' && index === 0),
-                                    },
+                                    { active: isActive(category, index) },
                                 ]"
                                 @click.prevent="
-                                    setActiveTab('tab-cat-' + category.slug)
+                                    setActiveTab(`tab-cat-${category.slug}`)
                                 "
                                 data-bs-toggle="tab"
-                                :href="'#tab-cat-' + category.slug"
+                                :href="`#tab-cat-${category.slug}`"
                             >
                                 <div class="cat-desc">
                                     <span>{{ category.name }}</span>
@@ -91,27 +101,21 @@
                 <div class="col-lg-9">
                     <div class="tab-content">
                         <div
-                            v-for="(
-                                category, index
-                            ) in siteInfoStore.top_categories"
+                            v-for="(category, index) in topCategories"
                             :key="category.slug"
                             :class="[
                                 'tab-pane',
                                 'fade',
-                                {
-                                    'show active':
-                                        activeTab ===
-                                            'tab-cat-' + category.slug ||
-                                        (activeTab === '' && index === 0),
-                                },
+                                { 'show active': isActive(category, index) },
                             ]"
-                            :id="'tab-cat-' + category.slug"
+                            :id="`tab-cat-${category.slug}`"
                         >
                             <div class="row">
                                 <img
                                     class="img-top-category"
-                                    :src="category.image"
-                                    alt=""
+                                    :src="category.image || defaultImage"
+                                    :alt="category.name"
+                                    loading="lazy"
                                 />
                             </div>
                             <span class="panel-overlay">
@@ -135,11 +139,3 @@
     </section>
     <!-- Category Section End -->
 </template>
-
-<style scoped>
-    .img-top-category {
-        max-height: 350px;
-        object-fit: cover;
-        object-position: center;
-    }
-</style>
