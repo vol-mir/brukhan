@@ -1253,12 +1253,7 @@ const _sfc_main$n = {
     };
   },
   mounted() {
-    window.onload = () => {
-      this.loading = false;
-    };
-    window.onerror = () => {
-      this.loading = false;
-    };
+    this.loading = false;
   },
   watch: {
     $route() {
