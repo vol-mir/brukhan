@@ -1254,14 +1254,28 @@ const _sfc_main$n = {
   },
   created() {
     router.on("start", () => {
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
       this.loading = true;
     });
     router.on("finish", () => {
-      this.loading = false;
+      this.timer = setTimeout(() => {
+        this.loading = false;
+        this.timer = null;
+      }, 150);
     });
   },
   mounted() {
-    this.loading = false;
+    setTimeout(() => {
+      this.loading = false;
+    }, 100);
+  },
+  beforeUnmount() {
+    if (this.timer) {
+      clearTimeout(this.timer);
+    }
   },
   watch: {
     $route() {
