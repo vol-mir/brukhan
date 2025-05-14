@@ -68,7 +68,7 @@
         mounted() {
             setTimeout(() => {
                 this.loading = false;
-            }, 100);
+            }, 200);
         },
         beforeUnmount() {
             if (this.timer) {
