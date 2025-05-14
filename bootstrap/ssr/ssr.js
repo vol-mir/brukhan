@@ -1,5 +1,5 @@
 import { useSSRContext, mergeProps, ref, onMounted, onBeforeUnmount, resolveComponent, withCtx, createVNode, inject, createTextVNode, toDisplayString, computed, onUnmounted, watch, openBlock, createBlock, Fragment, renderList, unref, createSSRApp, h } from "vue";
-import { Link, usePage, Head, createInertiaApp } from "@inertiajs/vue3";
+import { Link, usePage, Head, router, createInertiaApp } from "@inertiajs/vue3";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderAttr, ssrRenderClass, ssrRenderComponent, ssrRenderStyle, ssrRenderSlot, ssrIncludeBooleanAttr, ssrLooseContain, ssrLooseEqual } from "vue/server-renderer";
 import { defineStore, createPinia } from "pinia";
 import { useI18n, createI18n } from "vue-i18n";
@@ -1251,6 +1251,14 @@ const _sfc_main$n = {
     return {
       loading: true
     };
+  },
+  created() {
+    router.on("start", () => {
+      this.loading = true;
+    });
+    router.on("finish", () => {
+      this.loading = false;
+    });
   },
   mounted() {
     this.loading = false;

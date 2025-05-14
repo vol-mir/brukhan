@@ -27,7 +27,7 @@
     import SideOverlay from '@/components/SideOverlay.vue';
     import AppFooter from '@/components/AppFooter.vue';
     import ScrollUp from '@/components/ScrollUp.vue';
-    import { Head as InertiaHead } from '@inertiajs/vue3';
+    import { Head as InertiaHead, router } from '@inertiajs/vue3';
 
     export default {
         components: {
@@ -48,6 +48,14 @@
             return {
                 loading: true,
             };
+        },
+        created() {
+            router.on('start', () => {
+                this.loading = true;
+            });
+            router.on('finish', () => {
+                this.loading = false;
+            });
         },
         mounted() {
             this.loading = false;
