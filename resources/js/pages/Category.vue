@@ -1,17 +1,10 @@
 <script>
-    import {
-        inject,
-        onBeforeUnmount,
-        onMounted,
-        ref,
-        watch,
-        computed,
-    } from 'vue';
-    import Layout from '@/layouts/LayoutBase.vue';
+    import { inject, onMounted, ref, watch, computed } from 'vue';
     import { Link as InertiaLink } from '@inertiajs/vue3';
-    import { getImagePath } from '@/utils/imageHelper';
+    import Layout from '@/layouts/LayoutBase.vue';
+    import { useBodyClass } from '@/composables/useBodyClass';
+    import { useSiteInfo } from '@/composables/useSiteInfo';
     import ProductInner from '@/components/ProductInner.vue';
-    import { useSiteInfoStore } from '@/stores/siteInfoStore';
     import ApiClient from '@/apiClient';
 
     export default {
@@ -28,8 +21,11 @@
             },
         },
         setup(props) {
+            useBodyClass('category_page');
+
+            const { siteInfoStore } = useSiteInfo();
+
             const route = inject('route');
-            const siteInfoStore = useSiteInfoStore();
             const fullCategory = ref([]);
             const sortOption = ref('low_price');
             const pagination = ref({
@@ -79,7 +75,6 @@
             };
 
             onMounted(async () => {
-                document.body.classList.add('shop_page');
                 await siteInfoStore.fetchSiteInfo();
 
                 if (props.category?.slug) {
@@ -87,10 +82,6 @@
                 }
 
                 await fetchPopularTags();
-            });
-
-            onBeforeUnmount(() => {
-                document.body.classList.remove('shop_page');
             });
 
             watch(
@@ -206,7 +197,6 @@
 
             return {
                 route,
-                getImagePath,
                 siteInfoStore,
                 fullCategory,
                 sortOption,
@@ -479,25 +469,3 @@
     </section>
     <!-- Shop page end-->
 </template>
-
-<style scoped>
-    .ec-breadcrumb-title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-    .pagination-ellipsis {
-        cursor: default;
-        color: #666;
-        pointer-events: none;
-    }
-    .ec-pro-pagination-inner a.disabled {
-        pointer-events: none;
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-    .no-products-found {
-        font-size: 18px;
-        margin-top: 20px;
-    }
-</style>
